@@ -18,12 +18,15 @@ public class S_Movement_TB : MonoBehaviour
 
     [Space]
     [Header("PC")]
-    [SerializeField] KeyCode JumpKey = KeyCode.Space;
+    [SerializeField] KeyCode jumpKey = KeyCode.Space;
+    [SerializeField] KeyCode runKey = KeyCode.LeftShift;
 
     [Space]
     [Header("Stats")]
+    [MinMaxSlider(0f, 30f)] 
+    [SerializeField] Vector2 Speed; //X is walking speed, Y is running speed
     [Range(1, 10)]
-    [SerializeField] float Speed;
+    [SerializeField] float JumpPower;
 
     [Space]
     [Header("Physics")]
@@ -54,6 +57,7 @@ public class S_Movement_TB : MonoBehaviour
     {
         Movement();
         Gravity();
+        Jumping();
     }
 
     private void FixedUpdate()
@@ -79,12 +83,14 @@ public class S_Movement_TB : MonoBehaviour
 
             bodyArt.eulerAngles = new Vector3(0, VrCamera.eulerAngles.y, 0);
 
-            move = bodyArt.transform.TransformDirection(Vector3.Normalize(new Vector3(joystickValue.x, 0, joystickValue.y)) * Time.deltaTime * Speed);
+            move = bodyArt.transform.TransformDirection(Vector3.Normalize(new Vector3(joystickValue.x, 0, joystickValue.y)) * Time.deltaTime);
         }
         else
         {
-            move = bodyArt.transform.TransformDirection(Vector3.Normalize(new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"))) * Time.deltaTime * Speed);
+            move = bodyArt.transform.TransformDirection(Vector3.Normalize(new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"))) * Time.deltaTime);
         }
+
+        move *= Input.GetKey(runKey) ? Speed.y : Speed.x;
 
         cc.Move(move);
     }
@@ -92,7 +98,7 @@ public class S_Movement_TB : MonoBehaviour
     float t;
     void Gravity()
     {
-        if(grounded)
+        if(grounded & velocity.y < 0)
         {
             velocity = Vector3.zero;
         } else
@@ -107,6 +113,13 @@ public class S_Movement_TB : MonoBehaviour
         }
 
         cc.Move(velocity * Time.deltaTime);
+    }
+    void Jumping()
+    {
+        if(Input.GetKeyDown(jumpKey) && grounded)
+        {
+            velocity.y = Mathf.Sqrt(JumpPower * 5 * -3f * Physics.gravity.y);
+        }
     }
 
 }

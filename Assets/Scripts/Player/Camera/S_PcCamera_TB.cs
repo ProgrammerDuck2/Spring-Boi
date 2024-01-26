@@ -9,8 +9,8 @@ public class S_PcCamera_TB : MonoBehaviour
 
     float xRotation;
 
-    int lookUpAngle = -15;
-    int lookDownAngle = 90;
+    int lookUpAngle = -60;
+    int lookDownAngle = 60;
 
     private void Start()
     {

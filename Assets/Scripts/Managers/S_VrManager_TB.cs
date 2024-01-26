@@ -23,8 +23,6 @@ public class S_VrManager_TB : MonoBehaviour
         XrInteractionManager = FindFirstObjectByType<XRInteractionManager>().gameObject;
         PcCamera = GameObject.Find("PcCamera");
 
-        CheckVR();
-
         StartCoroutine(LateStart());
     }
 
@@ -77,7 +75,7 @@ public class S_VrManager_TB : MonoBehaviour
             }
         }
 
-        Debug.Log("VR is not connected");
+        Debug.LogWarning("VR is not connected, using PC controlls");
         return false;
     }
 
