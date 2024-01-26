@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class S_MovingPlatform_IMAH : MonoBehaviour
+public class S_MovingPlatform_IM : MonoBehaviour
 {
     [SerializeField] List<GameObject> turningPoints = new List<GameObject>();
 
@@ -18,8 +18,6 @@ public class S_MovingPlatform_IMAH : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        print("hi");
-
         if (other.gameObject == turningPoints[nextPoint])
         {
             nextPoint += 1;
