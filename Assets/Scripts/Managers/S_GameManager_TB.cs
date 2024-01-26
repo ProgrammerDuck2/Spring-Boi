@@ -1,16 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class S_GameManager_TB : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public GameObject Player;
+    public GameObject VRManager;
+    public GameObject XRInteractionManager;
+
+    void Awake()
     {
         Cursor.lockState = CursorLockMode.Locked;
+
+        if(!FindFirstObjectByType<S_VrManager_TB>())
+        {
+            Instantiate(VRManager);
+        }
+        if (!FindFirstObjectByType<XRInteractionManager>())
+        {
+            Instantiate(XRInteractionManager);
+        }
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         
