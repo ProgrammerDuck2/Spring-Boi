@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 191373918}
   m_Layer: 6
   m_Name: Rock (2)
-  m_TagString: Untagged
+  m_TagString: Grabable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -221,13 +221,96 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 191373917}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.17597955, y: -0.028191881, z: -0.15565048, w: 0.9716015}
+  m_LocalRotation: {x: 0.1734062, y: 0.06017205, z: -0.17702475, w: 0.96693945}
   m_LocalPosition: {x: -22.7, y: 6.9, z: 0.2}
   m_LocalScale: {x: 5, y: 20, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 19.462, y: -6.673, z: -19.349}
+  m_LocalEulerAnglesHint: {x: 20.895, y: 3.373, z: -20.127}
+--- !u!1001 &631012723
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1946315076485686787, guid: 84643b817aa6bc143923190569a152b0,
+        type: 3}
+      propertyPath: m_Name
+      value: waterplane
+      objectReference: {fileID: 0}
+    - target: {fileID: 1946315076485686787, guid: 84643b817aa6bc143923190569a152b0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1946315076485855779, guid: 84643b817aa6bc143923190569a152b0,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1946315076485855779, guid: 84643b817aa6bc143923190569a152b0,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1946315076485855779, guid: 84643b817aa6bc143923190569a152b0,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1946315076485855779, guid: 84643b817aa6bc143923190569a152b0,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1946315076485855779, guid: 84643b817aa6bc143923190569a152b0,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1946315076485855779, guid: 84643b817aa6bc143923190569a152b0,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1946315076485855779, guid: 84643b817aa6bc143923190569a152b0,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.00000008146034
+      objectReference: {fileID: 0}
+    - target: {fileID: 1946315076485855779, guid: 84643b817aa6bc143923190569a152b0,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1946315076485855779, guid: 84643b817aa6bc143923190569a152b0,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1946315076485855779, guid: 84643b817aa6bc143923190569a152b0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1946315076485855779, guid: 84643b817aa6bc143923190569a152b0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1946315076485855779, guid: 84643b817aa6bc143923190569a152b0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 84643b817aa6bc143923190569a152b0, type: 3}
 --- !u!1 &673766416
 GameObject:
   m_ObjectHideFlags: 0
@@ -296,7 +379,7 @@ GameObject:
   - component: {fileID: 734186157}
   m_Layer: 6
   m_Name: Rock (1)
-  m_TagString: Untagged
+  m_TagString: Grabable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -380,13 +463,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 734186156}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.25184047, y: -0, z: -0, w: 0.96776885}
+  m_LocalRotation: {x: -0.25155753, y: 0.045862798, z: -0.011934786, w: 0.9666814}
   m_LocalPosition: {x: 0, y: 6.9, z: 21.4}
   m_LocalScale: {x: 5, y: 20, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: -29.173, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -29.029, y: 6.216, z: -3.025}
 --- !u!1 &958162503
 GameObject:
   m_ObjectHideFlags: 0
@@ -507,7 +590,7 @@ GameObject:
   - component: {fileID: 965107434}
   m_Layer: 6
   m_Name: Rock (3)
-  m_TagString: Untagged
+  m_TagString: Grabable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -612,7 +695,7 @@ GameObject:
   - component: {fileID: 1377990327}
   m_Layer: 6
   m_Name: Rock
-  m_TagString: Untagged
+  m_TagString: Grabable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -696,13 +779,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1377990326}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.17822324, y: -0, z: -0, w: 0.98399013}
+  m_LocalRotation: {x: 0.17793141, y: -0.056286708, z: -0.010194819, w: 0.9823789}
   m_LocalPosition: {x: 0, y: 6.9, z: -22.7}
   m_LocalScale: {x: 5, y: 20, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 20.533, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 20.392, y: -6.999, z: -2.45}
 --- !u!1 &1743024096
 GameObject:
   m_ObjectHideFlags: 0
@@ -5887,7 +5970,6 @@ SceneRoots:
   m_Roots:
   - {fileID: 1743024098}
   - {fileID: 148929119710321855}
-  - {fileID: 958162507}
   - {fileID: 6327816509646231640}
   - {fileID: 1377990330}
   - {fileID: 191373921}
@@ -5895,3 +5977,5 @@ SceneRoots:
   - {fileID: 734186160}
   - {fileID: 2017916045}
   - {fileID: 673766417}
+  - {fileID: 631012723}
+  - {fileID: 958162507}
