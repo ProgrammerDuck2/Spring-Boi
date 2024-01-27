@@ -21,6 +21,10 @@ public class S_GameManager_TB : MonoBehaviour
         {
             Instantiate(XRInteractionManager);
         }
+        if (!FindFirstObjectByType<S_Movement_TB>())
+        {
+            Debug.LogError("No player in Scene");
+        }
     }
 
 
