@@ -5,7 +5,7 @@ using UnityEngine;
 public class S_NPCInteractions_MA : MonoBehaviour
 {
     [SerializeField] private List<string> speech = new List<string>();
-    private int currentSpeech = 0;
+    //private int currentSpeech = 0;
 
     // Start is called before the first frame update
     void Start()

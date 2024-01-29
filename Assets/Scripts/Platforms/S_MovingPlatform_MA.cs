@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class S_MovingPlatform_IM : MonoBehaviour
+public class S_MovingPlatform_MA : MonoBehaviour
 {
     [SerializeField] List<GameObject> turningPoints = new List<GameObject>();
 
     private int speed = 10;
-    private int nextPoint = 0; //next point in turningPoints list
+    private int nextPoint = 0; //next point in turningPoints listyou 
 
     void Update()
     {
@@ -28,6 +28,4 @@ public class S_MovingPlatform_IM : MonoBehaviour
             }
         }
     }
-
-    
 }
