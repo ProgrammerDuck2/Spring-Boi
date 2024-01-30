@@ -6,14 +6,14 @@ using Unity.VisualScripting;
 
 public class S_UIText_MA : MonoBehaviour
 {
-    public TextMeshProUGUI text;
+    public TMP_Text text;
     [SerializeField] private List<string> uitext = new List<string>();
     private int currentText = 0;
 
     // Start is called before the first frame update
     void Start()
     {
-        text = FindObjectOfType<TextMeshProUGUI>();
+        text = GetComponent<TMP_Text>();
     }
 
     //Update is called once per frame
@@ -21,13 +21,15 @@ public class S_UIText_MA : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
+            if (currentText == uitext.Count)
+            {
+                text.gameObject.SetActive(false);
+                return;
+            }
+
             //StartCoroutine(UIText());         //- if timed
             text.text = uitext[currentText];    //if player clicks trough
             currentText++;
-            //if (currentText == uitext.Count)
-            {
-                //uitext.gameObject.enabled = false;
-            }
         }
     }
 

@@ -26,7 +26,7 @@ public class S_NPCInteractions_MA : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E))
             {
                     StartCoroutine(Speech());
-             }
+            }
         }
     }
 
