@@ -20,7 +20,10 @@ public class S_NPCInteractions_MA : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        NPCText.transform.LookAt(player.transform);
+        Transform playerTransform = player.transform;
+        Vector3 direction = playerTransform.position - NPCText.transform.position;
+        Quaternion rotation = Quaternion.LookRotation(-direction);
+        NPCText.transform.rotation = rotation;
     }
 
     private void OnTriggerStay(Collider other)
@@ -33,7 +36,7 @@ public class S_NPCInteractions_MA : MonoBehaviour
             }
         }
     }
-    //transform.LookAt(turningPoints[nextPoint].transform);
+    
     IEnumerator Speech()
     {
         for (int i = 0; i < speech.Count; i++) 
