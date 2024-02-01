@@ -12,13 +12,18 @@ public class S_Grab_TB : MonoBehaviour
     GameObject playerBody;
 
     [Header("Controller")]
-    XRController controller;
+    [SerializeField] InputActionProperty InputPosition;
 
     [Header("Contolls")]
     [SerializeField] InputActionProperty trigger;
     bool triggerActivated = false;
     [SerializeField] InputActionProperty grip;
     bool gripActivated = false;
+
+    [Header("Other")]
+    Vector3 controllerPosition;
+    Vector3 initializedGrabPosition;
+    Vector3 initializedPlayerPosition;
 
     bool grab = false;
 
@@ -30,11 +35,12 @@ public class S_Grab_TB : MonoBehaviour
         grip.action.canceled += toggleGrip;
 
         playerBody = transform.parent.parent.parent.gameObject;
-        controller = GetComponent<XRController>();
     }
 
     private void Update()
     {
+        controllerPosition = InputPosition.action.ReadValue<Vector3>();
+
         if ((triggerActivated && gripActivated) != grab)
         {
             initializedGrab();
@@ -54,14 +60,17 @@ public class S_Grab_TB : MonoBehaviour
         S_Movement_TB movePlayer = playerBody.GetComponent<S_Movement_TB>();
         movePlayer.enabled = !movePlayer.enabled;
 
-       
-
-        
+        initializedGrabPosition = controllerPosition;
+        initializedPlayerPosition = playerBody.transform.position;
     }
 
     void Grab()
     {
-        
+        //Debug.Log("initialized pos = " + initializedGrabPosition + " currentPos = " + controllerPosition + " offset = " + (initializedGrabPosition - controllerPosition));
+
+        Vector3 offset = initializedGrabPosition - controllerPosition;
+
+        playerBody.transform.position = initializedPlayerPosition + offset * 3;
     }
 
     void toggleTrigger(InputAction.CallbackContext context)
