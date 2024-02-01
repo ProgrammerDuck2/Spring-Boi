@@ -39,7 +39,7 @@ public class S_Movement_TB : MonoBehaviour
     float MaxVelocity = 100;
     [SerializeField] LayerMask groundLayer;
     [SerializeField] LayerMask stickGroundLayer;
-    public bool grounded;
+    public bool Grounded; //ground :)
     Vector3 groundCheckPos;
 
     [Space]
@@ -72,11 +72,11 @@ public class S_Movement_TB : MonoBehaviour
     {
         groundCheckPos = transform.position - transform.up * 0.9f;
 
-        if (grounded != Physics.CheckSphere(groundCheckPos, 1 * 0.5f, groundLayer))
+        if (Grounded != Physics.CheckSphere(groundCheckPos, 1 * 0.5f, groundLayer))
         {
             Collider[] ground = Physics.OverlapSphere(groundCheckPos, 1 * 0.5f, stickGroundLayer);
 
-            grounded = !grounded;
+            Grounded = !Grounded;
             transform.parent = ground.Length >= 1 ? ground[0].transform : null;
         }
     }
@@ -112,7 +112,7 @@ public class S_Movement_TB : MonoBehaviour
     float t;
     void Gravity()
     {
-        if(grounded & velocity.y < 0)
+        if(Grounded & velocity.y < 0)
         {
             velocity = Vector3.zero;
         } else
@@ -137,7 +137,7 @@ public class S_Movement_TB : MonoBehaviour
     }
     void Jump()
     {
-        if (grounded)
+        if (Grounded)
         {
             velocity.y = Mathf.Sqrt(JumpPower * 5 * -3f * Physics.gravity.y);
         }
