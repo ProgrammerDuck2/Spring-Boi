@@ -8,7 +8,7 @@ public class S_MovingPlatform_MA : MonoBehaviour
     [SerializeField] List<GameObject> turningPoints = new List<GameObject>();
 
     private int speed = 10;
-    private int nextPoint = 0; //next point in turningPoints listyou 
+    private int nextPoint = 0; //next point in turningPoints list
 
     void Update()
     {
