@@ -39,7 +39,7 @@ public class S_Movement_TB : MonoBehaviour
     float MaxVelocity = 100;
     [SerializeField] LayerMask groundLayer;
     [SerializeField] LayerMask stickGroundLayer;
-    [ShowNonSerializedField] bool grounded;
+    public bool grounded;
     Vector3 groundCheckPos;
 
     [Space]
