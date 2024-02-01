@@ -1,3 +1,4 @@
+using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -46,13 +47,18 @@ public class S_Grab_TB : MonoBehaviour
             Grab();
         }
     }
-    void initializedGrab()
+
+    [Button]
+    public void initializedGrab()
     {
         S_Movement_TB movePlayer = playerBody.GetComponent<S_Movement_TB>();
         movePlayer.enabled = !movePlayer.enabled;
 
-        //controller.enabled = !controller.enabled;
+       
+
+        
     }
+
     void Grab()
     {
         
