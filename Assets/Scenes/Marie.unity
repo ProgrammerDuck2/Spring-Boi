@@ -6708,20 +6708,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1131341493}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &896415998
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 896415993}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2530748a7898854abde671c3d7c7c77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  respawnPoint: {fileID: 1865544402}
-  outOfWorld: -5
 --- !u!1001 &902521733
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8871,11 +8857,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 2854214671508081976, guid: a3ba075e65629ad4380ce9298e73ddea,
-        type: 3}
-      propertyPath: Grounded
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7270047777627567016, guid: a3ba075e65629ad4380ce9298e73ddea,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8926,14 +8907,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7450994534025487902, guid: a3ba075e65629ad4380ce9298e73ddea,
+        type: 3}
+      propertyPath: respawnPoint
+      value: 
+      objectReference: {fileID: 1865544402}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 303144978361500398, guid: a3ba075e65629ad4380ce9298e73ddea,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 896415998}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a3ba075e65629ad4380ce9298e73ddea, type: 3}
 --- !u!1 &1132402973
 GameObject:
@@ -11537,7 +11519,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30.2
+  m_fontSize: 26.95
   m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 1

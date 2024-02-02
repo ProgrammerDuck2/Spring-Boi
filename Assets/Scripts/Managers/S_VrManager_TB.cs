@@ -8,8 +8,6 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class S_VrManager_TB : MonoBehaviour
 {
-    public bool IsVrConnected;
-
     //VR
     GameObject XrOrigin;
     GameObject XrInteractionManager;
@@ -36,19 +34,19 @@ public class S_VrManager_TB : MonoBehaviour
     [Button]
     public void CheckVR()
     {
-        IsVrConnected = IsVrHeadsetConnected();
+        S_Settings_TB.IsVRConnected = IsVrHeadsetConnected();
         SwapSystem();
     }
     [Button]
     public void ToggleVR()
     {
-        IsVrConnected = !IsVrConnected;
+        S_Settings_TB.IsVRConnected = !S_Settings_TB.IsVRConnected;
         SwapSystem();
     }
 
     void SwapSystem()
     {
-        if (IsVrConnected)
+        if (S_Settings_TB.IsVRConnected)
         {
             PcCamera.SetActive(false);
             XrOrigin.SetActive(true);
