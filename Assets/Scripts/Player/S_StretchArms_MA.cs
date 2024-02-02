@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,7 +9,9 @@ public class S_StretchArms_MA : MonoBehaviour
 {
     [SerializeField] private int whichArm;
     [SerializeField] private GameObject player;
-    [SerializeField] private GameObject hand;
+    [SerializeField] private GameObject leftHand;
+    [SerializeField] private GameObject rightHand;
+    private float distance = 10;
     LayerMask mask;
 
     // Start is called before the first frame update
@@ -26,17 +29,45 @@ public class S_StretchArms_MA : MonoBehaviour
         if (Input.GetMouseButtonDown(whichArm))
         {
             //Debug.Log("mousedown");
-            transform.localScale = new Vector3(0, 0, 20f) + transform.localScale;
+            transform.localScale = new Vector3(0, 0, 10f) + transform.localScale;
+
+            if (whichArm == 0)
+            {
+                leftHand.transform.position += transform.forward;
+            }
+            else if (whichArm == 1)
+            {
+                rightHand.transform.position += transform.forward;
+            }
         }
+
         if (Input.GetMouseButtonUp(whichArm))
         {
             //Debug.Log("mouseup");
-            transform.localScale = new Vector3(0, 0, -20f) + transform.localScale;
+            transform.localScale = new Vector3(0, 0, -10f) + transform.localScale;
+            player.transform.position += player.transform.forward * 100;
+            if (Physics.CheckSphere(transform.position, 1, mask))
+            {
+                Debug.Log("fghjkp");
+                player.transform.position += player.transform.forward * distance;
+            }
+            if (whichArm == 0)
+            {
+                leftHand.transform.position -= transform.forward;
+            }
+            if (whichArm == 1)
+            {
+                rightHand.transform.position -= transform.forward;
+            }
         }
-        if (Physics.CheckSphere(transform.position, 1, mask))
-        {
-            hand.transform.localPosition = transform.position; 
-            player.transform.position = new Vector3 (0, 0, newscale.z);
-        }
+
+        //Debug.Log(Physics.CheckSphere(transform.position, 1, mask));
+
+        //if (Physics.CheckSphere(transform.position, 1, mask))
+        //{
+        //    hand.transform.localPosition = transform.position; 
+        //    player.transform.position = new Vector3 (0, 0, newscale.z);
+        //}
     }
+    //change pivot of 
 }

@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class S_Respawn_MA : MonoBehaviour
 {
-    [SerializeField] private GameObject respawnPoint;
+    //[SerializeField] private GameObject respawnPoint;
+    private Vector3 respawnPoint = Vector3.zero;
     [SerializeField] private float outOfWorld;
     S_Movement_TB movement;
     private bool hasHappened;
@@ -23,7 +24,7 @@ public class S_Respawn_MA : MonoBehaviour
             if(hasHappened == false)
             {
                 //Debug.Log("new ground");
-                respawnPoint.transform.position = gameObject.transform.position;
+                respawnPoint = gameObject.transform.position;
                 hasHappened = true;
             }
         }
@@ -39,6 +40,6 @@ public class S_Respawn_MA : MonoBehaviour
     void FixedUpdate()
     {
         if (transform.position.y < outOfWorld)
-            transform.position = respawnPoint.transform.position;
+            transform.position = respawnPoint;
     }
 }
