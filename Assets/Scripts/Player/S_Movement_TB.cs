@@ -24,6 +24,7 @@ public class S_Movement_TB : MonoBehaviour
     [Header("PC")]
     [SerializeField] KeyCode jumpKey = KeyCode.Space;
     [SerializeField] KeyCode runKey = KeyCode.LeftShift;
+    [SerializeField] KeyCode crouchKey = KeyCode.LeftControl;
 
     [Space]
     [Header("Stats")]
@@ -46,7 +47,6 @@ public class S_Movement_TB : MonoBehaviour
     [Header("Other")]
     Transform bodyArt;
 
-    S_VrManager_TB vrManager;
     CharacterController cc;
 
     // Start is called before the first frame update
@@ -56,7 +56,6 @@ public class S_Movement_TB : MonoBehaviour
         rightSecondaryButton.action.started += VrSprintHeld;
 
         cc = GetComponent<CharacterController>();
-        vrManager = FindFirstObjectByType<S_VrManager_TB>();
         bodyArt = transform.GetChild(2);
     }
 
@@ -66,6 +65,11 @@ public class S_Movement_TB : MonoBehaviour
         Movement();
         Gravity();
         Jumping();
+
+        if(!S_Settings_TB.IsVRConnected)
+        {
+            Crouch();
+        }
     }
 
     private void FixedUpdate()
@@ -91,7 +95,7 @@ public class S_Movement_TB : MonoBehaviour
     {
         Vector3 move;
 
-        if (vrManager.IsVrConnected)
+        if (S_Settings_TB.IsVRConnected)
         {
             joystickValue = leftJoystick.action.ReadValue<Vector2>();
 
@@ -141,6 +145,15 @@ public class S_Movement_TB : MonoBehaviour
         {
             velocity.y = Mathf.Sqrt(JumpPower * 5 * -3f * Physics.gravity.y);
         }
+    }
+    void Crouch()
+    {
+        if(Input.GetKeyDown(crouchKey))
+            transform.position += new Vector3(0, -.5f, 0);
+        if (Input.GetKeyUp(crouchKey))
+            transform.position += new Vector3(0, .5f, 0);
+
+        transform.localScale = Input.GetKey(crouchKey) ? new Vector3(1, .5f, 1) : Vector3.one;
     }
     void VrJumpPressed(InputAction.CallbackContext context)
     {
