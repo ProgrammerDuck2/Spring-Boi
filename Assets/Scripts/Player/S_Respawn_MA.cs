@@ -22,7 +22,7 @@ public class S_Respawn_MA : MonoBehaviour
         {
             if(hasHappened == false)
             {
-                Debug.Log("new ground");
+                //Debug.Log("new ground");
                 respawnPoint.transform.position = gameObject.transform.position;
                 hasHappened = true;
             }
