@@ -1,3 +1,4 @@
+using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,7 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class S_LevelSwap_MA : MonoBehaviour
 {
-    [SerializeField] private string nextLevel;
+    [Scene]
+    public string NewScene;
+
 
     // Start is called before the first frame update
     void Start()
@@ -23,10 +26,7 @@ public class S_LevelSwap_MA : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-                SceneManager.LoadScene(nextLevel);
+                SceneManager.LoadScene(NewScene);
         }
-
-
-        //SceneManager.LoadScene("Marie_NextLevel");
     }
 }
