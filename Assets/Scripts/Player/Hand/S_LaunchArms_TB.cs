@@ -76,7 +76,7 @@ public class S_LaunchArms_TB : MonoBehaviour
         if(currentHandMissile == null)
         {
             pullingHand = false;
-            currentHandMissile = Instantiate(handToLaunch, hand.controllerPosition + new Vector3(0, 0.07f, 0), hand.controllerRotation);
+            currentHandMissile = Instantiate(handToLaunch, transform.position, hand.controllerRotation);
 
             handArt.SetActive(false);
 

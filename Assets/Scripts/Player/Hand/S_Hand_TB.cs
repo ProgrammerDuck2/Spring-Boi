@@ -10,6 +10,9 @@ using UnityEngine.WSA;
 [RequireComponent(typeof(S_LaunchArms_TB))]
 public class S_Hand_TB : MonoBehaviour
 {
+    [Required]
+    public GameObject Player;
+
     public GameObject otherController;
     [HorizontalLine(color: EColor.Violet)]
 

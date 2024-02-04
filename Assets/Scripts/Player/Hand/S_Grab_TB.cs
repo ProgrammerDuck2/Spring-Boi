@@ -21,12 +21,12 @@ public class S_Grab_TB : MonoBehaviour
     S_Grab_TB otherControllerGrab;
 
     [Header("Other")]
-    Vector3 controllerPosition;
-    Vector3 initializedGrabPosition;
-    Vector3 initializedPlayerPosition;
+    [ShowNonSerializedField] Vector3 initializedGrabPosition;
+    [ShowNonSerializedField] Vector3 initializedPlayerPosition;
 
-    [HideInInspector] public LayerMask grabable = ;
+    public LayerMask grabable;
     [HideInInspector] public bool grab = false;
+    [HideInInspector] public bool holding = false;
 
     void Start()
     {
@@ -39,16 +39,19 @@ public class S_Grab_TB : MonoBehaviour
 
     private void Update()
     {
-        if ((hand.triggerActivated && hand.gripActivated) != grab && Physics.CheckSphere(transform.position, radius, grabable))
+        if ((hand.triggerActivated && hand.gripActivated) != grab && !grab && Physics.CheckSphere(transform.position, radius, grabable))
         {
             initializedGrab();
         }
 
+        if((hand.triggerActivated && hand.gripActivated) != grab && grab)
+        {
+            EndGrab();
+        }
+
         grab = hand.triggerActivated && hand.gripActivated ? true : false;
 
-        print(Physics.CheckSphere(transform.position, radius, grabable));
-
-        if (grab && Physics.CheckSphere(transform.position, radius, grabable))
+        if (holding)
         {
             Grab();
         }
@@ -56,19 +59,34 @@ public class S_Grab_TB : MonoBehaviour
 
     public void initializedGrab()
     {
+        Debug.Log("Initialized grab");
+
         S_Movement_TB movePlayer = playerBody.GetComponent<S_Movement_TB>();
-        movePlayer.enabled = !movePlayer.enabled;
+        movePlayer.enabled = false;
 
-        initializedGrabPosition = controllerPosition;
+        initializedGrabPosition = hand.controllerPosition;
         initializedPlayerPosition = playerBody.transform.position;
-    }
 
+        holding = true;
+    }
     void Grab()
     {
         //Debug.Log("initialized pos = " + initializedGrabPosition + " currentPos = " + controllerPosition + " offset = " + (initializedGrabPosition - controllerPosition));
 
-        Vector3 offset = initializedGrabPosition - controllerPosition;
+        Vector3 offset = initializedGrabPosition - hand.controllerPosition;
 
         playerBody.transform.position = initializedPlayerPosition + offset * 2;
+    }
+    void EndGrab()
+    {
+        Debug.Log("Ended grab");
+
+        if(!otherControllerGrab.holding)
+        {
+            S_Movement_TB movePlayer = playerBody.GetComponent<S_Movement_TB>();
+            movePlayer.enabled = true;
+        }
+
+        holding = false;
     }
 }

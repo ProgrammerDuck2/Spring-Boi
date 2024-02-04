@@ -148,7 +148,7 @@ MonoBehaviour:
   GravityMultiplier: 1
   groundLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 192
   stickGroundLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -593,6 +593,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e67e1e241c449e54c9f721056f63a987, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player: {fileID: 303144978361500398}
   otherController: {fileID: 6282108924297107850}
   grab: {fileID: 0}
   launchArms: {fileID: 0}
@@ -620,7 +621,7 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
-    m_Reference: {fileID: 7904272356298805229, guid: c348712bda248c246b8c49b3db54643f,
+    m_Reference: {fileID: -4289430672226363583, guid: c348712bda248c246b8c49b3db54643f,
       type: 3}
   triggerActivated: 0
   gripActivated: 0
@@ -677,11 +678,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5378d8247b1c8b14e9acb78191595274, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 0.5
+  radius: 0.2
   grabable:
     serializedVersion: 2
     m_Bits: 192
   grab: 0
+  holding: 0
 --- !u!114 &4180267728518917693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1010,6 +1012,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e67e1e241c449e54c9f721056f63a987, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player: {fileID: 303144978361500398}
   otherController: {fileID: 3351723451793753507}
   grab: {fileID: 0}
   launchArms: {fileID: 0}
@@ -1094,11 +1097,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5378d8247b1c8b14e9acb78191595274, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 0.5
+  radius: 0.2
   grabable:
     serializedVersion: 2
     m_Bits: 192
   grab: 0
+  holding: 0
 --- !u!114 &2423107481920071831
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1189,7 +1193,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 503
+    m_Bits: 1527
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
