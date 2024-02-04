@@ -27,7 +27,7 @@ public class S_Grab_TB : MonoBehaviour
     Vector3 initializedGrabPosition;
     Vector3 initializedPlayerPosition;
 
-    [SerializeField] LayerMask grabable;
+    public LayerMask grabable;
 
     public bool grab = false;
 

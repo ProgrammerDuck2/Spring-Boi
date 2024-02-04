@@ -20,13 +20,16 @@ public class S_Movement_TB : MonoBehaviour
 
     bool VrSprint;
 
+
     [Space]
+    [HorizontalLine(color: EColor.Violet)]
     [Header("PC")]
     [SerializeField] KeyCode jumpKey = KeyCode.Space;
     [SerializeField] KeyCode runKey = KeyCode.LeftShift;
     [SerializeField] KeyCode crouchKey = KeyCode.LeftControl;
 
     [Space]
+    [HorizontalLine(color: EColor.Violet)]
     [Header("Stats")]
     [MinMaxSlider(0f, 30f)] 
     [SerializeField] Vector2 Speed; //X is walking speed, Y is running speed
@@ -34,16 +37,23 @@ public class S_Movement_TB : MonoBehaviour
     [SerializeField] float JumpPower;
 
     [Space]
+    [HorizontalLine(color: EColor.Violet)]
     [Header("Physics")]
+    [SerializeField] bool UsePhysics;
+    [ShowIf("UsePhysics")]
     [SerializeField] float GravityMultiplier = 3.5f;
+    [ShowIf("UsePhysics")]
     [ShowNonSerializedField] Vector3 velocity;
     float MaxVelocity = 100;
+    [ShowIf("UsePhysics")]
     [SerializeField] LayerMask groundLayer;
+    [ShowIf("UsePhysics")]
     [SerializeField] LayerMask stickGroundLayer;
+    [ShowIf("UsePhysics")]
     public bool Grounded; //ground :)
     Vector3 groundCheckPos;
 
-    [Space]
+    [HorizontalLine(color: EColor.Violet)]
     [Header("Other")]
     Transform bodyArt;
 
@@ -63,7 +73,10 @@ public class S_Movement_TB : MonoBehaviour
     void Update()
     {
         Movement();
-        Gravity();
+
+        if(UsePhysics)
+            Gravity();
+
         Jumping();
 
         if(!S_Settings_TB.IsVRConnected)
