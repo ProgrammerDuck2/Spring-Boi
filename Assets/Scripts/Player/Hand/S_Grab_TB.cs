@@ -25,7 +25,6 @@ public class S_Grab_TB : MonoBehaviour
     [ShowNonSerializedField] Vector3 initializedPlayerPosition;
 
     public LayerMask grabable;
-    [HideInInspector] public bool grab = false;
     [HideInInspector] public bool holding = false;
 
     void Start()
@@ -39,17 +38,15 @@ public class S_Grab_TB : MonoBehaviour
 
     private void Update()
     {
-        if ((hand.triggerActivated && hand.gripActivated) != grab && !grab && Physics.CheckSphere(transform.position, radius, grabable))
+        if ((hand.triggerActivated && hand.gripActivated) != hand.grabActivated && !hand.grabActivated && Physics.CheckSphere(transform.position, radius, grabable))
         {
             initializedGrab();
         }
 
-        if((hand.triggerActivated && hand.gripActivated) != grab && grab)
+        if((hand.triggerActivated && hand.gripActivated) != hand.grabActivated && hand.grabActivated)
         {
             EndGrab();
         }
-
-        grab = hand.triggerActivated && hand.gripActivated ? true : false;
 
         if (holding)
         {

@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using UnityEngine.WSA;
+using UnityEngine.XR;
 
 [RequireComponent(typeof(S_Grab_TB))]
 [RequireComponent(typeof(S_LaunchArms_TB))]
@@ -27,6 +28,7 @@ public class S_Hand_TB : MonoBehaviour
     [SerializeField] InputActionProperty grip;
     [HideInInspector] public bool triggerActivated = false;
     [HideInInspector] public bool gripActivated = false;
+    [HideInInspector] public bool grabActivated = false;
 
     [SerializeField] InputActionProperty inputPosition;
     [SerializeField] InputActionProperty inputRotation;
@@ -56,6 +58,10 @@ public class S_Hand_TB : MonoBehaviour
     {
         controllerPosition = inputPosition.action.ReadValue<Vector3>();
         controllerRotation = inputRotation.action.ReadValue<Quaternion>();
+    }
+    private void LateUpdate()
+    {
+        grabActivated = triggerActivated && gripActivated ? true : false;
     }
 
     void toggleTrigger(InputAction.CallbackContext context)
