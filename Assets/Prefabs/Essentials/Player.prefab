@@ -326,6 +326,7 @@ GameObject:
   - component: {fileID: 959971530563363444}
   - component: {fileID: 7688464304896939812}
   - component: {fileID: 5216574354697245126}
+  - component: {fileID: 8822841443464774981}
   - component: {fileID: 5847699024300216432}
   - component: {fileID: 4180267728518917693}
   m_Layer: 0
@@ -580,6 +581,90 @@ SortingGroup:
   m_SortingLayer: 0
   m_SortingOrder: 5
   m_SortAtRoot: 0
+--- !u!114 &8822841443464774981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3351723451793753507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e67e1e241c449e54c9f721056f63a987, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  otherController: {fileID: 6282108924297107850}
+  grab: {fileID: 0}
+  launchArms: {fileID: 0}
+  trigger:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Trigger
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 8542018e-a943-44f1-b4ff-e439d7550120
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 6558622148059887818, guid: c348712bda248c246b8c49b3db54643f,
+      type: 3}
+  grip:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Grip
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 2acb7924-9283-4941-bbd1-674bf82c2685
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 7904272356298805229, guid: c348712bda248c246b8c49b3db54643f,
+      type: 3}
+  triggerActivated: 0
+  gripActivated: 0
+  inputPosition:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Input Position
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: e14c8d06-36ff-4d99-86a1-c0e3b7cbb6e3
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: -2024308242397127297, guid: c348712bda248c246b8c49b3db54643f,
+      type: 3}
+  inputRotation:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Input Rotation
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: d98dccc4-de7c-4b78-afa2-4b3c75395427
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 8248158260566104461, guid: c348712bda248c246b8c49b3db54643f,
+      type: 3}
+  controllerPosition: {x: 0, y: 0, z: 0}
+  controllerRotation: {x: 0, y: 0, z: 0, w: 0}
+  buttonToLaunch:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Button To Launch
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 4c17e9a1-aac5-4cfd-a5d6-e1f3a38b1a6b
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: -5183332139897396398, guid: c348712bda248c246b8c49b3db54643f,
+      type: 3}
 --- !u!114 &5847699024300216432
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -592,46 +677,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5378d8247b1c8b14e9acb78191595274, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputPosition:
-    m_UseReference: 1
-    m_Action:
-      m_Name: 
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: -2024308242397127297, guid: c348712bda248c246b8c49b3db54643f,
-      type: 3}
-  otherController: {fileID: 6282108924297107850}
-  trigger:
-    m_UseReference: 1
-    m_Action:
-      m_Name: Trigger
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: ba62f01e-f848-434c-980a-371400da8ffe
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: -4289430672226363583, guid: c348712bda248c246b8c49b3db54643f,
-      type: 3}
-  grip:
-    m_UseReference: 1
-    m_Action:
-      m_Name: Grip
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: b6572d2a-5dd5-4dd4-8c3b-b868d3188683
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 6558622148059887818, guid: c348712bda248c246b8c49b3db54643f,
-      type: 3}
+  radius: 0.5
   grabable:
     serializedVersion: 2
     m_Bits: 192
@@ -649,45 +695,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
-  inputPosition:
-    m_UseReference: 1
-    m_Action:
-      m_Name: Input Position
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 81ae6693-dddc-4e46-93c9-a6c0b22edb43
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: -2024308242397127297, guid: c348712bda248c246b8c49b3db54643f,
-      type: 3}
-  inputRotation:
-    m_UseReference: 1
-    m_Action:
-      m_Name: Input Rotation
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 76339d4f-481f-424c-914d-dcf4b55a0978
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 8248158260566104461, guid: c348712bda248c246b8c49b3db54643f,
-      type: 3}
-  buttonToLaunch:
-    m_UseReference: 1
-    m_Action:
-      m_Name: Button To Launch
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 54c6f407-1c7a-4966-b31f-aee198bc3364
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: -5183332139897396398, guid: c348712bda248c246b8c49b3db54643f,
-      type: 3}
   handToLaunch: {fileID: 198739363551075914, guid: 201abce30200e57499609c15d16c9f8d,
     type: 3}
   Player: {fileID: 303144978361500398}
@@ -736,6 +743,7 @@ GameObject:
   - component: {fileID: 3593842708616323388}
   - component: {fileID: 3062307054786075334}
   - component: {fileID: 8035665058594888646}
+  - component: {fileID: 2566892091331363610}
   - component: {fileID: 1276960635295346805}
   - component: {fileID: 2423107481920071831}
   m_Layer: 0
@@ -990,7 +998,7 @@ SortingGroup:
   m_SortingLayer: 0
   m_SortingOrder: 5
   m_SortAtRoot: 0
---- !u!114 &1276960635295346805
+--- !u!114 &2566892091331363610
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -999,30 +1007,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 6282108924297107850}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5378d8247b1c8b14e9acb78191595274, type: 3}
+  m_Script: {fileID: 11500000, guid: e67e1e241c449e54c9f721056f63a987, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputPosition:
-    m_UseReference: 1
-    m_Action:
-      m_Name: Input Position
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 5bba0473-6f06-4753-bd71-262241f03890
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: -3326005586356538449, guid: c348712bda248c246b8c49b3db54643f,
-      type: 3}
   otherController: {fileID: 3351723451793753507}
+  grab: {fileID: 0}
+  launchArms: {fileID: 0}
   trigger:
     m_UseReference: 1
     m_Action:
       m_Name: Trigger
       m_Type: 0
       m_ExpectedControlType: 
-      m_Id: 7ddf9efd-a589-46fc-8102-a34cbf8f9fe8
+      m_Id: 4984d8dc-c40e-474a-bdc5-74124cbe34b3
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings: []
@@ -1035,13 +1032,69 @@ MonoBehaviour:
       m_Name: Grip
       m_Type: 0
       m_ExpectedControlType: 
-      m_Id: 94cf2ff4-7065-4a3b-aa17-2a15037e8159
+      m_Id: e06645cc-e4ae-4671-8026-d3e47779718f
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: -1758520528963094988, guid: c348712bda248c246b8c49b3db54643f,
       type: 3}
+  triggerActivated: 0
+  gripActivated: 0
+  inputPosition:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Input Position
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: cce2d0fd-e1c5-4842-89b4-6f965bca6c9b
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: -3326005586356538449, guid: c348712bda248c246b8c49b3db54643f,
+      type: 3}
+  inputRotation:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Input Rotation
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 07e335c0-0c1d-4639-a17d-8515bc1c8d4e
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 5101698808175986029, guid: c348712bda248c246b8c49b3db54643f,
+      type: 3}
+  controllerPosition: {x: 0, y: 0, z: 0}
+  controllerRotation: {x: 0, y: 0, z: 0, w: 0}
+  buttonToLaunch:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Button To Launch
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 27e0807c-7c92-4051-b6cf-520d1d72b4f9
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 5925155656705208453, guid: c348712bda248c246b8c49b3db54643f,
+      type: 3}
+--- !u!114 &1276960635295346805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6282108924297107850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5378d8247b1c8b14e9acb78191595274, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 0.5
   grabable:
     serializedVersion: 2
     m_Bits: 192
@@ -1059,45 +1112,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
-  inputPosition:
-    m_UseReference: 1
-    m_Action:
-      m_Name: Input Position
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 049fe751-7e7f-4805-b69b-7cdc762dfee0
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: -3326005586356538449, guid: c348712bda248c246b8c49b3db54643f,
-      type: 3}
-  inputRotation:
-    m_UseReference: 1
-    m_Action:
-      m_Name: Input Rotation
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: fae7310c-f420-44a9-a1cc-76b548173f7d
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 5101698808175986029, guid: c348712bda248c246b8c49b3db54643f,
-      type: 3}
-  buttonToLaunch:
-    m_UseReference: 1
-    m_Action:
-      m_Name: Button To Launch
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 647021d5-8935-49f7-96a6-db329ed20917
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 5925155656705208453, guid: c348712bda248c246b8c49b3db54643f,
-      type: 3}
   handToLaunch: {fileID: 543038163038044114, guid: 898d76eab596005499d937427d617ce7,
     type: 3}
   Player: {fileID: 303144978361500398}

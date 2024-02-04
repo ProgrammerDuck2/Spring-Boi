@@ -5,19 +5,14 @@ using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(S_Grab_TB))]
+[RequireComponent(typeof(S_Hand_TB))]
 public class S_LaunchArms_TB : MonoBehaviour
 {
+    S_Hand_TB hand;
+
     [Range(0, 10)]
     [SerializeField] int speed;
     int tempSpeed;
-    
-    [SerializeField] InputActionProperty inputPosition;
-    [SerializeField] InputActionProperty inputRotation;
-    Vector3 controllerPosition;
-    Quaternion controllerRotation;
-
-    [SerializeField] InputActionProperty buttonToLaunch;
 
     S_Grab_TB grab;
 
@@ -34,8 +29,7 @@ public class S_LaunchArms_TB : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        buttonToLaunch.action.started += LaunchArm;
-        buttonToLaunch.action.canceled += PullArm;
+        hand = GetComponent<S_Hand_TB>();
         handArt = transform.GetChild(0).gameObject;
 
         tempSpeed = speed;
@@ -46,9 +40,6 @@ public class S_LaunchArms_TB : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        controllerPosition = inputPosition.action.ReadValue<Vector3>();
-        controllerRotation = inputRotation.action.ReadValue<Quaternion>();
-
         if (currentHandMissile != null)
         {
             Vector3 handVelocity = pullingHand ? currentHandMissile.transform.forward * tempSpeed : currentHandMissile.transform.forward * tempSpeed;
@@ -85,7 +76,7 @@ public class S_LaunchArms_TB : MonoBehaviour
         if(currentHandMissile == null)
         {
             pullingHand = false;
-            currentHandMissile = Instantiate(handToLaunch, controllerPosition + new Vector3(0, 0.07f, 0), controllerRotation);
+            currentHandMissile = Instantiate(handToLaunch, hand.controllerPosition + new Vector3(0, 0.07f, 0), hand.controllerRotation);
 
             handArt.SetActive(false);
 
