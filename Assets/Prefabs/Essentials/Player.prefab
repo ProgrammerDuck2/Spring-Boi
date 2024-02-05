@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6227021600505418294}
   - component: {fileID: 991792049062619454}
   - component: {fileID: 8358477003299430803}
+  - component: {fileID: 4306275118993675467}
   - component: {fileID: 2854214671508081976}
   - component: {fileID: 7450994534025487902}
   m_Layer: 0
@@ -115,6 +116,37 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &4306275118993675467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 303144978361500398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: f581bad700530584bbdcb67bd0c44e9d,
+    type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!114 &2854214671508081976
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -724,7 +756,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b263eb321c71e914f91f72327548ba0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
+  speed: 5
+  reach: 30
   handToLaunch: {fileID: 198739363551075914, guid: 201abce30200e57499609c15d16c9f8d,
     type: 3}
 --- !u!1 &5052090680597602032
@@ -1142,7 +1175,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b263eb321c71e914f91f72327548ba0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 5
+  reach: 30
   handToLaunch: {fileID: 543038163038044114, guid: 898d76eab596005499d937427d617ce7,
     type: 3}
 --- !u!1 &6583513823572844596

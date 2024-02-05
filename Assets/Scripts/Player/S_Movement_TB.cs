@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
 
 [RequireComponent(typeof(CharacterController))]
+[RequireComponent(typeof(PlayerInput))]
 public class S_Movement_TB : MonoBehaviour
 {
     [Header("VR")]
@@ -18,12 +19,11 @@ public class S_Movement_TB : MonoBehaviour
 
     Vector2 joystickValue;
 
-    bool VrSprint;
-
 
     [Space]
     [HorizontalLine(color: EColor.Violet)]
     [Header("PC")]
+    PlayerInput PlayerInput;
     [SerializeField] KeyCode jumpKey = KeyCode.Space;
     [SerializeField] KeyCode runKey = KeyCode.LeftShift;
     [SerializeField] KeyCode crouchKey = KeyCode.LeftControl;
@@ -59,14 +59,20 @@ public class S_Movement_TB : MonoBehaviour
 
     CharacterController cc;
 
+    bool Sprint;
+
     // Start is called before the first frame update
     void Start()
     {
-        rightPrimaryButton.action.started += VrJumpPressed;
-        rightSecondaryButton.action.started += VrSprintHeld;
+        rightPrimaryButton.action.started += JumpPressed;
+        rightSecondaryButton.action.started += SprintHeld;
 
         cc = GetComponent<CharacterController>();
+        PlayerInput = GetComponent<PlayerInput>();
         bodyArt = transform.GetChild(2);
+
+        PlayerInput.actions["Jump"].started += JumpPressed;
+        PlayerInput.actions["Sprint"].performed += SprintHeld;
     }
 
     // Update is called once per frame
@@ -76,8 +82,6 @@ public class S_Movement_TB : MonoBehaviour
 
         if(UsePhysics)
             Gravity();
-
-        Jumping();
 
         if(!S_Settings_TB.IsVRConnected)
         {
@@ -100,8 +104,8 @@ public class S_Movement_TB : MonoBehaviour
 
     private void OnDestroy()
     {
-        rightPrimaryButton.action.started -= VrJumpPressed;
-        rightSecondaryButton.action.started -= VrSprintHeld;
+        rightPrimaryButton.action.started -= JumpPressed;
+        rightSecondaryButton.action.started -= SprintHeld;
     }
 
     void Movement()
@@ -115,13 +119,13 @@ public class S_Movement_TB : MonoBehaviour
             bodyArt.eulerAngles = new Vector3(0, VrCamera.eulerAngles.y, 0);
 
             move = bodyArt.transform.TransformDirection(Vector3.Normalize(new Vector3(joystickValue.x, 0, joystickValue.y)) * Time.deltaTime);
-            move *= VrSprint ? Speed.y : Speed.x;
         }
         else
         {
             move = bodyArt.transform.TransformDirection(Vector3.Normalize(new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"))) * Time.deltaTime);
-            move *= Input.GetKey(runKey) ? Speed.y : Speed.x;
         }
+
+        move *= Sprint ? Speed.y : Speed.x;
 
         cc.Move(move);
     }
@@ -145,13 +149,6 @@ public class S_Movement_TB : MonoBehaviour
 
         cc.Move(velocity * Time.deltaTime);
     }
-    void Jumping()
-    {
-        if(Input.GetKeyDown(jumpKey))
-        {
-            Jump();
-        }
-    }
     void Jump()
     {
         if (Grounded)
@@ -168,13 +165,17 @@ public class S_Movement_TB : MonoBehaviour
 
         transform.localScale = Input.GetKey(crouchKey) ? new Vector3(1, .5f, 1) : Vector3.one;
     }
-    void VrJumpPressed(InputAction.CallbackContext context)
+
+    //InputActions
+    #region
+    void JumpPressed(InputAction.CallbackContext context)
     {
         Jump();
     }
-    void VrSprintHeld(InputAction.CallbackContext context)
+    void SprintHeld(InputAction.CallbackContext context)
     {
         print("sprint");
-        VrSprint = !VrSprint;
+        Sprint = !Sprint;
     }
+    #endregion
 }
