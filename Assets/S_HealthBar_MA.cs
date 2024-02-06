@@ -9,7 +9,7 @@ public class S_HealthBar_MA : MonoBehaviour
 
     public void SetMaxHealth(int health)
     {
-        lider.maxValue = health;
+        slider.maxValue = health;
         slider.value = health;
     }
     

@@ -3,9 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UI;
-using UnityEngine.WSA;
-using UnityEngine.XR;
 
 [RequireComponent(typeof(S_Grab_TB))]
 [RequireComponent(typeof(S_LaunchArms_TB))]

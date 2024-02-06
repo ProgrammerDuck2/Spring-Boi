@@ -4567,7 +4567,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c98a7728b13837b4ea745e420ff54659, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NewScene: Marie_NextLevel
+  NewScene: Torje
 --- !u!65 &616228461
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12124,7 +12124,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30.2
+  m_fontSize: 31.75
   m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -16745,6 +16745,7 @@ GameObject:
   - component: {fileID: 991792050078863243}
   - component: {fileID: 2854214672525847437}
   - component: {fileID: 7450994535042744491}
+  - component: {fileID: 7450994535042744492}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -18097,6 +18098,7 @@ MonoBehaviour:
   crouchKey: 306
   Speed: {x: 4.5, y: 16}
   JumpPower: 5
+  UsePhysics: 0
   GravityMultiplier: 1
   groundLayer:
     serializedVersion: 2
@@ -19529,6 +19531,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outOfWorld: -5
+--- !u!114 &7450994535042744492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 303144977272185947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: 0}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: 
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!33 &7711908732433135775
 MeshFilter:
   m_ObjectHideFlags: 0
