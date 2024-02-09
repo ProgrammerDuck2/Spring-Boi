@@ -111,7 +111,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 112
@@ -199,9 +199,6 @@ MonoBehaviour:
     m_Reference: {fileID: -1562714349501791037, guid: c348712bda248c246b8c49b3db54643f,
       type: 3}
   VrCamera: {fileID: 8267350294755323221}
-  jumpKey: 32
-  runKey: 304
-  crouchKey: 306
   Speed: {x: 4.5, y: 16}
   JumpPower: 5
   UsePhysics: 1
@@ -225,7 +222,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2530748a7898854abde671c3d7c7c77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  respawnPoint: {fileID: 0}
   outOfWorld: -5
 --- !u!1 &489842595702548992
 GameObject:
@@ -389,6 +385,9 @@ GameObject:
   - component: {fileID: 8822841443464774981}
   - component: {fileID: 5847699024300216432}
   - component: {fileID: 4180267728518917693}
+  - component: {fileID: 4105961526385780978}
+  - component: {fileID: 2596407251367763861}
+  - component: {fileID: 4804895359275497195}
   m_Layer: 0
   m_Name: LeftHand
   m_TagString: Untagged
@@ -760,6 +759,51 @@ MonoBehaviour:
   reach: 30
   handToLaunch: {fileID: 198739363551075914, guid: 201abce30200e57499609c15d16c9f8d,
     type: 3}
+--- !u!114 &4105961526385780978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3351723451793753507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49a2b61392f703e408b8222d259cffa7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2596407251367763861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3351723451793753507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49a2b61392f703e408b8222d259cffa7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &4804895359275497195
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3351723451793753507}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.5, y: 0.5, z: 0.5}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5052090680597602032
 GameObject:
   m_ObjectHideFlags: 0
@@ -808,6 +852,8 @@ GameObject:
   - component: {fileID: 2566892091331363610}
   - component: {fileID: 1276960635295346805}
   - component: {fileID: 2423107481920071831}
+  - component: {fileID: 3563714162967858921}
+  - component: {fileID: 5852373486142899406}
   m_Layer: 0
   m_Name: RightHand
   m_TagString: Untagged
@@ -1179,6 +1225,39 @@ MonoBehaviour:
   reach: 30
   handToLaunch: {fileID: 543038163038044114, guid: 898d76eab596005499d937427d617ce7,
     type: 3}
+--- !u!114 &3563714162967858921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6282108924297107850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49a2b61392f703e408b8222d259cffa7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &5852373486142899406
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6282108924297107850}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.5, y: 0.5, z: 0.5}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6583513823572844596
 GameObject:
   m_ObjectHideFlags: 0

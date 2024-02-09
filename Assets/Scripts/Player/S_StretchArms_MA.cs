@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(S_Hand_TB))]
 public class S_StretchArms_MA : MonoBehaviour
 {
     [SerializeField] private int whichArm;

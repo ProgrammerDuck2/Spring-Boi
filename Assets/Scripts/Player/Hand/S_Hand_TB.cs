@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(S_Grab_TB))]
 [RequireComponent(typeof(S_LaunchArms_TB))]
+[RequireComponent(typeof(S_Punch_TB))]
 public class S_Hand_TB : MonoBehaviour
 {
     [Required]

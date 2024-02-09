@@ -24,9 +24,6 @@ public class S_Movement_TB : MonoBehaviour
     [HorizontalLine(color: EColor.Violet)]
     [Header("PC")]
     PlayerInput PlayerInput;
-    [SerializeField] KeyCode jumpKey = KeyCode.Space;
-    [SerializeField] KeyCode runKey = KeyCode.LeftShift;
-    [SerializeField] KeyCode crouchKey = KeyCode.LeftControl;
 
     [Space]
     [HorizontalLine(color: EColor.Violet)]
@@ -65,14 +62,21 @@ public class S_Movement_TB : MonoBehaviour
     void Start()
     {
         rightPrimaryButton.action.started += JumpPressed;
+
         rightSecondaryButton.action.started += SprintHeld;
+        rightSecondaryButton.action.canceled += SprintHeld;
 
         cc = GetComponent<CharacterController>();
         PlayerInput = GetComponent<PlayerInput>();
         bodyArt = transform.GetChild(2);
 
         PlayerInput.actions["Jump"].started += JumpPressed;
-        PlayerInput.actions["Sprint"].performed += SprintHeld;
+
+        PlayerInput.actions["Sprint"].started += SprintHeld;
+        PlayerInput.actions["Sprint"].canceled += SprintHeld;
+
+        PlayerInput.actions["Crouch"].started += Crouch;
+        PlayerInput.actions["Crouch"].canceled += Crouch;
     }
 
     // Update is called once per frame
@@ -82,11 +86,6 @@ public class S_Movement_TB : MonoBehaviour
 
         if(UsePhysics)
             Gravity();
-
-        if(!S_Settings_TB.IsVRConnected)
-        {
-            Crouch();
-        }
     }
 
     private void FixedUpdate()
@@ -156,14 +155,10 @@ public class S_Movement_TB : MonoBehaviour
             velocity.y = Mathf.Sqrt(JumpPower * 5 * -3f * Physics.gravity.y);
         }
     }
-    void Crouch()
+    void Crouch(InputAction.CallbackContext context)
     {
-        if(Input.GetKeyDown(crouchKey))
-            transform.position += new Vector3(0, -.5f, 0);
-        if (Input.GetKeyUp(crouchKey))
-            transform.position += new Vector3(0, .5f, 0);
-
-        transform.localScale = Input.GetKey(crouchKey) ? new Vector3(1, .5f, 1) : Vector3.one;
+        transform.position += !context.canceled ?  new Vector3(0, .5f, 0) : new Vector3(0, -.5f, 0);
+        transform.localScale = !context.canceled ? new Vector3(1, .5f, 1) : Vector3.one;
     }
 
     //InputActions
