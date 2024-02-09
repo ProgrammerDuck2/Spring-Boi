@@ -5,7 +5,7 @@ using UnityEngine;
 public class S_Respawn_MA : MonoBehaviour
 {
     //[SerializeField] private GameObject respawnPoint;
-    private Vector3 respawnPoint = Vector3.zero;
+    public Vector3 respawnPoint = Vector3.zero;
     [SerializeField] private float outOfWorld;
     S_Movement_TB movement;
     private bool hasHappened;
