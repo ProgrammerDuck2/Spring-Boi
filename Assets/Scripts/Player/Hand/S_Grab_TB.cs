@@ -58,6 +58,11 @@ public class S_Grab_TB : MonoBehaviour
     {
         Debug.Log("Initialized grab");
 
+        if (otherControllerGrab.holding)
+        {
+            otherControllerGrab.EndGrab();
+        }
+
         S_Movement_TB movePlayer = playerBody.GetComponent<S_Movement_TB>();
         movePlayer.enabled = false;
 
@@ -72,7 +77,8 @@ public class S_Grab_TB : MonoBehaviour
 
         Vector3 offset = initializedGrabPosition - hand.controllerPosition;
 
-        playerBody.transform.position = initializedPlayerPosition + offset * 2;
+        playerBody.transform.position = initializedPlayerPosition + offset;
+        transform.localPosition -= offset;
     }
     void EndGrab()
     {

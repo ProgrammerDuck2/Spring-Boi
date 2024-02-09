@@ -263,7 +263,7 @@ SpringJoint:
   m_ConnectedAnchor: {x: 0, y: 0, z: 0}
   serializedVersion: 2
   m_Spring: 10
-  m_Damper: 25
+  m_Damper: 0.25
   m_MinDistance: 5
   m_MaxDistance: 5
   m_Tolerance: 0.025
@@ -6338,6 +6338,11 @@ PrefabInstance:
       propertyPath: respawnPoint
       value: 
       objectReference: {fileID: 355946380}
+    - target: {fileID: 8358477003299430803, guid: a3ba075e65629ad4380ce9298e73ddea,
+        type: 3}
+      propertyPath: m_UseGravity
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
