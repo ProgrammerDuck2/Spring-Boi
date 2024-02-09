@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(S_Hand_TB))]
 public class S_StretchArms_MA : MonoBehaviour
 {
     [SerializeField] private int whichArm;
