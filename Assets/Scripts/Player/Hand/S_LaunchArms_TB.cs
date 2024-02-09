@@ -28,7 +28,7 @@ public class S_LaunchArms_TB : MonoBehaviour
 
     bool pullingHand;
 
-    bool stop;
+    bool holding;
 
     // Start is called before the first frame update
     void Start()
@@ -49,7 +49,7 @@ public class S_LaunchArms_TB : MonoBehaviour
         {
             Vector3 handVelocity = pullingHand ? speedCalc() : speedCalc() * 2;
 
-            if(pullingHand)
+            if(pullingHand && !holding)
             {
                 currentHandMissile.transform.LookAt(transform);
 
@@ -68,42 +68,45 @@ public class S_LaunchArms_TB : MonoBehaviour
 
                     Destroy(currentHandMissile);
                 }
-            } else
+            }
+            else if (Vector3.Distance(transform.position, currentHandMissile.transform.position) >= reach)
+            {
+                activatePull();
+            }
+
+            if (hand.grabActivated)
             {
                 if(Physics.CheckSphere(currentHandMissile.transform.position, .5f, grab.grabable))
                 {
-                    if(hand.grabActivated)
+                    holding = true;
+
+                    SpringJoint spring = currentHandMissile.GetComponent<SpringJoint>();
+                    spring.connectedBody = playerRB;
+                    playerRB.isKinematic = false;
+                    playerMovement.enabled = false;
+                    playerCC.enabled = false;
+                    holding = true;
+
+                    if (pullingHand)
                     {
-                        if(pullingHand)
-                        {
-                            currentHandMissile.GetComponent<SpringJoint>().connectedBody = playerRB;
-                            playerRB.isKinematic = false;
-                            playerMovement.enabled = false;
-                            playerCC.enabled = false;
-                            stop = true;
-                        } else
-                        {
-                            currentHandMissile.GetComponent<SpringJoint>().connectedBody = playerRB;
-                            playerRB.isKinematic = false;
-                            playerRB.useGravity = true;
-                            playerMovement.enabled = false;
-                            playerCC.enabled = false;
-                            stop = true;
-                        }
-                    } 
+                        playerRB.useGravity = false;
+                        spring.maxDistance = 0;
+                        spring.damper = 0.2f;
+                    }
                     else
                     {
-                        activatePull();
+                        playerRB.useGravity = true;
+                        spring.maxDistance = Vector3.Distance(hand.Player.transform.position, currentHandMissile.transform.position);
+
+                        spring.damper = 20;
                     }
                 } 
-
-                if(Vector3.Distance(transform.position, currentHandMissile.transform.position) >= reach)
-                {
-                    activatePull();
-                }
+            } else
+            {
+                holding = false;
             }
 
-            if(!stop)
+            if (!holding)
                 currentHandMissile.transform.position += handVelocity * Time.deltaTime;
         }
     }
@@ -128,7 +131,7 @@ public class S_LaunchArms_TB : MonoBehaviour
     void activatePull()
     {
         pullingHand = true;
-        stop = false;
+        holding = false;
     }
 
     Vector3 speedCalc()
