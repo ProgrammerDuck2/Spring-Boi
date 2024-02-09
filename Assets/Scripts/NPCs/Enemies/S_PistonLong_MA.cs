@@ -1,16 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class S_PistonLong_MA : MonoBehaviour, S_Enemies_MA
 {
-    private Vector3 velocity;
+    [SerializeField] private GameObject player;
     public bool Grounded;
     Vector3 groundCheckPos;
     [SerializeField] LayerMask groundLayer;
     [SerializeField] LayerMask stickGroundLayer;
-    [SerializeField] float GravityMultiplier = 3.5f;
-    float MaxVelocity = 100;
+    private int mouse;
+    private float longPistonHealth = 50;
+
 
     // Start is called before the first frame update
     void Start()
@@ -21,22 +23,20 @@ public class S_PistonLong_MA : MonoBehaviour, S_Enemies_MA
     // Update is called once per frame
     void Update()
     {
-        Gravity();
+        transform.position += transform.forward * Time.deltaTime * 10;
+        transform.Rotate (new Vector3(0,.2f, 0));
+        
+        
         if (Grounded)
         {
-            velocity.y = Mathf.Sqrt(1 * 5 * -3f * Physics.gravity.y);
+            transform.position += transform.up * Time.deltaTime * 10;
+        }
+        if (!Grounded)
+        {
+            transform.position -=transform.up * Time.deltaTime * 10;
         }
     }
 
-    public void Attack(float damage)
-    {
-        
-    }
-
-    public void Hurt(float damage)
-    {
-        
-    }
     private void FixedUpdate()
     {
         groundCheckPos = transform.position - transform.up * 0.9f;
@@ -50,24 +50,46 @@ public class S_PistonLong_MA : MonoBehaviour, S_Enemies_MA
         }
     }
 
-    float t;
-    void Gravity()
+    private void OnTriggerStay(Collider other)
     {
-        if (Grounded & velocity.y < 0)
+        //Debug.Log("found player");
+        //transform.LookAt(player.transform);
+        Attack(1);
+
+        if (Input.GetMouseButtonDown(0))
         {
-            velocity = Vector3.zero;
+            mouse = 0;
         }
-        else
+        else if (Input.GetMouseButtonDown(1))
         {
-            velocity.y += Physics.gravity.y * GravityMultiplier * Time.deltaTime;
-
-            velocity = new Vector3(Mathf.Lerp(velocity.x, 0, t), velocity.y + Physics.gravity.y * GravityMultiplier * Time.deltaTime, Mathf.Lerp(velocity.z, 0, t));
-
-            velocity = new Vector3(velocity.x, Mathf.Clamp(velocity.y, -MaxVelocity, MaxVelocity), velocity.z);
-
-            t = 2f * Time.deltaTime;
+            mouse = 1;
         }
 
-        //cc.Move(velocity * Time.deltaTime);
+        if (Input.GetMouseButtonDown(mouse))
+        {
+            if (other.gameObject.tag == "Player")
+            {
+                //Debug.Log("hit");
+                Hurt(50);
+            }
+        }
+    }
+    public void Attack(float damage)
+    {
+        S_Stats_MA.playerHealth -= damage;
+    }
+
+    public void Hurt(float damage)
+    {
+        longPistonHealth -= damage;
+        if (longPistonHealth <= 20)
+        {
+            //GetComponent<Renderer>().material.color = Color.red;
+        }
+        if (longPistonHealth <= 0)
+        {
+            //Debug.Log("Enemy died");
+            Destroy(gameObject);
+        }
     }
 }
