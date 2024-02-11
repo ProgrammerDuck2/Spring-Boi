@@ -59,7 +59,7 @@ public class S_LaunchArms_TB : MonoBehaviour
                     playerRB.isKinematic = true;
                     playerCC.enabled = true;
 
-                    if(!hand.otherController.GetComponent<S_Grab_TB>().holding)
+                    if(!hand.OtherController.GetComponent<S_Grab_TB>().holding)
                     {
                         playerMovement.enabled = true;
                     }
@@ -72,7 +72,7 @@ public class S_LaunchArms_TB : MonoBehaviour
                 activatePull();
             }
 
-            if (hand.grabActivated)
+            if (hand.GrabActivated)
             {
                 if(Physics.CheckSphere(currentHandMissile.transform.position, .5f, grab.grabable))
                 {
@@ -105,7 +105,14 @@ public class S_LaunchArms_TB : MonoBehaviour
             }
 
             if (!holding)
+            {
                 currentHandMissile.transform.position += handVelocity * Time.deltaTime;
+
+                if(Physics.CheckSphere(currentHandMissile.transform.position, .2f, hand.Punch.CanHit) && hand.Punch.OnCooldown)
+                {
+                    hand.Punch.Punch(Physics.OverlapSphere(currentHandMissile.transform.position, .2f, hand.Punch.CanHit), 3);
+                }
+            }
         }
     }
 
@@ -114,7 +121,7 @@ public class S_LaunchArms_TB : MonoBehaviour
         if(currentHandMissile == null)
         {
             pullingHand = false;
-            currentHandMissile = Instantiate(handToLaunch, transform.position, hand.controllerRotation);
+            currentHandMissile = Instantiate(handToLaunch, transform.position, hand.ControllerRotation);
 
             handArt.SetActive(false);
             grab.enabled = false;

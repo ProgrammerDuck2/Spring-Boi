@@ -24,6 +24,6 @@ public class S_PlayerHealth_MA : MonoBehaviour
     }
     private void LateUpdate()
     {
-        Debug.Log(transform.position);
+        //Debug.Log(transform.position);
     }
 }

@@ -1,6 +1,4 @@
 using NaughtyAttributes;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -12,26 +10,27 @@ public class S_Hand_TB : MonoBehaviour
     [Required]
     public GameObject Player;
 
-    public GameObject otherController;
+    public GameObject OtherController;
     [HorizontalLine(color: EColor.Violet)]
 
     [Header("Components")]
-    [HideInInspector] public S_Grab_TB grab;
-    [HideInInspector] public S_LaunchArms_TB launchArms;
+    [HideInInspector] public S_Grab_TB Grab;
+    [HideInInspector] public S_LaunchArms_TB LaunchArms;
+    [HideInInspector] public S_Punch_TB Punch;
 
     [HorizontalLine(color: EColor.Violet)]
 
     [Header("Contolls")]
     [SerializeField] InputActionProperty trigger;
     [SerializeField] InputActionProperty grip;
-    [HideInInspector] public bool triggerActivated = false;
-    [HideInInspector] public bool gripActivated = false;
-    [HideInInspector] public bool grabActivated = false;
+    [HideInInspector] public bool TriggerActivated = false;
+    [HideInInspector] public bool GripActivated = false;
+    [HideInInspector] public bool GrabActivated = false;
 
     [SerializeField] InputActionProperty inputPosition;
     [SerializeField] InputActionProperty inputRotation;
-    [HideInInspector] public Vector3 controllerPosition;
-    [HideInInspector] public Quaternion controllerRotation;
+    [HideInInspector] public Vector3 ControllerPosition;
+    [HideInInspector] public Quaternion ControllerRotation;
 
     [SerializeField] InputActionProperty buttonToLaunch;
 
@@ -39,35 +38,36 @@ public class S_Hand_TB : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        grab = GetComponent<S_Grab_TB>();
-        launchArms = GetComponent<S_LaunchArms_TB>();
+        Grab = GetComponent<S_Grab_TB>();
+        LaunchArms = GetComponent<S_LaunchArms_TB>();
+        Punch = GetComponent<S_Punch_TB>();
 
         trigger.action.started += toggleTrigger;
         trigger.action.canceled += toggleTrigger;
         grip.action.started += toggleGrip;
         grip.action.canceled += toggleGrip;
 
-        buttonToLaunch.action.started += launchArms.LaunchArm;
-        buttonToLaunch.action.canceled += launchArms.PullArm;
+        buttonToLaunch.action.started += LaunchArms.LaunchArm;
+        buttonToLaunch.action.canceled += LaunchArms.PullArm;
     }
 
     // Update is called once per frame
     void Update()
     {
-        controllerPosition = inputPosition.action.ReadValue<Vector3>();
-        controllerRotation = inputRotation.action.ReadValue<Quaternion>();
+        ControllerPosition = inputPosition.action.ReadValue<Vector3>();
+        ControllerRotation = inputRotation.action.ReadValue<Quaternion>();
     }
     private void LateUpdate()
     {
-        grabActivated = triggerActivated && gripActivated ? true : false;
+        GrabActivated = TriggerActivated && GripActivated ? true : false;
     }
 
     void toggleTrigger(InputAction.CallbackContext context)
     {
-        triggerActivated = !triggerActivated;
+        TriggerActivated = !TriggerActivated;
     }
     void toggleGrip(InputAction.CallbackContext context)
     {
-        gripActivated = !gripActivated;
+        GripActivated = !GripActivated;
     }
 }
