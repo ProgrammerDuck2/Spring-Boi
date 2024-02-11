@@ -18,6 +18,7 @@ public class S_EnemyPrototype_MA : MonoBehaviour, S_Enemies_MA
     // Start is called before the first frame update
     void Start()
     {
+        player = FindFirstObjectByType<S_Movement_TB>().gameObject;
         health = maxHealth;
     }
 
