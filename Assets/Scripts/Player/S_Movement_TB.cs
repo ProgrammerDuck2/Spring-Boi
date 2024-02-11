@@ -17,6 +17,7 @@ public class S_Movement_TB : MonoBehaviour
     [SerializeField] InputActionProperty rightSecondaryButton;
 
     [SerializeField] Transform VrCamera;
+    [SerializeField] Transform VrCameraOffset;
 
     Vector2 moveValue;
     Vector2 turnValue;
@@ -137,7 +138,7 @@ public class S_Movement_TB : MonoBehaviour
     {
         turnValue = RightJoystick.action.ReadValue<Vector2>();
 
-        VrCamera.Rotate(turnValue * 10);
+        VrCameraOffset.eulerAngles += new Vector3(0, turnValue.x, 0);
     }
 
     float t;
