@@ -12,12 +12,14 @@ public class S_Movement_TB : MonoBehaviour
 {
     [Header("VR")]
     [SerializeField] InputActionProperty leftJoystick;
+    [SerializeField] InputActionProperty RightJoystick;
     [SerializeField] InputActionProperty rightPrimaryButton;
     [SerializeField] InputActionProperty rightSecondaryButton;
 
     [SerializeField] Transform VrCamera;
 
-    Vector2 joystickValue;
+    Vector2 moveValue;
+    Vector2 turnValue;
 
 
     [Space]
@@ -64,7 +66,6 @@ public class S_Movement_TB : MonoBehaviour
         rightPrimaryButton.action.started += JumpPressed;
 
         rightSecondaryButton.action.started += SprintHeld;
-        rightSecondaryButton.action.canceled += SprintHeld;
 
         cc = GetComponent<CharacterController>();
         PlayerInput = GetComponent<PlayerInput>();
@@ -73,7 +74,6 @@ public class S_Movement_TB : MonoBehaviour
         PlayerInput.actions["Jump"].started += JumpPressed;
 
         PlayerInput.actions["Sprint"].started += SprintHeld;
-        PlayerInput.actions["Sprint"].canceled += SprintHeld;
 
         PlayerInput.actions["Crouch"].started += Crouch;
         PlayerInput.actions["Crouch"].canceled += Crouch;
@@ -83,6 +83,11 @@ public class S_Movement_TB : MonoBehaviour
     void Update()
     {
         Movement();
+
+        if(S_Settings_TB.IsVRConnected)
+        {
+            Turn();
+        }
 
         if(UsePhysics)
             Gravity();
@@ -113,11 +118,11 @@ public class S_Movement_TB : MonoBehaviour
 
         if (S_Settings_TB.IsVRConnected)
         {
-            joystickValue = leftJoystick.action.ReadValue<Vector2>();
+            moveValue = leftJoystick.action.ReadValue<Vector2>();
 
             bodyArt.eulerAngles = new Vector3(0, VrCamera.eulerAngles.y, 0);
 
-            move = bodyArt.transform.TransformDirection(Vector3.Normalize(new Vector3(joystickValue.x, 0, joystickValue.y)) * Time.deltaTime);
+            move = bodyArt.transform.TransformDirection(Vector3.Normalize(new Vector3(moveValue.x, 0, moveValue.y)) * Time.deltaTime);
         }
         else
         {
@@ -127,6 +132,12 @@ public class S_Movement_TB : MonoBehaviour
         move *= Sprint ? Speed.y : Speed.x;
 
         cc.Move(move);
+    }
+    void Turn()
+    {
+        turnValue = RightJoystick.action.ReadValue<Vector2>();
+
+        VrCamera.Rotate(turnValue * 10);
     }
 
     float t;

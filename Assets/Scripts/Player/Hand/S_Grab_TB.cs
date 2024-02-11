@@ -33,17 +33,17 @@ public class S_Grab_TB : MonoBehaviour
 
         playerBody = transform.parent.parent.parent.gameObject;
 
-        otherControllerGrab = hand.otherController.GetComponent<S_Grab_TB>();
+        otherControllerGrab = hand.OtherController.GetComponent<S_Grab_TB>();
     }
 
     private void Update()
     {
-        if ((hand.triggerActivated && hand.gripActivated) != hand.grabActivated && !hand.grabActivated && Physics.CheckSphere(transform.position, radius, grabable))
+        if ((hand.TriggerActivated && hand.GripActivated) != hand.GrabActivated && !hand.GrabActivated && Physics.CheckSphere(transform.position, radius, grabable))
         {
             initializedGrab();
         }
 
-        if((hand.triggerActivated && hand.gripActivated) != hand.grabActivated && hand.grabActivated)
+        if((hand.TriggerActivated && hand.GripActivated) != hand.GrabActivated && hand.GrabActivated)
         {
             EndGrab();
         }
@@ -66,7 +66,7 @@ public class S_Grab_TB : MonoBehaviour
         S_Movement_TB movePlayer = playerBody.GetComponent<S_Movement_TB>();
         movePlayer.enabled = false;
 
-        initializedGrabPosition = hand.controllerPosition;
+        initializedGrabPosition = hand.ControllerPosition;
         initializedPlayerPosition = playerBody.transform.position;
 
         holding = true;
@@ -75,7 +75,7 @@ public class S_Grab_TB : MonoBehaviour
     {
         //Debug.Log("initialized pos = " + initializedGrabPosition + " currentPos = " + controllerPosition + " offset = " + (initializedGrabPosition - controllerPosition));
 
-        Vector3 offset = initializedGrabPosition - hand.controllerPosition;
+        Vector3 offset = initializedGrabPosition - hand.ControllerPosition;
 
         playerBody.transform.position = initializedPlayerPosition + offset;
         transform.localPosition -= offset;
