@@ -25,21 +25,16 @@ public class S_Movement_TB : MonoBehaviour
 
     [Space]
     [HorizontalLine(color: EColor.Violet)]
+
     [Header("PC")]
     PlayerInput PlayerInput;
 
     [Space]
     [HorizontalLine(color: EColor.Violet)]
-    [Header("Stats")]
-    [MinMaxSlider(0f, 30f)] 
-    [SerializeField] Vector2 Speed; //X is walking speed, Y is running speed
-    [Range(1, 10)]
-    [SerializeField] float JumpPower;
-
-    [Space]
-    [HorizontalLine(color: EColor.Violet)]
     [Header("Physics")]
+
     [SerializeField] bool UsePhysics;
+
     [ShowIf("UsePhysics")]
     [SerializeField] float GravityMultiplier = 3.5f;
     [ShowIf("UsePhysics")]
@@ -90,11 +85,18 @@ public class S_Movement_TB : MonoBehaviour
             Turn();
         }
 
-        if(UsePhysics)
+        CustomPhysics();
+    }
+
+    private void CustomPhysics()
+    {
+        CheckGround();
+
+        if (UsePhysics)
             Gravity();
     }
 
-    private void FixedUpdate()
+    void CheckGround()
     {
         groundCheckPos = transform.position - transform.up * 0.9f;
 
@@ -130,7 +132,7 @@ public class S_Movement_TB : MonoBehaviour
             move = bodyArt.transform.TransformDirection(Vector3.Normalize(new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"))) * Time.deltaTime);
         }
 
-        move *= Sprint ? Speed.y : Speed.x;
+        move *= Sprint ? S_Stats_MA.Speed.y : S_Stats_MA.Speed.x;
 
         cc.Move(move);
     }
@@ -164,7 +166,7 @@ public class S_Movement_TB : MonoBehaviour
     {
         if (Grounded)
         {
-            velocity.y = Mathf.Sqrt(JumpPower * 5 * -3f * Physics.gravity.y);
+            velocity.y = Mathf.Sqrt(S_Stats_MA.JumpPower * 5 * -3f * Physics.gravity.y);
         }
     }
     void Crouch(InputAction.CallbackContext context)
@@ -181,7 +183,7 @@ public class S_Movement_TB : MonoBehaviour
     }
     void SprintHeld(InputAction.CallbackContext context)
     {
-        print("sprint");
+
         Sprint = !Sprint;
     }
     #endregion
