@@ -10,6 +10,7 @@ public class S_Respawn_MA : MonoBehaviour
     [SerializeField] private float outOfWorld;
     S_Movement_TB movement;
     private bool hasHappened;
+    //for navmesh bool false if in trigger
 
     // Start is called before the first frame update
     void Start()

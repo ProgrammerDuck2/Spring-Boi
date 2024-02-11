@@ -3975,6 +3975,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 440424370}
+  - component: {fileID: 440424371}
   m_Layer: 0
   m_Name: NavMesh
   m_TagString: Untagged
@@ -3991,12 +3992,43 @@ Transform:
   m_GameObject: {fileID: 440424369}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.319641, y: 6.8963966, z: -37.33949}
+  m_LocalPosition: {x: -39.9, y: 27, z: -86.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &440424371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 440424369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_CollectObjects: 3
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 0.16666667
+  m_MinRegionArea: 2
+  m_NavMeshData: {fileID: 23800000, guid: d913d799c7289b24ba526f34a71913fc, type: 2}
+  m_BuildHeightMesh: 0
 --- !u!1001 &451661469
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4064,6 +4096,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PistonEnemy (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8672171215731161981, guid: 5b1caad7ea15c6449bc2f32e6433d9d7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7443,6 +7480,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PistonEnemy (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8672171215731161981, guid: 5b1caad7ea15c6449bc2f32e6433d9d7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13446,6 +13488,7 @@ GameObject:
   - component: {fileID: 1471624013}
   - component: {fileID: 1471624012}
   - component: {fileID: 1471624011}
+  - component: {fileID: 1471624014}
   m_Layer: 6
   m_Name: Ground piston area
   m_TagString: Untagged
@@ -13462,8 +13505,8 @@ Transform:
   m_GameObject: {fileID: 1471624009}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -54.8, y: 0, z: -79.4}
-  m_LocalScale: {x: 71.48272, y: 50, z: 68.60311}
+  m_LocalPosition: {x: -55, y: 0, z: -80}
+  m_LocalScale: {x: 70, y: 50, z: 70}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1747675156}
@@ -13539,6 +13582,25 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1471624009}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1471624014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1471624009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 0
+  m_Area: 0
+  m_OverrideGenerateLinks: 0
+  m_GenerateLinks: 0
+  m_IgnoreFromBuild: 0
+  m_ApplyToChildren: 1
+  m_AffectedAgents: ffffffff
 --- !u!1 &1473656982
 GameObject:
   m_ObjectHideFlags: 0
@@ -13954,7 +14016,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 51.6
+  m_fontSize: 29
   m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -14776,17 +14838,17 @@ PrefabInstance:
     - target: {fileID: 7270047777627567016, guid: a3ba075e65629ad4380ce9298e73ddea,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -55.55
       objectReference: {fileID: 0}
     - target: {fileID: 7270047777627567016, guid: a3ba075e65629ad4380ce9298e73ddea,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 27.07
       objectReference: {fileID: 0}
     - target: {fileID: 7270047777627567016, guid: a3ba075e65629ad4380ce9298e73ddea,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -49.52
       objectReference: {fileID: 0}
     - target: {fileID: 7270047777627567016, guid: a3ba075e65629ad4380ce9298e73ddea,
         type: 3}
@@ -15669,8 +15731,18 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2046509154685581273, guid: 5b1caad7ea15c6449bc2f32e6433d9d7,
         type: 3}
+      propertyPath: goal
+      value: 
+      objectReference: {fileID: 440424370}
+    - target: {fileID: 2046509154685581273, guid: 5b1caad7ea15c6449bc2f32e6433d9d7,
+        type: 3}
       propertyPath: player
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2046509154685581273, guid: 5b1caad7ea15c6449bc2f32e6433d9d7,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7261160284283504204, guid: 5b1caad7ea15c6449bc2f32e6433d9d7,
         type: 3}
@@ -15680,7 +15752,7 @@ PrefabInstance:
     - target: {fileID: 7261160284283504204, guid: 5b1caad7ea15c6449bc2f32e6433d9d7,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 27
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 7261160284283504204, guid: 5b1caad7ea15c6449bc2f32e6433d9d7,
         type: 3}
@@ -16617,37 +16689,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1832918291}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1865544402
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1865544403}
-  m_Layer: 0
-  m_Name: RespawnPoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1865544403
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1865544402}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1891967471
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19971,6 +20012,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PistonEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 8672171215731161981, guid: 5b1caad7ea15c6449bc2f32e6433d9d7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -22991,7 +23037,6 @@ SceneRoots:
   - {fileID: 273700080}
   - {fileID: 440424370}
   - {fileID: 1569865331}
-  - {fileID: 1865544403}
   - {fileID: 1303989614}
   - {fileID: 2112512160}
   - {fileID: 1783008113}

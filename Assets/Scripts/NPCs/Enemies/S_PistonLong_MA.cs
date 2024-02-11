@@ -1,39 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.InputSystem;
 
 public class S_PistonLong_MA : MonoBehaviour, S_Enemies_MA
 {
-    [SerializeField] private GameObject player;
     public bool Grounded;
     Vector3 groundCheckPos;
     [SerializeField] LayerMask groundLayer;
     [SerializeField] LayerMask stickGroundLayer;
     private int mouse;
     private float longPistonHealth = 50;
+    private GameObject player;
+    private NavMeshAgent navMeshAgent;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        player = FindFirstObjectByType<S_Movement_TB>().gameObject;
+        navMeshAgent = GetComponent<NavMeshAgent>();
+        navMeshAgent.destination = new Vector3(Random.Range(-85f, -40f), 27f, Random.Range(-15f, -110f));
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position += transform.forward * Time.deltaTime * 10;
-        transform.Rotate (new Vector3(0,.2f, 0));
-        
-        
-        if (Grounded)
+        if (Vector3.Distance(transform.position, navMeshAgent.destination) < 1)
         {
-            transform.position += transform.up * Time.deltaTime * 10;
-        }
-        if (!Grounded)
-        {
-            transform.position -=transform.up * Time.deltaTime * 10;
+            navMeshAgent.destination = new Vector3(Random.Range(-85f, -40f), 27f, Random.Range(-15f, -110f));
         }
     }
 
