@@ -10,43 +10,32 @@ using UnityEngine.XR.Interaction.Toolkit;
 [RequireComponent(typeof(PlayerInput))]
 public class S_Movement_TB : MonoBehaviour
 {
-    [Header("VR")]
-    [SerializeField] InputActionProperty leftJoystick;
-    [SerializeField] InputActionProperty RightJoystick;
-    [SerializeField] InputActionProperty rightPrimaryButton;
-    [SerializeField] InputActionProperty rightSecondaryButton;
+    [Header("Input")]
+    PlayerInput PlayerInput;
 
-    [SerializeField] Transform VrCamera;
-    [SerializeField] Transform VrCameraOffset;
+    [Header("VR")]
+    Transform VrCamera;
+    Transform VrCameraOffset;
 
     Vector2 moveValue;
     Vector2 turnValue;
 
+    [Header("Input")]
+    Transform pcPov;
 
-    [Space]
-    [HorizontalLine(color: EColor.Violet)]
-
-    [Header("PC")]
-    PlayerInput PlayerInput;
-
-    [Space]
-    [HorizontalLine(color: EColor.Violet)]
     [Header("Physics")]
 
     [SerializeField] bool UsePhysics;
 
     [ShowIf("UsePhysics")]
     [SerializeField] float GravityMultiplier = 3.5f;
-    [ShowIf("UsePhysics")]
-    [ShowNonSerializedField] Vector3 velocity;
-    float MaxVelocity = 100;
-    [ShowIf("UsePhysics")]
-    [SerializeField] LayerMask groundLayer;
-    [ShowIf("UsePhysics")]
-    [SerializeField] LayerMask stickGroundLayer;
-    [ShowIf("UsePhysics")]
-    public bool Grounded; //ground :)
+    [SerializeField] float MaxVelocity = 100;
+    LayerMask groundLayer;
+    LayerMask stickGroundLayer;
+    [HideInInspector] public bool Grounded; //ground :)
     Vector3 groundCheckPos;
+
+    [ShowNonSerializedField] Vector3 velocity;
 
     [HorizontalLine(color: EColor.Violet)]
     [Header("Other")]
@@ -59,13 +48,16 @@ public class S_Movement_TB : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rightPrimaryButton.action.started += JumpPressed;
-
-        rightSecondaryButton.action.started += SprintHeld;
-
         cc = GetComponent<CharacterController>();
         PlayerInput = GetComponent<PlayerInput>();
-        bodyArt = transform.GetChild(2);
+        bodyArt = transform.GetChild(1);
+        pcPov = transform.GetChild(2);
+
+        groundLayer = LayerMask.GetMask("Ground", "StickGround");
+        stickGroundLayer = LayerMask.GetMask("StickGround");
+
+        VrCameraOffset = transform.GetChild(0).GetChild(0);
+        VrCamera = VrCameraOffset.GetChild(0);
 
         PlayerInput.actions["Jump"].started += JumpPressed;
 
@@ -111,34 +103,34 @@ public class S_Movement_TB : MonoBehaviour
 
     private void OnDestroy()
     {
-        rightPrimaryButton.action.started -= JumpPressed;
-        rightSecondaryButton.action.started -= SprintHeld;
+        PlayerInput.actions["Jump"].started -= JumpPressed;
+        PlayerInput.actions["Sprint"].started -= SprintHeld;
+        PlayerInput.actions["Crouch"].started -= Crouch;
+        PlayerInput.actions["Crouch"].canceled -= Crouch;
     }
 
     void Movement()
     {
         Vector3 move;
+        moveValue = PlayerInput.actions["Move"].ReadValue<Vector2>();
 
         if (S_Settings_TB.IsVRConnected)
         {
-            moveValue = leftJoystick.action.ReadValue<Vector2>();
-
             bodyArt.eulerAngles = new Vector3(0, VrCamera.eulerAngles.y, 0);
-
-            move = bodyArt.transform.TransformDirection(Vector3.Normalize(new Vector3(moveValue.x, 0, moveValue.y)) * Time.deltaTime);
         }
         else
         {
-            move = bodyArt.transform.TransformDirection(Vector3.Normalize(new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"))) * Time.deltaTime);
+            bodyArt.eulerAngles = new Vector3(0, pcPov.eulerAngles.y, 0);
         }
 
+        move = bodyArt.transform.TransformDirection(Vector3.Normalize(new Vector3(moveValue.x, 0, moveValue.y)) * Time.deltaTime);
         move *= Sprint ? S_Stats_MA.Speed.y : S_Stats_MA.Speed.x;
 
         cc.Move(move);
     }
     void Turn()
     {
-        turnValue = RightJoystick.action.ReadValue<Vector2>();
+        turnValue = PlayerInput.actions["Turn"].ReadValue<Vector2>();
 
         VrCameraOffset.eulerAngles += new Vector3(0, turnValue.x, 0);
     }

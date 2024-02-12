@@ -1,0 +1,23 @@
+using NaughtyAttributes;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEditor;
+using UnityEngine;
+
+public class S_StatSetter_TB : MonoBehaviour
+{
+    [Expandable]
+    public S_StatsInterface_TB Stats;
+
+    void Awake()
+    {
+        S_Stats_MA.maxHealth = Stats.maxHealth;
+        S_Stats_MA.playerHealth = Stats.playerHealth;
+        S_Stats_MA.Damage = Stats.Damage;
+        S_Stats_MA.JumpPower = Stats.JumpPower;
+        S_Stats_MA.Speed = Stats.Speed;
+        S_Stats_MA.HandLaunchSpeed = Stats.HandLaunchSpeed;
+        S_Stats_MA.HandLaunchReach = Stats.HandLaunchReach;
+        S_Stats_MA.HandGrabRadius = Stats.HandGrabRadius;
+    }   
+}
