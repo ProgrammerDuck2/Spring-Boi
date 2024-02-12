@@ -9,6 +9,7 @@ public class S_Hand_TB : MonoBehaviour
 {
     [Required]
     public GameObject Player;
+    PlayerInput Input;
 
     public GameObject OtherController;
     [HorizontalLine(color: EColor.Violet)]
@@ -42,13 +43,13 @@ public class S_Hand_TB : MonoBehaviour
         LaunchArms = GetComponent<S_LaunchArms_TB>();
         Punch = GetComponent<S_Punch_TB>();
 
-        trigger.action.started += toggleTrigger;
-        trigger.action.canceled += toggleTrigger;
-        grip.action.started += toggleGrip;
-        grip.action.canceled += toggleGrip;
+        Input.actions["Pinch"].started += toggleTrigger;
+        Input.actions["Pinch"].canceled += toggleTrigger;
+        Input.actions["Grip"].started += toggleGrip;
+        Input.actions["Grip"].canceled += toggleGrip;
 
-        buttonToLaunch.action.started += LaunchArms.LaunchArm;
-        buttonToLaunch.action.canceled += LaunchArms.PullArm;
+        Input.actions["Launch"].started += LaunchArms.LaunchArm;
+        Input.actions["Launch"].canceled += LaunchArms.PullArm;
     }
 
     // Update is called once per frame
