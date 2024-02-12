@@ -9,7 +9,7 @@ public class S_Hand_TB : MonoBehaviour
 {
     [Required]
     public GameObject Player;
-    PlayerInput Input;
+    PlayerInput playerInput;
 
     public GameObject OtherController;
     [HorizontalLine(color: EColor.Violet)]
@@ -22,6 +22,7 @@ public class S_Hand_TB : MonoBehaviour
     [HorizontalLine(color: EColor.Violet)]
 
     [Header("Contolls")]
+    [SerializeField] string ActionMap;
     [SerializeField] InputActionProperty trigger;
     [SerializeField] InputActionProperty grip;
     [HideInInspector] public bool TriggerActivated = false;
@@ -43,13 +44,17 @@ public class S_Hand_TB : MonoBehaviour
         LaunchArms = GetComponent<S_LaunchArms_TB>();
         Punch = GetComponent<S_Punch_TB>();
 
-        Input.actions["Pinch"].started += toggleTrigger;
-        Input.actions["Pinch"].canceled += toggleTrigger;
-        Input.actions["Grip"].started += toggleGrip;
-        Input.actions["Grip"].canceled += toggleGrip;
+        playerInput = Player.GetComponent<PlayerInput>();
 
-        Input.actions["Launch"].started += LaunchArms.LaunchArm;
-        Input.actions["Launch"].canceled += LaunchArms.PullArm;
+        playerInput.SwitchCurrentActionMap(ActionMap);
+
+        playerInput.actions["Pinch"].started += toggleTrigger;
+        playerInput.actions["Pinch"].canceled += toggleTrigger;
+        playerInput.actions["Grip"].started += toggleGrip;
+        playerInput.actions["Grip"].canceled += toggleGrip;
+
+        playerInput.actions["Launch"].started += LaunchArms.LaunchArm;
+        playerInput.actions["Launch"].canceled += LaunchArms.PullArm;
     }
 
     // Update is called once per frame

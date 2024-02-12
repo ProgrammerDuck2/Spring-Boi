@@ -6,8 +6,9 @@ using UnityEngine;
 
 public class S_StatSetter_TB : MonoBehaviour
 {
+    [Required]
     [Expandable]
-    public S_StatsInterface_TB Stats;
+    public S_StatsObject_TB Stats;
 
     void Awake()
     {

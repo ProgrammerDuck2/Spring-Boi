@@ -11,7 +11,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class S_Movement_TB : MonoBehaviour
 {
     [Header("Input")]
-    PlayerInput PlayerInput;
+    PlayerInput playerInput;
 
     [Header("VR")]
     Transform VrCamera;
@@ -49,7 +49,7 @@ public class S_Movement_TB : MonoBehaviour
     void Start()
     {
         cc = GetComponent<CharacterController>();
-        PlayerInput = GetComponent<PlayerInput>();
+        playerInput = GetComponent<PlayerInput>();
         bodyArt = transform.GetChild(1);
         pcPov = transform.GetChild(2);
 
@@ -59,12 +59,12 @@ public class S_Movement_TB : MonoBehaviour
         VrCameraOffset = transform.GetChild(0).GetChild(0);
         VrCamera = VrCameraOffset.GetChild(0);
 
-        PlayerInput.actions["Jump"].started += JumpPressed;
+        playerInput.actions["Jump"].started += JumpPressed;
 
-        PlayerInput.actions["Sprint"].started += SprintHeld;
+        playerInput.actions["Sprint"].started += SprintHeld;
 
-        PlayerInput.actions["Crouch"].started += Crouch;
-        PlayerInput.actions["Crouch"].canceled += Crouch;
+        playerInput.actions["Crouch"].started += Crouch;
+        playerInput.actions["Crouch"].canceled += Crouch;
     }
 
     // Update is called once per frame
@@ -103,16 +103,16 @@ public class S_Movement_TB : MonoBehaviour
 
     private void OnDestroy()
     {
-        PlayerInput.actions["Jump"].started -= JumpPressed;
-        PlayerInput.actions["Sprint"].started -= SprintHeld;
-        PlayerInput.actions["Crouch"].started -= Crouch;
-        PlayerInput.actions["Crouch"].canceled -= Crouch;
+        playerInput.actions["Jump"].started -= JumpPressed;
+        playerInput.actions["Sprint"].started -= SprintHeld;
+        playerInput.actions["Crouch"].started -= Crouch;
+        playerInput.actions["Crouch"].canceled -= Crouch;
     }
 
     void Movement()
     {
         Vector3 move;
-        moveValue = PlayerInput.actions["Move"].ReadValue<Vector2>();
+        moveValue = playerInput.actions["Move"].ReadValue<Vector2>();
 
         if (S_Settings_TB.IsVRConnected)
         {
@@ -130,7 +130,7 @@ public class S_Movement_TB : MonoBehaviour
     }
     void Turn()
     {
-        turnValue = PlayerInput.actions["Turn"].ReadValue<Vector2>();
+        turnValue = playerInput.actions["Turn"].ReadValue<Vector2>();
 
         VrCameraOffset.eulerAngles += new Vector3(0, turnValue.x, 0);
     }
