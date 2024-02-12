@@ -54,7 +54,6 @@ public class S_EnemyPrototype_MA : MonoBehaviour, S_Enemies_MA
             }
             currentBullet.transform.position += transform.forward * Time.deltaTime * 10;
         }
-
     }
 
     private void OnTriggerStay(Collider other)
@@ -85,7 +84,6 @@ public class S_EnemyPrototype_MA : MonoBehaviour, S_Enemies_MA
 
     public void Hurt(float damage)
     {
-        Debug.Log(enemyHealth);
         enemyHealth -= damage;
         if (enemyHealth <= 20)
         {

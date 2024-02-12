@@ -49,8 +49,7 @@ public class S_Respawn_MA : MonoBehaviour
     {
         if (other.gameObject.tag == "EnemyArea")
         {
-            enemyTerritory = false;
-                Debug.Log("false");
+            enemyTerritory = false;;
         }
         
     }
@@ -60,7 +59,6 @@ public class S_Respawn_MA : MonoBehaviour
         if (other.gameObject.tag == "EnemyArea")
         {
             enemyTerritory = true;
-            Debug.Log("true");
         }
 
     }
