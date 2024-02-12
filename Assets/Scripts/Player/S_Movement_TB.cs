@@ -114,14 +114,7 @@ public class S_Movement_TB : MonoBehaviour
         Vector3 move;
         moveValue = playerInput.actions["Move"].ReadValue<Vector2>();
 
-        if (S_Settings_TB.IsVRConnected)
-        {
-            bodyArt.eulerAngles = new Vector3(0, VrCamera.eulerAngles.y, 0);
-        }
-        else
-        {
-            bodyArt.eulerAngles = new Vector3(0, pcPov.eulerAngles.y, 0);
-        }
+        bodyArt.eulerAngles = S_Settings_TB.IsVRConnected ? new Vector3(0, VrCamera.eulerAngles.y, 0) : bodyArt.eulerAngles = new Vector3(0, pcPov.eulerAngles.y, 0);
 
         move = bodyArt.transform.TransformDirection(Vector3.Normalize(new Vector3(moveValue.x, 0, moveValue.y)) * Time.deltaTime);
         move *= Sprint ? S_Stats_MA.Speed.y : S_Stats_MA.Speed.x;

@@ -17,7 +17,8 @@ public class S_VrManager_TB : MonoBehaviour
 
     void Start()
     {
-        XrOrigin = FindFirstObjectByType<XROrigin>().gameObject;
+        GameObject player = FindFirstObjectByType<S_Movement_TB>().gameObject;
+        XrOrigin = player.transform.GetChild(0).gameObject;
         XrInteractionManager = FindFirstObjectByType<XRInteractionManager>().gameObject;
         PcCamera = GameObject.Find("PcCamera");
 
