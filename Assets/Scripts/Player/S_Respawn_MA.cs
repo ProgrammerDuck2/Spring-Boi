@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class S_Respawn_MA : MonoBehaviour
 {
-    //[SerializeField] private GameObject respawnPoint;
-    [HideInInspector] public Vector3 respawnPoint = Vector3.zero;
-    [HideInInspector] public Vector3 nextRespawnPoint = Vector3.zero;
+
+    [HideInInspector] public Vector3 respawnPoint = new Vector3(0, 1, 0);
     [SerializeField] private float outOfWorld;
     S_Movement_TB movement;
     private bool hasHappened;
-    //for navmesh bool false if in trigger
+    private bool enemyTerritory = true;
 
     // Start is called before the first frame update
     void Start()
@@ -21,28 +20,48 @@ public class S_Respawn_MA : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
-        if (movement.Grounded == true)
+        if (enemyTerritory == true)
         {
-            if(hasHappened == false)
+
+            if (movement.Grounded == true)
             {
-                //Debug.Log("new ground");
-                respawnPoint = nextRespawnPoint;
-                nextRespawnPoint = gameObject.transform.position;
-                hasHappened = true;
+                if (hasHappened == false)
+                {
+                    respawnPoint = gameObject.transform.position;
+                    hasHappened = true;
+                }
             }
-        }
-        else
-        {
-            hasHappened = false;
+            else
+            {
+                hasHappened = false;
+            }
         }
 
     }
-
-    //movement.Grounded - gets the grounded
 
     void FixedUpdate()
     {
         if (transform.position.y < outOfWorld)
             transform.position = respawnPoint;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "EnemyArea")
+        {
+            enemyTerritory = false;
+                Debug.Log("false");
+        }
+        
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "EnemyArea")
+        {
+            enemyTerritory = true;
+            Debug.Log("true");
+        }
+
     }
 }
