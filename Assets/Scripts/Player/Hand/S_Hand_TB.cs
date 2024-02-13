@@ -10,7 +10,7 @@ public class S_Hand_TB : MonoBehaviour
 {
     [Required]
     public GameObject Player;
-    PlayerInput playerInput;
+    [HideInInspector] public PlayerInput playerInput;
 
     public GameObject OtherController;
     [HorizontalLine(color: EColor.Violet)]
@@ -23,9 +23,9 @@ public class S_Hand_TB : MonoBehaviour
     [HorizontalLine(color: EColor.Violet)]
 
     [Header("Contolls")]
-    [HideInInspector] public bool TriggerActivated = false;
-    [HideInInspector] public bool GripActivated = false;
-    [HideInInspector] public bool GrabActivated = false; 
+    public bool TriggerActivated = false;
+    public bool GripActivated = false;
+    public bool GrabActivated = false; 
 
     [HideInInspector] public Vector3 ControllerPosition;
     [HideInInspector] public Quaternion ControllerRotation;
@@ -39,7 +39,6 @@ public class S_Hand_TB : MonoBehaviour
         Punch = GetComponent<S_Punch_TB>();
 
         playerInput = GetComponent<PlayerInput>();
-        print(playerInput.currentControlScheme);
 
         playerInput.actions["Pinch"].started += toggleTrigger;
         playerInput.actions["Pinch"].canceled += toggleTrigger;
@@ -48,6 +47,8 @@ public class S_Hand_TB : MonoBehaviour
 
         playerInput.actions["Launch"].started += LaunchArms.LaunchArm;
         playerInput.actions["Launch"].canceled += LaunchArms.PullArm;
+
+        print(playerInput.currentActionMap);
     }
 
     // Update is called once per frame

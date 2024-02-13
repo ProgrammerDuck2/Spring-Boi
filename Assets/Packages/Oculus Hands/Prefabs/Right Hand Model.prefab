@@ -888,6 +888,7 @@ GameObject:
   - component: {fileID: 5686134208185136530}
   - component: {fileID: 5686134208192617028}
   - component: {fileID: 136381961444911048}
+  - component: {fileID: 6342688072066208551}
   m_Layer: 0
   m_Name: Right Hand Model
   m_TagString: Untagged
@@ -945,32 +946,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e009d132682acc48bf3d5225fe1d8b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pinchAnimAction:
-    m_UseReference: 1
-    m_Action:
-      m_Name: Pinch Anim
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 1f54ce2e-4b70-41cf-b341-dd1ca56e6c27
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 7904272356298805229, guid: c348712bda248c246b8c49b3db54643f,
-      type: 3}
-  gripAnimAction:
-    m_UseReference: 1
-    m_Action:
-      m_Name: Grip Anim
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 524418c0-d3e4-4d6a-9e27-b5f9eecd3093
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: -1758520528963094988, guid: c348712bda248c246b8c49b3db54643f,
-      type: 3}
+  mouseButton: 1
+--- !u!114 &6342688072066208551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5686134208185362930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: f581bad700530584bbdcb67bd0c44e9d,
+    type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: VR RightController
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &5686134208185362932
 GameObject:
   m_ObjectHideFlags: 0

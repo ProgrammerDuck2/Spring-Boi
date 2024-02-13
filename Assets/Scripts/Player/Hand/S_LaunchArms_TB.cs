@@ -117,6 +117,7 @@ public class S_LaunchArms_TB : MonoBehaviour
         {
             pullingHand = false;
             currentHandMissile = Instantiate(handToLaunch, transform.position, transform.rotation);
+            currentHandMissile.transform.GetComponentInChildren<S_AnimateHand_TB>().input = hand.playerInput;
 
             handArt.SetActive(false);
             grab.enabled = false;

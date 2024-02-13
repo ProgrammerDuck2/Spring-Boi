@@ -5,9 +5,8 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Animator))]
 public class S_AnimateHand_TB : MonoBehaviour
 {
-    [SerializeField] InputActionProperty pinchAnimAction;
-    [SerializeField] InputActionProperty gripAnimAction;
     Animator animator;
+    public PlayerInput input;
 
     [SerializeField] int mouseButton;
 
@@ -15,6 +14,9 @@ public class S_AnimateHand_TB : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
+
+        if(input == null)
+            input = transform.parent.parent.GetComponent<PlayerInput>();
     }
 
     // Update is called once per frame
@@ -23,10 +25,12 @@ public class S_AnimateHand_TB : MonoBehaviour
         float triggerValue;
         float gripValue;
 
+        print(input.actions["PinchValue"].ReadValue<float>());
+
         if (S_Settings_TB.IsVRConnected)
         {
-            triggerValue = pinchAnimAction.action.ReadValue<float>();
-            gripValue = gripAnimAction.action.ReadValue<float>();
+            triggerValue = input.actions["PinchValue"].ReadValue<float>();
+            gripValue = input.actions["GripValue"].ReadValue<float>();
         } 
         else
         {

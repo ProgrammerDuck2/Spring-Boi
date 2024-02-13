@@ -300,6 +300,15 @@
             "actions": [
                 {
                     "name": "Pinch",
+                    "type": "Button",
+                    "id": "02324166-d71b-4789-96e5-0ea08e66a6f0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "PinchValue",
                     "type": "Value",
                     "id": "c287e618-0d17-416d-9d2b-9065ce2f351c",
                     "expectedControlType": "Axis",
@@ -309,6 +318,15 @@
                 },
                 {
                     "name": "Grip",
+                    "type": "Button",
+                    "id": "8b5fda64-c876-4103-a508-b4e23937eefe",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "GripValue",
                     "type": "Value",
                     "id": "0aaec332-b809-4fb9-aa26-2b1967a83efc",
                     "expectedControlType": "Axis",
@@ -352,7 +370,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "XR",
-                    "action": "Pinch",
+                    "action": "PinchValue",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -363,7 +381,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "XR",
-                    "action": "Grip",
+                    "action": "GripValue",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -374,7 +392,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "XR",
-                    "action": "Grip",
+                    "action": "GripValue",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -476,6 +494,39 @@
                     "action": "Launch",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "dec9e2a4-4bb1-49ec-bc6b-63bc28042b49",
+                    "path": "<XRController>{RightHand}/gripPressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Grip",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "29850106-24d3-4d79-b111-3c0aaf3bede6",
+                    "path": "<MetaAimHand>{RightHand}/indexPressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Grip",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1f12bf99-fb98-4f71-a0c6-bdda837ad180",
+                    "path": "<XRController>{RightHand}/triggerPressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pinch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -485,6 +536,15 @@
             "actions": [
                 {
                     "name": "Pinch",
+                    "type": "Button",
+                    "id": "c55f4a0f-f17f-48b5-9f17-1502f2a75d8c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "PinchValue",
                     "type": "Value",
                     "id": "075e4057-7600-48fc-961a-98550747a876",
                     "expectedControlType": "Axis",
@@ -494,6 +554,15 @@
                 },
                 {
                     "name": "Grip",
+                    "type": "Button",
+                    "id": "5c14d71a-6597-4bc9-8f57-de87271ec7cb",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "GripValue",
                     "type": "Value",
                     "id": "6105bfb9-c883-4549-b767-02c0466d7b3c",
                     "expectedControlType": "Axis",
@@ -537,7 +606,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "XR",
-                    "action": "Grip",
+                    "action": "GripValue",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -548,7 +617,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "XR",
-                    "action": "Grip",
+                    "action": "GripValue",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -559,7 +628,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "XR",
-                    "action": "Pinch",
+                    "action": "PinchValue",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -659,6 +728,39 @@
                     "processors": "",
                     "groups": "XR",
                     "action": "Launch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1bd869dc-d637-4951-bbc6-7c2dab40f4c7",
+                    "path": "<XRController>{LeftHand}/triggerPressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pinch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c9732fb7-6f02-4fab-a809-5dc494ad958e",
+                    "path": "<XRController>{LeftHand}/gripPressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Grip",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c693b9fd-7046-42ba-bb16-93eed1a3904a",
+                    "path": "<MetaAimHand>{LeftHand}/indexPressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Grip",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
