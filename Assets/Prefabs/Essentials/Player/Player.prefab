@@ -176,6 +176,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UsePhysics: 1
   GravityMultiplier: 1
+  VisualizeGroundCheck: 0
   MaxVelocity: 100
   Grounded: 0
 --- !u!114 &7450994534025487902
@@ -190,8 +191,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2530748a7898854abde671c3d7c7c77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  respawnPoint: {x: 0, y: 0, z: 0}
-  outOfWorld: -5
+  respawnPoint: {x: 0, y: 10, z: 0}
+  outOfWorld: -20
 --- !u!114 &4082624776349677890
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,7 +205,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62af9a42cfe5ab9498151879b152a565, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerDeath: {fileID: 0}
+  playerDeath: {fileID: 2270885426518196574, guid: c2a0a8c8f4cc6e44e9dfd4f0e5393f9f,
+    type: 3}
 --- !u!1 &489842595702548992
 GameObject:
   m_ObjectHideFlags: 0
