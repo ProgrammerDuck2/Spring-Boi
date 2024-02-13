@@ -16,6 +16,12 @@ public class S_PlayerHealth_MA : MonoBehaviour
     {
         if (S_Stats_MA.playerHealth <= 0)
         {
+            if(S_Settings_TB.IsVRConnected)
+            {
+                S_Stats_MA.playerHealth = S_Stats_MA.maxHealth;
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
+
             transform.position = GetComponent<S_Respawn_MA>().respawnPoint;
             Instantiate(playerDeath);
 
