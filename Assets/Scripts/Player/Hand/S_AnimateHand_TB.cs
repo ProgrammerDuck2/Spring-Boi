@@ -25,8 +25,6 @@ public class S_AnimateHand_TB : MonoBehaviour
         float triggerValue;
         float gripValue;
 
-        print(input.actions["PinchValue"].ReadValue<float>());
-
         if (S_Settings_TB.IsVRConnected)
         {
             triggerValue = input.actions["PinchValue"].ReadValue<float>();
