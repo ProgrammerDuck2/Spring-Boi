@@ -9,12 +9,12 @@ public class S_NPCInteractions_MA : MonoBehaviour
     public TMP_Text NPCText;
     [SerializeField] private List<string> speech = new List<string>();
     //private int currentSpeech = 0;
-    [SerializeField] private GameObject player;
+    private GameObject player;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        player = FindFirstObjectByType<S_Movement_TB>().gameObject;
     }
 
     // Update is called once per frame

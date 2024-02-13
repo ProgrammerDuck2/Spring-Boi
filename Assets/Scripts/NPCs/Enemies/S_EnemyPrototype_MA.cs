@@ -1,46 +1,59 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.InputSystem;
 
 public class S_EnemyPrototype_MA : MonoBehaviour, S_Enemies_MA
 {
     [HideInInspector] public float maxHealth = 100;
     [HideInInspector] public float health;
-    [SerializeField] private GameObject player;
+    private float enemyHealth = 100;
+
+    private GameObject player;
     [SerializeField] private GameObject bullet;
     private GameObject currentBullet;
+
     public LayerMask layer;
     private int mouse;
-    private float enemyHealth = 100;
+    private NavMeshAgent navMeshAgent;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        player = FindFirstObjectByType<S_Movement_TB>().gameObject;
         health = maxHealth;
+        player = FindFirstObjectByType<S_Movement_TB>().gameObject;
+        navMeshAgent = GetComponent<NavMeshAgent>();   
+        navMeshAgent.destination = new Vector3(Random.Range(-85f, -40f), 27f, Random.Range(-15f, -110f));
     }
 
     // Update is called once per frame
     void Update()
     {
-        //movement and aim
-        transform.LookAt(player.transform);
+        if (Vector3.Distance(transform.position, navMeshAgent.destination) < 2)
+        {
+            navMeshAgent.destination = new Vector3(Random.Range(-85, -40), 27, Random.Range(-15, -110));
+        }
 
-        if (currentBullet == null)
+        //attack
+        if (Vector3.Distance(transform.position, player.transform.position) < 20)
         {
-            Attack(10);
+            transform.LookAt(player.transform.position);
+            navMeshAgent.destination = player.transform.position;
+
+            if (currentBullet == null)
+            {
+                Attack(10);
+            }
+            else if (Physics.CheckSphere(currentBullet.transform.position, .1f, layer))
+            {
+                int damage = 5;
+                S_Stats_MA.playerHealth -= damage;
+                Destroy(currentBullet);
+            }
+            currentBullet.transform.position += transform.forward * Time.deltaTime * 10;
         }
-        else if (Physics.CheckSphere(currentBullet.transform.position, .1f, layer))
-        {
-            int damage = 5;
-            S_Stats_MA.playerHealth -= damage;
-            //Debug.Log("ouch");
-            Destroy(currentBullet);
-        }
-        //Debug.Log(Physics.CheckSphere(currentBullet.transform.position, 1, layer));
-        currentBullet.transform.position += transform.forward * Time.deltaTime * 10;
     }
 
     private void OnTriggerStay(Collider other)
@@ -58,18 +71,15 @@ public class S_EnemyPrototype_MA : MonoBehaviour, S_Enemies_MA
         {
             if (other.gameObject.tag == "Player")
             {
-                Debug.Log("hit");
-                Hurt(20);
+                Hurt(50);
             }
         }
     }
 
     public void Attack(float damage)
     {
-        //S_Stats_MA.playerHealth -= damage;
         currentBullet = Instantiate(bullet, transform.position, transform.rotation);
         Destroy(currentBullet, 2);
-        //deal damage
     }
 
     public void Hurt(float damage)
@@ -77,11 +87,9 @@ public class S_EnemyPrototype_MA : MonoBehaviour, S_Enemies_MA
         enemyHealth -= damage;
         if (enemyHealth <= 20)
         {
-            //GetComponent<Renderer>().material.color = Color.red;
         }
         if (enemyHealth <= 0)
         {
-            //Debug.Log("Enemy died");
             Destroy(gameObject);
         }
     }
