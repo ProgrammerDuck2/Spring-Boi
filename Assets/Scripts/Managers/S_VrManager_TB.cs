@@ -59,6 +59,13 @@ public class S_VrManager_TB : MonoBehaviour
             XrInteractionManager.SetActive(false);
             PcCamera.SetActive(true);
         }
+
+        Object[] vrDependants = FindObjectsByType(typeof(S_VRDependant_TB), FindObjectsSortMode.None);
+
+        for (int i = 0; i < vrDependants.Length; i++)
+        {
+            print(vrDependants[i].name);
+        }
     }
 
     public static bool IsVrHeadsetConnected()

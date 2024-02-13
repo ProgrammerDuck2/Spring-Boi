@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Animator))]
-public class S_AnimateHand_TB : MonoBehaviour
+public class S_AnimateHand_TB : MonoBehaviour, S_VRDependant_TB
 {
     Animator animator;
     public PlayerInput input;
@@ -15,9 +15,7 @@ public class S_AnimateHand_TB : MonoBehaviour
     {
         animator = GetComponent<Animator>();
 
-        if(input == null)
-            input = transform.parent.parent.GetComponent<PlayerInput>();
-
+        IfElseVR();
     }
 
     // Update is called once per frame
@@ -39,5 +37,18 @@ public class S_AnimateHand_TB : MonoBehaviour
 
         animator.SetFloat("Trigger", triggerValue);
         animator.SetFloat("Grip", gripValue);
+    }
+
+    public void IfElseVR()
+    {
+        if (input == null && S_Settings_TB.IsVRConnected)
+        {
+            input = transform.parent.parent.GetComponent<PlayerInput>();
+            print("anim");
+        }
+        else
+        {
+            input = null;
+        }
     }
 }
