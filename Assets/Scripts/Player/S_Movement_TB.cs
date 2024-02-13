@@ -80,6 +80,8 @@ public class S_Movement_TB : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.LogError(playerInput.actions["Jump"]);
+
         Movement();
 
         if(S_Settings_TB.IsVRConnected)

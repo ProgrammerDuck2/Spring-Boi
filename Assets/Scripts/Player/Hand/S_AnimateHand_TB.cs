@@ -17,6 +17,7 @@ public class S_AnimateHand_TB : MonoBehaviour
 
         if(input == null)
             input = transform.parent.parent.GetComponent<PlayerInput>();
+
     }
 
     // Update is called once per frame
