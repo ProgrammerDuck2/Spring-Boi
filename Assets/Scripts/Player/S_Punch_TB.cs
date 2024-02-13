@@ -5,7 +5,6 @@ using Unity.Mathematics;
 using UnityEngine;
 
 [RequireComponent(typeof(S_Hand_TB))]
-[RequireComponent (typeof(BoxCollider))]
 public class S_Punch_TB : MonoBehaviour
 {
     S_Hand_TB hand;

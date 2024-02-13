@@ -11,11 +11,6 @@ public class S_LaunchArms_TB : MonoBehaviour
     S_Movement_TB playerMovement;
     CharacterController playerCC;
 
-    [Range(0, 10)]
-    [SerializeField] int speed;
-    [Range(1, 100)]
-    [SerializeField] int reach;
-
     S_Grab_TB grab;
 
     [Required]
@@ -67,7 +62,7 @@ public class S_LaunchArms_TB : MonoBehaviour
                     Destroy(currentHandMissile);
                 }
             }
-            else if (Vector3.Distance(transform.position, currentHandMissile.transform.position) >= reach)
+            else if (Vector3.Distance(transform.position, currentHandMissile.transform.position) >= S_Stats_MA.HandLaunchReach)
             {
                 activatePull();
             }
@@ -121,7 +116,8 @@ public class S_LaunchArms_TB : MonoBehaviour
         if(currentHandMissile == null)
         {
             pullingHand = false;
-            currentHandMissile = Instantiate(handToLaunch, transform.position, hand.ControllerRotation);
+            currentHandMissile = Instantiate(handToLaunch, transform.position, transform.rotation);
+            currentHandMissile.transform.GetComponentInChildren<S_AnimateHand_TB>().input = hand.playerInput;
 
             handArt.SetActive(false);
             grab.enabled = false;
@@ -141,6 +137,6 @@ public class S_LaunchArms_TB : MonoBehaviour
 
     Vector3 speedCalc()
     {
-        return currentHandMissile.transform.forward * speed * 4;
+        return currentHandMissile.transform.forward * S_Stats_MA.HandLaunchSpeed * 4;
     }
 }

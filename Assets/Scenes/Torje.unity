@@ -693,7 +693,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
   looping: 1
-  prewarm: 0
+  prewarm: 1
   playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
@@ -6291,7 +6291,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
   looping: 1
-  prewarm: 0
+  prewarm: 1
   playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
@@ -16454,6 +16454,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 489842595702548992, guid: a3ba075e65629ad4380ce9298e73ddea,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3873103420856162664, guid: a3ba075e65629ad4380ce9298e73ddea,
+        type: 3}
+      propertyPath: m_DefaultActionMap
+      value: VR RightController
+      objectReference: {fileID: 0}
+    - target: {fileID: 3873103420856162664, guid: a3ba075e65629ad4380ce9298e73ddea,
+        type: 3}
+      propertyPath: m_DefaultControlScheme
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3873103420856162664, guid: a3ba075e65629ad4380ce9298e73ddea,
+        type: 3}
+      propertyPath: m_NeverAutoSwitchControlSchemes
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7270047777627567016, guid: a3ba075e65629ad4380ce9298e73ddea,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -16502,6 +16522,26 @@ PrefabInstance:
     - target: {fileID: 7270047777627567016, guid: a3ba075e65629ad4380ce9298e73ddea,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7330765725872699717, guid: a3ba075e65629ad4380ce9298e73ddea,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7647668570352382506, guid: a3ba075e65629ad4380ce9298e73ddea,
+        type: 3}
+      propertyPath: m_DefaultActionMap
+      value: VR LeftController
+      objectReference: {fileID: 0}
+    - target: {fileID: 7647668570352382506, guid: a3ba075e65629ad4380ce9298e73ddea,
+        type: 3}
+      propertyPath: m_DefaultControlScheme
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7647668570352382506, guid: a3ba075e65629ad4380ce9298e73ddea,
+        type: 3}
+      propertyPath: m_NeverAutoSwitchControlSchemes
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -16535,12 +16575,12 @@ PrefabInstance:
     - target: {fileID: 3947444268381163112, guid: 1028277f06d2eec4984d2739a48b0e88,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 10
+      value: -10
       objectReference: {fileID: 0}
     - target: {fileID: 3947444268381163112, guid: 1028277f06d2eec4984d2739a48b0e88,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3947444268381163112, guid: 1028277f06d2eec4984d2739a48b0e88,
         type: 3}
@@ -16550,7 +16590,7 @@ PrefabInstance:
     - target: {fileID: 3947444268381163112, guid: 1028277f06d2eec4984d2739a48b0e88,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3947444268381163112, guid: 1028277f06d2eec4984d2739a48b0e88,
         type: 3}
@@ -16565,7 +16605,7 @@ PrefabInstance:
     - target: {fileID: 3947444268381163112, guid: 1028277f06d2eec4984d2739a48b0e88,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3947444268381163112, guid: 1028277f06d2eec4984d2739a48b0e88,
         type: 3}
@@ -16575,7 +16615,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2813398886619899179, guid: 1028277f06d2eec4984d2739a48b0e88,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 1028277f06d2eec4984d2739a48b0e88, type: 3}
 --- !u!1001 &6327816509646231640
 PrefabInstance:

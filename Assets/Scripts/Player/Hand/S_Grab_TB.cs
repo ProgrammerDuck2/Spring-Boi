@@ -14,9 +14,6 @@ public class S_Grab_TB : MonoBehaviour
     [Header("Player")]
     GameObject playerBody;
 
-    [Header("Stats")]
-    [SerializeField] float radius;
-
     [Header("Controller")]
     S_Grab_TB otherControllerGrab;
 
@@ -38,7 +35,7 @@ public class S_Grab_TB : MonoBehaviour
 
     private void Update()
     {
-        if ((hand.TriggerActivated && hand.GripActivated) != hand.GrabActivated && !hand.GrabActivated && Physics.CheckSphere(transform.position, radius, grabable))
+        if ((hand.TriggerActivated && hand.GripActivated) != hand.GrabActivated && !hand.GrabActivated && Physics.CheckSphere(transform.position, S_Stats_MA.HandGrabRadius, grabable))
         {
             initializedGrab();
         }

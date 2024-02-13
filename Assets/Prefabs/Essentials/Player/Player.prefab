@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 991792049062619454}
   - component: {fileID: 8358477003299430803}
   - component: {fileID: 4306275118993675467}
+  - component: {fileID: 8260095267423930091}
   - component: {fileID: 2854214671508081976}
   - component: {fileID: 7450994534025487902}
   - component: {fileID: 4082624776349677890}
@@ -148,6 +149,19 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &8260095267423930091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 303144978361500398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce6f95971de5be542b3ab89c0a2ac15e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Stats: {fileID: 11400000, guid: 65072fb16670afa4e97c0ad1de76bed2, type: 2}
 --- !u!114 &2854214671508081976
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -160,70 +174,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9741853e64941bc43b5d04110e7fcfb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftJoystick:
-    m_UseReference: 1
-    m_Action:
-      m_Name: Left Joystick
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 05455972-b8a9-4d38-9d4e-effbcc4f9f65
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: -4084014799535200556, guid: c348712bda248c246b8c49b3db54643f,
-      type: 3}
-  RightJoystick:
-    m_UseReference: 1
-    m_Action:
-      m_Name: Right Joystick
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 8fdfd9bc-e851-4a44-95d9-e14f85ebddf4
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: -6493913391331992944, guid: c348712bda248c246b8c49b3db54643f,
-      type: 3}
-  rightPrimaryButton:
-    m_UseReference: 1
-    m_Action:
-      m_Name: Right Primary Button
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: dbbe9c4a-15ed-4425-a314-2b541aaf1682
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: -3794059666949702011, guid: c348712bda248c246b8c49b3db54643f,
-      type: 3}
-  rightSecondaryButton:
-    m_UseReference: 1
-    m_Action:
-      m_Name: Right Secondary Button
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: b5a321f8-f89a-471c-8e88-366d91fbe178
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: -1562714349501791037, guid: c348712bda248c246b8c49b3db54643f,
-      type: 3}
-  VrCamera: {fileID: 8267350294755323221}
-  VrCameraOffset: {fileID: 665972309473839433}
-  Speed: {x: 4.5, y: 16}
-  JumpPower: 5
   UsePhysics: 1
   GravityMultiplier: 1
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 192
-  stickGroundLayer:
-    serializedVersion: 2
-    m_Bits: 128
+  MaxVelocity: 100
   Grounded: 0
 --- !u!114 &7450994534025487902
 MonoBehaviour:
@@ -415,7 +368,7 @@ GameObject:
   - component: {fileID: 5847699024300216432}
   - component: {fileID: 4180267728518917693}
   - component: {fileID: 4105961526385780978}
-  - component: {fileID: 4804895359275497195}
+  - component: {fileID: 7647668570352382506}
   m_Layer: 0
   m_Name: LeftHand
   m_TagString: Untagged
@@ -767,7 +720,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5378d8247b1c8b14e9acb78191595274, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 0.2
   grabable:
     serializedVersion: 2
     m_Bits: 2240
@@ -784,8 +736,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b263eb321c71e914f91f72327548ba0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
-  reach: 30
   handToLaunch: {fileID: 198739363551075914, guid: 201abce30200e57499609c15d16c9f8d,
     type: 3}
 --- !u!114 &4105961526385780978
@@ -804,27 +754,37 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2048
   OnCooldown: 1
---- !u!65 &4804895359275497195
-BoxCollider:
+--- !u!114 &7647668570352382506
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3351723451793753507}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.5, y: 0.5, z: 0.5}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: f581bad700530584bbdcb67bd0c44e9d,
+    type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: b8044562-722f-4199-b52d-359364aaa5be
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &5052090680597602032
 GameObject:
   m_ObjectHideFlags: 0
@@ -874,7 +834,7 @@ GameObject:
   - component: {fileID: 1276960635295346805}
   - component: {fileID: 2423107481920071831}
   - component: {fileID: 3563714162967858921}
-  - component: {fileID: 5852373486142899406}
+  - component: {fileID: 3873103420856162664}
   m_Layer: 0
   m_Name: RightHand
   m_TagString: Untagged
@@ -1226,7 +1186,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5378d8247b1c8b14e9acb78191595274, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 0.2
   grabable:
     serializedVersion: 2
     m_Bits: 2240
@@ -1243,8 +1202,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b263eb321c71e914f91f72327548ba0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
-  reach: 30
   handToLaunch: {fileID: 543038163038044114, guid: 898d76eab596005499d937427d617ce7,
     type: 3}
 --- !u!114 &3563714162967858921
@@ -1263,27 +1220,37 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2048
   OnCooldown: 1
---- !u!65 &5852373486142899406
-BoxCollider:
+--- !u!114 &3873103420856162664
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6282108924297107850}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.5, y: 0.5, z: 0.5}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: f581bad700530584bbdcb67bd0c44e9d,
+    type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: a7615f8e-babd-4944-b831-773ce1fc7e89
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &6583513823572844596
 GameObject:
   m_ObjectHideFlags: 0
