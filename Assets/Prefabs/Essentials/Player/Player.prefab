@@ -61,7 +61,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.2
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
@@ -85,7 +85,7 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 3
   m_Height: 2
-  m_Radius: 0.5
+  m_Radius: 0.2
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
@@ -191,7 +191,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   respawnPoint: {x: 0, y: 0, z: 0}
-  nextRespawnPoint: {x: 0, y: 0, z: 0}
   outOfWorld: -5
 --- !u!114 &4082624776349677890
 MonoBehaviour:
@@ -205,6 +204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62af9a42cfe5ab9498151879b152a565, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerDeath: {fileID: 0}
 --- !u!1 &489842595702548992
 GameObject:
   m_ObjectHideFlags: 0
@@ -298,7 +298,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 1, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7270047777627567016}
@@ -634,80 +634,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 303144978361500398}
+  playerInput: {fileID: 0}
   OtherController: {fileID: 6282108924297107850}
   Grab: {fileID: 0}
   LaunchArms: {fileID: 0}
   Punch: {fileID: 0}
-  trigger:
-    m_UseReference: 1
-    m_Action:
-      m_Name: Trigger
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 8542018e-a943-44f1-b4ff-e439d7550120
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 6558622148059887818, guid: c348712bda248c246b8c49b3db54643f,
-      type: 3}
-  grip:
-    m_UseReference: 1
-    m_Action:
-      m_Name: Grip
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 2acb7924-9283-4941-bbd1-674bf82c2685
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: -4289430672226363583, guid: c348712bda248c246b8c49b3db54643f,
-      type: 3}
   TriggerActivated: 0
   GripActivated: 0
   GrabActivated: 0
-  inputPosition:
-    m_UseReference: 1
-    m_Action:
-      m_Name: Input Position
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: e14c8d06-36ff-4d99-86a1-c0e3b7cbb6e3
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: -2024308242397127297, guid: c348712bda248c246b8c49b3db54643f,
-      type: 3}
-  inputRotation:
-    m_UseReference: 1
-    m_Action:
-      m_Name: Input Rotation
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: d98dccc4-de7c-4b78-afa2-4b3c75395427
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 8248158260566104461, guid: c348712bda248c246b8c49b3db54643f,
-      type: 3}
   ControllerPosition: {x: 0, y: 0, z: 0}
   ControllerRotation: {x: 0, y: 0, z: 0, w: 0}
-  buttonToLaunch:
-    m_UseReference: 1
-    m_Action:
-      m_Name: Button To Launch
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 4c17e9a1-aac5-4cfd-a5d6-e1f3a38b1a6b
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: -5183332139897396398, guid: c348712bda248c246b8c49b3db54643f,
-      type: 3}
 --- !u!114 &5847699024300216432
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -782,7 +718,7 @@ MonoBehaviour:
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: b8044562-722f-4199-b52d-359364aaa5be
+  m_DefaultActionMap: VR LeftController
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!1 &5052090680597602032
@@ -1100,80 +1036,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 303144978361500398}
+  playerInput: {fileID: 0}
   OtherController: {fileID: 3351723451793753507}
   Grab: {fileID: 0}
   LaunchArms: {fileID: 0}
   Punch: {fileID: 0}
-  trigger:
-    m_UseReference: 1
-    m_Action:
-      m_Name: Trigger
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 4984d8dc-c40e-474a-bdc5-74124cbe34b3
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 7904272356298805229, guid: c348712bda248c246b8c49b3db54643f,
-      type: 3}
-  grip:
-    m_UseReference: 1
-    m_Action:
-      m_Name: Grip
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: e06645cc-e4ae-4671-8026-d3e47779718f
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: -1758520528963094988, guid: c348712bda248c246b8c49b3db54643f,
-      type: 3}
   TriggerActivated: 0
   GripActivated: 0
   GrabActivated: 0
-  inputPosition:
-    m_UseReference: 1
-    m_Action:
-      m_Name: Input Position
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: cce2d0fd-e1c5-4842-89b4-6f965bca6c9b
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: -3326005586356538449, guid: c348712bda248c246b8c49b3db54643f,
-      type: 3}
-  inputRotation:
-    m_UseReference: 1
-    m_Action:
-      m_Name: Input Rotation
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 07e335c0-0c1d-4639-a17d-8515bc1c8d4e
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 5101698808175986029, guid: c348712bda248c246b8c49b3db54643f,
-      type: 3}
   ControllerPosition: {x: 0, y: 0, z: 0}
   ControllerRotation: {x: 0, y: 0, z: 0, w: 0}
-  buttonToLaunch:
-    m_UseReference: 1
-    m_Action:
-      m_Name: Button To Launch
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 27e0807c-7c92-4051-b6cf-520d1d72b4f9
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: 5925155656705208453, guid: c348712bda248c246b8c49b3db54643f,
-      type: 3}
 --- !u!114 &1276960635295346805
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1248,7 +1120,7 @@ MonoBehaviour:
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: a7615f8e-babd-4944-b831-773ce1fc7e89
+  m_DefaultActionMap: VR RightController
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!1 &6583513823572844596
