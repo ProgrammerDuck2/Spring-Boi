@@ -1,3 +1,4 @@
+using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,12 +11,14 @@ public class S_AnimateHand_TB : MonoBehaviour
 
     [SerializeField] int mouseButton;
 
+
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
 
         input.SwitchCurrentControlScheme("XR");
+        Debug.Log(name + " utilizing " + input.currentControlScheme);
     }
 
     // Update is called once per frame
@@ -32,10 +35,13 @@ public class S_AnimateHand_TB : MonoBehaviour
             {
                 pinchValue = input.actions["PinchValue"].ReadValue<float>();
                 gripValue = input.actions["GripValue"].ReadValue<float>();
+
+                //Debug.Log(name + input.actions["PinchValue"] + " " + input.actions["GripValue"]);
             }
             else
             {
-                Debug.LogError(name + " controlscheme is not XR");
+                //Debug.LogError(name + " controlscheme is not XR");
+                input.SwitchCurrentControlScheme("XR");
             }
         }
         else

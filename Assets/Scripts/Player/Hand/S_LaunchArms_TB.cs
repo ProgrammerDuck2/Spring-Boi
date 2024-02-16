@@ -69,7 +69,7 @@ public class S_LaunchArms_TB : MonoBehaviour
 
             if (hand.GrabActivated)
             {
-                if(Physics.CheckSphere(currentHandMissile.transform.position, .5f, grab.grabable))
+                if(Physics.CheckSphere(currentHandMissile.transform.position, .5f, hand.grabable))
                 {
                     holding = true;
 

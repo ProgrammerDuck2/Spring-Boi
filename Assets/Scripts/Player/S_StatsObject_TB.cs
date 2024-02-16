@@ -15,7 +15,7 @@ public class S_StatsObject_TB : ScriptableObject
     [MinValue(1)]
     public float JumpPower = 1;
     [Space]
-    [InfoBox("X = Walkspeed, Y = Runspeed")]
+    [InfoBox("X = Walkspeed \nY = Runspeed")]
     public Vector2 Speed = new Vector2(4.5f, 16);
 
     [Space]

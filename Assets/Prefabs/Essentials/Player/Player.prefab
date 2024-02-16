@@ -371,6 +371,7 @@ GameObject:
   - component: {fileID: 4180267728518917693}
   - component: {fileID: 4105961526385780978}
   - component: {fileID: 7647668570352382506}
+  - component: {fileID: 3648789083635388172}
   m_Layer: 0
   m_Name: LeftHand
   m_TagString: Untagged
@@ -636,11 +637,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 303144978361500398}
+  grabable:
+    serializedVersion: 2
+    m_Bits: 200
   playerInput: {fileID: 0}
   OtherController: {fileID: 6282108924297107850}
   Grab: {fileID: 0}
   LaunchArms: {fileID: 0}
   Punch: {fileID: 0}
+  Aim: {fileID: 0}
   TriggerActivated: 0
   GripActivated: 0
   GrabActivated: 0
@@ -658,9 +663,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5378d8247b1c8b14e9acb78191595274, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grabable:
-    serializedVersion: 2
-    m_Bits: 2240
   holding: 0
 --- !u!114 &4180267728518917693
 MonoBehaviour:
@@ -723,6 +725,20 @@ MonoBehaviour:
   m_DefaultActionMap: VR LeftController
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &3648789083635388172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3351723451793753507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 470e27dd42f56e24cb8f8a4df0e149ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  indicator: {fileID: 1041001587402500680, guid: b3f81101dd01b6d4d898b6e7383d42ca,
+    type: 3}
 --- !u!1 &5052090680597602032
 GameObject:
   m_ObjectHideFlags: 0
@@ -772,6 +788,7 @@ GameObject:
   - component: {fileID: 1276960635295346805}
   - component: {fileID: 2423107481920071831}
   - component: {fileID: 3563714162967858921}
+  - component: {fileID: 8867150001904660234}
   - component: {fileID: 3873103420856162664}
   m_Layer: 0
   m_Name: RightHand
@@ -1038,11 +1055,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 303144978361500398}
+  grabable:
+    serializedVersion: 2
+    m_Bits: 200
   playerInput: {fileID: 0}
   OtherController: {fileID: 3351723451793753507}
   Grab: {fileID: 0}
   LaunchArms: {fileID: 0}
   Punch: {fileID: 0}
+  Aim: {fileID: 0}
   TriggerActivated: 0
   GripActivated: 0
   GrabActivated: 0
@@ -1060,9 +1081,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5378d8247b1c8b14e9acb78191595274, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grabable:
-    serializedVersion: 2
-    m_Bits: 2240
   holding: 0
 --- !u!114 &2423107481920071831
 MonoBehaviour:
@@ -1094,6 +1112,20 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2048
   OnCooldown: 1
+--- !u!114 &8867150001904660234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6282108924297107850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 470e27dd42f56e24cb8f8a4df0e149ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  indicator: {fileID: 1041001587402500680, guid: b3f81101dd01b6d4d898b6e7383d42ca,
+    type: 3}
 --- !u!114 &3873103420856162664
 MonoBehaviour:
   m_ObjectHideFlags: 0
