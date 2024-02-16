@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.InputSystem;
 
 public class S_EnemyPrototype_MA : MonoBehaviour, S_Enemies_MA
 {
@@ -18,13 +17,16 @@ public class S_EnemyPrototype_MA : MonoBehaviour, S_Enemies_MA
     private int mouse;
     private NavMeshAgent navMeshAgent;
 
+    private float fireRate = 1.0f;
+    private float nextFire = 0.0f;
+
 
     // Start is called before the first frame update
     void Start()
     {
         health = maxHealth;
         player = FindFirstObjectByType<S_Movement_TB>().gameObject;
-        navMeshAgent = GetComponent<NavMeshAgent>();   
+        navMeshAgent = GetComponent<NavMeshAgent>();
         navMeshAgent.destination = new Vector3(Random.Range(-85f, -40f), 27f, Random.Range(-15f, -110f));
     }
 
@@ -44,7 +46,11 @@ public class S_EnemyPrototype_MA : MonoBehaviour, S_Enemies_MA
 
             if (currentBullet == null)
             {
-                Attack(10);
+                if (Time.time > nextFire)
+                {
+                    nextFire = Time.time + fireRate;
+                    Attack(10);
+                }
             }
             else if (Physics.CheckSphere(currentBullet.transform.position, .1f, layer))
             {
@@ -52,10 +58,12 @@ public class S_EnemyPrototype_MA : MonoBehaviour, S_Enemies_MA
                 S_Stats_MA.playerHealth -= damage;
                 Destroy(currentBullet);
             }
-            currentBullet.transform.position += transform.forward * Time.deltaTime * 10;
+            else
+            {
+                currentBullet.transform.position += transform.forward * Time.deltaTime * 10;
+            }
         }
     }
-
     private void OnTriggerStay(Collider other)
     {
         if (Input.GetMouseButtonDown(0))
@@ -91,6 +99,7 @@ public class S_EnemyPrototype_MA : MonoBehaviour, S_Enemies_MA
         if (enemyHealth <= 0)
         {
             Destroy(gameObject);
+            //Destroy(currentBullet);
         }
     }
 }
