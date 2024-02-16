@@ -95,7 +95,10 @@ public class S_Movement_TB : MonoBehaviour
         CheckGround();
 
         if (UsePhysics)
-            Gravity();
+        {
+            Gravity(); //adds gravity
+            Velocity();
+        }
     }
 
     void CheckGround()
@@ -145,22 +148,25 @@ public class S_Movement_TB : MonoBehaviour
         VrCameraOffset.eulerAngles += new Vector3(0, turnValue.x, 0);
     }
 
-    float t;
     void Gravity()
     {
         if(Grounded & velocity.y < 0)
         {
-            velocity = Vector3.zero;
-        } else
+            velocity = new Vector3(0, -10, 0);
+        } 
+        else
         {
-            velocity.y += Physics.gravity.y * GravityMultiplier * Time.deltaTime;
+            velocity.y += (Physics.gravity.y * GravityMultiplier * Time.deltaTime) * 2;
 
-            velocity = new Vector3(Mathf.Lerp(velocity.x, 0, t), velocity.y + Physics.gravity.y * GravityMultiplier * Time.deltaTime, Mathf.Lerp(velocity.z, 0, t));
-
-            velocity = new Vector3(velocity.x, Mathf.Clamp(velocity.y, -MaxVelocity, MaxVelocity), velocity.z);
-
-            t = 2f * Time.deltaTime;
+            velocity = new Vector3(velocity.x, Mathf.Clamp(velocity.y, -MaxVelocity, MaxVelocity), velocity.z); //capping how fast you are allowed to fall
         }
+    }
+
+    float t;
+    void Velocity()
+    {
+        velocity = new Vector3(Mathf.Lerp(velocity.x, 0, t), velocity.y, Mathf.Lerp(velocity.z, 0, t));
+        t = 2f * Time.deltaTime;
 
         cc.Move(velocity * Time.deltaTime);
     }

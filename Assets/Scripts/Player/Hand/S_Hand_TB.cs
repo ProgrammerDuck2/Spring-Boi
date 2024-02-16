@@ -23,9 +23,9 @@ public class S_Hand_TB : MonoBehaviour
     [HorizontalLine(color: EColor.Violet)]
 
     [Header("Contolls")]
-    public bool TriggerActivated = false;
-    public bool GripActivated = false;
-    public bool GrabActivated = false; 
+    [HideInInspector] public bool TriggerActivated = false;
+    [HideInInspector] public bool GripActivated = false;
+    [HideInInspector] public bool GrabActivated = false; 
 
     [HideInInspector] public Vector3 ControllerPosition;
     [HideInInspector] public Quaternion ControllerRotation;

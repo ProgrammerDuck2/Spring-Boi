@@ -1,12 +1,12 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(PlayerInput))]
 [RequireComponent(typeof(Animator))]
-public class S_AnimateHand_TB : MonoBehaviour, S_VRDependant_TB
+public class S_AnimateHand_TB : MonoBehaviour
 {
     Animator animator;
-    public PlayerInput input;
+    [SerializeField] PlayerInput input;
 
     [SerializeField] int mouseButton;
 
@@ -15,40 +15,36 @@ public class S_AnimateHand_TB : MonoBehaviour, S_VRDependant_TB
     {
         animator = GetComponent<Animator>();
 
-        IfElseVR();
+        input.SwitchCurrentControlScheme("XR");
     }
 
     // Update is called once per frame
     void Update()
     {
-        float triggerValue;
-        float gripValue;
+        float pinchValue = 0;
+        float gripValue = 0;
 
         if (S_Settings_TB.IsVRConnected)
         {
-            triggerValue = input.actions["PinchValue"].ReadValue<float>();
-            gripValue = input.actions["GripValue"].ReadValue<float>();
-        } 
+            //Debug.Log(input.currentControlScheme);
+
+            if (input.currentControlScheme == "XR")
+            {
+                pinchValue = input.actions["PinchValue"].ReadValue<float>();
+                gripValue = input.actions["GripValue"].ReadValue<float>();
+            }
+            else
+            {
+                Debug.LogError(name + " controlscheme is not XR");
+            }
+        }
         else
         {
-            triggerValue = Input.GetMouseButton(mouseButton) ? 1 : 0;
+            pinchValue = Input.GetMouseButton(mouseButton) ? 1 : 0;
             gripValue = Input.GetMouseButton(mouseButton) ? 1 : 0;
         }
 
-        animator.SetFloat("Trigger", triggerValue);
+        animator.SetFloat("Trigger", pinchValue);
         animator.SetFloat("Grip", gripValue);
-    }
-
-    public void IfElseVR()
-    {
-        if (input == null && S_Settings_TB.IsVRConnected)
-        {
-            input = transform.parent.parent.GetComponent<PlayerInput>();
-            print("anim");
-        }
-        else
-        {
-            input = null;
-        }
     }
 }

@@ -1,6 +1,7 @@
 using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.XR;
@@ -60,12 +61,12 @@ public class S_VrManager_TB : MonoBehaviour
             PcCamera.SetActive(true);
         }
 
-        Object[] vrDependants = FindObjectsByType(typeof(S_VRDependant_TB), FindObjectsSortMode.None);
+        //S_VRDependant_TB[] vrDependants = (S_VRDependant_TB[])FindObjectsByType(typeof(S_VRDependant_TB), FindObjectsSortMode.None);
 
-        for (int i = 0; i < vrDependants.Length; i++)
-        {
-            print(vrDependants[i].name);
-        }
+        //for (int i = 0; i < vrDependants.Length; i++)
+        //{
+        //    vrDependants[i].IfElseVR();
+        //}
     }
 
     public static bool IsVrHeadsetConnected()
