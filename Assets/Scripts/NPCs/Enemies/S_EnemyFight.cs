@@ -16,12 +16,12 @@ public class S_EnemyFight : MonoBehaviour, S_Enemies_MA
     [SerializeField] private GameObject rightHand;
     private GameObject hand;
 
-    [SerializeField] private Vector3 punchLenght;
-    [SerializeField] private float punchSpeed;
-    private float currentPunchLenght;
+    private float punchLenght = 1;
 
-    private float attackRate = 0.1f;
+    private float attackRate = 1f;
     private float nextAttack = 0.0f;
+
+    private float enemyHealth = 100;
 
     // Start is called before the first frame update
     void Start()
@@ -38,62 +38,37 @@ public class S_EnemyFight : MonoBehaviour, S_Enemies_MA
         {
             navMeshAgent.destination = new Vector3(Random.Range(-85, -40), 27, Random.Range(-15, -110));
         }
-        if (Vector3.Distance(transform.position, player.transform.position) < 20)
+        if (Vector3.Distance(transform.position, player.transform.position) < 15)
         {
             transform.LookAt(player.transform.position);
             navMeshAgent.destination = player.transform.position - transform.forward * 1.5f;
-
-
         }
+
+        nextAttack += Time.deltaTime;
+        Debug.Log(nextAttack);
     }
 
     private void OnTriggerStay(Collider other)
     {
-        //attack
-        hand = leftHand;
-        Vector3 newscale = hand.transform.localScale;
-
-        //int whichHand = Random.Range(0, 1);
-        //if (whichHand == 0)
-        //{
-        //    hand = leftHand;
-        //    leftHand.transform.position += transform.forward;
-        //}
-        //else if (whichHand == 1)
-        //{
-        //    hand = rightHand;
-        //}
-        transform.localScale = new Vector3(0, 0, 10f) + transform.localScale;
-
-        if (hand == leftHand)
+        if (attackRate <= nextAttack)
         {
-            hand.transform.position += transform.forward;
+            int whichHand = Random.Range(0, 2);
+            if (whichHand == 0)
+            {
+                hand = leftHand;
+            }
+            else if (whichHand == 1)
+            {
+                hand = rightHand;
+            }
+            Attack(20);
         }
-        
-        //currentPunchLenght = Vector3.Distance(hand.transform.localScale, hand.transform.localScale + punchLenght);
 
-        //if (currentPunchLenght < punchLenght.y)
-        //{
-        //    if (Time.time > nextAttack)
-        //    {
-        //        attackRate = Time.time + nextAttack;
+        else if (attackRate/2 <= nextAttack)
+        {
+            Ready();
+        }
 
-        //        transform.localScale = new Vector3(0, 0, 10f) + transform.localScale;
-        //        hand.transform.localScale = hand.transform.forward + punchLenght;
-        //    }
-        //}
-        //else if (currentPunchLenght >= punchLenght.y)
-        //{
-        //    transform.localScale = new Vector3(0, 0, -10f) + transform.localScale;
-        //}
-
-        //punchLenght - how far the arm stretches (5)
-        //current punchLenght - to see if it is stretched
-        //
-        hand.transform.position += hand.transform.forward * Time.deltaTime * punchSpeed;
-
-
-        //hurt
         if (Input.GetMouseButtonDown(0))
         {
             mouse = 0;
@@ -107,18 +82,35 @@ public class S_EnemyFight : MonoBehaviour, S_Enemies_MA
         {
             if (other.gameObject.tag == "Player")
             {
-                Hurt(50);
+                Hurt(20);
             }
         }
     }
 
     public void Attack(float damage)
     {
-        
+        hand.transform.localScale = new Vector3(hand.transform.localScale.x, punchLenght, hand.transform.localScale.z);
+
+        nextAttack = 0;
+
+        if (Vector3.Distance(transform.position, player.transform.position) < 2)
+        {
+            S_Stats_MA.playerHealth -= damage;
+        }
+    }
+
+    public void Ready()
+    {
+        hand.transform.localScale = new Vector3(hand.transform.localScale.x, punchLenght/2, hand.transform.localScale.z);
     }
 
     public void Hurt(float damage)
     {
-        
+        enemyHealth -= damage;
+
+        if (enemyHealth <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }
