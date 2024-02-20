@@ -24,6 +24,6 @@ public class S_StatsObject_TB : ScriptableObject
     public float HandLaunchSpeed = 3;
     [MinValue(1)]
     public float HandLaunchReach = 30;
-    [MinValue(.1f)]
+    [MinValue(.01f)]
     public float HandGrabRadius = .2f;
 }
