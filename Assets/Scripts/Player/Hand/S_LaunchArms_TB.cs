@@ -117,6 +117,10 @@ public class S_LaunchArms_TB : MonoBehaviour
         {
             pullingHand = false;
             currentHandMissile = Instantiate(handToLaunch, transform.position, transform.rotation);
+
+            if(hand.Aim.AimingAt)
+                currentHandMissile.transform.LookAt(hand.Aim.AimingAt.transform.position);
+
             currentHandMissile.name = gameObject.name + " Missile";
 
             handArt.SetActive(false);
