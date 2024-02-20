@@ -26,4 +26,6 @@ public class S_StatsObject_TB : ScriptableObject
     public float HandLaunchReach = 30;
     [MinValue(.01f)]
     public float HandGrabRadius = .2f;
+    [MinValue(.5f)]
+    public float AimAssistRadius = .5f;
 }

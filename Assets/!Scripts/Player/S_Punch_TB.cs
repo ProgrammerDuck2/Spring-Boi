@@ -59,6 +59,7 @@ public class S_Punch_TB : MonoBehaviour
         for (int i = 0; i < hit.Length; i++)
         {
             hit[i].GetComponent<S_Enemies_MA>().Hurt(damage);
+            print("Dealt Damage");
         }
 
         StartCoroutine(PunchCooldown());

@@ -15,4 +15,6 @@ public static class S_Stats_MA
     public static float HandLaunchReach = 30;
 
     public static float HandGrabRadius = .2f;
+
+    public static float AimAssistRadius = 1;
 }

@@ -20,5 +20,6 @@ public class S_StatSetter_TB : MonoBehaviour
         S_Stats_MA.HandLaunchSpeed = Stats.HandLaunchSpeed;
         S_Stats_MA.HandLaunchReach = Stats.HandLaunchReach;
         S_Stats_MA.HandGrabRadius = Stats.HandGrabRadius;
+        S_Stats_MA.AimAssistRadius = Stats.AimAssistRadius;
     }   
 }

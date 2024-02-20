@@ -52,7 +52,7 @@ public class S_EnemyFight : MonoBehaviour, S_Enemies_MA
         }
 
         nextAttack += Time.deltaTime;
-        Debug.Log(nextAttack);
+        //Debug.Log(nextAttack);
     }
 
     private void OnTriggerStay(Collider other)
