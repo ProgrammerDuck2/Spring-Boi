@@ -20,22 +20,30 @@ public class S_EnemyPrototype_MA : MonoBehaviour, S_Enemies_MA
     private float fireRate = 1.0f;
     private float nextFire = 0.0f;
 
+    [SerializeField] private GameObject navCorner1;
+    [SerializeField] private GameObject navCorner2;
 
     // Start is called before the first frame update
     void Start()
     {
+        Vector3 c1 = navCorner1.transform.position;
+        Vector3 c2 = navCorner2.transform.position;
+
         health = maxHealth;
         player = FindFirstObjectByType<S_Movement_TB>().gameObject;
         navMeshAgent = GetComponent<NavMeshAgent>();
-        navMeshAgent.destination = new Vector3(Random.Range(-85f, -40f), 27f, Random.Range(-15f, -110f));
+        navMeshAgent.destination = new Vector3(Random.Range(c1.x, c2.x), c1.y, Random.Range(c1.z, c2.z));
     }
 
     // Update is called once per frame
     void Update()
     {
+        Vector3 c1 = navCorner1.transform.position;
+        Vector3 c2 = navCorner2.transform.position;
+
         if (Vector3.Distance(transform.position, navMeshAgent.destination) < 2)
         {
-            navMeshAgent.destination = new Vector3(Random.Range(-85, -40), 27, Random.Range(-15, -110));
+            navMeshAgent.destination = new Vector3(Random.Range(c1.x, c2.x), c1.y, Random.Range(c1.z, c2.z));
         }
 
         //attack
