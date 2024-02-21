@@ -36,8 +36,6 @@ public class S_Movement_TB : MonoBehaviour
     LayerMask groundLayer;
     LayerMask stickGroundLayer;
     [HideInInspector] public bool Grounded; //ground :)
-    Vector3 groundCheckPos;
-    float groundCheckSize;
 
     [ShowNonSerializedField] Vector3 velocity;
 
@@ -56,12 +54,6 @@ public class S_Movement_TB : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         bodyArt = transform.GetChild(1);
         pcPov = transform.GetChild(2);
-
-        if(VisualizeGroundCheck)
-        {
-            visualizerOfGroundCheck = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-            Destroy(visualizerOfGroundCheck.GetComponent<SphereCollider>());
-        }
 
         groundLayer = LayerMask.GetMask("Ground", "StickGround");
         stickGroundLayer = LayerMask.GetMask("StickGround");
@@ -103,21 +95,12 @@ public class S_Movement_TB : MonoBehaviour
 
     void CheckGround()
     {
-        groundCheckPos = transform.position - transform.up;
-        groundCheckSize = .5f * 0.3f;
-
-        if (Grounded != Physics.CheckSphere(groundCheckPos, .5f * 0.3f, groundLayer))
+        if (Grounded != Physics.CheckSphere(groundCheckPos(), groundCheckSize(), groundLayer))
         {
-            Collider[] ground = Physics.OverlapSphere(groundCheckPos, 1 * 0.5f, stickGroundLayer);
+            Collider[] ground = Physics.OverlapSphere(groundCheckPos(), 1 * 0.5f, stickGroundLayer);
 
             Grounded = !Grounded;
             transform.parent = ground.Length >= 1 ? ground[0].transform : null;
-        }
-
-        if(VisualizeGroundCheck)
-        {
-            visualizerOfGroundCheck.transform.position = groundCheckPos;
-            visualizerOfGroundCheck.transform.localScale = new Vector3(groundCheckSize, groundCheckSize, groundCheckSize);
         }
     }
 
@@ -195,4 +178,22 @@ public class S_Movement_TB : MonoBehaviour
         Sprint = !Sprint;
     }
     #endregion
+
+    private void OnDrawGizmosSelected()
+    {
+        if(VisualizeGroundCheck && UsePhysics)
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawSphere(groundCheckPos(), groundCheckSize());
+        }
+    }
+
+    Vector3 groundCheckPos()
+    {
+        return transform.position - transform.up;
+    }
+    float groundCheckSize()
+    {
+        return .5f * 0.3f;
+    }
 }
