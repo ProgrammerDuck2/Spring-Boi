@@ -18,6 +18,9 @@ public class S_StatsObject_TB : ScriptableObject
     [InfoBox("X = Walkspeed \nY = Runspeed")]
     public Vector2 Speed = new Vector2(4.5f, 16);
 
+    public Vector3 MaxVelcity;
+    public Vector3 AerialMaxVelocity;
+
     [Space]
     [HorizontalLine(color: EColor.Violet)]
     [MinValue(1)]

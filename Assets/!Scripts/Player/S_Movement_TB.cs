@@ -1,12 +1,9 @@
 using NaughtyAttributes;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.XR.Interaction.Toolkit;
 
-[RequireComponent(typeof(CharacterController))]
+[RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(PlayerInput))]
 public class S_Movement_TB : MonoBehaviour
 {
@@ -25,32 +22,24 @@ public class S_Movement_TB : MonoBehaviour
 
     [Header("Physics")]
 
-    [SerializeField] bool UsePhysics;
+    Rigidbody rb;
+    [HideInInspector] public bool HighSpeed;
 
-    [ShowIf("UsePhysics")]
-    [SerializeField] float GravityMultiplier = 3.5f;
-    [ShowIf("UsePhysics")]
-    [SerializeField] bool VisualizeGroundCheck;
-    GameObject visualizerOfGroundCheck;
-    [SerializeField] float MaxVelocity = 100;
+    [HideInInspector] public bool Grounded; //ground :)
+    public bool VisualizeGroundCheck;
     LayerMask groundLayer;
     LayerMask stickGroundLayer;
-    [HideInInspector] public bool Grounded; //ground :)
-
-    [ShowNonSerializedField] Vector3 velocity;
 
     [HorizontalLine(color: EColor.Violet)]
     [Header("Other")]
     Transform bodyArt;
-
-    CharacterController cc;
 
     bool Sprint;
 
     // Start is called before the first frame update
     void Start()
     {
-        cc = GetComponent<CharacterController>();
+        rb = GetComponent<Rigidbody>();
         playerInput = GetComponent<PlayerInput>();
         bodyArt = transform.GetChild(1);
         pcPov = transform.GetChild(2);
@@ -72,24 +61,28 @@ public class S_Movement_TB : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        CheckGround();
+
+        if (!HighSpeed)
+        {
+            //rb.drag = 3;
+            rb.velocity = Clamp(rb.velocity, S_Stats_MA.MaxVelocity);
+        } else
+        {
+            //rb.drag = 1;
+            rb.velocity = Clamp(rb.velocity, S_Stats_MA.AerialMaxVelocity);
+        }
+
         Movement();
 
-        if(S_Settings_TB.IsVRConnected)
+        if (S_Settings_TB.IsVRConnected)
         {
             //Turn();
         }
 
-        CustomPhysics();
-    }
-
-    private void CustomPhysics()
-    {
-        CheckGround();
-
-        if (UsePhysics)
+        if(Grounded && rb.velocity.magnitude < S_Stats_MA.MaxVelocity.magnitude)
         {
-            Gravity(); //adds gravity
-            Velocity();
+            HighSpeed = false;
         }
     }
 
@@ -119,11 +112,12 @@ public class S_Movement_TB : MonoBehaviour
 
         bodyArt.eulerAngles = S_Settings_TB.IsVRConnected ? new Vector3(0, VrCamera.eulerAngles.y, 0) : bodyArt.eulerAngles = new Vector3(0, pcPov.eulerAngles.y, 0);
 
-        move = bodyArt.transform.TransformDirection(Vector3.Normalize(new Vector3(moveValue.x, 0, moveValue.y)) * Time.deltaTime);
+        move = bodyArt.transform.TransformDirection(Vector3.Normalize(new Vector3(moveValue.x, 0, moveValue.y)));
         move *= Sprint ? S_Stats_MA.Speed.y : S_Stats_MA.Speed.x;
 
-        cc.Move(move);
+        rb.velocity += move;
     }
+
     void Turn()
     {
         turnValue = playerInput.actions["Turn"].ReadValue<Vector2>();
@@ -131,39 +125,25 @@ public class S_Movement_TB : MonoBehaviour
         VrCameraOffset.eulerAngles += new Vector3(0, turnValue.x, 0);
     }
 
-    void Gravity()
-    {
-        if(Grounded & velocity.y < 0)
-        {
-            velocity = new Vector3(0, -10, 0);
-        } 
-        else
-        {
-            velocity.y += (Physics.gravity.y * GravityMultiplier * Time.deltaTime) * 2;
-
-            velocity = new Vector3(velocity.x, Mathf.Clamp(velocity.y, -MaxVelocity, MaxVelocity), velocity.z); //capping how fast you are allowed to fall
-        }
-    }
-
-    float t;
-    void Velocity()
-    {
-        velocity = new Vector3(Mathf.Lerp(velocity.x, 0, t), velocity.y, Mathf.Lerp(velocity.z, 0, t));
-        t = 2f * Time.deltaTime;
-
-        cc.Move(velocity * Time.deltaTime);
-    }
     void Jump()
     {
         if (Grounded)
         {
-            velocity.y = Mathf.Sqrt(S_Stats_MA.JumpPower * 5 * -3f * Physics.gravity.y);
+            print("Jump");
+            rb.velocity += Vector3.up * S_Stats_MA.JumpPower;
         }
     }
     void Crouch(InputAction.CallbackContext context)
     {
-        transform.position += !context.canceled ?  new Vector3(0, .5f, 0) : new Vector3(0, -.5f, 0);
+        transform.position += !context.canceled ? new Vector3(0, .5f, 0) : new Vector3(0, -.5f, 0);
         transform.localScale = !context.canceled ? new Vector3(1, .5f, 1) : Vector3.one;
+    }
+    Vector3 Clamp(Vector3 toClamp, Vector3 MaxVelocity)
+    {
+        return new Vector3(
+            Mathf.Clamp(toClamp.x, -MaxVelocity.x, MaxVelocity.x),
+            Mathf.Clamp(toClamp.y, -MaxVelocity.y, MaxVelocity.y),
+            Mathf.Clamp(toClamp.z, -MaxVelocity.z, MaxVelocity.z));
     }
 
     //InputActions
@@ -181,7 +161,7 @@ public class S_Movement_TB : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        if(VisualizeGroundCheck && UsePhysics)
+        if (VisualizeGroundCheck)
         {
             Gizmos.color = Color.green;
             Gizmos.DrawSphere(groundCheckPos(), groundCheckSize());

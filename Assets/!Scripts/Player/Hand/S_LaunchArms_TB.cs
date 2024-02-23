@@ -9,7 +9,6 @@ public class S_LaunchArms_TB : MonoBehaviour
     S_Hand_TB hand;
     Rigidbody playerRB;
     S_Movement_TB playerMovement;
-    CharacterController playerCC;
 
     S_Grab_TB grab;
 
@@ -30,7 +29,6 @@ public class S_LaunchArms_TB : MonoBehaviour
         handArt = transform.GetChild(0).gameObject;
         playerMovement = hand.Player.GetComponent<S_Movement_TB>();
         playerRB = hand.Player.GetComponent<Rigidbody>();
-        playerCC = hand.Player.GetComponent<CharacterController>();
 
         grab = GetComponent<S_Grab_TB>();
     }
@@ -51,10 +49,9 @@ public class S_LaunchArms_TB : MonoBehaviour
                     pullingHand = false;
                     handArt.SetActive(true);
                     grab.enabled = true;
-                    playerRB.isKinematic = true;
-                    playerCC.enabled = true;
+                    playerRB.useGravity = true;
 
-                    if(!hand.OtherController.GetComponent<S_Grab_TB>().holding)
+                    if (!hand.OtherController.GetComponent<S_Grab_TB>().holding)
                     {
                         playerMovement.enabled = true;
                     }
@@ -75,9 +72,7 @@ public class S_LaunchArms_TB : MonoBehaviour
 
                     SpringJoint spring = currentHandMissile.GetComponent<SpringJoint>();
                     spring.connectedBody = playerRB;
-                    playerRB.isKinematic = false;
                     playerMovement.enabled = false;
-                    playerCC.enabled = false;
                     holding = true;
 
                     if (pullingHand)
@@ -85,6 +80,7 @@ public class S_LaunchArms_TB : MonoBehaviour
                         playerRB.useGravity = false;
                         spring.maxDistance = 0;
                         spring.damper = 0.2f;
+                        hand.Player.GetComponent<S_Movement_TB>().HighSpeed = true;
                     }
                     else
                     {
@@ -94,7 +90,8 @@ public class S_LaunchArms_TB : MonoBehaviour
                         spring.damper = 20;
                     }
                 } 
-            } else
+            } 
+            else
             {
                 holding = false;
             }
@@ -137,6 +134,7 @@ public class S_LaunchArms_TB : MonoBehaviour
     {
         pullingHand = true;
         holding = false;
+        playerRB.useGravity = true;
     }
 
     Vector3 speedCalc()
