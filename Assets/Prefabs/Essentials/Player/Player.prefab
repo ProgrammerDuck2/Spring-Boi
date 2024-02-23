@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7270047777627567016}
   - component: {fileID: 6227021600505418294}
-  - component: {fileID: 991792049062619454}
   - component: {fileID: 8358477003299430803}
   - component: {fileID: 4306275118993675467}
   - component: {fileID: 8260095267423930091}
@@ -65,32 +64,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!143 &991792049062619454
-CharacterController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 303144978361500398}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Height: 2
-  m_Radius: 0.5
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &8358477003299430803
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -100,7 +73,7 @@ Rigidbody:
   m_GameObject: {fileID: 303144978361500398}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0
+  m_Drag: 1
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -114,7 +87,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
@@ -174,11 +147,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9741853e64941bc43b5d04110e7fcfb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UsePhysics: 1
-  GravityMultiplier: 1
-  VisualizeGroundCheck: 1
-  MaxVelocity: 100
   Grounded: 0
+  VisualizeGroundCheck: 1
+  MaxVelocity: {x: 10, y: 50, z: 10}
+  AerialMaxVelocityMultiplier: 3
+  velocity: {x: 0, y: 0, z: 0}
 --- !u!114 &7450994534025487902
 MonoBehaviour:
   m_ObjectHideFlags: 0

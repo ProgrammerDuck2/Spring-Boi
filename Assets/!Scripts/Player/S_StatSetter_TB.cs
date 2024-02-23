@@ -1,7 +1,4 @@
 using NaughtyAttributes;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 public class S_StatSetter_TB : MonoBehaviour
@@ -21,5 +18,7 @@ public class S_StatSetter_TB : MonoBehaviour
         S_Stats_MA.HandLaunchReach = Stats.HandLaunchReach;
         S_Stats_MA.HandGrabRadius = Stats.HandGrabRadius;
         S_Stats_MA.AimAssistRadius = Stats.AimAssistRadius;
-    }   
+        S_Stats_MA.MaxVelocity = Stats.MaxVelcity;
+        S_Stats_MA.AerialMaxVelocity = Stats.AerialMaxVelocity;
+    }
 }
