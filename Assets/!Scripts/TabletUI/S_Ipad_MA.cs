@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class S_Ipad_MA : MonoBehaviour
 {
-    private bool isActive = false;
+    public bool isActive = false;
     private GameObject player;
     PlayerInput PlayerInput;
     // Start is called before the first frame update
