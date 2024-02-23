@@ -8,9 +8,10 @@ public class S_BouncePad_OR : MonoBehaviour
     [SerializeField] private float bounceForce;
     [SerializeField] private string animName;
     private Animator bounceAnim;
-
+    
     private bool isPlayingAnimation;
     private Rigidbody rb;
+    [SerializeField] private ParticleSystem boing;
 
     private void Start()
     {
@@ -21,6 +22,7 @@ public class S_BouncePad_OR : MonoBehaviour
     public void BounceOff()
     {
         rb.AddForce(0,bounceForce,0);
+        boing.Play();
         isPlayingAnimation = false;
     }
     private void OnCollisionEnter(Collision other)
