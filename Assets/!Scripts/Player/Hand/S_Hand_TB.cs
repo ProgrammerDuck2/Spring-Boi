@@ -1,6 +1,8 @@
 using NaughtyAttributes;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.XR;
 
 [RequireComponent(typeof(S_Grab_TB))]
 [RequireComponent(typeof(S_LaunchArms_TB))]
@@ -32,6 +34,10 @@ public class S_Hand_TB : MonoBehaviour
     [HideInInspector] public Vector3 ControllerPosition;
     [HideInInspector] public Quaternion ControllerRotation;
 
+    [Header("Motion")]
+    public List<Vector3> handPostitions = new List<Vector3>();
+    float timer;
+
 
     // Start is called before the first frame update
     void Start()
@@ -57,6 +63,18 @@ public class S_Hand_TB : MonoBehaviour
     {
         ControllerPosition = playerInput.actions["Position"].ReadValue<Vector3>();
         ControllerRotation = playerInput.actions["Rotation"].ReadValue<Quaternion>();
+
+        timer += Time.deltaTime;
+
+        if (timer > .1f)
+        {
+            handPostitions.Insert(0, ControllerPosition);
+        }
+
+        if(handPostitions.Count > 10)
+        {
+            handPostitions.Remove(handPostitions[10]);
+        }
     }
     private void LateUpdate()
     {

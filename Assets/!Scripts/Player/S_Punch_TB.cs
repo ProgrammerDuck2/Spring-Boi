@@ -8,47 +8,30 @@ using UnityEngine;
 public class S_Punch_TB : MonoBehaviour
 {
     S_Hand_TB hand;
-    
-    List<Vector3> handPostitions = new List<Vector3>();
-
-    bool AttemptPunch;
-    float punchTimer;
 
     [InfoBox("Only Enemies :)")]
     public LayerMask CanHit;
 
-    [HideInInspector] public bool OnCooldown = true;
+    [HideInInspector] public bool OnCooldown = false;
     
 
     // Start is called before the first frame update
     void Start()
     {
+        OnCooldown = false;
         hand = GetComponent<S_Hand_TB>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        punchTimer += Time.deltaTime;
-
-        if (punchTimer > .1f)
-        {
-
-            handPostitions.Insert(0, hand.ControllerPosition);
-        }
-
-        if (handPostitions.Count < 11) return;
+        if (hand.handPostitions.Count <= 9) return;
 
         float forceRequirement = hand.GrabActivated ? .4f : .7f;
 
-        if (Vector3.Distance(handPostitions[0], handPostitions[handPostitions.Count - 1]) > forceRequirement && OnCooldown)
+        if (Vector3.Distance(hand.handPostitions[0], hand.handPostitions[hand.handPostitions.Count - 1]) > forceRequirement && !OnCooldown)
         {
-            Punch(Physics.OverlapSphere(transform.position, .5f, CanHit), Vector3.Distance(handPostitions[0], handPostitions[handPostitions.Count - 1]) + 1);
-            handPostitions.Clear();
-        }
-        else
-        {
-            handPostitions.Remove(handPostitions[handPostitions.Count - 1]);
+            Punch(Physics.OverlapSphere(transform.position, .5f, CanHit), Vector3.Distance(hand.handPostitions[0], hand.handPostitions[hand.handPostitions.Count - 1]) + 1);
         }
     }
 
@@ -67,8 +50,8 @@ public class S_Punch_TB : MonoBehaviour
 
     IEnumerator PunchCooldown()
     {
-        OnCooldown = false;
-        yield return new WaitForSeconds(0.3f);
         OnCooldown = true;
+        yield return new WaitForSeconds(0.3f);
+        OnCooldown = false;
     }
 }
