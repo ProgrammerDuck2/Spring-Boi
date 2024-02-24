@@ -3,6 +3,8 @@ using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
+using UnityEngine.XR.Interaction.Toolkit;
 
 [RequireComponent(typeof(S_Hand_TB))]
 public class S_LaunchArms_TB : MonoBehaviour
@@ -28,11 +30,15 @@ public class S_LaunchArms_TB : MonoBehaviour
     void Start()
     {
         hand = GetComponent<S_Hand_TB>();
-        handArt = transform.GetChild(0).gameObject;
         playerMovement = hand.Player.GetComponent<S_Movement_TB>();
         playerRB = hand.Player.GetComponent<Rigidbody>();
+        handArt = transform.GetComponent<ActionBasedController>().modelParent.gameObject;
 
         grab = GetComponent<S_Grab_TB>();
+    }
+    IEnumerator LateStart()
+    {
+        yield return new WaitForEndOfFrame();
     }
 
     // Update is called once per frame
@@ -49,7 +55,7 @@ public class S_LaunchArms_TB : MonoBehaviour
         if (hand.TriggerActivated) return;
         if (hand.handPostitions.Count <= 9) return;
 
-        float forceRequirement = .6f;
+        float forceRequirement = .5f;
 
         if (Vector3.Distance(hand.handPostitions[0], hand.handPostitions[hand.handPostitions.Count - 1]) > forceRequirement)
         {
@@ -164,7 +170,7 @@ public class S_LaunchArms_TB : MonoBehaviour
         if (currentHandMissile == null)
         {
             pullingHand = false;
-            currentHandMissile = Instantiate(handToLaunch, transform.position, transform.rotation);
+            currentHandMissile = Instantiate(handToLaunch, transform.position, Quaternion.Euler(hand.GetAverageVector3(hand.handRotations)));
 
             if (hand.Aim.AimingAt)
                 currentHandMissile.transform.LookAt(hand.Aim.AimingAt.transform.position);

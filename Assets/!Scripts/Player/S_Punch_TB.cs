@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 
 [RequireComponent(typeof(S_Hand_TB))]
 public class S_Punch_TB : MonoBehaviour
@@ -26,8 +27,9 @@ public class S_Punch_TB : MonoBehaviour
     void Update()
     {
         if (hand.handPostitions.Count <= 9) return;
-
-        float forceRequirement = hand.GrabActivated ? .4f : .7f;
+        if (!hand.GripActivated) return;
+        if (!hand.TriggerActivated) return;
+        float forceRequirement = .5f;
 
         if (Vector3.Distance(hand.handPostitions[0], hand.handPostitions[hand.handPostitions.Count - 1]) > forceRequirement && !OnCooldown)
         {
@@ -37,12 +39,13 @@ public class S_Punch_TB : MonoBehaviour
 
     public void Punch(Collider[] hit, float multiplier)
     {
-        float damage = Mathf.Round(S_Stats_MA.Damage * multiplier);
+        float damage = Mathf.Round((S_Stats_MA.Damage + hand.Player.GetComponent<Rigidbody>().velocity.magnitude * 10) * multiplier);
 
         for (int i = 0; i < hit.Length; i++)
         {
             hit[i].GetComponent<S_Enemies_MA>().Hurt(damage);
-            print("Dealt Damage");
+            hand.HapticFeedback.TriggerHaptic(1, GetComponent<ActionBasedController>());
+            print(damage);
         }
 
         StartCoroutine(PunchCooldown());

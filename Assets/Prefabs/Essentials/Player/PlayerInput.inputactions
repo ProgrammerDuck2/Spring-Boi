@@ -6,6 +6,24 @@
             "id": "0928cfea-e8bd-4c07-9a9f-bc135f623eb7",
             "actions": [
                 {
+                    "name": "IRLPosition",
+                    "type": "Value",
+                    "id": "57ba3d3b-43dd-4b27-9090-8d50209230c2",
+                    "expectedControlType": "Vector3",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "IRLRotation",
+                    "type": "Value",
+                    "id": "2b2033bd-6117-4a88-b18f-2c99e60f8461",
+                    "expectedControlType": "Quaternion",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
                     "name": "Move",
                     "type": "Value",
                     "id": "9851773b-da79-4ac2-8bfe-a15f4c85f378",
@@ -296,6 +314,28 @@
                     "processors": "",
                     "groups": "XR",
                     "action": "OpenTablet",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0d1e97ae-33ee-4fcb-87ca-245d8f660341",
+                    "path": "<XRHMD>/centerEyeRotation",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "XR",
+                    "action": "IRLRotation",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c19e1d0e-98a7-4fb7-9882-dcdd565846b7",
+                    "path": "<XRHMD>/centerEyePosition",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "XR",
+                    "action": "IRLPosition",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

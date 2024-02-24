@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 2854214671508081976}
   - component: {fileID: 7450994534025487902}
   - component: {fileID: 4082624776349677890}
+  - component: {fileID: 145092681328721541}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -149,7 +150,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HighSpeed: 0
   Grounded: 0
-  VisualizeGroundCheck: 1
+  DebugMode: 0
+  IRLPosOffset: {x: 0, y: 0, z: 0}
 --- !u!114 &7450994534025487902
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,6 +180,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerDeath: {fileID: 2270885426518196574, guid: c2a0a8c8f4cc6e44e9dfd4f0e5393f9f,
     type: 3}
+--- !u!114 &145092681328721541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 303144978361500398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dec15ed4f0d79a945b63c1ec8dc6c268, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Low: {fileID: 11400000, guid: d6a98ec25f9a8dd4b91832b5c18a841a, type: 2}
+  Medium: {fileID: 11400000, guid: c64cf16e3a93a9a41b380f7fa23408fe, type: 2}
+  High: {fileID: 11400000, guid: 32725253abf954b4eaeec09452116939, type: 2}
 --- !u!1 &489842595702548992
 GameObject:
   m_ObjectHideFlags: 0
@@ -227,8 +244,8 @@ MonoBehaviour:
   m_Camera: {fileID: 4739923613234503717}
   m_OriginBaseGameObject: {fileID: 489842595702548992}
   m_CameraFloorOffsetObject: {fileID: 5052090680597602032}
-  m_RequestedTrackingOriginMode: 2
-  m_CameraYOffset: 1
+  m_RequestedTrackingOriginMode: 1
+  m_CameraYOffset: 1.5
 --- !u!114 &2948441500145816285
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -341,8 +358,8 @@ GameObject:
   - component: {fileID: 5847699024300216432}
   - component: {fileID: 4180267728518917693}
   - component: {fileID: 4105961526385780978}
-  - component: {fileID: 7647668570352382506}
   - component: {fileID: 3648789083635388172}
+  - component: {fileID: 7647668570352382506}
   m_Layer: 0
   m_Name: LeftHand
   m_TagString: Untagged
@@ -359,7 +376,7 @@ Transform:
   m_GameObject: {fileID: 3351723451793753507}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.2, y: -0.05, z: 0.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -379,8 +396,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_UpdateTrackingType: 0
-  m_EnableInputTracking: 1
-  m_EnableInputActions: 1
+  m_EnableInputTracking: 0
+  m_EnableInputActions: 0
   m_ModelPrefab: {fileID: 109434732395451517, guid: 65847589f926b734d9eaed6e25f0046b,
     type: 3}
   m_ModelParent: {fileID: 0}
@@ -614,15 +631,18 @@ MonoBehaviour:
     m_Bits: 200
   playerInput: {fileID: 0}
   OtherController: {fileID: 6282108924297107850}
+  HandOffset: {x: 0, y: 0, z: -0.03}
   Grab: {fileID: 0}
   LaunchArms: {fileID: 0}
   Punch: {fileID: 0}
   Aim: {fileID: 0}
+  HapticFeedback: {fileID: 0}
   TriggerActivated: 0
   GripActivated: 0
   GrabActivated: 0
   ControllerPosition: {x: 0, y: 0, z: 0}
   ControllerRotation: {x: 0, y: 0, z: 0, w: 0}
+  handPostitions: []
 --- !u!114 &5847699024300216432
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -635,6 +655,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5378d8247b1c8b14e9acb78191595274, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DebugMode: 1
   holding: 0
 --- !u!114 &4180267728518917693
 MonoBehaviour:
@@ -650,6 +671,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   handToLaunch: {fileID: 198739363551075914, guid: 201abce30200e57499609c15d16c9f8d,
     type: 3}
+  pullingHand: 0
+  cooldown: 0
 --- !u!114 &4105961526385780978
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -666,6 +689,24 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2048
   OnCooldown: 1
+--- !u!114 &3648789083635388172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3351723451793753507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 470e27dd42f56e24cb8f8a4df0e149ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  indicator: {fileID: 1041001587402500680, guid: b3f81101dd01b6d4d898b6e7383d42ca,
+    type: 3}
+  AimingAt: {fileID: 0}
+  AimAssist:
+    serializedVersion: 2
+    m_Bits: 4096
 --- !u!114 &7647668570352382506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -697,24 +738,6 @@ MonoBehaviour:
   m_DefaultActionMap: VR LeftController
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &3648789083635388172
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3351723451793753507}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 470e27dd42f56e24cb8f8a4df0e149ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  indicator: {fileID: 1041001587402500680, guid: b3f81101dd01b6d4d898b6e7383d42ca,
-    type: 3}
-  AimingAt: {fileID: 0}
-  AimAssist:
-    serializedVersion: 2
-    m_Bits: 4096
 --- !u!1 &5052090680597602032
 GameObject:
   m_ObjectHideFlags: 0
@@ -782,7 +805,7 @@ Transform:
   m_GameObject: {fileID: 6282108924297107850}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.2, y: -0.05, z: 0.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -801,8 +824,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_UpdateTrackingType: 0
-  m_EnableInputTracking: 1
-  m_EnableInputActions: 1
+  m_EnableInputTracking: 0
+  m_EnableInputActions: 0
   m_ModelPrefab: {fileID: 5686134208185136530, guid: 1fd3a7c43c8190f4d8c167ebde694364,
     type: 3}
   m_ModelParent: {fileID: 0}
@@ -1036,15 +1059,18 @@ MonoBehaviour:
     m_Bits: 200
   playerInput: {fileID: 0}
   OtherController: {fileID: 3351723451793753507}
+  HandOffset: {x: 0, y: 0, z: 0.03}
   Grab: {fileID: 0}
   LaunchArms: {fileID: 0}
   Punch: {fileID: 0}
   Aim: {fileID: 0}
+  HapticFeedback: {fileID: 0}
   TriggerActivated: 0
   GripActivated: 0
   GrabActivated: 0
   ControllerPosition: {x: 0, y: 0, z: 0}
   ControllerRotation: {x: 0, y: 0, z: 0, w: 0}
+  handPostitions: []
 --- !u!114 &1276960635295346805
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1057,6 +1083,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5378d8247b1c8b14e9acb78191595274, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DebugMode: 1
   holding: 0
 --- !u!114 &2423107481920071831
 MonoBehaviour:
@@ -1072,6 +1099,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   handToLaunch: {fileID: 543038163038044114, guid: 898d76eab596005499d937427d617ce7,
     type: 3}
+  pullingHand: 0
+  cooldown: 0
 --- !u!114 &3563714162967858921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1150,6 +1179,7 @@ GameObject:
   - component: {fileID: 1403822441043103789}
   - component: {fileID: 8906188600707674374}
   - component: {fileID: 3417105254887492391}
+  - component: {fileID: 4144327821113469301}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1243,7 +1273,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2fadf230d1919748a9aa21d40f74619, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_TrackingType: 0
+  m_TrackingType: 1
   m_UpdateType: 0
   m_IgnoreTrackingState: 0
   m_PositionInput:
@@ -1355,6 +1385,18 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+--- !u!114 &4144327821113469301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6583513823572844596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 206884846d72b3a498ad41e4efb5dc3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7111378397482530811
 GameObject:
   m_ObjectHideFlags: 0

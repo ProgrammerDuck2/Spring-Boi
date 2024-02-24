@@ -26,7 +26,7 @@ public class S_Movement_TB : MonoBehaviour
     [HideInInspector] public bool HighSpeed;
 
     [HideInInspector] public bool Grounded; //ground :)
-    public bool VisualizeGroundCheck;
+    public bool DebugMode;
     LayerMask groundLayer;
     LayerMask stickGroundLayer;
 
@@ -36,6 +36,8 @@ public class S_Movement_TB : MonoBehaviour
 
     bool Sprint;
 
+    [ShowIf("DebugMode")] 
+    public Vector3 IRLPosOffset;
     // Start is called before the first frame update
     void Start()
     {
@@ -80,7 +82,7 @@ public class S_Movement_TB : MonoBehaviour
             //Turn();
         }
 
-        if(Grounded && rb.velocity.magnitude < S_Stats_MA.MaxVelocity.magnitude)
+        if (Grounded && rb.velocity.magnitude < new Vector3(S_Stats_MA.AerialMaxVelocity.x, 0, S_Stats_MA.AerialMaxVelocity.z).magnitude / 2)
         {
             HighSpeed = false;
         }
@@ -109,6 +111,14 @@ public class S_Movement_TB : MonoBehaviour
     {
         Vector3 move;
         moveValue = playerInput.actions["Move"].ReadValue<Vector2>();
+
+        if(S_Settings_TB.IsVRConnected)
+        {
+            transform.position -= IRLPosOffset;
+            IRLPosOffset = Vector3.zero;
+            IRLPosOffset += new Vector3(playerInput.actions["IRLPosition"].ReadValue<Vector3>().x, 0, playerInput.actions["IRLPosition"].ReadValue<Vector3>().z);
+            transform.position += IRLPosOffset;
+        }
 
         bodyArt.eulerAngles = S_Settings_TB.IsVRConnected ? new Vector3(0, VrCamera.eulerAngles.y, 0) : bodyArt.eulerAngles = new Vector3(0, pcPov.eulerAngles.y, 0);
 
@@ -159,9 +169,9 @@ public class S_Movement_TB : MonoBehaviour
     }
     #endregion
 
-    private void OnDrawGizmosSelected()
+    private void OnDrawGizmos()
     {
-        if (VisualizeGroundCheck)
+        if (DebugMode)
         {
             Gizmos.color = Color.green;
             Gizmos.DrawSphere(groundCheckPos(), groundCheckSize());

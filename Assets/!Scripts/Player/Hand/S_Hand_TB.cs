@@ -1,5 +1,6 @@
 using NaughtyAttributes;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR;
@@ -11,11 +12,16 @@ using UnityEngine.XR;
 [RequireComponent(typeof(PlayerInput))]
 public class S_Hand_TB : MonoBehaviour
 {
-    [Required]
-    public GameObject Player;
+    [HideInInspector] public GameObject Player;
+    [HideInInspector] S_Movement_TB PlayerMovement;
     public LayerMask grabable;
     [HideInInspector] public PlayerInput playerInput;
+    [Required]
     public GameObject OtherController;
+
+    [Header("Tracking")]
+    [SerializeField] Vector3 HandOffset;
+
     [HorizontalLine(color: EColor.Violet)]
 
     [Header("Components")]
@@ -23,6 +29,7 @@ public class S_Hand_TB : MonoBehaviour
     [HideInInspector] public S_LaunchArms_TB LaunchArms;
     [HideInInspector] public S_Punch_TB Punch;
     [HideInInspector] public S_HandAim_TB Aim;
+    [HideInInspector] public S_HapticFeedback_TB HapticFeedback;
 
     [HorizontalLine(color: EColor.Violet)]
 
@@ -36,6 +43,8 @@ public class S_Hand_TB : MonoBehaviour
 
     [Header("Motion")]
     public List<Vector3> handPostitions = new List<Vector3>();
+    public List<Vector3> handRotations = new List<Vector3>();
+    public List<Vector3> handForwards = new List<Vector3>();
     float timer;
 
 
@@ -46,6 +55,8 @@ public class S_Hand_TB : MonoBehaviour
         LaunchArms = GetComponent<S_LaunchArms_TB>();
         Punch = GetComponent<S_Punch_TB>();
         Aim = GetComponent<S_HandAim_TB>();
+        HapticFeedback = Player.GetComponent<S_HapticFeedback_TB>();
+        PlayerMovement = Player.GetComponent<S_Movement_TB>();
 
         playerInput = GetComponent<PlayerInput>();
 
@@ -61,23 +72,31 @@ public class S_Hand_TB : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ControllerPosition = playerInput.actions["Position"].ReadValue<Vector3>();
-        ControllerRotation = playerInput.actions["Rotation"].ReadValue<Quaternion>();
+        transform.localPosition = playerInput.actions["Position"].ReadValue<Vector3>() + HandOffset - PlayerMovement.IRLPosOffset;
+        transform.localRotation = playerInput.actions["Rotation"].ReadValue<Quaternion>();
+
+        ControllerPosition = transform.localPosition;
+        ControllerRotation = transform.localRotation;
 
         timer += Time.deltaTime;
 
         if (timer > .1f)
         {
             handPostitions.Insert(0, ControllerPosition);
+            handRotations.Insert(0, ControllerRotation.eulerAngles);
+            handForwards.Insert(0, transform.forward);
         }
 
         if(handPostitions.Count > 10)
         {
             handPostitions.Remove(handPostitions[10]);
+            handRotations.Remove(handRotations[10]);
+            handForwards.Remove(handForwards[10]);
         }
     }
     private void LateUpdate()
     {
+        //transform.position -= PlayerMovement.IRLPosOffset;
         GrabActivated = TriggerActivated && GripActivated ? true : false;
     }
 
@@ -88,5 +107,19 @@ public class S_Hand_TB : MonoBehaviour
     void toggleGrip(InputAction.CallbackContext context)
     {
         GripActivated = !GripActivated;
+    }
+
+    public Vector3 GetAverageVector3(List<Vector3> Vector3s)
+    {
+        Vector3 average = Vector3.zero;
+
+        for (int i = 0; i < Vector3s.Count; i++)
+        {
+            average += Vector3s[i];
+        }
+
+        average /= handForwards.Count;
+
+        return average;
     }
 }
