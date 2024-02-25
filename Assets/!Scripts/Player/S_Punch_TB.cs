@@ -8,6 +8,7 @@ using UnityEngine;
 public class S_Punch_TB : MonoBehaviour
 {
     S_Hand_TB hand;
+    S_PunchParticle_OR particle;
     
     List<Vector3> handPostitions = new List<Vector3>();
 
@@ -24,6 +25,7 @@ public class S_Punch_TB : MonoBehaviour
     void Start()
     {
         hand = GetComponent<S_Hand_TB>();
+        particle = transform.GetChild(0).GetComponent<S_PunchParticle_OR>();
     }
 
     // Update is called once per frame
@@ -61,6 +63,10 @@ public class S_Punch_TB : MonoBehaviour
             hit[i].GetComponent<S_Enemies_MA>().Hurt(damage);
             print("Dealt Damage");
         }
+
+        // Make sure S_PunchParticle_OR is found
+        if (particle) { particle.ParticlesOnImpact(); }
+        else { Debug.Log("No S_PunchParticle_OR found"); }
 
         StartCoroutine(PunchCooldown());
     }
