@@ -75,7 +75,7 @@ public class S_VrManager_TB : MonoBehaviour
 
     public static bool IsVrHeadsetConnected()
     {
-        SubsystemManager.GetInstances<XRDisplaySubsystem>(xDisplaySubsystems);
+        SubsystemManager.GetSubsystems<XRDisplaySubsystem>(xDisplaySubsystems);
         foreach (var item in xDisplaySubsystems)
         {
             if(item.running)
@@ -84,9 +84,7 @@ public class S_VrManager_TB : MonoBehaviour
                 return true;
             }
         }
-
         Debug.LogWarning("VR is not connected, using PC controlls");
         return false;
     }
-
 }
