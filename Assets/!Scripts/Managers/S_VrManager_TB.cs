@@ -13,26 +13,30 @@ public class S_VrManager_TB : MonoBehaviour
     GameObject XrOrigin;
     GameObject XrInteractionManager;
 
+    public static List<XRDisplaySubsystem> xDisplaySubsystems = new List<XRDisplaySubsystem>();
+
     //PC
     GameObject PcCamera;
-
-    void Start()
+    
+    IEnumerator Start()
     {
         GameObject player = FindFirstObjectByType<S_Movement_TB>().gameObject;
         XrOrigin = player.transform.GetChild(0).gameObject;
         XrInteractionManager = FindFirstObjectByType<XRInteractionManager>().gameObject;
         PcCamera = GameObject.Find("PcCamera");
 
-        StartCoroutine(LateStart());
-    }
+        SubsystemManager.reloadSubsytemsCompleted  += test;
 
-    IEnumerator LateStart()
-    {
         yield return new WaitForEndOfFrame();
 
         CheckVR();
-    }
 
+
+    }
+    void test()
+    {
+        print("test");
+    }
     [Button]
     public void CheckVR()
     {
@@ -71,7 +75,6 @@ public class S_VrManager_TB : MonoBehaviour
 
     public static bool IsVrHeadsetConnected()
     {
-        List<XRDisplaySubsystem> xDisplaySubsystems = new List<XRDisplaySubsystem>();
         SubsystemManager.GetInstances<XRDisplaySubsystem>(xDisplaySubsystems);
         foreach (var item in xDisplaySubsystems)
         {
