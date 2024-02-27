@@ -4,11 +4,13 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
+using static UnityEngine.ParticleSystem;
 
 [RequireComponent(typeof(S_Hand_TB))]
 public class S_Punch_TB : MonoBehaviour
 {
     S_Hand_TB hand;
+    S_PunchParticle_OR particle;
 
     [InfoBox("Only Enemies :)")]
     public LayerMask CanHit;
@@ -21,6 +23,7 @@ public class S_Punch_TB : MonoBehaviour
     {
         OnCooldown = false;
         hand = GetComponent<S_Hand_TB>();
+        particle = transform.GetChild(0).GetComponent<S_PunchParticle_OR>();
     }
 
     // Update is called once per frame
@@ -47,6 +50,10 @@ public class S_Punch_TB : MonoBehaviour
             hand.HapticFeedback.TriggerHaptic(1, GetComponent<ActionBasedController>());
             print(damage);
         }
+
+        // Make sure S_PunchParticle_OR is found
+        if (particle) { particle.ParticlesOnImpact(); }
+        else { Debug.Log("No S_PunchParticle_OR found"); }
 
         StartCoroutine(PunchCooldown());
     }
