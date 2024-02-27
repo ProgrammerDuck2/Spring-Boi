@@ -25,13 +25,9 @@ public class S_VrManager_TB : MonoBehaviour
         XrInteractionManager = FindFirstObjectByType<XRInteractionManager>().gameObject;
         PcCamera = GameObject.Find("PcCamera");
 
-        SubsystemManager.reloadSubsytemsCompleted  += test;
-
         yield return new WaitForEndOfFrame();
 
         CheckVR();
-
-
     }
     void test()
     {
