@@ -6,6 +6,24 @@
             "id": "0928cfea-e8bd-4c07-9a9f-bc135f623eb7",
             "actions": [
                 {
+                    "name": "IRLRotation",
+                    "type": "Value",
+                    "id": "7e5cb60f-446b-47da-a62c-8670e46922c3",
+                    "expectedControlType": "Quaternion",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "IRLPosition",
+                    "type": "Value",
+                    "id": "854886a1-1fd8-4e08-be8c-3ee925077b49",
+                    "expectedControlType": "Vector3",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
                     "name": "Move",
                     "type": "Value",
                     "id": "9851773b-da79-4ac2-8bfe-a15f4c85f378",
@@ -336,6 +354,28 @@
                     "processors": "",
                     "groups": "XR",
                     "action": "TabletInteractions",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9e39e563-6d97-47fd-bdb6-f4bcf1ec78e2",
+                    "path": "<XRHMD>/centerEyePosition",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "XR",
+                    "action": "IRLPosition",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "44c4c4e6-3f45-4d06-9772-f74dc6331ea8",
+                    "path": "<XRHMD>/centerEyeRotation",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "XR",
+                    "action": "IRLRotation",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
