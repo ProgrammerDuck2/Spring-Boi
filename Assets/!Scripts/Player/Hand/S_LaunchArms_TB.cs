@@ -131,12 +131,17 @@ public class S_LaunchArms_TB : MonoBehaviour
 
     void HoldOnto()
     {
-        holding = true;
-
         SpringJoint spring = currentHandMissile.GetComponent<SpringJoint>();
-        spring.connectedBody = playerRB;
-        playerMovement.enabled = false;
-        holding = true;
+
+        if (holding != true)
+        {
+            holding = true;
+            hand.HapticFeedback.TriggerHaptic(.5f, .1f, GetComponent<ActionBasedController>());
+
+            spring.connectedBody = playerRB;
+            playerMovement.enabled = false;
+            holding = true;
+        }
 
         if (pullingHand)
         {

@@ -47,7 +47,7 @@ public class S_Punch_TB : MonoBehaviour
         for (int i = 0; i < hit.Length; i++)
         {
             hit[i].GetComponent<S_Enemies_MA>().Hurt(damage);
-            hand.HapticFeedback.TriggerHaptic(1, GetComponent<ActionBasedController>());
+            hand.HapticFeedback.TriggerHaptic(.1f, .1f, GetComponent<ActionBasedController>());
             print(damage);
         }
 

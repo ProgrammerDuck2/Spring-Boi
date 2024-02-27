@@ -70,7 +70,7 @@ public class S_Grab_TB : MonoBehaviour
 
         holding = true;
 
-        hand.HapticFeedback.TriggerHaptic(1, GetComponent<ActionBasedController>());
+        hand.HapticFeedback.TriggerHaptic(.1f, .1f, GetComponent<ActionBasedController>());
     }
     void Grab()
     {

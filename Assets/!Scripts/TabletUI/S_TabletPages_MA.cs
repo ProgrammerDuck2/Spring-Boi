@@ -27,10 +27,14 @@ public class S_TabletPages_MA : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(currentPage);
-        if (triggerCall.GetComponent<S_CallTrigger_MA>().tabletTrigger)
+        if (triggerCall != null)
         {
-            firstPage = 0;
+
+            //Debug.Log(currentPage);
+            if (triggerCall.GetComponent<S_CallTrigger_MA>().tabletTrigger)
+            {
+                firstPage = 0;
+            }
         }
 
         waitTime += Time.deltaTime;
