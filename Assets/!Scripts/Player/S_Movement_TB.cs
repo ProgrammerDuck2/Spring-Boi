@@ -67,11 +67,15 @@ public class S_Movement_TB : MonoBehaviour
 
         if (!HighSpeed)
         {
-            //rb.drag = 3;
-            rb.velocity = Clamp(rb.velocity, S_Stats_MA.MaxVelocity);
+            if(Sprint)
+            {
+                rb.velocity = Clamp(rb.velocity, S_Stats_MA.MaxVelocity * 2);
+            } else
+            {
+                rb.velocity = Clamp(rb.velocity, S_Stats_MA.MaxVelocity);
+            }
         } else
         {
-            //rb.drag = 1;
             rb.velocity = Clamp(rb.velocity, S_Stats_MA.AerialMaxVelocity);
         }
 

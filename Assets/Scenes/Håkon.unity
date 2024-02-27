@@ -141,6 +141,16 @@ PrefabInstance:
       propertyPath: triggerCall
       value: 
       objectReference: {fileID: 65975665}
+    - target: {fileID: 2250395201238344154, guid: a3ba075e65629ad4380ce9298e73ddea,
+        type: 3}
+      propertyPath: tabletPages.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2250395201238344154, guid: a3ba075e65629ad4380ce9298e73ddea,
+        type: 3}
+      propertyPath: tabletPages.Array.data[4]
+      value: 
+      objectReference: {fileID: 800269758}
     - target: {fileID: 7270047777627567016, guid: a3ba075e65629ad4380ce9298e73ddea,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -845,7 +855,7 @@ Transform:
   m_GameObject: {fileID: 65975665}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.9195433, y: 45.7, z: -207.9}
+  m_LocalPosition: {x: -24.97, y: -5.93, z: -168.9}
   m_LocalScale: {x: 34.565704, y: 40.704, z: 41.535}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8345,6 +8355,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 789782676}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &800269758 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4373134105544555481, guid: a3ba075e65629ad4380ce9298e73ddea,
+    type: 3}
+  m_PrefabInstance: {fileID: 2164123}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &807165496
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16177,7 +16193,7 @@ GameObject:
   - component: {fileID: 1421961905}
   - component: {fileID: 1421961904}
   - component: {fileID: 1421961903}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Cube (23)
   m_TagString: EnemyArea
   m_Icon: {fileID: 0}

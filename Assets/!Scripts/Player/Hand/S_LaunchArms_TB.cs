@@ -1,9 +1,7 @@
 using NaughtyAttributes;
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Rendering;
 using UnityEngine.XR.Interaction.Toolkit;
 
 [RequireComponent(typeof(S_Hand_TB))]
@@ -36,15 +34,14 @@ public class S_LaunchArms_TB : MonoBehaviour
 
         grab = GetComponent<S_Grab_TB>();
     }
-    IEnumerator LateStart()
-    {
-        yield return new WaitForEndOfFrame();
-    }
 
     // Update is called once per frame
     void Update()
     {
-        ControllHandMissile();
+        if (currentHandMissile != null)
+        {
+            ControllHandMissile();
+        }
 
         if (cooldown > 0)
         {
@@ -63,7 +60,8 @@ public class S_LaunchArms_TB : MonoBehaviour
             {
                 Debug.Log("Launching Arm");
                 ActivateLaunchArm();
-            } else
+            }
+            else
             {
                 Debug.Log("pulling Arm");
                 ActivatePullArm();
@@ -75,41 +73,39 @@ public class S_LaunchArms_TB : MonoBehaviour
     }
     void ControllHandMissile()
     {
-        if (currentHandMissile != null)
+        if (!hand.GripActivated)
         {
-            if (hand.GripActivated && Physics.CheckSphere(currentHandMissile.transform.position, .5f, hand.grabable))
+            holding = false;
+        }
+
+        if (Physics.CheckSphere(currentHandMissile.transform.position, .5f, hand.grabable))
+        {
+            if(hand.GripActivated)
             {
                 HoldOnto();
-            }
-            
-            if(!hand.GripActivated)
+            } else
             {
-                holding = false;
-            }
-
-            if (!holding)
-            {
-                if (pullingHand)
-                {
-                    PullArm();
-                }
-                else if (Vector3.Distance(transform.position, currentHandMissile.transform.position) >= S_Stats_MA.HandLaunchReach)
-                {
-                    ActivatePullArm();
-                }
-
-                Vector3 handVelocity = pullingHand ? speedCalc() : speedCalc() * 2;
-
-                currentHandMissile.transform.position += handVelocity * Time.deltaTime;
-
-                if (Physics.CheckSphere(currentHandMissile.transform.position, .2f, hand.Punch.CanHit) && hand.Punch.OnCooldown)
-                {
-                    hand.Punch.Punch(Physics.OverlapSphere(currentHandMissile.transform.position, .2f, hand.Punch.CanHit), 3);
-                }
+                ActivatePullArm();
             }
         }
+
+        if (!holding)
+        {
+            if (pullingHand)
+            {
+                SendArmBack();
+            }
+            else if (Vector3.Distance(transform.position, currentHandMissile.transform.position) >= S_Stats_MA.HandLaunchReach)
+            {
+                ActivatePullArm();
+            }
+
+            //Speed
+            Vector3 handVelocity = pullingHand ? speedCalc() : speedCalc() * 2;
+            currentHandMissile.transform.position += handVelocity * Time.deltaTime;
+        }
     }
-    void PullArm()
+    void SendArmBack()
     {
         currentHandMissile.transform.LookAt(transform);
 
@@ -128,7 +124,6 @@ public class S_LaunchArms_TB : MonoBehaviour
             Destroy(currentHandMissile);
         }
     }
-
     void HoldOnto()
     {
         SpringJoint spring = currentHandMissile.GetComponent<SpringJoint>();
@@ -141,6 +136,7 @@ public class S_LaunchArms_TB : MonoBehaviour
             spring.connectedBody = playerRB;
             playerMovement.enabled = false;
             holding = true;
+            currentHandMissile.GetComponent<Light>().enabled = true;    
         }
 
         if (pullingHand)
@@ -193,6 +189,8 @@ public class S_LaunchArms_TB : MonoBehaviour
         pullingHand = true;
         holding = false;
         playerRB.useGravity = true;
+        playerMovement.enabled = true;
+        currentHandMissile.GetComponent<Light>().enabled = false;
     }
 
     Vector3 speedCalc()
