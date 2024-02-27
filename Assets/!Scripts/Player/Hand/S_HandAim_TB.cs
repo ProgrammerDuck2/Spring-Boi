@@ -1,4 +1,5 @@
 using NaughtyAttributes;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -27,7 +28,9 @@ public class S_HandAim_TB : MonoBehaviour
     }
     public void Aim()
     {
-        Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, S_Stats_MA.HandLaunchReach, hand.grabable);
+        if (hand.handForwards.Count <= 9) return;
+
+        Physics.Raycast(transform.position, hand.GetAverageVector3(hand.handForwards), out RaycastHit hit, S_Stats_MA.HandLaunchReach, hand.grabable);
 
         if(hit.collider)
         {
@@ -35,8 +38,6 @@ public class S_HandAim_TB : MonoBehaviour
                 AimingAt = Instantiate(indicator);
 
             Collider[] AimAssists = Physics.OverlapSphere(hit.point, .5f, AimAssist);
-
-            print(AimAssists.Length);
 
             if (AimAssists.Length > 0)
             {
