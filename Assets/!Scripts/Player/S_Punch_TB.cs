@@ -12,6 +12,8 @@ public class S_Punch_TB : MonoBehaviour
     S_Hand_TB hand;
     S_PunchParticle_OR particle;
 
+    [SerializeField] private GameObject particleHolder;
+
     [InfoBox("Only Enemies :)")]
     public LayerMask CanHit;
 
@@ -23,7 +25,7 @@ public class S_Punch_TB : MonoBehaviour
     {
         OnCooldown = false;
         hand = GetComponent<S_Hand_TB>();
-        particle = transform.GetChild(0).GetComponent<S_PunchParticle_OR>();
+        particle = particleHolder.GetComponent<S_PunchParticle_OR>();
     }
 
     // Update is called once per frame
