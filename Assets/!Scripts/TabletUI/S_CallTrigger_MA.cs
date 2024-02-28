@@ -23,9 +23,12 @@ public class S_CallTrigger_MA : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        tabletTrigger = true;
-        Debug.Log(tabletTrigger);
-        PlayRingtone();
+        if (other.CompareTag("Player"))
+        {
+            tabletTrigger = true;
+            Debug.Log(tabletTrigger);
+            PlayRingtone();
+        }
     }
     void PlayRingtone()
     {
