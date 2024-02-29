@@ -3,72 +3,67 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
+using static UnityEngine.ParticleSystem;
 
 [RequireComponent(typeof(S_Hand_TB))]
 public class S_Punch_TB : MonoBehaviour
 {
     S_Hand_TB hand;
-    
-    List<Vector3> handPostitions = new List<Vector3>();
+    S_PunchParticle_OR particle;
 
-    bool AttemptPunch;
-    float punchTimer;
+    [SerializeField] private GameObject particleHolder;
 
     [InfoBox("Only Enemies :)")]
     public LayerMask CanHit;
 
-    [HideInInspector] public bool OnCooldown = true;
+    [HideInInspector] public bool OnCooldown = false;
     
 
     // Start is called before the first frame update
     void Start()
     {
+        OnCooldown = false;
         hand = GetComponent<S_Hand_TB>();
+        particle = particleHolder.GetComponent<S_PunchParticle_OR>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        punchTimer += Time.deltaTime;
+        if (hand.handPostitions.Count <= 9) return;
+        if (!hand.GripActivated) return;
+        if (!hand.TriggerActivated) return;
+        float forceRequirement = .5f;
 
-        if (punchTimer > .1f)
+        if (Vector3.Distance(hand.handPostitions[0], hand.handPostitions[hand.handPostitions.Count - 1]) > forceRequirement && !OnCooldown)
         {
-
-            handPostitions.Insert(0, hand.ControllerPosition);
-        }
-
-        if (handPostitions.Count < 11) return;
-
-        float forceRequirement = hand.GrabActivated ? .4f : .7f;
-
-        if (Vector3.Distance(handPostitions[0], handPostitions[handPostitions.Count - 1]) > forceRequirement && OnCooldown)
-        {
-            Punch(Physics.OverlapSphere(transform.position, .5f, CanHit), Vector3.Distance(handPostitions[0], handPostitions[handPostitions.Count - 1]) + 1);
-            handPostitions.Clear();
-        }
-        else
-        {
-            handPostitions.Remove(handPostitions[handPostitions.Count - 1]);
+            Punch(Physics.OverlapSphere(transform.position, .5f, CanHit), Vector3.Distance(hand.handPostitions[0], hand.handPostitions[hand.handPostitions.Count - 1]) + 1);
         }
     }
 
     public void Punch(Collider[] hit, float multiplier)
     {
-        float damage = Mathf.Round(S_Stats_MA.Damage * multiplier);
+        float damage = Mathf.Round((S_Stats_MA.Damage + hand.Player.GetComponent<Rigidbody>().velocity.magnitude * 10) * multiplier);
 
         for (int i = 0; i < hit.Length; i++)
         {
             hit[i].GetComponent<S_Enemies_MA>().Hurt(damage);
-            print("Dealt Damage");
+            hand.HapticFeedback.TriggerHaptic(.1f, .1f, GetComponent<ActionBasedController>());
+            print(damage);
         }
+
+        // Make sure S_PunchParticle_OR is found
+        if (particle) { particle.ParticlesOnImpact(); }
+        else { Debug.Log("No S_PunchParticle_OR found"); }
 
         StartCoroutine(PunchCooldown());
     }
 
     IEnumerator PunchCooldown()
     {
-        OnCooldown = false;
-        yield return new WaitForSeconds(0.3f);
         OnCooldown = true;
+        yield return new WaitForSeconds(0.3f);
+        OnCooldown = false;
     }
 }

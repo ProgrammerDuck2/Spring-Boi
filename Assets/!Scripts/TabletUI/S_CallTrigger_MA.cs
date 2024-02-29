@@ -6,10 +6,13 @@ public class S_CallTrigger_MA : MonoBehaviour
 {
     [HideInInspector] public bool tabletTrigger = false;
     [SerializeField] private AudioClip ringtone;
+
+    GameObject Ipad;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        Ipad = FindFirstObjectByType<S_Ipad_MA>().gameObject;
     }
 
     // Update is called once per frame
@@ -20,13 +23,16 @@ public class S_CallTrigger_MA : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        tabletTrigger = true;
-        Debug.Log(tabletTrigger);
-        PlayRingtone();
+        if (other.CompareTag("Player"))
+        {
+            tabletTrigger = true;
+            Debug.Log(tabletTrigger);
+            PlayRingtone();
+        }
     }
     void PlayRingtone()
     {
-        AudioSource audio = GetComponent<AudioSource>();
+        AudioSource audio = Ipad.GetComponent<AudioSource>();
 
         audio.clip = ringtone;
         audio.Play();

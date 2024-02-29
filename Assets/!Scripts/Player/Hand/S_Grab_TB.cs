@@ -5,11 +5,14 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.XR;
+using UnityEngine.XR.Interaction.Toolkit;
 
 [RequireComponent(typeof(S_Hand_TB))]
 public class S_Grab_TB : MonoBehaviour
 {
     S_Hand_TB hand;
+
+    [SerializeField] bool DebugMode;
 
     [Header("Player")]
     GameObject playerBody;
@@ -66,6 +69,8 @@ public class S_Grab_TB : MonoBehaviour
         initializedPlayerPosition = playerBody.transform.position;
 
         holding = true;
+
+        hand.HapticFeedback.TriggerHaptic(.1f, .1f, GetComponent<ActionBasedController>());
     }
     void Grab()
     {
@@ -87,5 +92,13 @@ public class S_Grab_TB : MonoBehaviour
         }
 
         holding = false;
+    }
+    private void OnDrawGizmos()
+    {
+        if (DebugMode)
+        {
+            Gizmos.color = new Color(0, 1, 0, .2f);
+            Gizmos.DrawSphere(transform.position, S_Stats_MA.HandGrabRadius);
+        }
     }
 }

@@ -38,7 +38,7 @@ public class S_CallTablet_MA : MonoBehaviour
         for (int i = 0; i < callList.Count; i++)
         {
             callText.text = callList[i];
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(5);
             print(callList[i]);
         }
     }

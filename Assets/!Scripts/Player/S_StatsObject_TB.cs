@@ -7,9 +7,10 @@ using UnityEngine;
 [System.Serializable]
 public class S_StatsObject_TB : ScriptableObject
 {
-    [HideInInspector] public float playerHealth;
+    [Header("Player Stats")]
     [MinValue(1)]
     public float maxHealth = 100;
+    [HideInInspector] public float playerHealth;
     [MinValue(1)]
     public float Damage = 10;
     [MinValue(1)]
@@ -23,6 +24,7 @@ public class S_StatsObject_TB : ScriptableObject
 
     [Space]
     [HorizontalLine(color: EColor.Violet)]
+    [Header("Hand Specific")]
     [MinValue(1)]
     public float HandLaunchSpeed = 3;
     [MinValue(1)]

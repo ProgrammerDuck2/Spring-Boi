@@ -2,6 +2,7 @@ using NaughtyAttributes;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.XR.Interaction.Toolkit;
 
 [RequireComponent(typeof(S_Hand_TB))]
 public class S_LaunchArms_TB : MonoBehaviour
@@ -18,17 +19,18 @@ public class S_LaunchArms_TB : MonoBehaviour
 
     GameObject handArt;
 
-    bool pullingHand;
-
+    [SerializeField] bool pullingHand;
     bool holding;
+
+    [SerializeField] float cooldown;
 
     // Start is called before the first frame update
     void Start()
     {
         hand = GetComponent<S_Hand_TB>();
-        handArt = transform.GetChild(0).gameObject;
         playerMovement = hand.Player.GetComponent<S_Movement_TB>();
         playerRB = hand.Player.GetComponent<Rigidbody>();
+        handArt = transform.GetComponent<ActionBasedController>().modelParent.gameObject;
 
         grab = GetComponent<S_Grab_TB>();
     }
@@ -38,84 +40,140 @@ public class S_LaunchArms_TB : MonoBehaviour
     {
         if (currentHandMissile != null)
         {
-            Vector3 handVelocity = pullingHand ? speedCalc() : speedCalc() * 2;
+            ControllHandMissile();
+        }
 
-            if(pullingHand && !holding)
+        if (cooldown > 0)
+        {
+            cooldown -= Time.deltaTime;
+            return;
+        }
+        if (!hand.GripActivated) return;
+        if (hand.TriggerActivated) return;
+        if (hand.handPostitions.Count <= 9) return;
+
+        float forceRequirement = .5f;
+
+        if (Vector3.Distance(hand.handPostitions[0], hand.handPostitions[hand.handPostitions.Count - 1]) > forceRequirement)
+        {
+            if (currentHandMissile == null)
             {
-                currentHandMissile.transform.LookAt(transform);
+                Debug.Log("Launching Arm");
+                ActivateLaunchArm();
+            }
+            else
+            {
+                Debug.Log("pulling Arm");
+                ActivatePullArm();
+            }
 
-                if(Vector3.Distance(transform.position, currentHandMissile.transform.position) <= .5f)
-                {
-                    pullingHand = false;
-                    handArt.SetActive(true);
-                    grab.enabled = true;
-                    playerRB.useGravity = true;
+            cooldown = .5f;
 
-                    if (!hand.OtherController.GetComponent<S_Grab_TB>().holding)
-                    {
-                        playerMovement.enabled = true;
-                    }
+        }
+    }
+    void ControllHandMissile()
+    {
+        if (!hand.GripActivated)
+        {
+            holding = false;
+        }
 
-                    Destroy(currentHandMissile);
-                }
+        if (Physics.CheckSphere(currentHandMissile.transform.position, .5f, hand.grabable))
+        {
+            if(hand.GripActivated)
+            {
+                HoldOnto();
+            } else
+            {
+                ActivatePullArm();
+            }
+        }
+
+        if (!holding)
+        {
+            if (pullingHand)
+            {
+                SendArmBack();
             }
             else if (Vector3.Distance(transform.position, currentHandMissile.transform.position) >= S_Stats_MA.HandLaunchReach)
             {
-                activatePull();
+                ActivatePullArm();
             }
 
-            if (hand.GrabActivated)
+            //Speed
+            Vector3 handVelocity = pullingHand ? speedCalc() : speedCalc() * 2;
+            currentHandMissile.transform.position += handVelocity * Time.deltaTime;
+        }
+    }
+    void SendArmBack()
+    {
+        currentHandMissile.transform.LookAt(transform);
+
+        if (Vector3.Distance(transform.position, currentHandMissile.transform.position) <= .5f)
+        {
+            pullingHand = false;
+            handArt.SetActive(true);
+            grab.enabled = true;
+            playerRB.useGravity = true;
+
+            if (!hand.OtherController.GetComponent<S_Grab_TB>().holding)
             {
-                if(Physics.CheckSphere(currentHandMissile.transform.position, .5f, hand.grabable))
-                {
-                    holding = true;
-
-                    SpringJoint spring = currentHandMissile.GetComponent<SpringJoint>();
-                    spring.connectedBody = playerRB;
-                    playerMovement.enabled = false;
-                    holding = true;
-
-                    if (pullingHand)
-                    {
-                        playerRB.useGravity = false;
-                        spring.maxDistance = 0;
-                        spring.damper = 0.2f;
-                        hand.Player.GetComponent<S_Movement_TB>().HighSpeed = true;
-                    }
-                    else
-                    {
-                        playerRB.useGravity = true;
-                        spring.maxDistance = Vector3.Distance(hand.Player.transform.position, currentHandMissile.transform.position);
-
-                        spring.damper = 20;
-                    }
-                } 
-            } 
-            else
-            {
-                holding = false;
+                playerMovement.enabled = true;
             }
 
-            if (!holding)
-            {
-                currentHandMissile.transform.position += handVelocity * Time.deltaTime;
+            Destroy(currentHandMissile);
+        }
+    }
+    void HoldOnto()
+    {
+        SpringJoint spring = currentHandMissile.GetComponent<SpringJoint>();
 
-                if(Physics.CheckSphere(currentHandMissile.transform.position, .2f, hand.Punch.CanHit) && hand.Punch.OnCooldown)
-                {
-                    hand.Punch.Punch(Physics.OverlapSphere(currentHandMissile.transform.position, .2f, hand.Punch.CanHit), 3);
-                }
-            }
+        if (holding != true)
+        {
+            holding = true;
+            hand.HapticFeedback.TriggerHaptic(.5f, .1f, GetComponent<ActionBasedController>());
+
+            spring.connectedBody = playerRB;
+            playerMovement.enabled = false;
+            holding = true;
+            currentHandMissile.GetComponent<Light>().enabled = true;    
+        }
+
+        if (pullingHand)
+        {
+            playerRB.useGravity = false;
+            spring.maxDistance = 0;
+            spring.damper = 0.2f;
+            hand.Player.GetComponent<S_Movement_TB>().HighSpeed = true;
+        }
+        else
+        {
+            playerRB.useGravity = true;
+            spring.maxDistance = Vector3.Distance(hand.Player.transform.position, currentHandMissile.transform.position);
+
+            spring.damper = 20;
         }
     }
 
+    //for VR buttons
+    #region 
     public void LaunchArm(InputAction.CallbackContext context)
     {
-        if(currentHandMissile == null)
+        ActivateLaunchArm();
+    }
+    public void PullArm(InputAction.CallbackContext context)
+    {
+        ActivatePullArm();
+    }
+    #endregion  
+    void ActivateLaunchArm()
+    {
+        if (currentHandMissile == null)
         {
             pullingHand = false;
-            currentHandMissile = Instantiate(handToLaunch, transform.position, transform.rotation);
+            currentHandMissile = Instantiate(handToLaunch, transform.position, Quaternion.Euler(hand.GetAverageVector3(hand.handRotations)));
 
-            if(hand.Aim.AimingAt)
+            if (hand.Aim.AimingAt)
                 currentHandMissile.transform.LookAt(hand.Aim.AimingAt.transform.position);
 
             currentHandMissile.name = gameObject.name + " Missile";
@@ -124,17 +182,15 @@ public class S_LaunchArms_TB : MonoBehaviour
             grab.enabled = false;
         }
     }
-
-    public void PullArm(InputAction.CallbackContext context)
+    void ActivatePullArm()
     {
-        activatePull();
-    }
+        if (pullingHand) return;
 
-    void activatePull()
-    {
         pullingHand = true;
         holding = false;
         playerRB.useGravity = true;
+        playerMovement.enabled = true;
+        currentHandMissile.GetComponent<Light>().enabled = false;
     }
 
     Vector3 speedCalc()
