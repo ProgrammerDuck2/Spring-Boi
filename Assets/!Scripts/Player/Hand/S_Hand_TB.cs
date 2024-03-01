@@ -10,6 +10,7 @@ using UnityEngine.XR;
 [RequireComponent(typeof(S_Punch_TB))]
 [RequireComponent(typeof(S_HandAim_TB))]
 [RequireComponent(typeof(PlayerInput))]
+[RequireComponent(typeof(S_HandInteract_TBMA))]
 public class S_Hand_TB : MonoBehaviour
 {
     [HideInInspector] public GameObject Player;
@@ -30,7 +31,7 @@ public class S_Hand_TB : MonoBehaviour
     [HideInInspector] public S_Punch_TB Punch;
     [HideInInspector] public S_HandAim_TB Aim;
     [HideInInspector] public S_HapticFeedback_TB HapticFeedback;
-
+    [HideInInspector] public S_HandInteract_TBMA Interact;
     [HorizontalLine(color: EColor.Violet)]
 
     [Header("Contolls")]
@@ -57,6 +58,7 @@ public class S_Hand_TB : MonoBehaviour
         Aim = GetComponent<S_HandAim_TB>();
         HapticFeedback = Player.GetComponent<S_HapticFeedback_TB>();
         PlayerMovement = Player.GetComponent<S_Movement_TB>();
+        Interact = Player.GetComponent<S_HandInteract_TBMA>();
 
         playerInput = GetComponent<PlayerInput>();
 
@@ -67,6 +69,8 @@ public class S_Hand_TB : MonoBehaviour
 
         playerInput.actions["Launch"].started += LaunchArms.LaunchArm;
         playerInput.actions["Launch"].canceled += LaunchArms.PullArm;
+
+        playerInput.actions["Interact"].started += Interact.Interact;
     }
 
     // Update is called once per frame
