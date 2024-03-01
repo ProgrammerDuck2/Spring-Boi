@@ -8056,18 +8056,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 782555499}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &783666635 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2428724778998971066, guid: a3ba075e65629ad4380ce9298e73ddea,
-    type: 3}
-  m_PrefabInstance: {fileID: 1622629407}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &787751547
 GameObject:
   m_ObjectHideFlags: 0
@@ -13112,18 +13100,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1622629407}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1204183936
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1204183934}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e93ce5c7c9df314c9603bb9d0f3835a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1207989494
 GameObject:
   m_ObjectHideFlags: 0
@@ -14948,23 +14924,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1622629407}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1346609200
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1346609198}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39a24139f3f96fd4886da3f75bc99466, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  callText: {fileID: 783666635}
-  callList:
-  - hello spring~boy
-  - your first mission is getting past the enemies ahead
-  - be careful, they can be strong
 --- !u!1 &1351170922
 GameObject:
   m_ObjectHideFlags: 0
@@ -17805,18 +17764,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1622629407}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1594185233
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1594185231}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f522245142aa85844b2f1d27fb3bb6b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1622629407
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17915,22 +17862,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5310112799321486811, guid: a3ba075e65629ad4380ce9298e73ddea, type: 3}
+    - {fileID: 6121586115396191052, guid: a3ba075e65629ad4380ce9298e73ddea, type: 3}
+    - {fileID: 5280498776820294861, guid: a3ba075e65629ad4380ce9298e73ddea, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7719914085055459534, guid: a3ba075e65629ad4380ce9298e73ddea,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1204183936}
-    - targetCorrespondingSourceObject: {fileID: 3442898189991642251, guid: a3ba075e65629ad4380ce9298e73ddea,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1594185233}
-    - targetCorrespondingSourceObject: {fileID: 4373134105544555481, guid: a3ba075e65629ad4380ce9298e73ddea,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1346609200}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a3ba075e65629ad4380ce9298e73ddea, type: 3}
 --- !u!4 &1640314807 stripped
 Transform:

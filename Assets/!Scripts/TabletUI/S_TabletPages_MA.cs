@@ -68,6 +68,7 @@ public class S_TabletPages_MA : MonoBehaviour
                 }
                 waitTime = 0;
             }
+            Debug.Log("side" + leftOrRight);
             for (int i = 0; i < tabletPages.Count; i++)
             {
                 if(i != currentPage)
