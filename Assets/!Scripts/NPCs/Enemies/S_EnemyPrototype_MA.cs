@@ -87,7 +87,7 @@ public class S_EnemyPrototype_MA : MonoBehaviour, S_Enemies_MA
         {
             if (other.gameObject.tag == "Player")
             {
-                Hurt(50);
+                Hurt(50, other.gameObject);
             }
         }
     }
@@ -98,7 +98,7 @@ public class S_EnemyPrototype_MA : MonoBehaviour, S_Enemies_MA
         Destroy(currentBullet, 2);
     }
 
-    public void Hurt(float damage)
+    public void Hurt(float damage, GameObject WhoDealtDamage)
     {
         enemyHealth -= damage;
         if (enemyHealth <= 20)

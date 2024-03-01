@@ -1,8 +1,6 @@
 using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -14,10 +12,17 @@ public class S_VrManager_TB : MonoBehaviour
     GameObject XrInteractionManager;
 
     public static List<XRDisplaySubsystem> xDisplaySubsystems = new List<XRDisplaySubsystem>();
+    static bool VR_Found;
+    static List<InputDevice> RightDevices = new List<InputDevice>();
+    static bool RightControllerFound;
+    static List<InputDevice> LeftDevices = new List<InputDevice>();
+    static bool LeftControllerFound;
+
+    public bool VRReady = false;
 
     //PC
     GameObject PcCamera;
-    
+
     IEnumerator Start()
     {
         GameObject player = FindFirstObjectByType<S_Movement_TB>().gameObject;
@@ -25,13 +30,26 @@ public class S_VrManager_TB : MonoBehaviour
         XrInteractionManager = FindFirstObjectByType<XRInteractionManager>().gameObject;
         PcCamera = GameObject.Find("PcCamera");
 
-        yield return new WaitForEndOfFrame();
+        while (!VRReady)
+        {
+            print("hi");
+            yield return new WaitForEndOfFrame();
 
-        CheckVR();
-    }
-    void test()
-    {
-        print("test");
+            if(VR_Found)
+                CheckVR();
+            if(RightControllerFound)
+                CheckInputDevice(InputDeviceCharacteristics.Right, 0);
+            if(LeftControllerFound)
+                CheckInputDevice(InputDeviceCharacteristics.Left, 1);
+
+            if(VR_Found && RightControllerFound && LeftControllerFound)
+            {
+                VRReady = true;
+            } else
+            {
+                VRReady = false;
+            }
+        }
     }
     [Button]
     public void CheckVR()
@@ -60,27 +78,54 @@ public class S_VrManager_TB : MonoBehaviour
             XrInteractionManager.SetActive(false);
             PcCamera.SetActive(true);
         }
-
-        //S_VRDependant_TB[] vrDependants = (S_VRDependant_TB[])FindObjectsByType(typeof(S_VRDependant_TB), FindObjectsSortMode.None);
-
-        //for (int i = 0; i < vrDependants.Length; i++)
-        //{
-        //    vrDependants[i].IfElseVR();
-        //}
     }
 
     public static bool IsVrHeadsetConnected()
     {
         SubsystemManager.GetSubsystems<XRDisplaySubsystem>(xDisplaySubsystems);
+
         foreach (var item in xDisplaySubsystems)
         {
-            if(item.running)
+            if (item.running)
             {
                 Debug.Log(item + " is connected");
+                VR_Found = true;
                 return true;
             }
         }
-        Debug.LogWarning("VR is not connected, using PC controlls");
+        Debug.LogError("VR is not connected, using PC controlls");
         return false;
+    }
+
+    public static void CheckInputDevice(InputDeviceCharacteristics characteristics, int RightLeft)
+    {
+        switch (RightLeft)
+        {
+            case 0:
+                InputDevices.GetDevicesWithCharacteristics(characteristics, RightDevices);
+                if(RightDevices.Count > 0)
+                {
+                    RightControllerFound = true;
+                    Debug.Log("Right controller found");
+                } else
+                {
+                    Debug.LogWarning("Right controller is not connected");
+                }
+                break;
+            case 1:
+                InputDevices.GetDevicesWithCharacteristics(characteristics, LeftDevices);
+                if (LeftDevices.Count > 0)
+                {
+                    LeftControllerFound = true;
+                    Debug.Log("Left controller found");
+                } else
+                {
+                    Debug.LogWarning("Left controller is not connected");
+                }
+                break;
+            default:
+                Debug.LogError(RightLeft + " is not valid");
+                break;
+        }
     }
 }

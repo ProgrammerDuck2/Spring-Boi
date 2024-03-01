@@ -8,5 +8,5 @@ public interface S_Enemies_MA
     public void Attack(float damage);
 
     //call when player attacks an enemy
-    public void Hurt(float damage);
+    public void Hurt(float damage, GameObject WhoDealtDamage);
 }

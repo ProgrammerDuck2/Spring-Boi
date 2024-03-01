@@ -35,4 +35,9 @@ public class S_PlayerHealth_MA : MonoBehaviour
             }
         }
     }
+
+    public void Hurt(float damage, GameObject WhoDealtDamage)
+    {
+        S_Stats_MA.playerHealth -= damage;
+    }
 }

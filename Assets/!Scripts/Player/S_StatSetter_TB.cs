@@ -20,5 +20,6 @@ public class S_StatSetter_TB : MonoBehaviour
         S_Stats_MA.AimAssistRadius = Stats.AimAssistRadius;
         S_Stats_MA.MaxVelocity = Stats.MaxVelcity;
         S_Stats_MA.AerialMaxVelocity = Stats.AerialMaxVelocity;
+        S_Stats_MA.TurnSpeed = Stats.TurnSpeed;
     }
 }
