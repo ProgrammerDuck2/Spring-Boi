@@ -603,6 +603,7 @@ GameObject:
   - component: {fileID: 4105961526385780978}
   - component: {fileID: 3648789083635388172}
   - component: {fileID: 7647668570352382506}
+  - component: {fileID: 3586515031591338924}
   m_Layer: 0
   m_Name: LeftHand
   m_TagString: Untagged
@@ -881,6 +882,7 @@ MonoBehaviour:
   Punch: {fileID: 0}
   Aim: {fileID: 0}
   HapticFeedback: {fileID: 0}
+  Interact: {fileID: 0}
   TriggerActivated: 0
   GripActivated: 0
   GrabActivated: 0
@@ -985,6 +987,21 @@ MonoBehaviour:
   m_DefaultActionMap: VR LeftController
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &3586515031591338924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3351723451793753507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fc830b622e6faa40b3607e4b98dab5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Interactable:
+    serializedVersion: 2
+    m_Bits: 16384
 --- !u!1 &5052090680597602032
 GameObject:
   m_ObjectHideFlags: 0
@@ -1036,6 +1053,7 @@ GameObject:
   - component: {fileID: 3563714162967858921}
   - component: {fileID: 8867150001904660234}
   - component: {fileID: 3873103420856162664}
+  - component: {fileID: 7652098782127128457}
   m_Layer: 0
   m_Name: RightHand
   m_TagString: Untagged
@@ -1313,6 +1331,7 @@ MonoBehaviour:
   Punch: {fileID: 0}
   Aim: {fileID: 0}
   HapticFeedback: {fileID: 0}
+  Interact: {fileID: 0}
   TriggerActivated: 0
   GripActivated: 0
   GrabActivated: 0
@@ -1417,6 +1436,21 @@ MonoBehaviour:
   m_DefaultActionMap: VR RightController
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &7652098782127128457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6282108924297107850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fc830b622e6faa40b3607e4b98dab5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Interactable:
+    serializedVersion: 2
+    m_Bits: 16384
 --- !u!1 &6583513823572844596
 GameObject:
   m_ObjectHideFlags: 0
@@ -2088,6 +2122,16 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2726297047380526788, guid: 535e3e8512ca9de4e95314dde4fd5fff,
+        type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 3507945526765793233, guid: 535e3e8512ca9de4e95314dde4fd5fff,
+        type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: 4177853613756899748, guid: 535e3e8512ca9de4e95314dde4fd5fff,
         type: 3}
       propertyPath: m_IsActive
@@ -2108,8 +2152,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8088994662100495767, guid: 535e3e8512ca9de4e95314dde4fd5fff,
+        type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8697459523607535709, guid: 535e3e8512ca9de4e95314dde4fd5fff, type: 3}
+    - {fileID: 3334788541327270866, guid: 535e3e8512ca9de4e95314dde4fd5fff, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
