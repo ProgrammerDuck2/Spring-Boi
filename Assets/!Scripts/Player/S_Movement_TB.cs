@@ -9,6 +9,8 @@ using UnityEngine.XR;
 [RequireComponent(typeof(PlayerInput))]
 public class S_Movement_TB : MonoBehaviour
 {
+    public bool DebugMode;
+
     [Header("Input")]
     PlayerInput playerInput;
 
@@ -25,10 +27,10 @@ public class S_Movement_TB : MonoBehaviour
     [Header("Physics")]
 
     Rigidbody rb;
-    [HideInInspector] public bool HighSpeed;
+    [ShowIf("DebugMode")]
+    public bool HighSpeed;
 
     [HideInInspector] public bool Grounded; //ground :)
-    public bool DebugMode;
     LayerMask groundLayer;
     LayerMask stickGroundLayer;
 
