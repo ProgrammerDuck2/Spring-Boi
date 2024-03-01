@@ -12,7 +12,7 @@ public class S_HandInteract_TBMA : MonoBehaviour
 
     void Update()
     {
-        Physics.Raycast(transform.position, transform.forward, out raycast, 100, Interactable);
+        Physics.Raycast(transform.position, transform.forward, out raycast, 2, Interactable);
 
         if (hand.DebugMode)
         {
@@ -53,7 +53,7 @@ public class S_HandInteract_TBMA : MonoBehaviour
         if (hand.DebugMode)
         {
             Gizmos.color = Color.green;
-            Gizmos.DrawLine(transform.position, transform.position + transform.forward * 100);
+            Gizmos.DrawLine(transform.position, transform.position + transform.forward * 2);
         }
     }
 }
