@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class S_SaveGame_MATB : MonoBehaviour, S_ButtonInterface_TBMA
 {
+    public void OnClick()
+    {
+        Debug.Log("saved;4;");
+    }
+
     // Start is called before the first frame update
     void Start()
     {
