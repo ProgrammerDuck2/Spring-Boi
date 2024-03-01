@@ -32,7 +32,7 @@ public class S_VrManager_TB : MonoBehaviour
 
         while (!VRReady)
         {
-            print("hi");
+            //print("hi");
             yield return new WaitForEndOfFrame();
 
             if(VR_Found)

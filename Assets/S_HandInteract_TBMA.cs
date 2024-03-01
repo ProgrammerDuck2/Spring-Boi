@@ -1,27 +1,59 @@
 using NaughtyAttributes;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class S_HandInteract_TBMA : MonoBehaviour
 {
     [SerializeField] LayerMask Interactable;
-    [HideInInspector] public RaycastHit raycast;
+    [HideInInspector] RaycastHit raycast;
 
-    S_Hand_TB hand;
+    [Required]
+    [SerializeField] S_Hand_TB hand;
 
-    private void Start()
-    {
-        hand = GetComponent<S_Hand_TB>();
-    }
     void Update()
     {
-        Physics.Raycast(transform.position, transform.forward, out raycast, 2, Interactable);
+        Physics.Raycast(transform.position, transform.forward, out raycast, 100, Interactable);
+
+        if (hand.DebugMode)
+        {
+            Debug.DrawLine(transform.position, raycast.point, Color.red);
+        }
+
+        if (raycast.collider != null)
+        {
+            Debug.Log("Hover");
+            if (raycast.collider.TryGetComponent<S_ButtonInterface_TBMA>(out S_ButtonInterface_TBMA button))
+            {
+                button.OnHover();
+            } else
+            {
+                Debug.LogError("No button hit or button lack interface");
+            }
+        }
     }
 
     public void Interact(InputAction.CallbackContext context)
     {
-        raycast.collider.GetComponent<S_ButtonInterface_TBMA>().OnClick();
+        Debug.Log("Interact");
+        if (raycast.collider != null)
+        {
+            if (raycast.collider.TryGetComponent<S_ButtonInterface_TBMA>(out S_ButtonInterface_TBMA button))
+            {
+                button.OnClick();
+            }
+            else
+            {
+                Debug.LogError("No button hit or button lack interface");
+            }
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (hand.DebugMode)
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawLine(transform.position, transform.position + transform.forward * 100);
+        }
     }
 }
