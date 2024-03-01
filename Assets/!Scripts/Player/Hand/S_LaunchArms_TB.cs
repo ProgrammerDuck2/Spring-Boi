@@ -52,7 +52,7 @@ public class S_LaunchArms_TB : MonoBehaviour
         if (hand.TriggerActivated) return;
         if (hand.handPostitions.Count <= 9) return;
 
-        float forceRequirement = .5f;
+        float forceRequirement = .4f;
 
         if (Vector3.Distance(hand.handPostitions[0], hand.handPostitions[hand.handPostitions.Count - 1]) > forceRequirement)
         {
