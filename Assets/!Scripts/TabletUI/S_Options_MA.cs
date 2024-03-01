@@ -5,17 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class S_Options_MA : MonoBehaviour
 {
-    void SaveGame()
+    public void SaveGame()
     {
 
     }
 
-    private void RestartGame()
+    public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    private void QuitGame()
+    public void QuitGame()
     {
         Application.Quit();
     }
