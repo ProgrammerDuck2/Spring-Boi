@@ -20,6 +20,8 @@ public class S_Hand_TB : MonoBehaviour
     [Required]
     public GameObject OtherController;
 
+    public bool DebugMode;
+
     [Header("Tracking")]
     [SerializeField] Vector3 HandOffset;
 
@@ -58,7 +60,7 @@ public class S_Hand_TB : MonoBehaviour
         Aim = GetComponent<S_HandAim_TB>();
         HapticFeedback = Player.GetComponent<S_HapticFeedback_TB>();
         PlayerMovement = Player.GetComponent<S_Movement_TB>();
-        Interact = Player.GetComponent<S_HandInteract_TBMA>();
+        Interact = GetComponent<S_HandInteract_TBMA>();
 
         playerInput = GetComponent<PlayerInput>();
 
