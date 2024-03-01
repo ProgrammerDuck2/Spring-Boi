@@ -75,6 +75,8 @@ public class S_Hand_TB : MonoBehaviour
         transform.localPosition = playerInput.actions["Position"].ReadValue<Vector3>() + HandOffset - PlayerMovement.IRLPosOffset;
         transform.localRotation = playerInput.actions["Rotation"].ReadValue<Quaternion>();
 
+        print(playerInput.actions["Position"].ReadValue<Vector3>());
+
         ControllerPosition = transform.localPosition;
         ControllerRotation = transform.localRotation;
 

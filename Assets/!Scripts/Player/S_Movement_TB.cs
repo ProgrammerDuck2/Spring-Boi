@@ -1,7 +1,9 @@
 using NaughtyAttributes;
+using System.Collections.Generic;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.XR;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(PlayerInput))]
@@ -36,6 +38,8 @@ public class S_Movement_TB : MonoBehaviour
 
     bool Sprint;
 
+    bool isFixedUpdate;
+
     [ShowIf("DebugMode")] 
     public Vector3 IRLPosOffset;
     // Start is called before the first frame update
@@ -65,16 +69,36 @@ public class S_Movement_TB : MonoBehaviour
     {
         CheckGround();
 
+        if (Grounded && rb.velocity.magnitude < new Vector3(S_Stats_MA.AerialMaxVelocity.x, 0, S_Stats_MA.AerialMaxVelocity.z).magnitude / 2)
+        {
+            HighSpeed = false;
+        }
+
+        if (S_Settings_TB.IsVRConnected && !isFixedUpdate)
+        {
+            transform.position -= IRLPosOffset;
+            IRLPosOffset = Vector3.zero;
+            IRLPosOffset += new Vector3(playerInput.actions["IRLPosition"].ReadValue<Vector3>().x, 0, playerInput.actions["IRLPosition"].ReadValue<Vector3>().z);
+            transform.position += IRLPosOffset;
+        }
+
+        isFixedUpdate = false;
+    }
+    private void FixedUpdate()
+    {
+        isFixedUpdate = true;
         if (!HighSpeed)
         {
-            if(Sprint)
+            if (Sprint)
             {
                 rb.velocity = Clamp(rb.velocity, S_Stats_MA.MaxVelocity * 2);
-            } else
+            }
+            else
             {
                 rb.velocity = Clamp(rb.velocity, S_Stats_MA.MaxVelocity);
             }
-        } else
+        }
+        else
         {
             rb.velocity = Clamp(rb.velocity, S_Stats_MA.AerialMaxVelocity);
         }
@@ -83,12 +107,7 @@ public class S_Movement_TB : MonoBehaviour
 
         if (S_Settings_TB.IsVRConnected)
         {
-            //Turn();
-        }
-
-        if (Grounded && rb.velocity.magnitude < new Vector3(S_Stats_MA.AerialMaxVelocity.x, 0, S_Stats_MA.AerialMaxVelocity.z).magnitude / 2)
-        {
-            HighSpeed = false;
+            Turn();
         }
     }
 
@@ -110,33 +129,26 @@ public class S_Movement_TB : MonoBehaviour
         playerInput.actions["Crouch"].started -= Crouch;
         playerInput.actions["Crouch"].canceled -= Crouch;
     }
-
+    //Movements
+    #region
     void Movement()
     {
         Vector3 move;
         moveValue = playerInput.actions["Move"].ReadValue<Vector2>();
-
-        if(S_Settings_TB.IsVRConnected)
-        {
-            transform.position -= IRLPosOffset;
-            IRLPosOffset = Vector3.zero;
-            IRLPosOffset += new Vector3(playerInput.actions["IRLPosition"].ReadValue<Vector3>().x, 0, playerInput.actions["IRLPosition"].ReadValue<Vector3>().z);
-            transform.position += IRLPosOffset;
-        }
 
         bodyArt.eulerAngles = S_Settings_TB.IsVRConnected ? new Vector3(0, VrCamera.eulerAngles.y, 0) : bodyArt.eulerAngles = new Vector3(0, pcPov.eulerAngles.y, 0);
 
         move = bodyArt.transform.TransformDirection(Vector3.Normalize(new Vector3(moveValue.x, 0, moveValue.y)));
         move *= Sprint ? S_Stats_MA.Speed.y : S_Stats_MA.Speed.x;
 
-        rb.velocity += move;
+        rb.MovePosition(move * Time.fixedDeltaTime + transform.position);
     }
 
     void Turn()
     {
         turnValue = playerInput.actions["Turn"].ReadValue<Vector2>();
 
-        VrCameraOffset.eulerAngles += new Vector3(0, turnValue.x, 0);
+        transform.eulerAngles += new Vector3(0, turnValue.x * S_Stats_MA.TurnSpeed * Time.fixedDeltaTime, 0);
     }
 
     void Jump()
@@ -152,13 +164,7 @@ public class S_Movement_TB : MonoBehaviour
         transform.position += !context.canceled ? new Vector3(0, .5f, 0) : new Vector3(0, -.5f, 0);
         transform.localScale = !context.canceled ? new Vector3(1, .5f, 1) : Vector3.one;
     }
-    Vector3 Clamp(Vector3 toClamp, Vector3 MaxVelocity)
-    {
-        return new Vector3(
-            Mathf.Clamp(toClamp.x, -MaxVelocity.x, MaxVelocity.x),
-            Mathf.Clamp(toClamp.y, -MaxVelocity.y, MaxVelocity.y),
-            Mathf.Clamp(toClamp.z, -MaxVelocity.z, MaxVelocity.z));
-    }
+    #endregion
 
     //InputActions
     #region
@@ -173,6 +179,8 @@ public class S_Movement_TB : MonoBehaviour
     }
     #endregion
 
+    //Gizmos
+    #region
     private void OnDrawGizmos()
     {
         if (DebugMode)
@@ -181,7 +189,17 @@ public class S_Movement_TB : MonoBehaviour
             Gizmos.DrawSphere(groundCheckPos(), groundCheckSize());
         }
     }
+    #endregion
 
+    //Calculations
+    #region 
+    Vector3 Clamp(Vector3 toClamp, Vector3 MaxVelocity)
+    {
+        return new Vector3(
+            Mathf.Clamp(toClamp.x, -MaxVelocity.x, MaxVelocity.x),
+            Mathf.Clamp(toClamp.y, -MaxVelocity.y, MaxVelocity.y),
+            Mathf.Clamp(toClamp.z, -MaxVelocity.z, MaxVelocity.z));
+    }
     Vector3 groundCheckPos()
     {
         return transform.position - transform.up;
@@ -190,4 +208,5 @@ public class S_Movement_TB : MonoBehaviour
     {
         return .5f * 0.3f;
     }
+    #endregion
 }

@@ -45,7 +45,7 @@ public class S_PistonLong_MA : MonoBehaviour, S_Enemies_MA
             if (Input.GetMouseButtonDown(mouse))
             {
                     //Debug.Log("hit");
-                    Hurt(50);
+                    Hurt(50, player);
             }
         }
     }
@@ -60,7 +60,7 @@ public class S_PistonLong_MA : MonoBehaviour, S_Enemies_MA
         S_Stats_MA.playerHealth -= damage;
     }
 
-    public void Hurt(float damage)
+    public void Hurt(float damage, GameObject WhoDealtDamage)
     {
         longPistonHealth -= damage;
         if (longPistonHealth <= 20)
