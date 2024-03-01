@@ -82,11 +82,9 @@ public class S_Movement_TB : MonoBehaviour
             transform.position += IRLPosOffset;
         }
 
-        isFixedUpdate = false;
     }
     private void FixedUpdate()
     {
-        isFixedUpdate = true;
         if (!HighSpeed)
         {
             if (Sprint)
@@ -141,7 +139,7 @@ public class S_Movement_TB : MonoBehaviour
         move = bodyArt.transform.TransformDirection(Vector3.Normalize(new Vector3(moveValue.x, 0, moveValue.y)));
         move *= Sprint ? S_Stats_MA.Speed.y : S_Stats_MA.Speed.x;
 
-        rb.MovePosition(move * Time.fixedDeltaTime + transform.position);
+        rb.velocity += move * Time.fixedDeltaTime;
     }
 
     void Turn()

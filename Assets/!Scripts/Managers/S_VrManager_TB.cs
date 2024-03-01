@@ -30,16 +30,17 @@ public class S_VrManager_TB : MonoBehaviour
         XrInteractionManager = FindFirstObjectByType<XRInteractionManager>().gameObject;
         PcCamera = GameObject.Find("PcCamera");
 
+        VR_Found = false; VRReady = false; RightControllerFound = false; LeftControllerFound = false;
+
         while (!VRReady)
         {
-            //print("hi");
             yield return new WaitForEndOfFrame();
 
-            if(VR_Found)
+            if(!VR_Found)
                 CheckVR();
-            if(RightControllerFound)
+            if(!RightControllerFound)
                 CheckInputDevice(InputDeviceCharacteristics.Right, 0);
-            if(LeftControllerFound)
+            if(!LeftControllerFound)
                 CheckInputDevice(InputDeviceCharacteristics.Left, 1);
 
             if(VR_Found && RightControllerFound && LeftControllerFound)
