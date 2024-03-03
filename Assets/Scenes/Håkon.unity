@@ -141,10 +141,22 @@ PrefabInstance:
       propertyPath: triggerCall
       value: 
       objectReference: {fileID: 65975665}
-    - target: {fileID: 4373134105544555481, guid: a3ba075e65629ad4380ce9298e73ddea,
+    - target: {fileID: 3092852067862195448, guid: a3ba075e65629ad4380ce9298e73ddea,
         type: 3}
-      propertyPath: m_IsActive
-      value: 0
+      propertyPath: m_text
+      value: 'Save game
+
+        (coming soon)'
+      objectReference: {fileID: 0}
+    - target: {fileID: 6176729438739120245, guid: a3ba075e65629ad4380ce9298e73ddea,
+        type: 3}
+      propertyPath: m_text
+      value: Beat the enemies by the crane
+      objectReference: {fileID: 0}
+    - target: {fileID: 6705182385645588713, guid: a3ba075e65629ad4380ce9298e73ddea,
+        type: 3}
+      propertyPath: m_text
+      value: Visit the town square
       objectReference: {fileID: 0}
     - target: {fileID: 7270047777627567016, guid: a3ba075e65629ad4380ce9298e73ddea,
         type: 3}
@@ -201,6 +213,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a3ba075e65629ad4380ce9298e73ddea, type: 3}
+--- !u!1 &2164124 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4373134105544555481, guid: a3ba075e65629ad4380ce9298e73ddea,
+    type: 3}
+  m_PrefabInstance: {fileID: 2164123}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &14208988
 GameObject:
   m_ObjectHideFlags: 0
@@ -763,6 +781,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tabletTrigger: 0
   ringtone: {fileID: 8300000, guid: eee332e084291274b9056b4e184aa413, type: 3}
+  speech:
+  - Welcome to the town square
+  - Can you see the enemies by the crane?
+  - If you climb the building it might be easier
+  - Your first task is to beat them
+  callTablet: {fileID: 2164124}
 --- !u!65 &65975667
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -22534,6 +22558,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: EnemyPrototype
+      objectReference: {fileID: 0}
+    - target: {fileID: 4589907637260210136, guid: 986af6c400b022a4ab80d07ab2888382,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9187538062320335339, guid: 986af6c400b022a4ab80d07ab2888382,
         type: 3}
