@@ -9,13 +9,12 @@ public class S_CallTrigger_MA : MonoBehaviour
     [SerializeField] List<string> speech = new List<string>();
 
     GameObject Ipad;
-    GameObject callTablet;
+    [SerializeField] GameObject callTablet;
 
     // Start is called before the first frame update
     void Start()
     {
         Ipad = FindFirstObjectByType<S_Ipad_MA>().gameObject;
-        callTablet = FindFirstObjectByType<S_CallTablet_MA>().gameObject;
     }
 
     // Update is called once per frame
