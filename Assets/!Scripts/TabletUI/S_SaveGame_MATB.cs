@@ -4,6 +4,22 @@ using UnityEngine;
 
 public class S_SaveGame_MATB : MonoBehaviour, S_ButtonInterface_TBMA
 {
+    public Color ButtonColor
+    {
+        get { return ButtonColor; }
+        set { ButtonColor = value; }
+    }
+    public Color HighlightColor
+    {
+        get { return HighlightColor; }
+        set { HighlightColor = value; }
+    }
+    public Color PressedColor
+    {
+        get { return PressedColor; }
+        set { PressedColor = value; }
+    }
+
     public void OnClick()
     {
         Debug.Log("saved. no bird accessable");
@@ -12,6 +28,11 @@ public class S_SaveGame_MATB : MonoBehaviour, S_ButtonInterface_TBMA
     public void OnHover()
     {
         Debug.Log("hover Save");
+    }
+
+    public void OnHoverExit()
+    {
+        throw new System.NotImplementedException();
     }
 
     // Start is called before the first frame update
