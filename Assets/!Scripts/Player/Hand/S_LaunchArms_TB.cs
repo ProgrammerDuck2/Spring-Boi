@@ -24,6 +24,8 @@ public class S_LaunchArms_TB : MonoBehaviour
 
     [SerializeField] float cooldown;
 
+    [SerializeField] Vector3 launchDirectionOffset;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -171,10 +173,10 @@ public class S_LaunchArms_TB : MonoBehaviour
         if (currentHandMissile == null)
         {
             pullingHand = false;
-            currentHandMissile = Instantiate(handToLaunch, transform.position, Quaternion.Euler(hand.GetAverageVector3(hand.handRotations)));
+            currentHandMissile = Instantiate(handToLaunch, transform.position, Quaternion.Euler(MissileRotationCalc()));
 
-            if (hand.Aim.AimingAt)
-                currentHandMissile.transform.LookAt(hand.Aim.AimingAt.transform.position);
+            //if (hand.Aim.AimingAt)
+            //    currentHandMissile.transform.LookAt(hand.Aim.AimingAt.transform.position);
 
             currentHandMissile.name = gameObject.name + " Missile";
 
@@ -196,5 +198,15 @@ public class S_LaunchArms_TB : MonoBehaviour
     Vector3 speedCalc()
     {
         return currentHandMissile.transform.forward * S_Stats_MA.HandLaunchSpeed * 4;
+    }
+
+    Vector3 MissileRotationCalc()
+    {
+        GameObject getRot = new GameObject();
+        getRot.transform.position = hand.handPostitions[9];
+        getRot.transform.LookAt(hand.handPostitions[0]);
+        Destroy(getRot, .1f);
+
+        return getRot.transform.eulerAngles + launchDirectionOffset;
     }
 }
