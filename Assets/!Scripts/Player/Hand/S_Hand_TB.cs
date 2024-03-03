@@ -89,7 +89,7 @@ public class S_Hand_TB : MonoBehaviour
         ControllerPosition = transform.localPosition;
         ControllerRotation = transform.localRotation;
 
-        timer += Time.deltaTime;
+        timer += Time.deltaTime * 2;
 
         if (timer > .1f)
         {
