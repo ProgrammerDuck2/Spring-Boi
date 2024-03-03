@@ -6,9 +6,8 @@ public class S_HandInteract_TBMA : MonoBehaviour
 {
     [SerializeField] LayerMask Interactable;
     [HideInInspector] RaycastHit raycast;
-
-    [Required]
-    [SerializeField] S_Hand_TB hand;
+    
+    S_Hand_TB hand;
 
     void Update()
     {
@@ -47,7 +46,10 @@ public class S_HandInteract_TBMA : MonoBehaviour
             }
         }
     }
-
+    private void OnValidate()
+    {
+        hand = GetComponent<S_Hand_TB>();
+    }
     private void OnDrawGizmos()
     {
         if (hand.DebugMode)

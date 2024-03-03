@@ -45,8 +45,11 @@ public class S_Hand_TB : MonoBehaviour
     [HideInInspector] public Quaternion ControllerRotation;
 
     [Header("Motion")]
+    [ShowIf("DebugMode")]
     public List<Vector3> handPostitions = new List<Vector3>();
+    [ShowIf("DebugMode")]
     public List<Vector3> handRotations = new List<Vector3>();
+    [ShowIf("DebugMode")]
     public List<Vector3> handForwards = new List<Vector3>();
     float timer;
 

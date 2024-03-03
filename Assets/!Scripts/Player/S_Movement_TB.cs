@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 using UnityEngine.XR;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -25,6 +26,11 @@ public class S_Movement_TB : MonoBehaviour
     Transform pcPov;
 
     [Header("Physics")]
+    [ShowIf("DebugMode")]
+    [Range(0.1f, 1f)]
+    public float groundCheckRadius = 0.9f;
+    [ShowIf("DebugMode")]
+    public Mesh Capsule;
 
     Rigidbody rb;
     [ShowIf("DebugMode")]
@@ -111,7 +117,7 @@ public class S_Movement_TB : MonoBehaviour
 
     void CheckGround()
     {
-        if (Grounded != Physics.CheckSphere(groundCheckPos(), groundCheckSize(), groundLayer))
+        if (Grounded != Physics.CheckCapsule(groundCheckPos(), groundCheckSize(), groundLayer))
         {
             Collider[] ground = Physics.OverlapSphere(groundCheckPos(), 1 * 0.5f, stickGroundLayer);
 
@@ -183,8 +189,8 @@ public class S_Movement_TB : MonoBehaviour
     {
         if (DebugMode)
         {
-            Gizmos.color = Color.green;
-            Gizmos.DrawSphere(groundCheckPos(), groundCheckSize());
+            Gizmos.color = new Color(0, 1, 0, .5f);
+            Gizmos.DrawMesh(Capsule, groundCheckPos(), transform.rotation, groundCheckSize());
         }
     }
     #endregion
@@ -200,11 +206,11 @@ public class S_Movement_TB : MonoBehaviour
     }
     Vector3 groundCheckPos()
     {
-        return transform.position - transform.up;
+        return transform.position - transform.up * 0.02f;
     }
-    float groundCheckSize()
+    Vector3 groundCheckSize()
     {
-        return .5f * 0.3f;
+        return new Vector3(transform.localScale.x * groundCheckRadius, transform.localScale.y, transform.localScale.z * groundCheckRadius);
     }
     #endregion
 }

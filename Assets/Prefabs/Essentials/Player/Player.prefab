@@ -151,6 +151,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DebugMode: 1
+  groundCheckRadius: 0.9
+  Capsule: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
   HighSpeed: 0
   Grounded: 0
   IRLPosOffset: {x: 0, y: 0, z: 0}
@@ -904,7 +906,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5378d8247b1c8b14e9acb78191595274, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hand: {fileID: 8822841443464774981}
   holding: 0
 --- !u!114 &4180267728518917693
 MonoBehaviour:
@@ -1003,7 +1004,6 @@ MonoBehaviour:
   Interactable:
     serializedVersion: 2
     m_Bits: 16384
-  hand: {fileID: 8822841443464774981}
 --- !u!1 &5052090680597602032
 GameObject:
   m_ObjectHideFlags: 0
@@ -1355,7 +1355,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5378d8247b1c8b14e9acb78191595274, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hand: {fileID: 2566892091331363610}
   holding: 0
 --- !u!114 &2423107481920071831
 MonoBehaviour:
@@ -1454,7 +1453,6 @@ MonoBehaviour:
   Interactable:
     serializedVersion: 2
     m_Bits: 16384
-  hand: {fileID: 2566892091331363610}
 --- !u!1 &6583513823572844596
 GameObject:
   m_ObjectHideFlags: 0
