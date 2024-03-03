@@ -94,7 +94,7 @@ public class S_VrManager_TB : MonoBehaviour
                 return true;
             }
         }
-        Debug.LogError("VR is not connected, using PC controlls");
+        Debug.LogWarning("VR is not connected");
         return false;
     }
 

@@ -40,8 +40,6 @@ public class S_Movement_TB : MonoBehaviour
 
     bool Sprint;
 
-    bool isFixedUpdate;
-
     [ShowIf("DebugMode")] 
     public Vector3 IRLPosOffset;
     // Start is called before the first frame update
@@ -76,7 +74,7 @@ public class S_Movement_TB : MonoBehaviour
             HighSpeed = false;
         }
 
-        if (S_Settings_TB.IsVRConnected && !isFixedUpdate)
+        if (S_Settings_TB.IsVRConnected)
         {
             transform.position -= IRLPosOffset;
             IRLPosOffset = Vector3.zero;
@@ -141,7 +139,7 @@ public class S_Movement_TB : MonoBehaviour
         move = bodyArt.transform.TransformDirection(Vector3.Normalize(new Vector3(moveValue.x, 0, moveValue.y)));
         move *= Sprint ? S_Stats_MA.Speed.y : S_Stats_MA.Speed.x;
 
-        rb.velocity += move * Time.fixedDeltaTime;
+        rb.velocity += move;
     }
 
     void Turn()
