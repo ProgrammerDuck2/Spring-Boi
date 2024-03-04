@@ -85,13 +85,19 @@ public class S_HandInteract_TBMA : MonoBehaviour
     }
     public void Click(InputAction.CallbackContext context)
     {
-        currentClickButton.OnClick();
+        if (currentClickButton != null)
+        {
+            currentClickButton.OnClick();
+        }
     }
     public void ClickExit(InputAction.CallbackContext context)
     {
-        currentClickButton.OnClickExit();
-        currentClickButton = null;
-        clicking = false;
+        if (currentClickButton != null)
+        {
+            currentClickButton.OnClickExit();
+            currentClickButton = null;
+            clicking = false;
+        }
     }
     private void OnValidate()
     {
