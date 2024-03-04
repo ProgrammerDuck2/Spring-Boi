@@ -9,8 +9,8 @@ public class S_HandInteract_TBMA : MonoBehaviour
     [SerializeField] LayerMask Interactable;
     [HideInInspector] RaycastHit raycast;
 
-    S_Interactable_TBMA currentClickButton;
-    S_Interactable_TBMA currentHoverButton;
+    S_IInteractable_TBMA currentClickButton;
+    S_IInteractable_TBMA currentHoverButton;
     
     S_Hand_TB hand;
 
@@ -26,7 +26,7 @@ public class S_HandInteract_TBMA : MonoBehaviour
         if (raycast.collider != null)
         {
             Debug.Log("Hover");
-            if (raycast.collider.TryGetComponent<S_Interactable_TBMA>(out S_Interactable_TBMA button))
+            if (raycast.collider.TryGetComponent<S_IInteractable_TBMA>(out S_IInteractable_TBMA button))
             {
                 button.OnHover();
 
@@ -51,7 +51,7 @@ public class S_HandInteract_TBMA : MonoBehaviour
         Debug.Log("Interact");
         if (raycast.collider != null)
         {
-            if (raycast.collider.TryGetComponent<S_Interactable_TBMA>(out S_Interactable_TBMA button))
+            if (raycast.collider.TryGetComponent<S_IInteractable_TBMA>(out S_IInteractable_TBMA button))
             {
                 button.OnClickEnter();
                 hand.Player.GetComponent<S_HapticFeedback_TB>().TriggerHaptic(.1f, .1f, GetComponent<ActionBasedController>());

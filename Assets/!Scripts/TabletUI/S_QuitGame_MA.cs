@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class S_QuitGame_MA : MonoBehaviour, S_Interactable_TBMA
+public class S_QuitGame_MA : MonoBehaviour, S_IInteractable_TBMA
 {
     public Color ButtonColor { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
     public Color HighlightColor { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }

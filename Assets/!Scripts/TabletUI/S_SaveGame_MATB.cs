@@ -4,7 +4,7 @@ using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class S_SaveGame_MATB : MonoBehaviour, S_Interactable_TBMA
+public class S_SaveGame_MATB : MonoBehaviour, S_IInteractable_TBMA
 {
     //Correctly get and set colors
     [SerializeField] Color _ButtonColor;
