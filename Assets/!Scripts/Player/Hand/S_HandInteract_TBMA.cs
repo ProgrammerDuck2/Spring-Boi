@@ -24,6 +24,7 @@ public class S_HandInteract_TBMA : MonoBehaviour
             if (raycast.collider.TryGetComponent<S_ButtonInterface_TBMA>(out S_ButtonInterface_TBMA button))
             {
                 button.OnHover();
+                button.ButtonImage.color = button.HighlightColor;
             } else
             {
                 Debug.LogError("No button hit or button lack interface");
@@ -39,6 +40,7 @@ public class S_HandInteract_TBMA : MonoBehaviour
             if (raycast.collider.TryGetComponent<S_ButtonInterface_TBMA>(out S_ButtonInterface_TBMA button))
             {
                 button.OnClick();
+                button.ButtonImage.color = button.PressedColor;
             }
             else
             {

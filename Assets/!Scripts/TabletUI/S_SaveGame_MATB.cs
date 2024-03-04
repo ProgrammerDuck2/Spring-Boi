@@ -5,32 +5,38 @@ using UnityEngine.UI;
 
 public class S_SaveGame_MATB : MonoBehaviour, S_ButtonInterface_TBMA
 {
+    [SerializeField] Color _ButtonColor;
     public Color ButtonColor
     {
-        get { return ButtonColor; }
-        set { ButtonColor = value; }
+        get { return _ButtonColor; }
+        set { _ButtonColor = value; }
     }
+    [SerializeField] Color _HighlightColor;
     public Color HighlightColor
     {
-        get { return HighlightColor; }
-        set { HighlightColor = value; }
+        get { return _HighlightColor; }
+        set { _HighlightColor = value; }
     }
+    [SerializeField] Color _PressedColor;
     public Color PressedColor
     {
-        get { return PressedColor; }
-        set { PressedColor = value; }
+        get { return _PressedColor; }
+        set { _PressedColor = value; }
+    }
+
+    public Image ButtonImage
+    {
+        get { return GetComponent<Image>(); }
     }
 
     public void OnClick()
     {
         Debug.Log("saved. no bird accessable");
-        GetComponent<Image>().color = GetComponent<Button>().colors.pressedColor;
     }
 
     public void OnHover()
     {
         Debug.Log("hover Save");
-        GetComponent<Image>().color = GetComponent<Button>().colors.highlightedColor;
     }
 
     public void OnHoverExit()
@@ -41,7 +47,7 @@ public class S_SaveGame_MATB : MonoBehaviour, S_ButtonInterface_TBMA
     // Start is called before the first frame update
     void Start()
     {
-        
+        print(ButtonImage);
     }
 
     // Update is called once per frame
