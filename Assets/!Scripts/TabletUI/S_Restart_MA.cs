@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class S_Restart_MA : S_Button_TBMA
 {
-    public override void OnClickEnter()
+    public override void OnClickEnter(ActionBasedController controller)
     {
-        base.OnClickEnter();
+        base.OnClickEnter(controller);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         GetComponent<Image>().color = GetComponent<Button>().colors.pressedColor;
     }
@@ -19,9 +20,9 @@ public class S_Restart_MA : S_Button_TBMA
         throw new System.NotImplementedException();
     }
 
-    public override void OnHoverEnter()
+    public override void OnHoverEnter(ActionBasedController controller)
     {
-        base.OnHover();
+        base.OnHoverEnter(controller);
         GetComponent<Image>().color = GetComponent<Button>().colors.highlightedColor;
     }
 

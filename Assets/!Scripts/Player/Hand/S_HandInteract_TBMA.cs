@@ -30,9 +30,8 @@ public class S_HandInteract_TBMA : MonoBehaviour
             {
                 if (currentHoverButton == null)
                 {
-                    button.OnHoverEnter();
+                    button.OnHoverEnter(GetComponent<ActionBasedController>());
 
-                    hand.Player.GetComponent<S_HapticFeedback_TB>().TriggerHaptic(.1f, .1f, GetComponent<ActionBasedController>());
                     currentHoverButton = button;
                 }
 
@@ -54,10 +53,7 @@ public class S_HandInteract_TBMA : MonoBehaviour
         {
             if (raycast.collider.TryGetComponent<S_Button_TBMA>(out S_Button_TBMA button))
             {
-                button.OnClickEnter();
-                hand.Player.GetComponent<S_HapticFeedback_TB>().TriggerHaptic(.1f, .1f, GetComponent<ActionBasedController>());
-                button.ButtonImage.color = button.PressedColor;
-                currentClickButton = button;
+                button.OnClickEnter(GetComponent<ActionBasedController>());
             }
             else
             {
@@ -72,8 +68,6 @@ public class S_HandInteract_TBMA : MonoBehaviour
     public void ClickExit(InputAction.CallbackContext context)
     {
         currentClickButton.OnClickExit();
-        currentClickButton.ButtonImage.color = currentClickButton.ButtonColor;
-        currentClickButton = null;
     }
     private void OnValidate()
     {

@@ -2,18 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class S_QuitGame_MA : S_Button_TBMA
 {
-    public override void OnClickEnter()
+    public override void OnClickEnter(ActionBasedController controller)
     {
-        base.OnClickEnter();
+        base.OnClickEnter(controller);
         Application.Quit();
     }
 
-    public override void OnHoverEnter()
+    public override void OnHoverEnter(ActionBasedController controller)
     {
-        base.OnHover();
+        base.OnHoverEnter(controller);
         throw new System.NotImplementedException();
     }
 

@@ -1,8 +1,17 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.XR;
+using Unity.VisualScripting;
+using System;
 
 public class S_Button_TBMA : MonoBehaviour
 {
+    S_HapticFeedback_TB hapticFeedback
+    {
+        get { return FindFirstObjectByType<S_HapticFeedback_TB>(); }
+    }
+
     [SerializeField] Color _ButtonColor = Color.white;
     public Color ButtonColor
     {
@@ -25,29 +34,29 @@ public class S_Button_TBMA : MonoBehaviour
     {
         get { return GetComponent<Image>(); }
     }
-    public virtual void OnClickEnter()
+    public virtual void OnClickEnter(ActionBasedController controller)
     {
-
+        hapticFeedback.TriggerHaptic(.4f, .1f, controller);
     }
     public virtual void OnClick()
     {
-
+        ButtonImage.color = PressedColor;
     }
     public virtual void OnClickExit()
     {
-
+        ButtonImage.color = ButtonColor;
     }
-    public virtual void OnHoverEnter()
+    public virtual void OnHoverEnter(ActionBasedController controller)
     {
-
+        hapticFeedback.TriggerHaptic(.4f, .1f, controller);
     }
     public virtual void OnHover()
     {
-
+        ButtonImage.color = HighlightColor;
     }
 
     public virtual void OnHoverExit()
     {
-
+        ButtonImage.color = ButtonColor;
     }
 }

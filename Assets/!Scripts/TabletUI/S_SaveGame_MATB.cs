@@ -3,31 +3,30 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class S_SaveGame_MATB : S_Button_TBMA
 {
 
-    public override void OnClickEnter()
+    public override void OnClickEnter(ActionBasedController controller)
     {
-        base.OnClickEnter();
+        base.OnClickEnter(controller);
         Debug.Log("saved. no bird accessable");
     }
 
-    public override void OnHoverEnter()
+    public override void OnHoverEnter(ActionBasedController controller)
     {
-        base.OnHover();
+        base.OnHoverEnter(controller);
         Debug.Log("hover Save");
     }
 
     public override void OnHoverExit()
     {
         base.OnHoverExit();
-        throw new System.NotImplementedException();
     }
     public override void OnClickExit()
     {
         base.OnClickExit();
-        throw new System.NotImplementedException();
     }
 
     // Start is called before the first frame update
