@@ -45,8 +45,11 @@ public class S_Hand_TB : MonoBehaviour
     [HideInInspector] public Quaternion ControllerRotation;
 
     [Header("Motion")]
+    [ShowIf("DebugMode")]
     public List<Vector3> handPostitions = new List<Vector3>();
+    [ShowIf("DebugMode")]
     public List<Vector3> handRotations = new List<Vector3>();
+    [ShowIf("DebugMode")]
     public List<Vector3> handForwards = new List<Vector3>();
     float timer;
 
@@ -72,7 +75,9 @@ public class S_Hand_TB : MonoBehaviour
         playerInput.actions["Launch"].started += LaunchArms.LaunchArm;
         playerInput.actions["Launch"].canceled += LaunchArms.PullArm;
 
-        playerInput.actions["Interact"].started += Interact.Interact;
+        playerInput.actions["Interact"].started += Interact.ClickEnter;
+        playerInput.actions["Interact"].performed += Interact.Click;
+        playerInput.actions["Interact"].canceled += Interact.ClickExit;
     }
 
     // Update is called once per frame
@@ -86,7 +91,7 @@ public class S_Hand_TB : MonoBehaviour
         ControllerPosition = transform.localPosition;
         ControllerRotation = transform.localRotation;
 
-        timer += Time.deltaTime;
+        timer += Time.deltaTime * 2;
 
         if (timer > .1f)
         {

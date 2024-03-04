@@ -10,8 +10,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 [RequireComponent(typeof(S_Hand_TB))]
 public class S_Grab_TB : MonoBehaviour
 {
-    [Required]
-    [SerializeField] S_Hand_TB hand;
+    S_Hand_TB hand;
 
     [Header("Player")]
     GameObject playerBody;
@@ -31,7 +30,10 @@ public class S_Grab_TB : MonoBehaviour
 
         otherControllerGrab = hand.OtherController.GetComponent<S_Grab_TB>();
     }
-
+    private void OnValidate()
+    {
+        hand = GetComponent<S_Hand_TB>();
+    }
     private void Update()
     {
         if ((hand.TriggerActivated && hand.GripActivated) != hand.GrabActivated && !hand.GrabActivated && Physics.CheckSphere(transform.position, S_Stats_MA.HandGrabRadius, hand.grabable))
