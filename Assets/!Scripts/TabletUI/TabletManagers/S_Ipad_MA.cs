@@ -19,7 +19,7 @@ public class S_Ipad_MA : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        //transform.LookAt(Camera.current.transform.position);
     }
 
     void OpenTablet(InputAction.CallbackContext context)

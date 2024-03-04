@@ -19,7 +19,7 @@ public class S_Dummy_TB : MonoBehaviour, S_Enemies_MA
         //dummy cant attack :(
     }
 
-    public void Hurt(float damage)
+    public void Hurt(float damage, GameObject WhoDealtDamage)
     {
         health -= damage;
 

@@ -89,7 +89,7 @@ public class S_EnemyFight : MonoBehaviour, S_Enemies_MA
         {
             if (other.gameObject.tag == "Player")
             {
-                Hurt(20);
+                Hurt(20, other.gameObject);
             }
         }
     }
@@ -111,7 +111,7 @@ public class S_EnemyFight : MonoBehaviour, S_Enemies_MA
         hand.transform.localScale = new Vector3(hand.transform.localScale.x, punchLenght/2, hand.transform.localScale.z);
     }
 
-    public void Hurt(float damage)
+    public void Hurt(float damage, GameObject WhoDealtDamage)
     {
         enemyHealth -= damage;
 

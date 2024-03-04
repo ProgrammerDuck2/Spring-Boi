@@ -12,7 +12,7 @@ public class S_CallTablet_MA : MonoBehaviour
     PlayerInput PlayerInput;
 
     [SerializeField] private TMP_Text callText;
-    [SerializeField] private List<string> callList = new List<string>();
+    public List<string> callList = new List<string>();
 
     // Start is called before the first frame update
     void Start()

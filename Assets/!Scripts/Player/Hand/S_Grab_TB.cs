@@ -10,9 +10,8 @@ using UnityEngine.XR.Interaction.Toolkit;
 [RequireComponent(typeof(S_Hand_TB))]
 public class S_Grab_TB : MonoBehaviour
 {
-    S_Hand_TB hand;
-
-    [SerializeField] bool DebugMode;
+    [Required]
+    [SerializeField] S_Hand_TB hand;
 
     [Header("Player")]
     GameObject playerBody;
@@ -28,8 +27,6 @@ public class S_Grab_TB : MonoBehaviour
 
     void Start()
     {
-        hand = GetComponent<S_Hand_TB>();
-
         playerBody = transform.parent.parent.parent.gameObject;
 
         otherControllerGrab = hand.OtherController.GetComponent<S_Grab_TB>();
@@ -95,7 +92,7 @@ public class S_Grab_TB : MonoBehaviour
     }
     private void OnDrawGizmos()
     {
-        if (DebugMode)
+        if (hand.DebugMode)
         {
             Gizmos.color = new Color(0, 1, 0, .2f);
             Gizmos.DrawSphere(transform.position, S_Stats_MA.HandGrabRadius);

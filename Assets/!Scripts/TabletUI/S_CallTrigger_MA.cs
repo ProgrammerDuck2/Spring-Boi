@@ -5,9 +5,11 @@ using UnityEngine;
 public class S_CallTrigger_MA : MonoBehaviour
 {
     [HideInInspector] public bool tabletTrigger = false;
-    [SerializeField] private AudioClip ringtone;
+    [SerializeField] AudioClip ringtone;
+    [SerializeField] List<string> speech = new List<string>();
 
     GameObject Ipad;
+    [SerializeField] GameObject callTablet;
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +30,7 @@ public class S_CallTrigger_MA : MonoBehaviour
             tabletTrigger = true;
             Debug.Log(tabletTrigger);
             PlayRingtone();
+            callTablet.GetComponent<S_CallTablet_MA>().callList = speech;
         }
     }
     void PlayRingtone()

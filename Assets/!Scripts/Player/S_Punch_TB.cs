@@ -44,18 +44,18 @@ public class S_Punch_TB : MonoBehaviour
 
     public void Punch(Collider[] hit, float multiplier)
     {
-        float damage = Mathf.Round((S_Stats_MA.Damage + hand.Player.GetComponent<Rigidbody>().velocity.magnitude * 10) * multiplier);
+        float damage = Mathf.Round((S_Stats_MA.Damage + hand.Player.GetComponent<Rigidbody>().velocity.magnitude * 5) * multiplier);
 
         for (int i = 0; i < hit.Length; i++)
         {
-            hit[i].GetComponent<S_Enemies_MA>().Hurt(damage);
+            hit[i].GetComponent<S_Enemies_MA>().Hurt(damage, gameObject);
             hand.HapticFeedback.TriggerHaptic(.1f, .1f, GetComponent<ActionBasedController>());
             print(damage);
         }
 
         // Make sure S_PunchParticle_OR is found
         if (particle) { particle.ParticlesOnImpact(); }
-        else { Debug.Log("No S_PunchParticle_OR found"); }
+        else { Debug.LogError("No S_PunchParticle_OR found"); }
 
         StartCoroutine(PunchCooldown());
     }
