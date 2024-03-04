@@ -19,25 +19,4 @@ public class S_SaveGame_MATB : S_Button_TBMA
         base.OnHoverEnter(controller);
         Debug.Log("hover Save");
     }
-
-    public override void OnHoverExit()
-    {
-        base.OnHoverExit();
-    }
-    public override void OnClickExit()
-    {
-        base.OnClickExit();
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        print(ButtonImage);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

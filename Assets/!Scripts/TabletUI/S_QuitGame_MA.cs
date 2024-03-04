@@ -11,21 +11,4 @@ public class S_QuitGame_MA : S_Button_TBMA
         base.OnClickEnter(controller);
         Application.Quit();
     }
-
-    public override void OnHoverEnter(ActionBasedController controller)
-    {
-        base.OnHoverEnter(controller);
-        throw new System.NotImplementedException();
-    }
-
-    public override void OnHoverExit()
-    {
-        base.OnHoverExit();
-        throw new System.NotImplementedException();
-    }
-    public override void OnClickExit()
-    {
-        base.OnClickExit();
-        throw new System.NotImplementedException();
-    }
 }

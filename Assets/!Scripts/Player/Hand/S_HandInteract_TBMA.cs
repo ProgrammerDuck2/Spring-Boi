@@ -14,6 +14,13 @@ public class S_HandInteract_TBMA : MonoBehaviour
     
     S_Hand_TB hand;
 
+    bool clicking;
+
+    private void Start()
+    {
+        hand = GetComponent<S_Hand_TB>();
+    }
+
     void Update()
     {
         Physics.Raycast(transform.position, transform.forward, out raycast, 2, Interactable);
@@ -33,9 +40,17 @@ public class S_HandInteract_TBMA : MonoBehaviour
                     button.OnHoverEnter(GetComponent<ActionBasedController>());
 
                     currentHoverButton = button;
+                } else if(currentHoverButton != button)
+                {
+                    currentHoverButton.OnHoverExit();
+
+                    button.OnHoverEnter(GetComponent<ActionBasedController>());
+
+                    currentHoverButton = button;
                 }
 
-                button.OnHover();
+                if(!clicking) 
+                    button.OnHover();
 
                 if(button != currentClickButton)
                     button.ButtonImage.color = button.HighlightColor;
@@ -44,6 +59,11 @@ public class S_HandInteract_TBMA : MonoBehaviour
             {
                 Debug.LogError("No button hit or button lack interface");
             }
+        }
+        else if (currentHoverButton != null)
+        {
+            currentHoverButton.OnHoverExit();
+            currentHoverButton = null;
         }
     }
 
@@ -54,6 +74,8 @@ public class S_HandInteract_TBMA : MonoBehaviour
             if (raycast.collider.TryGetComponent<S_Button_TBMA>(out S_Button_TBMA button))
             {
                 button.OnClickEnter(GetComponent<ActionBasedController>());
+                currentClickButton = button;
+                clicking = true;
             }
             else
             {
@@ -68,6 +90,8 @@ public class S_HandInteract_TBMA : MonoBehaviour
     public void ClickExit(InputAction.CallbackContext context)
     {
         currentClickButton.OnClickExit();
+        currentClickButton = null;
+        clicking = false;
     }
     private void OnValidate()
     {

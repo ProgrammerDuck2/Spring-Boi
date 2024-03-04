@@ -1,10 +1,10 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.XR.Interaction.Toolkit;
-using UnityEngine.XR;
-using Unity.VisualScripting;
-using System;
 
+[RequireComponent(typeof(RectTransform))]
+[RequireComponent(typeof(Image))]
+[RequireComponent(typeof(BoxCollider))]
 public class S_Button_TBMA : MonoBehaviour
 {
     S_HapticFeedback_TB hapticFeedback
@@ -36,7 +36,7 @@ public class S_Button_TBMA : MonoBehaviour
     }
     public virtual void OnClickEnter(ActionBasedController controller)
     {
-        hapticFeedback.TriggerHaptic(.4f, .1f, controller);
+        hapticFeedback.TriggerHaptic(.3f, .1f, controller);
     }
     public virtual void OnClick()
     {
@@ -48,7 +48,7 @@ public class S_Button_TBMA : MonoBehaviour
     }
     public virtual void OnHoverEnter(ActionBasedController controller)
     {
-        hapticFeedback.TriggerHaptic(.4f, .1f, controller);
+        hapticFeedback.TriggerHaptic(.3f, .1f, controller);
     }
     public virtual void OnHover()
     {
