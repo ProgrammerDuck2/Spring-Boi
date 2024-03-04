@@ -3,32 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class S_QuitGame_MA : MonoBehaviour, S_IInteractable_TBMA
+public class S_QuitGame_MA : S_Button_TBMA
 {
-    public Color ButtonColor { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
-    public Color HighlightColor { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
-    public Color PressedColor { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
-
-    public Image ButtonImage => throw new System.NotImplementedException();
-
-    public void OnClickEnter()
+    public override void OnClickEnter()
     {
+        base.OnClickEnter();
         Application.Quit();
-        GetComponent<Image>().color = GetComponent<Button>().colors.pressedColor;
     }
 
-    public void OnClickExit()
+    public override void OnHoverEnter()
     {
+        base.OnHover();
         throw new System.NotImplementedException();
     }
 
-    public void OnHover()
+    public override void OnHoverExit()
     {
-        GetComponent<Image>().color = GetComponent<Button>().colors.highlightedColor;
+        base.OnHoverExit();
+        throw new System.NotImplementedException();
     }
-
-    public void OnHoverExit()
+    public override void OnClickExit()
     {
+        base.OnClickExit();
         throw new System.NotImplementedException();
     }
 }

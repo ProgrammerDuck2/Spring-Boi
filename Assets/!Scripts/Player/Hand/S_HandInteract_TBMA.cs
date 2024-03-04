@@ -9,8 +9,8 @@ public class S_HandInteract_TBMA : MonoBehaviour
     [SerializeField] LayerMask Interactable;
     [HideInInspector] RaycastHit raycast;
 
-    S_IInteractable_TBMA currentClickButton;
-    S_IInteractable_TBMA currentHoverButton;
+    S_Button_TBMA currentClickButton;
+    S_Button_TBMA currentHoverButton;
     
     S_Hand_TB hand;
 
@@ -26,15 +26,17 @@ public class S_HandInteract_TBMA : MonoBehaviour
         if (raycast.collider != null)
         {
             Debug.Log("Hover");
-            if (raycast.collider.TryGetComponent<S_IInteractable_TBMA>(out S_IInteractable_TBMA button))
+            if (raycast.collider.TryGetComponent<S_Button_TBMA>(out S_Button_TBMA button))
             {
-                button.OnHover();
-
-                if(currentHoverButton == null)
+                if (currentHoverButton == null)
                 {
+                    button.OnHoverEnter();
+
                     hand.Player.GetComponent<S_HapticFeedback_TB>().TriggerHaptic(.1f, .1f, GetComponent<ActionBasedController>());
                     currentHoverButton = button;
                 }
+
+                button.OnHover();
 
                 if(button != currentClickButton)
                     button.ButtonImage.color = button.HighlightColor;
@@ -46,12 +48,11 @@ public class S_HandInteract_TBMA : MonoBehaviour
         }
     }
 
-    public void Click(InputAction.CallbackContext context)
+    public void ClickEnter(InputAction.CallbackContext context)
     {
-        Debug.Log("Interact");
         if (raycast.collider != null)
         {
-            if (raycast.collider.TryGetComponent<S_IInteractable_TBMA>(out S_IInteractable_TBMA button))
+            if (raycast.collider.TryGetComponent<S_Button_TBMA>(out S_Button_TBMA button))
             {
                 button.OnClickEnter();
                 hand.Player.GetComponent<S_HapticFeedback_TB>().TriggerHaptic(.1f, .1f, GetComponent<ActionBasedController>());
@@ -64,7 +65,11 @@ public class S_HandInteract_TBMA : MonoBehaviour
             }
         }
     }
-    public void UnClick(InputAction.CallbackContext context)
+    public void Click(InputAction.CallbackContext context)
+    {
+        currentClickButton.OnClick();
+    }
+    public void ClickExit(InputAction.CallbackContext context)
     {
         currentClickButton.OnClickExit();
         currentClickButton.ButtonImage.color = currentClickButton.ButtonColor;

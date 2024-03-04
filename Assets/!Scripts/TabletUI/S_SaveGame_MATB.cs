@@ -4,45 +4,29 @@ using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class S_SaveGame_MATB : MonoBehaviour, S_IInteractable_TBMA
+public class S_SaveGame_MATB : S_Button_TBMA
 {
-    //Correctly get and set colors
-    [SerializeField] Color _ButtonColor;
-    public Color ButtonColor
-    {
-        get { return _ButtonColor; }
-        set { _ButtonColor = value; }
-    }
-    [SerializeField] Color _HighlightColor;
-    public Color HighlightColor
-    {
-        get { return _HighlightColor; }
-        set { _HighlightColor = value; }
-    }
-    [SerializeField] Color _PressedColor;
-    public Color PressedColor
-    {
-        get { return _PressedColor; }
-        set { _PressedColor = value; }
-    }
 
-    public Image ButtonImage
+    public override void OnClickEnter()
     {
-        get { return GetComponent<Image>(); }
-    }
-
-    public void OnClickEnter()
-    {
+        base.OnClickEnter();
         Debug.Log("saved. no bird accessable");
     }
 
-    public void OnHover()
+    public override void OnHoverEnter()
     {
+        base.OnHover();
         Debug.Log("hover Save");
     }
 
-    public void OnHoverExit()
+    public override void OnHoverExit()
     {
+        base.OnHoverExit();
+        throw new System.NotImplementedException();
+    }
+    public override void OnClickExit()
+    {
+        base.OnClickExit();
         throw new System.NotImplementedException();
     }
 
@@ -56,10 +40,5 @@ public class S_SaveGame_MATB : MonoBehaviour, S_IInteractable_TBMA
     void Update()
     {
         
-    }
-
-    public void OnClickExit()
-    {
-        throw new System.NotImplementedException();
     }
 }

@@ -75,8 +75,9 @@ public class S_Hand_TB : MonoBehaviour
         playerInput.actions["Launch"].started += LaunchArms.LaunchArm;
         playerInput.actions["Launch"].canceled += LaunchArms.PullArm;
 
-        playerInput.actions["Interact"].started += Interact.Click;
-        playerInput.actions["Interact"].canceled += Interact.UnClick;
+        playerInput.actions["Interact"].started += Interact.ClickEnter;
+        playerInput.actions["Interact"].performed += Interact.Click;
+        playerInput.actions["Interact"].canceled += Interact.ClickExit;
     }
 
     // Update is called once per frame
