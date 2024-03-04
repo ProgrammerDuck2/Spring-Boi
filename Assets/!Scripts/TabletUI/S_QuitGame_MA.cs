@@ -9,7 +9,7 @@ public class S_QuitGame_MA : MonoBehaviour, S_ButtonInterface_TBMA
     public Color HighlightColor { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
     public Color PressedColor { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
 
-    public void OnClick()
+    public void OnClickEnter()
     {
         Application.Quit();
         GetComponent<Image>().color = GetComponent<Button>().colors.pressedColor;

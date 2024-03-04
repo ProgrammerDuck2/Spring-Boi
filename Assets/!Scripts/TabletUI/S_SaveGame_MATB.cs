@@ -29,7 +29,7 @@ public class S_SaveGame_MATB : MonoBehaviour, S_ButtonInterface_TBMA
         get { return GetComponent<Image>(); }
     }
 
-    public void OnClick()
+    public void OnClickEnter()
     {
         Debug.Log("saved. no bird accessable");
     }
@@ -54,5 +54,10 @@ public class S_SaveGame_MATB : MonoBehaviour, S_ButtonInterface_TBMA
     void Update()
     {
         
+    }
+
+    public void OnClickExit()
+    {
+        throw new System.NotImplementedException();
     }
 }

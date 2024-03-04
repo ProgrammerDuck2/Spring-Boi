@@ -10,7 +10,7 @@ public class S_Restart_MA : MonoBehaviour, S_ButtonInterface_TBMA
     public Color HighlightColor { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
     public Color PressedColor { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
 
-    public void OnClick()
+    public void OnClickEnter()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         GetComponent<Image>().color = GetComponent<Button>().colors.pressedColor;

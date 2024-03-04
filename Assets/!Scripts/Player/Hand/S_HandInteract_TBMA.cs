@@ -1,11 +1,15 @@
 using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class S_HandInteract_TBMA : MonoBehaviour
 {
     [SerializeField] LayerMask Interactable;
     [HideInInspector] RaycastHit raycast;
+
+    S_ButtonInterface_TBMA currentClickButton;
+    S_ButtonInterface_TBMA currentHoverButton;
     
     S_Hand_TB hand;
 
@@ -24,7 +28,12 @@ public class S_HandInteract_TBMA : MonoBehaviour
             if (raycast.collider.TryGetComponent<S_ButtonInterface_TBMA>(out S_ButtonInterface_TBMA button))
             {
                 button.OnHover();
-                button.ButtonImage.color = button.HighlightColor;
+
+                if(button != currentClickButton)
+                    button.ButtonImage.color = button.HighlightColor;
+
+                currentHoverButton = button;
+
             } else
             {
                 Debug.LogError("No button hit or button lack interface");
@@ -32,21 +41,28 @@ public class S_HandInteract_TBMA : MonoBehaviour
         }
     }
 
-    public void Interact(InputAction.CallbackContext context)
+    public void Click(InputAction.CallbackContext context)
     {
         Debug.Log("Interact");
         if (raycast.collider != null)
         {
             if (raycast.collider.TryGetComponent<S_ButtonInterface_TBMA>(out S_ButtonInterface_TBMA button))
             {
-                button.OnClick();
+                button.OnClickEnter();
                 button.ButtonImage.color = button.PressedColor;
+                currentClickButton = button;
             }
             else
             {
                 Debug.LogError("No button hit or button lack interface");
             }
         }
+    }
+    public void UnClick(InputAction.CallbackContext context)
+    {
+        currentClickButton.OnClickExit();
+        currentClickButton.ButtonImage.color = currentClickButton.ButtonColor;
+        currentClickButton = null;
     }
     private void OnValidate()
     {
