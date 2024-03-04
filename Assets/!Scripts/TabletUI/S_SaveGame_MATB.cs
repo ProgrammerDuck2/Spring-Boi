@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class S_SaveGame_MATB : MonoBehaviour, S_ButtonInterface_TBMA
+public class S_SaveGame_MATB : MonoBehaviour, S_Interactable_TBMA
 {
+    //Correctly get and set colors
     [SerializeField] Color _ButtonColor;
     public Color ButtonColor
     {

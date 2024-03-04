@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public interface S_ButtonInterface_TBMA
+public interface S_Interactable_TBMA
 {
     public Image ButtonImage { get; }
     public Color ButtonColor { get; set; }

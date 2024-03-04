@@ -2,14 +2,15 @@ using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class S_HandInteract_TBMA : MonoBehaviour
 {
     [SerializeField] LayerMask Interactable;
     [HideInInspector] RaycastHit raycast;
 
-    S_ButtonInterface_TBMA currentClickButton;
-    S_ButtonInterface_TBMA currentHoverButton;
+    S_Interactable_TBMA currentClickButton;
+    S_Interactable_TBMA currentHoverButton;
     
     S_Hand_TB hand;
 
@@ -25,14 +26,18 @@ public class S_HandInteract_TBMA : MonoBehaviour
         if (raycast.collider != null)
         {
             Debug.Log("Hover");
-            if (raycast.collider.TryGetComponent<S_ButtonInterface_TBMA>(out S_ButtonInterface_TBMA button))
+            if (raycast.collider.TryGetComponent<S_Interactable_TBMA>(out S_Interactable_TBMA button))
             {
                 button.OnHover();
 
+                if(currentHoverButton == null)
+                {
+                    hand.Player.GetComponent<S_HapticFeedback_TB>().TriggerHaptic(.1f, .1f, GetComponent<ActionBasedController>());
+                    currentHoverButton = button;
+                }
+
                 if(button != currentClickButton)
                     button.ButtonImage.color = button.HighlightColor;
-
-                currentHoverButton = button;
 
             } else
             {
@@ -46,9 +51,10 @@ public class S_HandInteract_TBMA : MonoBehaviour
         Debug.Log("Interact");
         if (raycast.collider != null)
         {
-            if (raycast.collider.TryGetComponent<S_ButtonInterface_TBMA>(out S_ButtonInterface_TBMA button))
+            if (raycast.collider.TryGetComponent<S_Interactable_TBMA>(out S_Interactable_TBMA button))
             {
                 button.OnClickEnter();
+                hand.Player.GetComponent<S_HapticFeedback_TB>().TriggerHaptic(.1f, .1f, GetComponent<ActionBasedController>());
                 button.ButtonImage.color = button.PressedColor;
                 currentClickButton = button;
             }
