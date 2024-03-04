@@ -2910,6 +2910,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1051619651869857364}
+  - component: {fileID: 840657013026814917}
+  - component: {fileID: 1367655685366618995}
   m_Layer: 0
   m_Name: ---Tablet---
   m_TagString: Untagged
@@ -2935,6 +2937,38 @@ Transform:
   - {fileID: 8090279512897680118}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &840657013026814917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5476443312448676566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c8c1f26ff0058c4fb1bc321a12c7809, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tabletPages:
+  - {fileID: 958126246180814665}
+  - {fileID: 8931224559802610382}
+  - {fileID: 1798017493651821360}
+  - {fileID: 2178666191054995483}
+  - {fileID: 6546307545734509662}
+  triggerCall: {fileID: 0}
+--- !u!114 &1367655685366618995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5476443312448676566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5d0f25057e252a4dba2949c9b2ad1ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isActive: 0
 --- !u!1 &5595826322445877584
 GameObject:
   m_ObjectHideFlags: 0
