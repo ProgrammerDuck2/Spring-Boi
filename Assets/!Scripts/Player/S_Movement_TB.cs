@@ -36,8 +36,9 @@ public class S_Movement_TB : MonoBehaviour
     [ShowIf("DebugMode")]
     public bool HighSpeed;
 
-    [HideInInspector] public bool Grounded; //ground :)
-    LayerMask groundLayer;
+    [ShowIf("DebugMode")]
+    public bool Grounded; //ground :)
+    public LayerMask groundLayer;
     LayerMask stickGroundLayer;
 
     [HorizontalLine(color: EColor.Violet)]
@@ -117,12 +118,22 @@ public class S_Movement_TB : MonoBehaviour
 
     void CheckGround()
     {
-        if (Grounded != Physics.CheckCapsule(groundCheckPos(), groundCheckSize(), groundLayer))
+
+        if (Grounded != Physics.CheckCapsule(groundCheckBottomPos(), groundCheckTopPos(), groundCheckRadius, groundLayer))
         {
-            Collider[] ground = Physics.OverlapSphere(groundCheckPos(), 1 * 0.5f, stickGroundLayer);
+            Collider[] ground = Physics.OverlapCapsule(groundCheckBottomPos(), groundCheckTopPos(), groundCheckRadius, groundLayer);
 
             Grounded = !Grounded;
-            transform.parent = ground.Length >= 1 ? ground[0].transform : null;
+
+            if(ground.Length >= 1)
+            {
+                //transform.parent =  ground[0].transform;
+                print("landed on stick ground, Object is: " + ground[0].gameObject);
+            }
+            else
+            {
+                //transform.parent = null;
+            }
         }
     }
 
@@ -190,7 +201,7 @@ public class S_Movement_TB : MonoBehaviour
         if (DebugMode)
         {
             Gizmos.color = new Color(0, 1, 0, .5f);
-            Gizmos.DrawMesh(Capsule, groundCheckPos(), transform.rotation, groundCheckSize());
+            Gizmos.DrawMesh(Capsule, groundCheckTopPos() + groundCheckBottomPos() - transform.up, transform.rotation, groundCheckSize());
         }
     }
     #endregion
@@ -204,9 +215,13 @@ public class S_Movement_TB : MonoBehaviour
             Mathf.Clamp(toClamp.y, -MaxVelocity.y, MaxVelocity.y),
             Mathf.Clamp(toClamp.z, -MaxVelocity.z, MaxVelocity.z));
     }
-    Vector3 groundCheckPos()
+    Vector3 groundCheckTopPos()
     {
-        return transform.position - transform.up * 0.02f;
+        return transform.position - transform.up * 0.6f;
+    }
+    Vector3 groundCheckBottomPos()
+    {
+        return transform.position + transform.up * 0.5f;
     }
     Vector3 groundCheckSize()
     {
