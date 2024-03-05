@@ -111,7 +111,7 @@ public class S_Movement_TB : MonoBehaviour
 
         if (S_Settings_TB.IsVRConnected)
         {
-            Turn();
+            //Turn();
         }
     }
 
