@@ -86,16 +86,24 @@ public class S_Hand_TB : MonoBehaviour
         transform.localPosition = playerInput.actions["Position"].ReadValue<Vector3>() + HandOffset - PlayerMovement.IRLPosOffset;
         transform.localRotation = playerInput.actions["Rotation"].ReadValue<Quaternion>();
 
-        //print(playerInput.actions["Position"].ReadValue<Vector3>());
-
         ControllerPosition = transform.localPosition;
         ControllerRotation = transform.localRotation;
+
+        if(DebugMode)
+        {
+            if(playerInput.actions["Position"].ReadValue<Vector3>() == Vector3.zero)
+            {
+                Debug.LogError("Controller position not found");
+            }
+
+            Debug.LogWarning(playerInput.currentControlScheme);
+        }
 
         timer += Time.deltaTime * 2;
 
         if (timer > .1f)
         {
-            handPostitions.Insert(0, ControllerPosition);
+            handPostitions.Insert(0, transform.localPosition);
             handRotations.Insert(0, ControllerRotation.eulerAngles);
             handForwards.Insert(0, transform.forward);
         }

@@ -899,7 +899,7 @@ MonoBehaviour:
     type: 3}
   pullingHand: 0
   cooldown: 0
-  launchDirectionOffset: {x: 0, y: 0, z: 0}
+  launchDirectionOffset: {x: 0, y: -15, z: 0}
 --- !u!114 &4105961526385780978
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -961,8 +961,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
+  m_NeverAutoSwitchControlSchemes: 1
+  m_DefaultControlScheme: XR
   m_DefaultActionMap: VR LeftController
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
@@ -1349,7 +1349,7 @@ MonoBehaviour:
     type: 3}
   pullingHand: 0
   cooldown: 0
-  launchDirectionOffset: {x: 0, y: 0, z: 0}
+  launchDirectionOffset: {x: 0, y: 15, z: 0}
 --- !u!114 &3563714162967858921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1411,8 +1411,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
+  m_NeverAutoSwitchControlSchemes: 1
+  m_DefaultControlScheme: XR
   m_DefaultActionMap: VR RightController
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
@@ -2482,6 +2482,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f522245142aa85844b2f1d27fb3bb6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3571862515158282737 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 29909991175484769, guid: 535e3e8512ca9de4e95314dde4fd5fff,
+    type: 3}
+  m_PrefabInstance: {fileID: 3601627298252784784}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3745844602246254859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3745844602246254859 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 144226392446784923, guid: 535e3e8512ca9de4e95314dde4fd5fff,
@@ -2500,7 +2512,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6709582c2a57b3740864b5ea4ef07fca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slider: {fileID: 0}
+  slider: {fileID: 3571862515158282737}
 --- !u!1 &4373134105544555481 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 958126246180814665, guid: 535e3e8512ca9de4e95314dde4fd5fff,
