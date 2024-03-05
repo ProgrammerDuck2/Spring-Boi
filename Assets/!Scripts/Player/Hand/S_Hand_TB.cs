@@ -86,14 +86,18 @@ public class S_Hand_TB : MonoBehaviour
         //playerInput.actions["Launch"].started += LaunchArms.LaunchArm;
         //playerInput.actions["Launch"].canceled += LaunchArms.PullArm;
 
+        //playerInput.actions["Interact"].started += Interact.ClickEnter;
+        //playerInput.actions["Interact"].performed += Interact.Click;
+        //playerInput.actions["Interact"].canceled += Interact.ClickExit;
+
         trigger.action.started += toggleTrigger;
         trigger.action.canceled += toggleTrigger;
         grip.action.started += toggleGrip;
         grip.action.canceled += toggleGrip;
 
-        playerInput.actions["Interact"].started += Interact.ClickEnter;
-        playerInput.actions["Interact"].performed += Interact.Click;
-        playerInput.actions["Interact"].canceled += Interact.ClickExit;
+        trigger.action.started += Interact.ClickEnter;
+        trigger.action.performed += Interact.Click;
+        trigger.action.canceled += Interact.ClickExit;
 
         //playerInput.SwitchCurrentControlScheme("XR");
     }
