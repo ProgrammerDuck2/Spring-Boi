@@ -152,7 +152,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DebugMode: 1
   groundCheckRadius: 0.9
-  Capsule: {fileID: 0}
+  Capsule: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
   HighSpeed: 0
   Grounded: 0
   IRLPosOffset: {x: 0, y: 0, z: 0}
@@ -856,6 +856,59 @@ MonoBehaviour:
   OtherController: {fileID: 6282108924297107850}
   DebugMode: 1
   HandOffset: {x: 0, y: 0, z: -0.03}
+  ShowReference: 1
+  pos:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Pos
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 15c435d1-b1eb-4ce5-8d5c-e23c56454f60
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: -2024308242397127297, guid: c348712bda248c246b8c49b3db54643f,
+      type: 3}
+  rot:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Rot
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 89bd9042-b636-493b-837d-23696986628a
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 8248158260566104461, guid: c348712bda248c246b8c49b3db54643f,
+      type: 3}
+  grip:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Grip
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 91ec0f6b-69ba-416c-a08c-f021284adefe
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: -6131295136447488360, guid: c348712bda248c246b8c49b3db54643f,
+      type: 3}
+  trigger:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Trigger
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: d440c392-f864-4276-b82b-31376a0460f4
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: -5982496924579745919, guid: c348712bda248c246b8c49b3db54643f,
+      type: 3}
   Grab: {fileID: 0}
   LaunchArms: {fileID: 0}
   Punch: {fileID: 0}
@@ -962,7 +1015,7 @@ MonoBehaviour:
       m_Calls: []
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 1
-  m_DefaultControlScheme: XR
+  m_DefaultControlScheme: 
   m_DefaultActionMap: VR LeftController
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
@@ -1306,6 +1359,59 @@ MonoBehaviour:
   OtherController: {fileID: 3351723451793753507}
   DebugMode: 1
   HandOffset: {x: 0, y: 0, z: 0.03}
+  ShowReference: 1
+  pos:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Pos
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 967d78f7-4f1c-4cfc-8c19-9fa74a06ddce
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: -3326005586356538449, guid: c348712bda248c246b8c49b3db54643f,
+      type: 3}
+  rot:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Rot
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 1303884c-9a59-4bc1-9f9a-4cbc3c61bf1f
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 5101698808175986029, guid: c348712bda248c246b8c49b3db54643f,
+      type: 3}
+  grip:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Grip
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: c1c6b3bc-43f5-4aca-8b1c-adafbc8f4bf0
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 187161793506945269, guid: c348712bda248c246b8c49b3db54643f,
+      type: 3}
+  trigger:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Trigger
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: db77627d-c1c8-4755-b18c-ae81bc860493
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 83097790271614945, guid: c348712bda248c246b8c49b3db54643f,
+      type: 3}
   Grab: {fileID: 0}
   LaunchArms: {fileID: 0}
   Punch: {fileID: 0}
@@ -1412,7 +1518,7 @@ MonoBehaviour:
       m_Calls: []
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 1
-  m_DefaultControlScheme: XR
+  m_DefaultControlScheme: 
   m_DefaultActionMap: VR RightController
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}

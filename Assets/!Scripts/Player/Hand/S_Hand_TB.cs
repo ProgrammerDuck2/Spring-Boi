@@ -25,6 +25,17 @@ public class S_Hand_TB : MonoBehaviour
     [Header("Tracking")]
     [SerializeField] Vector3 HandOffset;
 
+    [Header("Input")]
+    [SerializeField] bool ShowReference;
+    [ShowIf("ShowReference")]
+    [SerializeField] InputActionProperty pos;
+    [ShowIf("ShowReference")]
+    [SerializeField] InputActionProperty rot;
+    [ShowIf("ShowReference")]
+    [SerializeField] InputActionProperty grip; 
+    [ShowIf("ShowReference")]
+    [SerializeField] InputActionProperty trigger;
+
     [HorizontalLine(color: EColor.Violet)]
 
     [Header("Components")]
@@ -67,24 +78,35 @@ public class S_Hand_TB : MonoBehaviour
 
         playerInput = GetComponent<PlayerInput>();
 
-        playerInput.actions["Pinch"].started += toggleTrigger;
-        playerInput.actions["Pinch"].canceled += toggleTrigger;
-        playerInput.actions["Grip"].started += toggleGrip;
-        playerInput.actions["Grip"].canceled += toggleGrip;
+        //playerInput.actions["Pinch"].started += toggleTrigger;
+        //playerInput.actions["Pinch"].canceled += toggleTrigger;
+        //playerInput.actions["Grip"].started += toggleGrip;
+        //playerInput.actions["Grip"].canceled += toggleGrip;
 
-        playerInput.actions["Launch"].started += LaunchArms.LaunchArm;
-        playerInput.actions["Launch"].canceled += LaunchArms.PullArm;
+        //playerInput.actions["Launch"].started += LaunchArms.LaunchArm;
+        //playerInput.actions["Launch"].canceled += LaunchArms.PullArm;
+
+        trigger.action.started += toggleTrigger;
+        trigger.action.canceled += toggleTrigger;
+        grip.action.started += toggleGrip;
+        grip.action.canceled += toggleGrip;
 
         playerInput.actions["Interact"].started += Interact.ClickEnter;
         playerInput.actions["Interact"].performed += Interact.Click;
         playerInput.actions["Interact"].canceled += Interact.ClickExit;
+
+        //playerInput.SwitchCurrentControlScheme("XR");
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.localPosition = playerInput.actions["Position"].ReadValue<Vector3>() + HandOffset - PlayerMovement.IRLPosOffset;
-        transform.localRotation = playerInput.actions["Rotation"].ReadValue<Quaternion>();
+        //transform.localPosition = playerInput.actions["Position"].ReadValue<Vector3>() + HandOffset - PlayerMovement.IRLPosOffset;
+        //transform.localRotation = playerInput.actions["Rotation"].ReadValue<Quaternion>();
+
+        transform.localPosition = pos.action.ReadValue<Vector3>() + HandOffset - PlayerMovement.IRLPosOffset;
+        transform.localRotation = rot.action.ReadValue<Quaternion>();
+
 
         ControllerPosition = transform.localPosition;
         ControllerRotation = transform.localRotation;
@@ -96,7 +118,7 @@ public class S_Hand_TB : MonoBehaviour
                 Debug.LogError("Controller position not found");
             }
 
-            Debug.LogWarning(playerInput.currentControlScheme);
+            Debug.LogWarning(pos.action);
         }
 
         timer += Time.deltaTime * 2;
@@ -142,5 +164,16 @@ public class S_Hand_TB : MonoBehaviour
         average /= handForwards.Count;
 
         return average;
+    }
+
+    [Button]
+    public void ChangeSchemeToXR()
+    {
+        playerInput.SwitchCurrentControlScheme("XR");
+    }
+    [Button]
+    public void ChangeSchemeToKeyboard()
+    {
+        playerInput.SwitchCurrentControlScheme("KeyboardMouse");
     }
 }
