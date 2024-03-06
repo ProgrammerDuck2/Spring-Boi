@@ -7,7 +7,7 @@ public class S_OilCollectible_MA : MonoBehaviour
 {
     [Range(0,1)]
     public float move;
-    bool torje;
+    bool direction;
     float pos;
 
     // Start is called before the first frame update
@@ -24,25 +24,23 @@ public class S_OilCollectible_MA : MonoBehaviour
 
         transform.position = new Vector3(transform.position.x, pos + Mathf.Clamp(move, 0, .5f), transform.position.z);
 
-        if (torje)
+        if (direction)
         {
             move += .1f * Time.deltaTime;
             if (move > .2f)
             {
-                torje = false;
+                direction = false;
             }
         }
-        if (!torje)
+        if (!direction)
         {
             move -= .1f * Time.deltaTime; ;
             if (move < 0)
             {
-                torje = true;
+                direction = true;
             }
         }
-        Debug.Log(move);
     }
-    //transform.position += transform.up* Time.deltaTime;
 
     private void OnTriggerEnter(Collider other)
     {
