@@ -118,7 +118,6 @@ public class S_Hand_TB : MonoBehaviour
         yield return new WaitForEndOfFrame();
         HandArt = transform.GetChild(transform.childCount - 1).GetChild(0).gameObject;
         HandArtAnimation = HandArt.GetComponent<Animator>();
-        print("no hand");
 
         //playerInput.SwitchCurrentControlScheme("XR");
     }
