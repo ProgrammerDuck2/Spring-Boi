@@ -155,6 +155,9 @@ MonoBehaviour:
   Capsule: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
   HighSpeed: 0
   Grounded: 0
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
   IRLPosOffset: {x: 0, y: 0, z: 0}
 --- !u!114 &7450994534025487902
 MonoBehaviour:
@@ -582,6 +585,7 @@ GameObject:
   - component: {fileID: 3648789083635388172}
   - component: {fileID: 7647668570352382506}
   - component: {fileID: 3586515031591338924}
+  - component: {fileID: 3089016638318550110}
   m_Layer: 0
   m_Name: LeftHand
   m_TagString: Untagged
@@ -854,9 +858,11 @@ MonoBehaviour:
     m_Bits: 200
   playerInput: {fileID: 0}
   OtherController: {fileID: 6282108924297107850}
+  HandArt: {fileID: 0}
+  HandArtAnimation: {fileID: 0}
   DebugMode: 1
   HandOffset: {x: 0, y: 0, z: -0.03}
-  ShowReference: 0
+  useReference: 1
   pos:
     m_UseReference: 1
     m_Action:
@@ -1034,6 +1040,46 @@ MonoBehaviour:
   Interactable:
     serializedVersion: 2
     m_Bits: 16384
+--- !u!114 &3089016638318550110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3351723451793753507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e009d132682acc48bf3d5225fe1d8b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouseButton: 0
+  useReference: 1
+  grip:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Grip
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: d1d4ad14-c87b-4da0-9268-aa09be6635cd
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 6558622148059887818, guid: c348712bda248c246b8c49b3db54643f,
+      type: 3}
+  trigger:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Trigger
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 9352626a-86ba-4610-b01e-d9c5430be593
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: -4289430672226363583, guid: c348712bda248c246b8c49b3db54643f,
+      type: 3}
 --- !u!1 &5052090680597602032
 GameObject:
   m_ObjectHideFlags: 0
@@ -1086,6 +1132,7 @@ GameObject:
   - component: {fileID: 8867150001904660234}
   - component: {fileID: 3873103420856162664}
   - component: {fileID: 7652098782127128457}
+  - component: {fileID: 970703288378990523}
   m_Layer: 0
   m_Name: RightHand
   m_TagString: Untagged
@@ -1357,9 +1404,11 @@ MonoBehaviour:
     m_Bits: 200
   playerInput: {fileID: 0}
   OtherController: {fileID: 3351723451793753507}
+  HandArt: {fileID: 0}
+  HandArtAnimation: {fileID: 0}
   DebugMode: 1
   HandOffset: {x: 0, y: 0, z: 0.03}
-  ShowReference: 0
+  useReference: 1
   pos:
     m_UseReference: 1
     m_Action:
@@ -1537,6 +1586,46 @@ MonoBehaviour:
   Interactable:
     serializedVersion: 2
     m_Bits: 16384
+--- !u!114 &970703288378990523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6282108924297107850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e009d132682acc48bf3d5225fe1d8b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouseButton: 1
+  useReference: 1
+  grip:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Grip
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 271e1373-2a7b-4e88-880e-77b5a03c502c
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: -1758520528963094988, guid: c348712bda248c246b8c49b3db54643f,
+      type: 3}
+  trigger:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Trigger
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: b7bc408a-671a-4ae5-b4dc-714a5303dfe4
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 7904272356298805229, guid: c348712bda248c246b8c49b3db54643f,
+      type: 3}
 --- !u!1 &6583513823572844596
 GameObject:
   m_ObjectHideFlags: 0
