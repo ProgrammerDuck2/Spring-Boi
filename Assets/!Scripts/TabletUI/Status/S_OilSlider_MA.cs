@@ -9,6 +9,7 @@ public class S_OilSlider_MA : MonoBehaviour
 
     private void Start()
     {
+        S_Stats_MA.oilCollected = 0;
         slider.maxValue = S_Stats_MA.maxOil;
         slider.value = S_Stats_MA.oilCollected;
     }

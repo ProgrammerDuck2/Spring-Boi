@@ -24,6 +24,6 @@ public static class S_Stats_MA
     public static float AimAssistRadius = 1;
 
     //collectibles
-    public static float maxOil = 100;
+    public static float maxOil;
     public static float oilCollected;
 }
