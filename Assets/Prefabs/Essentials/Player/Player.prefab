@@ -151,8 +151,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DebugMode: 1
+  groundCheckRadius: 0.9
+  Capsule: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
   HighSpeed: 0
   Grounded: 0
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
   IRLPosOffset: {x: 0, y: 0, z: 0}
 --- !u!114 &7450994534025487902
 MonoBehaviour:
@@ -580,6 +585,7 @@ GameObject:
   - component: {fileID: 3648789083635388172}
   - component: {fileID: 7647668570352382506}
   - component: {fileID: 3586515031591338924}
+  - component: {fileID: 2083406465294018919}
   m_Layer: 0
   m_Name: LeftHand
   m_TagString: Untagged
@@ -852,14 +858,66 @@ MonoBehaviour:
     m_Bits: 200
   playerInput: {fileID: 0}
   OtherController: {fileID: 6282108924297107850}
+  HandArt: {fileID: 0}
+  HandArtAnimation: {fileID: 0}
   DebugMode: 1
   HandOffset: {x: 0, y: 0, z: -0.03}
+  useReference: 0
+  pos:
+    m_UseReference: 0
+    m_Action:
+      m_Name: 
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 0}
+  rot:
+    m_UseReference: 0
+    m_Action:
+      m_Name: 
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 0}
+  grip:
+    m_UseReference: 0
+    m_Action:
+      m_Name: 
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 0}
+  trigger:
+    m_UseReference: 0
+    m_Action:
+      m_Name: 
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 0}
   Grab: {fileID: 0}
   LaunchArms: {fileID: 0}
   Punch: {fileID: 0}
   Aim: {fileID: 0}
   HapticFeedback: {fileID: 0}
   Interact: {fileID: 0}
+  Anim: {fileID: 0}
   TriggerActivated: 0
   GripActivated: 0
   GrabActivated: 0
@@ -880,7 +938,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5378d8247b1c8b14e9acb78191595274, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hand: {fileID: 8822841443464774981}
   holding: 0
 --- !u!114 &4180267728518917693
 MonoBehaviour:
@@ -898,6 +955,7 @@ MonoBehaviour:
     type: 3}
   pullingHand: 0
   cooldown: 0
+  launchDirectionOffset: {x: 0, y: 0, z: 0}
 --- !u!114 &4105961526385780978
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -979,7 +1037,47 @@ MonoBehaviour:
   Interactable:
     serializedVersion: 2
     m_Bits: 16384
-  hand: {fileID: 8822841443464774981}
+--- !u!114 &2083406465294018919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3351723451793753507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e009d132682acc48bf3d5225fe1d8b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hand: {fileID: 0}
+  mouseButton: 0
+  useReference: 1
+  grip:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Grip
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: d1d4ad14-c87b-4da0-9268-aa09be6635cd
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 6558622148059887818, guid: c348712bda248c246b8c49b3db54643f,
+      type: 3}
+  trigger:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Trigger
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 9352626a-86ba-4610-b01e-d9c5430be593
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: -4289430672226363583, guid: c348712bda248c246b8c49b3db54643f,
+      type: 3}
 --- !u!1 &5052090680597602032
 GameObject:
   m_ObjectHideFlags: 0
@@ -1032,6 +1130,7 @@ GameObject:
   - component: {fileID: 8867150001904660234}
   - component: {fileID: 3873103420856162664}
   - component: {fileID: 7652098782127128457}
+  - component: {fileID: 7141982945018708315}
   m_Layer: 0
   m_Name: RightHand
   m_TagString: Untagged
@@ -1303,14 +1402,66 @@ MonoBehaviour:
     m_Bits: 200
   playerInput: {fileID: 0}
   OtherController: {fileID: 3351723451793753507}
+  HandArt: {fileID: 0}
+  HandArtAnimation: {fileID: 0}
   DebugMode: 1
   HandOffset: {x: 0, y: 0, z: 0.03}
+  useReference: 0
+  pos:
+    m_UseReference: 0
+    m_Action:
+      m_Name: 
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 0}
+  rot:
+    m_UseReference: 0
+    m_Action:
+      m_Name: 
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 0}
+  grip:
+    m_UseReference: 0
+    m_Action:
+      m_Name: 
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 0}
+  trigger:
+    m_UseReference: 0
+    m_Action:
+      m_Name: 
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 0}
   Grab: {fileID: 0}
   LaunchArms: {fileID: 0}
   Punch: {fileID: 0}
   Aim: {fileID: 0}
   HapticFeedback: {fileID: 0}
   Interact: {fileID: 0}
+  Anim: {fileID: 0}
   TriggerActivated: 0
   GripActivated: 0
   GrabActivated: 0
@@ -1331,7 +1482,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5378d8247b1c8b14e9acb78191595274, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hand: {fileID: 2566892091331363610}
   holding: 0
 --- !u!114 &2423107481920071831
 MonoBehaviour:
@@ -1349,6 +1499,7 @@ MonoBehaviour:
     type: 3}
   pullingHand: 0
   cooldown: 0
+  launchDirectionOffset: {x: 0, y: 0, z: 0}
 --- !u!114 &3563714162967858921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1430,7 +1581,47 @@ MonoBehaviour:
   Interactable:
     serializedVersion: 2
     m_Bits: 16384
-  hand: {fileID: 2566892091331363610}
+--- !u!114 &7141982945018708315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6282108924297107850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e009d132682acc48bf3d5225fe1d8b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hand: {fileID: 0}
+  mouseButton: 1
+  useReference: 1
+  grip:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Grip
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 271e1373-2a7b-4e88-880e-77b5a03c502c
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: -1758520528963094988, guid: c348712bda248c246b8c49b3db54643f,
+      type: 3}
+  trigger:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Trigger
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: b7bc408a-671a-4ae5-b4dc-714a5303dfe4
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 7904272356298805229, guid: c348712bda248c246b8c49b3db54643f,
+      type: 3}
 --- !u!1 &6583513823572844596
 GameObject:
   m_ObjectHideFlags: 0
@@ -2407,6 +2598,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bddde9176ac9e346b4406ce15b7195c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _ButtonColor: {r: 1, g: 1, b: 1, a: 1}
+  _HighlightColor: {r: 1, g: 1, b: 1, a: 1}
+  _PressedColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &5334964115703232094 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8931224559802610382, guid: 535e3e8512ca9de4e95314dde4fd5fff,
