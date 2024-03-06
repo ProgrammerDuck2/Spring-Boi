@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class S_NPCInteractions_MA : MonoBehaviour
 {
@@ -10,11 +11,15 @@ public class S_NPCInteractions_MA : MonoBehaviour
     [SerializeField] private List<string> speech = new List<string>();
     //private int currentSpeech = 0;
     private GameObject player;
+    PlayerInput PlayerInput;
+    bool inTrigger = false;
 
     // Start is called before the first frame update
     void Start()
     {
         player = FindFirstObjectByType<S_Movement_TB>().gameObject;
+        PlayerInput = player.GetComponent<PlayerInput>();
+        PlayerInput.actions["TabletInteractions"].started += StartSpeech;
     }
 
     // Update is called once per frame
@@ -26,17 +31,23 @@ public class S_NPCInteractions_MA : MonoBehaviour
         NPCText.transform.rotation = rotation;
     }
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
-        {
-            if (Input.GetKeyDown(KeyCode.E))
-            {    
-                StartCoroutine(Speech());
-            }
-        }
+        //if (other.gameObject.tag == "Player")
+        //{
+        //    if (Input.GetKeyDown(KeyCode.E))
+        //    {    
+        //        StartCoroutine(Speech());
+        //    }
+        //}
+        inTrigger = true;
     }
-    
+
+    private void OnTriggerExit(Collider other)
+    {
+        inTrigger = false;
+    }
+
     IEnumerator Speech()
     {
         for (int i = 0; i < speech.Count; i++) 
@@ -45,6 +56,14 @@ public class S_NPCInteractions_MA : MonoBehaviour
             NPCText.text = speech[i];
             //currentSpeech++;
             yield return new WaitForSeconds(1);
+        }
+    }
+
+    void StartSpeech(InputAction.CallbackContext context)
+    {
+        if (inTrigger)
+        {
+            StartCoroutine(Speech());
         }
     }
 }
