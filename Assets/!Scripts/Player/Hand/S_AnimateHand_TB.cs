@@ -1,25 +1,21 @@
 using NaughtyAttributes;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(PlayerInput))]
-[RequireComponent(typeof(Animator))]
 public class S_AnimateHand_TB : MonoBehaviour
 {
     Animator animator;
-    [SerializeField] PlayerInput input;
+    [HideInInspector] public S_Hand_TB hand;
 
     [SerializeField] int mouseButton;
 
+    [SerializeField] bool useReference;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        animator = GetComponent<Animator>();
-
-        input.SwitchCurrentControlScheme("XR");
-        Debug.Log(name + " utilizing " + input.currentControlScheme);
-    }
+    [ShowIf("useReference")]
+    [SerializeField] InputActionProperty grip;
+    [ShowIf("useReference")]
+    [SerializeField] InputActionProperty trigger;
 
     // Update is called once per frame
     void Update()
@@ -29,19 +25,15 @@ public class S_AnimateHand_TB : MonoBehaviour
 
         if (S_Settings_TB.IsVRConnected)
         {
-            //Debug.Log(input.currentControlScheme);
-
-            if (input.currentControlScheme == "XR")
+            if (!useReference)
             {
-                pinchValue = input.actions["PinchValue"].ReadValue<float>();
-                gripValue = input.actions["GripValue"].ReadValue<float>();
-
-                //Debug.Log(name + input.actions["PinchValue"] + " " + input.actions["GripValue"]);
+                pinchValue = hand.playerInput.actions["PinchValue"].ReadValue<float>();
+                gripValue = hand.playerInput.actions["GripValue"].ReadValue<float>();
             }
             else
             {
-                //Debug.LogError(name + " controlscheme is not XR");
-                input.SwitchCurrentControlScheme("XR");
+                pinchValue = trigger.action.ReadValue<float>();
+                gripValue = grip.action.ReadValue<float>();
             }
         }
         else
@@ -50,7 +42,9 @@ public class S_AnimateHand_TB : MonoBehaviour
             gripValue = Input.GetMouseButton(mouseButton) ? 1 : 0;
         }
 
-        animator.SetFloat("Trigger", pinchValue);
-        animator.SetFloat("Grip", gripValue);
+        if (hand.HandArtAnimation == null) return;
+
+        hand.HandArtAnimation.SetFloat("Trigger", pinchValue);
+        hand.HandArtAnimation.SetFloat("Grip", gripValue);
     }
 }

@@ -174,6 +174,7 @@ public class S_LaunchArms_TB : MonoBehaviour
         {
             pullingHand = false;
             currentHandMissile = Instantiate(handToLaunch, transform.position, Quaternion.Euler(MissileRotationCalc()));
+            currentHandMissile.GetComponent<S_AnimateHand_TB>().hand = hand;
 
             //if (hand.Aim.AimingAt)
             //    currentHandMissile.transform.LookAt(hand.Aim.AimingAt.transform.position);
