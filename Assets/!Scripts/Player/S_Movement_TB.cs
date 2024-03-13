@@ -157,6 +157,8 @@ public class S_Movement_TB : MonoBehaviour
         move *= Sprint ? S_Stats_MA.Speed.y : S_Stats_MA.Speed.x;
 
         rb.velocity += move;
+
+        print(moveValue);
     }
 
     void Turn()
