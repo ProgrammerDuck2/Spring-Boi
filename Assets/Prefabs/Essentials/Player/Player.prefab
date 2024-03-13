@@ -155,9 +155,6 @@ MonoBehaviour:
   Capsule: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
   HighSpeed: 0
   Grounded: 0
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 0
   IRLPosOffset: {x: 0, y: 0, z: 0}
 --- !u!114 &7450994534025487902
 MonoBehaviour:
@@ -959,7 +956,7 @@ MonoBehaviour:
     type: 3}
   pullingHand: 0
   cooldown: 0
-  launchDirectionOffset: {x: 0, y: 0, z: 0}
+  launchDirectionOffset: {x: 15, y: -10, z: 0}
 --- !u!114 &4105961526385780978
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2459,6 +2456,7 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 8697459523607535709, guid: 535e3e8512ca9de4e95314dde4fd5fff, type: 3}
     - {fileID: 3334788541327270866, guid: 535e3e8512ca9de4e95314dde4fd5fff, type: 3}
+    - {fileID: 840657013026814917, guid: 535e3e8512ca9de4e95314dde4fd5fff, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -2615,6 +2613,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 3601627298252784784}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &5778828195911188373 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7046173341517429509, guid: 535e3e8512ca9de4e95314dde4fd5fff,
+    type: 3}
+  m_PrefabInstance: {fileID: 3601627298252784784}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7719914085055459534 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6546307545734509662, guid: 535e3e8512ca9de4e95314dde4fd5fff,
@@ -2653,6 +2657,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tabletPages:
   - {fileID: 4373134105544555481}
+  - {fileID: 5778828195911188373}
   - {fileID: 7719914085055459534}
   - {fileID: 3442898189991642251}
   - {fileID: 2956713830823696288}
