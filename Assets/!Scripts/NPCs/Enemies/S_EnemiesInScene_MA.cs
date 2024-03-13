@@ -7,7 +7,7 @@ public class S_EnemiesInScene_MA : MonoBehaviour
 {
     [SerializeField] private GameObject enemiesDeadText;
     private GameObject enemiesDead;
-    private bool text = true;
+    //private bool text = true;
     [SerializeField] GameObject button;
     // Start is called before the first frame update
     void Start()
