@@ -38,7 +38,7 @@ public class S_Movement_TB : MonoBehaviour
 
     [ShowIf("DebugMode")]
     public bool Grounded; //ground :)
-    public LayerMask groundLayer;
+    LayerMask groundLayer;
     LayerMask stickGroundLayer;
 
     [HorizontalLine(color: EColor.Violet)]
