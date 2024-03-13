@@ -19,7 +19,7 @@ public class S_NPCInteractions_MA : MonoBehaviour
     {
         player = FindFirstObjectByType<S_Movement_TB>().gameObject;
         PlayerInput = player.GetComponent<PlayerInput>();
-        PlayerInput.actions["TabletInteractions"].started += StartSpeech;
+        PlayerInput.actions["Interact"].started += StartSpeech;
     }
 
     // Update is called once per frame
@@ -55,7 +55,7 @@ public class S_NPCInteractions_MA : MonoBehaviour
             print(speech[i]);
             NPCText.text = speech[i];
             //currentSpeech++;
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(3);
         }
     }
 
