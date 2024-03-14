@@ -25,6 +25,9 @@ public class S_Movement_TB : MonoBehaviour
     [Header("Input")]
     Transform pcPov;
 
+    [SerializeField] InputActionProperty IrlPos;
+    [SerializeField] InputActionProperty jump;
+
     [Header("Physics")]
     [ShowIf("DebugMode")]
     [Range(0.1f, 1f)]
@@ -63,7 +66,8 @@ public class S_Movement_TB : MonoBehaviour
         VrCameraOffset = transform.GetChild(0).GetChild(0);
         VrCamera = VrCameraOffset.GetChild(0);
 
-        playerInput.actions["Jump"].started += JumpPressed;
+        //playerInput.actions["Jump"].started += JumpPressed;
+        jump.action.started += JumpPressed;
 
         playerInput.actions["Sprint"].started += SprintHeld;
 
@@ -85,8 +89,12 @@ public class S_Movement_TB : MonoBehaviour
         {
             transform.position -= IRLPosOffset;
             IRLPosOffset = Vector3.zero;
-            IRLPosOffset += new Vector3(playerInput.actions["IRLPosition"].ReadValue<Vector3>().x, 0, playerInput.actions["IRLPosition"].ReadValue<Vector3>().z);
+
+            //IRLPosOffset += new Vector3(playerInput.actions["IRLPosition"].ReadValue<Vector3>().x, 0, playerInput.actions["IRLPosition"].ReadValue<Vector3>().z);
+            IRLPosOffset += new Vector3(IrlPos.action.ReadValue<Vector3>().x, 0, IrlPos.action.ReadValue<Vector3>().z);
             transform.position += IRLPosOffset;
+
+            Debug.LogError(IRLPosOffset);
         }
 
     }
@@ -157,8 +165,6 @@ public class S_Movement_TB : MonoBehaviour
         move *= Sprint ? S_Stats_MA.Speed.y : S_Stats_MA.Speed.x;
 
         rb.velocity += move;
-
-        print(moveValue);
     }
 
     void Turn()

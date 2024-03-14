@@ -30,6 +30,12 @@ public class S_GameManager_TB : MonoBehaviour
 
     void Update()
     {
-        
+        if(Debug.isDebugBuild)
+        {
+            if(Input.GetKeyDown(KeyCode.Escape))
+            {
+                Cursor.lockState = CursorLockMode.None;
+            }
+        }
     }
 }

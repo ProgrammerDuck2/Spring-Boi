@@ -15,7 +15,7 @@ using UnityEngine.XR;
 [RequireComponent(typeof(S_AnimateHand_TB))]
 public class S_Hand_TB : MonoBehaviour
 {
-    [HideInInspector] public GameObject Player;
+    public GameObject Player;
     [HideInInspector] S_Movement_TB PlayerMovement;
     public LayerMask grabable;
     [HideInInspector] public PlayerInput playerInput;
@@ -74,6 +74,8 @@ public class S_Hand_TB : MonoBehaviour
     // Start is called before the first frame update
     IEnumerator Start()
     {
+        Player = transform.parent.parent.parent.gameObject;
+
         Grab = GetComponent<S_Grab_TB>();
         LaunchArms = GetComponent<S_LaunchArms_TB>();
         Punch = GetComponent<S_Punch_TB>();
@@ -132,7 +134,8 @@ public class S_Hand_TB : MonoBehaviour
 
             if (playerInput.actions["Position"].ReadValue<Vector3>() == Vector3.zero)
             {
-                Debug.LogWarning("Controller position not found");
+                if (DebugMode)
+                    Debug.LogWarning("Controller position not found");
                 HandArt.transform.GetChild(0).gameObject.SetActive(false);
 
             }
@@ -145,15 +148,19 @@ public class S_Hand_TB : MonoBehaviour
             transform.localPosition = pos.action.ReadValue<Vector3>() + HandOffset - PlayerMovement.IRLPosOffset;
             transform.localRotation = rot.action.ReadValue<Quaternion>();
 
+
             if (pos.action.ReadValue<Vector3>() == Vector3.zero)
             {
-                Debug.LogWarning("Controller position not found");
-                HandArt.transform.GetChild(0).gameObject.SetActive(false);
+                if(DebugMode)
+                    Debug.LogWarning("Controller position not found");
+                if(HandArt != null)
+                    HandArt.transform.GetChild(0).gameObject.SetActive(false);
 
             }
             else
             {
-                HandArt.transform.GetChild(0).gameObject.SetActive(true);
+                if (HandArt != null)
+                    HandArt.transform.GetChild(0).gameObject.SetActive(true);
             }
         }
 
