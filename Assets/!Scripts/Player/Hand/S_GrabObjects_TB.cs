@@ -29,11 +29,13 @@ public class S_GrabObjects_TB : S_Hand_TB
     {
         if(pickUp)
         {
+            toPickup.GetComponent<S_PickupReaction_TB>().PickedUp();
             pickedUp = toPickup;
             pickedUp.transform.parent = transform;
         }
         else
         {
+            toPickup.GetComponent<S_PickupReaction_TB>().LetGo();
             pickedUp.transform.parent = null;
             pickedUp = null;
         }
@@ -41,6 +43,11 @@ public class S_GrabObjects_TB : S_Hand_TB
         if (toPickup.TryGetComponent<Rigidbody>(out Rigidbody rb))
         {
             rb.isKinematic = pickUp;
+
+            if(!rb.isKinematic)
+            {
+                rb.velocity += motion.CalculateHandVelocity() * 3;
+            }
         }
 
         if (toPickup.TryGetComponent<Collider>(out Collider collider))

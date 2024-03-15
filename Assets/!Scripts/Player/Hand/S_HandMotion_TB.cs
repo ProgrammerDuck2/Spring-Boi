@@ -34,6 +34,11 @@ public class S_HandMotion_TB : S_Hand_TB
         }
     }
 
+    public Vector3 CalculateHandVelocity()
+    {
+        return (handPos[0] - handPos[1])/Time.deltaTime;
+    }
+
     public Vector3 GetAverageVector3(List<Vector3> Vector3s)
     {
         Vector3 average = Vector3.zero;
