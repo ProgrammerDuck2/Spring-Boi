@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class S_HandInteract_TBMA : MonoBehaviour
+public class S_HandInteract_TBMA : S_Hand_TB
 {
     [SerializeField] LayerMask Interactable;
     [HideInInspector] RaycastHit raycast;
@@ -12,20 +12,14 @@ public class S_HandInteract_TBMA : MonoBehaviour
     S_Button_TBMA currentClickButton;
     S_Button_TBMA currentHoverButton;
     
-    S_Hand_TB hand;
-
     bool clicking;
 
-    private void Start()
-    {
-        hand = GetComponent<S_Hand_TB>();
-    }
 
     void Update()
     {
         Physics.Raycast(transform.position, transform.forward, out raycast, 2, Interactable);
 
-        if (hand.DebugMode)
+        if (DebugMode)
         {
             Debug.DrawLine(transform.position, raycast.point, Color.red);
         }
@@ -99,13 +93,9 @@ public class S_HandInteract_TBMA : MonoBehaviour
             clicking = false;
         }
     }
-    private void OnValidate()
-    {
-        hand = GetComponent<S_Hand_TB>();
-    }
     private void OnDrawGizmos()
     {
-        if (hand.DebugMode)
+        if (DebugMode)
         {
             Gizmos.color = Color.green;
             Gizmos.DrawLine(transform.position, transform.position + transform.forward * 2);
