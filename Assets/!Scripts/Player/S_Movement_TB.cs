@@ -31,6 +31,9 @@ public class S_Movement_TB : MonoBehaviour
     public float groundCheckRadius = 0.9f;
     [ShowIf("DebugMode")]
     public Mesh Capsule;
+    [ShowIf("DebugMode")]
+    [Range(0, 100)]
+    public float gravityStrength = 15;
 
     Rigidbody rb;
     [ShowIf("DebugMode")]
@@ -109,6 +112,8 @@ public class S_Movement_TB : MonoBehaviour
         }
 
         Movement();
+
+        rb.AddForce(Vector3.down * gravityStrength, ForceMode.Acceleration);
 
         if (S_Settings_TB.IsVRConnected)
         {
