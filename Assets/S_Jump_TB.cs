@@ -15,6 +15,7 @@ public class S_Jump_TB : S_Player_TB
     }
     public void Jump()
     {
+        print("juump");
         if (Grounded)
         {
             print("Jump");

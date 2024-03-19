@@ -42,10 +42,10 @@ public class S_PlayerPhysics_TB : S_Player_TB
 
     public Vector3 groundCheckTopPos()
     {
-        return transform.position - transform.up * (1f - radius);
+        return transform.position - transform.up * (1.2f - radius);
     }
     public Vector3 groundCheckBottomPos()
     {
-        return transform.position + transform.up * (1.2f - radius);
+        return transform.position + transform.up * (1f - radius);
     }
 }
