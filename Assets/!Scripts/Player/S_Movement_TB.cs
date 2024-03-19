@@ -45,7 +45,7 @@ public class S_Movement_TB : S_Player_TB
     // Update is called once per frame
     void Update()
     {
-        if (Grounded && playerRigidbody.velocity.magnitude < new Vector3(S_Stats_MA.AerialMaxVelocity.x, 0, S_Stats_MA.AerialMaxVelocity.z).magnitude / 2)
+        if (Grounded && !crouch.isCrouching)
         {
             HighSpeed = false;
         }
