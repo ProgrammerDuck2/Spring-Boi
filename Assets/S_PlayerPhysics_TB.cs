@@ -9,6 +9,10 @@ public class S_PlayerPhysics_TB : S_Player_TB
     [Range(0, 100)]
     public float gravityStrength = 15;
 
+    [ShowIf("DebugMode")]
+    [Range(0f, 1f)]
+    [SerializeField] float radius;
+
     void FixedUpdate()
     {
         playerRigidbody.AddForce(Vector3.down * gravityStrength, ForceMode.Acceleration);
@@ -16,7 +20,7 @@ public class S_PlayerPhysics_TB : S_Player_TB
 
     public bool CheckGround()
     {
-        return Physics.CheckCapsule(groundCheckBottomPos(), groundCheckTopPos(), .9f, groundLayer);
+        return Physics.CheckCapsule(groundCheckBottomPos(), groundCheckTopPos(), radius, groundLayer);
 
         //if (Grounded != Physics.CheckCapsule(groundCheckBottomPos(), groundCheckTopPos(), groundCheckRadius, groundLayer))
         //{
@@ -38,10 +42,10 @@ public class S_PlayerPhysics_TB : S_Player_TB
 
     public Vector3 groundCheckTopPos()
     {
-        return transform.position - transform.up * 0.6f;
+        return transform.position - transform.up * (1f - radius);
     }
     public Vector3 groundCheckBottomPos()
     {
-        return transform.position + transform.up * 0.5f;
+        return transform.position + transform.up * (1.2f - radius);
     }
 }

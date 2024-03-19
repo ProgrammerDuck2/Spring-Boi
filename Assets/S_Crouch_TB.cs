@@ -9,7 +9,6 @@ public class S_Crouch_TB : S_Player_TB
     public bool isCrouching;
     void Update()
     {
-        print(IRLPosition.y);
         playerArt.transform.localScale = new Vector3(1, IRLPosition.y / 2 + .75f, 1);
 
         if (IRLPosition.y < .1f)
