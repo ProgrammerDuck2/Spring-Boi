@@ -20,8 +20,11 @@ public class S_MainQuest_MA : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        button.GetComponent<Image>().color = button.GetComponent<Button>().colors.pressedColor;
-        Debug.Log("task completed");
+        if (other.gameObject.CompareTag("Player"))
+        {
+            button.GetComponent<Image>().color = button.GetComponent<Button>().colors.pressedColor;
+            Debug.Log("task completed");
+        }
     }
 
 }

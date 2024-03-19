@@ -15,6 +15,6 @@ public class S_OilCansInScene_MA : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(S_Stats_MA.oilCollected);
+        //Debug.Log(S_Stats_MA.oilCollected);
     }
 }
