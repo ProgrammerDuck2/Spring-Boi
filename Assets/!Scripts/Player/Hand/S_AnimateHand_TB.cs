@@ -3,10 +3,9 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class S_AnimateHand_TB : MonoBehaviour
+public class S_AnimateHand_TB : S_Hand_TB
 {
     Animator animator;
-    [HideInInspector] public S_Hand_TB hand;
 
     [SerializeField] int mouseButton;
 
@@ -27,8 +26,8 @@ public class S_AnimateHand_TB : MonoBehaviour
         {
             if (!useReference)
             {
-                pinchValue = hand.playerInput.actions["PinchValue"].ReadValue<float>();
-                gripValue = hand.playerInput.actions["GripValue"].ReadValue<float>();
+                pinchValue = playerInput.actions["PinchValue"].ReadValue<float>();
+                gripValue = playerInput.actions["GripValue"].ReadValue<float>();
             }
             else
             {
@@ -42,9 +41,9 @@ public class S_AnimateHand_TB : MonoBehaviour
             gripValue = Input.GetMouseButton(mouseButton) ? 1 : 0;
         }
 
-        if (hand.HandArtAnimation == null) return;
+        if (HandArtAnimation == null) return;
 
-        hand.HandArtAnimation.SetFloat("Trigger", pinchValue);
-        hand.HandArtAnimation.SetFloat("Grip", gripValue);
+        HandArtAnimation.SetFloat("Trigger", pinchValue);
+        HandArtAnimation.SetFloat("Grip", gripValue);
     }
 }

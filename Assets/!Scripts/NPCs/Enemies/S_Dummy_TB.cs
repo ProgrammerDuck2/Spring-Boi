@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class S_Dummy_TB : MonoBehaviour, S_Enemies_MA
+public class S_Dummy_TB : S_PickupReaction_TB, S_Enemies_MA
 {
     [SerializeField] float maxHealth;
     [ShowNonSerializedField] float health;
