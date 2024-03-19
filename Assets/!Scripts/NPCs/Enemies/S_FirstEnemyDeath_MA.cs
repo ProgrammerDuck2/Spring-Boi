@@ -1,12 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class S_EnemiesInScene_MA : MonoBehaviour
+public class S_FirstEnemyDeath_MA : MonoBehaviour
 {
-    [HideInInspector] public bool enemiesInScene;
-
+    [SerializeField] GameObject oilCan;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +16,7 @@ public class S_EnemiesInScene_MA : MonoBehaviour
     {
         if (transform.childCount == 0)
         {
-            enemiesInScene = true;
+            Instantiate(oilCan);
         }
     }
 }

@@ -55,6 +55,7 @@ public class S_EnemyFight : MonoBehaviour, S_Enemies_MA
             transform.LookAt(player.transform.position);
             navMeshAgent.destination = player.transform.position - transform.forward * 1.5f;
         }
+        Debug.Log(navMeshAgent.destination);
 
         nextAttack += Time.deltaTime;
         //Debug.Log(nextAttack);
