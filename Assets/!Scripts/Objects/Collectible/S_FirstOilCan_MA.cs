@@ -18,9 +18,11 @@ public class S_FirstOilCan_MA : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Vector3 arenaTransform = arenaCenter.transform.position;
         if (EnemiesInScene.enemiesInScene && !hasHappened)
         {
-            Instantiate(oilCan, gameObject.transform);
+            Debug.Log("w");
+            Instantiate(oilCan, arenaTransform, oilCan.transform.rotation);
             hasHappened = true;
         }
     }
