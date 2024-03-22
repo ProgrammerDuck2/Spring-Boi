@@ -30,11 +30,11 @@ public class S_MissionsTablet_MA : MonoBehaviour
     [Button]
     void UpdateQuests()
     {
-        int originalChildCound = transform.childCount - 1;
+        int originalChildCound = content.childCount - 1;
 
         for (int i = 0; i < originalChildCound; i++)
         {
-            DestroyImmediate(transform.GetChild(0).gameObject, true);
+            DestroyImmediate(content.GetChild(0).gameObject, true);
         }
 
         for (int i = 0; i < activeQuests.Count; i++)
