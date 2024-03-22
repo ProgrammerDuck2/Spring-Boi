@@ -19,6 +19,7 @@ public class S_Player_TB : MonoBehaviour
     [HideInInspector] public S_Movement_TB movement;
     [HideInInspector] public S_Jump_TB jump;
     [HideInInspector] public S_PlayerPhysics_TB physics;
+    [HideInInspector] public S_Crouch_TB crouch;
 
     [HideInInspector] public Rigidbody playerRigidbody;
 
@@ -36,6 +37,7 @@ public class S_Player_TB : MonoBehaviour
         movement = GetComponent<S_Movement_TB>();
         jump = GetComponent<S_Jump_TB>();
         playerRigidbody = GetComponent<Rigidbody>();
+        crouch = GetComponent<S_Crouch_TB>();
 
         playerInput = GetComponent<PlayerInput>();
 

@@ -6,17 +6,6 @@ using UnityEngine.InputSystem;
 
 public class S_Jump_TB : S_Player_TB
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public void JumpPressed(InputAction.CallbackContext context)
     {
         Jump();
@@ -26,7 +15,7 @@ public class S_Jump_TB : S_Player_TB
         if (Grounded)
         {
             print("Jump");
-            playerRigidbody.velocity += Vector3.up * S_Stats_MA.JumpPower;
+            playerRigidbody.velocity += !crouch.isCrouching ? Vector3.up * S_Stats_MA.JumpPower : Vector3.up * S_Stats_MA.JumpPower / 2;
         }
     }
     private void OnDrawGizmos()
