@@ -8,8 +8,13 @@ using UnityEngine.XR;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(PlayerInput))]
-public class S_Movement_TB : S_Player_TB
+public class S_Movement_TB : MonoBehaviour
 {
+    public bool DebugMode;
+
+    [Header("Input")]
+    PlayerInput playerInput;
+
     [Header("VR")]
     Transform VrCamera;
     Transform VrCameraOffset;
@@ -20,9 +25,24 @@ public class S_Movement_TB : S_Player_TB
     [Header("Input")]
     Transform pcPov;
 
+    [SerializeField] InputActionProperty IrlPos;
+    [SerializeField] InputActionProperty jump;
+
     [Header("Physics")]
     [ShowIf("DebugMode")]
+    [Range(0.1f, 1f)]
+    public float groundCheckRadius = 0.9f;
+    [ShowIf("DebugMode")]
+    public Mesh Capsule;
+
+    Rigidbody rb;
+    [ShowIf("DebugMode")]
     public bool HighSpeed;
+
+    [ShowIf("DebugMode")]
+    public bool Grounded; //ground :)
+    LayerMask groundLayer;
+    LayerMask stickGroundLayer;
 
     [HorizontalLine(color: EColor.Violet)]
     [Header("Other")]
@@ -35,17 +55,32 @@ public class S_Movement_TB : S_Player_TB
     // Start is called before the first frame update
     void Start()
     {
+        rb = GetComponent<Rigidbody>();
+        playerInput = GetComponent<PlayerInput>();
         bodyArt = transform.GetChild(1);
         pcPov = transform.GetChild(2);
 
+        groundLayer = LayerMask.GetMask("Ground", "StickGround");
+        stickGroundLayer = LayerMask.GetMask("StickGround");
+
         VrCameraOffset = transform.GetChild(0).GetChild(0);
         VrCamera = VrCameraOffset.GetChild(0);
+
+        //playerInput.actions["Jump"].started += JumpPressed;
+        jump.action.started += JumpPressed;
+
+        playerInput.actions["Sprint"].started += SprintHeld;
+
+        playerInput.actions["Crouch"].started += Crouch;
+        playerInput.actions["Crouch"].canceled += Crouch;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Grounded && playerRigidbody.velocity.magnitude < new Vector3(S_Stats_MA.AerialMaxVelocity.x, 0, S_Stats_MA.AerialMaxVelocity.z).magnitude / 2)
+        CheckGround();
+
+        if (Grounded && rb.velocity.magnitude < new Vector3(S_Stats_MA.AerialMaxVelocity.x, 0, S_Stats_MA.AerialMaxVelocity.z).magnitude / 2)
         {
             HighSpeed = false;
         }
@@ -54,8 +89,12 @@ public class S_Movement_TB : S_Player_TB
         {
             transform.position -= IRLPosOffset;
             IRLPosOffset = Vector3.zero;
-            IRLPosOffset += new Vector3(IRLPosition.x, 0, IRLPosition.z);
+
+            //IRLPosOffset += new Vector3(playerInput.actions["IRLPosition"].ReadValue<Vector3>().x, 0, playerInput.actions["IRLPosition"].ReadValue<Vector3>().z);
+            IRLPosOffset += new Vector3(IrlPos.action.ReadValue<Vector3>().x, 0, IrlPos.action.ReadValue<Vector3>().z);
             transform.position += IRLPosOffset;
+
+            Debug.LogError(IRLPosOffset);
         }
 
     }
@@ -65,19 +104,53 @@ public class S_Movement_TB : S_Player_TB
         {
             if (Sprint)
             {
-                playerRigidbody.velocity = Clamp(playerRigidbody.velocity, S_Stats_MA.MaxVelocity * 2);
+                rb.velocity = Clamp(rb.velocity, S_Stats_MA.MaxVelocity * 2);
             }
             else
             {
-                playerRigidbody.velocity = Clamp(playerRigidbody.velocity, S_Stats_MA.MaxVelocity);
+                rb.velocity = Clamp(rb.velocity, S_Stats_MA.MaxVelocity);
             }
         }
         else
         {
-            playerRigidbody.velocity = Clamp(playerRigidbody.velocity, S_Stats_MA.AerialMaxVelocity);
+            rb.velocity = Clamp(rb.velocity, S_Stats_MA.AerialMaxVelocity);
         }
 
         Movement();
+
+        if (S_Settings_TB.IsVRConnected)
+        {
+            //Turn();
+        }
+    }
+
+    void CheckGround()
+    {
+
+        if (Grounded != Physics.CheckCapsule(groundCheckBottomPos(), groundCheckTopPos(), groundCheckRadius, groundLayer))
+        {
+            Collider[] ground = Physics.OverlapCapsule(groundCheckBottomPos(), groundCheckTopPos(), groundCheckRadius, groundLayer);
+
+            Grounded = !Grounded;
+
+            if(ground.Length >= 1)
+            {
+                //transform.parent =  ground[0].transform;
+                print("landed on stick ground, Object is: " + ground[0].gameObject);
+            }
+            else
+            {
+                //transform.parent = null;
+            }
+        }
+    }
+
+    private void OnDestroy()
+    {
+        playerInput.actions["Jump"].started -= JumpPressed;
+        playerInput.actions["Sprint"].started -= SprintHeld;
+        playerInput.actions["Crouch"].started -= Crouch;
+        playerInput.actions["Crouch"].canceled -= Crouch;
     }
     //Movements
     #region
@@ -91,7 +164,7 @@ public class S_Movement_TB : S_Player_TB
         move = bodyArt.transform.TransformDirection(Vector3.Normalize(new Vector3(moveValue.x, 0, moveValue.y)));
         move *= Sprint ? S_Stats_MA.Speed.y : S_Stats_MA.Speed.x;
 
-        playerRigidbody.velocity += move;
+        rb.velocity += move;
     }
 
     void Turn()
@@ -100,11 +173,29 @@ public class S_Movement_TB : S_Player_TB
 
         transform.eulerAngles += new Vector3(0, turnValue.x * S_Stats_MA.TurnSpeed * Time.fixedDeltaTime, 0);
     }
+
+    void Jump()
+    {
+        if (Grounded)
+        {
+            print("Jump");
+            rb.velocity += Vector3.up * S_Stats_MA.JumpPower;
+        }
+    }
+    void Crouch(InputAction.CallbackContext context)
+    {
+        transform.position += !context.canceled ? new Vector3(0, .5f, 0) : new Vector3(0, -.5f, 0);
+        transform.localScale = !context.canceled ? new Vector3(1, .5f, 1) : Vector3.one;
+    }
     #endregion
 
     //InputActions
     #region
-    public void SprintHeld(InputAction.CallbackContext context)
+    void JumpPressed(InputAction.CallbackContext context)
+    {
+        Jump();
+    }
+    void SprintHeld(InputAction.CallbackContext context)
     {
 
         Sprint = !Sprint;
@@ -113,7 +204,14 @@ public class S_Movement_TB : S_Player_TB
 
     //Gizmos
     #region
-
+    private void OnDrawGizmos()
+    {
+        if (DebugMode)
+        {
+            Gizmos.color = new Color(0, 1, 0, .5f);
+            Gizmos.DrawMesh(Capsule, groundCheckTopPos() + groundCheckBottomPos() - transform.up, transform.rotation, groundCheckSize());
+        }
+    }
     #endregion
 
     //Calculations
@@ -124,6 +222,18 @@ public class S_Movement_TB : S_Player_TB
             Mathf.Clamp(toClamp.x, -MaxVelocity.x, MaxVelocity.x),
             Mathf.Clamp(toClamp.y, -MaxVelocity.y, MaxVelocity.y),
             Mathf.Clamp(toClamp.z, -MaxVelocity.z, MaxVelocity.z));
+    }
+    Vector3 groundCheckTopPos()
+    {
+        return transform.position - transform.up * 0.6f;
+    }
+    Vector3 groundCheckBottomPos()
+    {
+        return transform.position + transform.up * 0.5f;
+    }
+    Vector3 groundCheckSize()
+    {
+        return new Vector3(transform.localScale.x * groundCheckRadius, transform.localScale.y, transform.localScale.z * groundCheckRadius);
     }
     #endregion
 }

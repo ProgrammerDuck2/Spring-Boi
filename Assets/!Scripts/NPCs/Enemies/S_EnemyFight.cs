@@ -29,16 +29,21 @@ public class S_EnemyFight : MonoBehaviour, S_Enemies_MA
     // Start is called before the first frame update
     void Start()
     {
-        Vector3 c1 = navCorner1.transform.position;
-        Vector3 c2 = navCorner2.transform.position;
         player = FindFirstObjectByType<S_Movement_TB>().gameObject;
         navMeshAgent = GetComponent<NavMeshAgent>();
+
+        if (navCorner1 == null || navCorner2 == null) return;
+
+        Vector3 c1 = navCorner1.transform.position;
+        Vector3 c2 = navCorner2.transform.position;
         navMeshAgent.destination = new Vector3(Random.Range(c1.x, c2.x), c1.y, Random.Range(c1.z, c2.z));
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(navCorner1 == null || navCorner2 == null) return;
+
         Vector3 c1 = navCorner1.transform.position;
         Vector3 c2 = navCorner2.transform.position;
         if (Vector3.Distance(transform.position, navMeshAgent.destination) < 2)
