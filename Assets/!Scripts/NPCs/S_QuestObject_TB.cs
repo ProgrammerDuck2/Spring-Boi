@@ -13,21 +13,21 @@ public class S_QuestObject_TB : ScriptableObject
 
     [Space(20)]
 
-    public S_Quests_TB.QuestType type;
+    public S_QuestEnums_TB.QuestType type;
 
     [HorizontalLine(color: EColor.Violet)]
 
-    public S_Quests_TB.QuestGoal goal;
+    public S_QuestEnums_TB.QuestGoal goal;
 
     [Space(5)]
-    [ShowIf("goal", S_Quests_TB.QuestGoal.GoToLocation)]
+    [ShowIf("goal", S_QuestEnums_TB.QuestGoal.GoToLocation)]
     public Vector3 Location;
 
     [Space(5)]
-    [ShowIf("goal", S_Quests_TB.QuestGoal.KillEnemies)]
+    [ShowIf("goal", S_QuestEnums_TB.QuestGoal.KillEnemies)]
     public int Amount;
 
     [Space(5)]
-    [ShowIf("goal", S_Quests_TB.QuestGoal.TalkToNPC)]
-    public GameObject NPC;
+    [ShowIf("goal", S_QuestEnums_TB.QuestGoal.TalkToNPC)]
+    public S_NPC_TB NPC;
 }

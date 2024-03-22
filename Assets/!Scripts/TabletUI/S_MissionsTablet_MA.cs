@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class S_MissionsTablet_MA : MonoBehaviour
 {
-    [SerializeField] List<S_QuestObject_TB> activeQuests = new List<S_QuestObject_TB>();
     [SerializeField] GameObject questButtonPrefab;
 
     Transform content
@@ -17,16 +16,11 @@ public class S_MissionsTablet_MA : MonoBehaviour
     public S_QuestObject_TB selectedQuest;
 
     
-    // Start is called before the first frame update
     void Start()
     {
         UpdateQuests();
     }
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
     [Button]
     public void UpdateQuests()
     {
@@ -37,10 +31,10 @@ public class S_MissionsTablet_MA : MonoBehaviour
             DestroyImmediate(content.GetChild(0).gameObject, true);
         }
 
-        for (int i = 0; i < activeQuests.Count; i++)
+        for (int i = 0; i < S_Quests_TB.activeQuests.Count; i++)
         {
             GameObject current = Instantiate(questButtonPrefab, content);
-            current.GetComponent<S_QuestButton_TB>().quest = activeQuests[i];
+            current.GetComponent<S_QuestButton_TB>().quest = S_Quests_TB.activeQuests[i];
         }
     }
 }

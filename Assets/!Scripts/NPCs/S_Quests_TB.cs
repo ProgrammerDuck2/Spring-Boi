@@ -1,18 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 public static class S_Quests_TB
 {
-    public enum QuestType
-    {
-        MainQuest,
-        SideQuest
-    }
-    public enum QuestGoal
-    {
-        GoToLocation,
-        KillEnemies,
-        TalkToNPC
-    }
+    public static List<S_QuestObject_TB> activeQuests = new List<S_QuestObject_TB>();
+    public static List<S_QuestObject_TB> completedQuests = new List<S_QuestObject_TB>();
 }

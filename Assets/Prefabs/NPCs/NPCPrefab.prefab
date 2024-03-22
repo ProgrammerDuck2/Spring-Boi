@@ -347,6 +347,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5851690266632721375}
   - component: {fileID: 5686595358427010509}
+  - component: {fileID: 485537687136545064}
   - component: {fileID: 4305950732056165287}
   m_Layer: 11
   m_Name: NPCPrefab
@@ -396,6 +397,27 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &485537687136545064
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9088791100132814212}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 5, y: 2, z: 5}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &4305950732056165287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -410,3 +432,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NPCText: {fileID: 7038765314449698874}
   speech: []
+  player: {fileID: 0}
