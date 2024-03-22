@@ -1303,7 +1303,7 @@ GameObject:
   - component: {fileID: 5416475602097796396}
   m_Layer: 8
   m_Name: Art
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2722,6 +2722,12 @@ PrefabInstance:
       propertyPath: m_Colors.m_PressedColor.r
       value: 0.03529412
       objectReference: {fileID: 0}
+    - target: {fileID: 5123991447692913044, guid: 535e3e8512ca9de4e95314dde4fd5fff,
+        type: 3}
+      propertyPath: selectedQuest
+      value: 
+      objectReference: {fileID: 11400000, guid: 67c42f3c78cd4b24da71c84aa0099c80,
+        type: 2}
     - target: {fileID: 5476443312448676566, guid: 535e3e8512ca9de4e95314dde4fd5fff,
         type: 3}
       propertyPath: m_Name
@@ -2845,10 +2851,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 2445598049035838664}
-    - targetCorrespondingSourceObject: {fileID: 2178666191054995483, guid: 535e3e8512ca9de4e95314dde4fd5fff,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 7180059546375491272}
     - targetCorrespondingSourceObject: {fileID: 8088994662100495767, guid: 535e3e8512ca9de4e95314dde4fd5fff,
         type: 3}
       insertIndex: -1
@@ -2882,18 +2884,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 3601627298252784784}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7180059546375491272
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3442898189991642251}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f522245142aa85844b2f1d27fb3bb6b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &3571862515158282737 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 29909991175484769, guid: 535e3e8512ca9de4e95314dde4fd5fff,
