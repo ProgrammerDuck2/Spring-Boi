@@ -117,7 +117,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 1.25}
+  m_AnchoredPosition: {x: -0.125, y: 1.237}
   m_SizeDelta: {x: 2, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &6785026572544487898
@@ -182,7 +182,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Press "A" To jump over the wall
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -209,10 +209,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 9.15
-  m_fontSizeBase: 36
+  m_fontSize: 3
+  m_fontSizeBase: 3
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 0
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -245,7 +245,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -1.9849443, y: -2.142557, z: -2.2199388, w: 0}
+  m_margin: {x: -0.31278086, y: -0.4569311, z: -0.12645711, w: 0.07765031}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   _SortingLayer: 0
@@ -347,7 +347,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5851690266632721375}
   - component: {fileID: 5686595358427010509}
-  - component: {fileID: 8838388701777197267}
+  - component: {fileID: 4305950732056165287}
   m_Layer: 11
   m_Name: NPCPrefab
   m_TagString: Untagged
@@ -396,7 +396,7 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8838388701777197267
+--- !u!114 &4305950732056165287
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -405,9 +405,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 9088791100132814212}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5adad2859d5b914a9e183af3f4f1cde, type: 3}
+  m_Script: {fileID: 11500000, guid: f7615b2bcce91e147898af625f6ef01e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
-  freeText: {fileID: 3385509873835862074, guid: 59a49d8de398fe044a3bab52f2bb8177,
-    type: 3}
+  NPCText: {fileID: 7038765314449698874}
+  speech: []

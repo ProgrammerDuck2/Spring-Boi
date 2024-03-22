@@ -1,6 +1,4 @@
 using NaughtyAttributes;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class S_GrabObjects_TB : S_Hand_TB
@@ -30,7 +28,7 @@ public class S_GrabObjects_TB : S_Hand_TB
         }
         if (!handInput.grabActivated) return;
 
-        if(other.CompareTag(pickupableTag))
+        if (other.CompareTag(pickupableTag))
         {
             togglePickedUp(true, other.transform);
         }
@@ -42,15 +40,24 @@ public class S_GrabObjects_TB : S_Hand_TB
 
     void togglePickedUp(bool pickUp, Transform toPickup)
     {
-        if(pickUp)
+        if (toPickup.TryGetComponent<S_PickupReaction_TB>(out S_PickupReaction_TB pr))
         {
-            toPickup.GetComponent<S_PickupReaction_TB>().PickedUp();
+            if (pickUp)
+            {
+                pr.PickedUp();
+            }
+            else
+            {
+                pr.PickedUp();
+            }
+        }
+        if (pickUp)
+        {
             pickedUp = toPickup;
             pickedUp.transform.parent = transform;
         }
         else
         {
-            toPickup.GetComponent<S_PickupReaction_TB>().LetGo();
             pickedUp.transform.parent = null;
             pickedUp = null;
         }
@@ -59,7 +66,7 @@ public class S_GrabObjects_TB : S_Hand_TB
         {
             rb.isKinematic = pickUp;
 
-            if(!rb.isKinematic)
+            if (!rb.isKinematic)
             {
                 rb.velocity += motion.CalculateHandVelocity() * 3;
             }
