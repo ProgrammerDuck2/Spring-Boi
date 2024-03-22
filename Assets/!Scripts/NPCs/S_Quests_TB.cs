@@ -9,4 +9,10 @@ public static class S_Quests_TB
         MainQuest,
         SideQuest
     }
+    public enum QuestGoal
+    {
+        GoToLocation,
+        KillEnemies,
+        TalkToNPC
+    }
 }

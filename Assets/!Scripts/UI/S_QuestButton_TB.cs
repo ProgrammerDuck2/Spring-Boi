@@ -1,3 +1,4 @@
+using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -6,7 +7,8 @@ using UnityEngine;
 public class S_QuestButton_TB : S_Button_TBMA
 {
     [Space(10)]
-    [SerializeField] S_QuestObject_TB quest;
+    [Expandable]
+    public S_QuestObject_TB quest;
 
     TMP_Text text;
     // Start is called before the first frame update
