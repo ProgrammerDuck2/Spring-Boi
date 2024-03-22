@@ -28,9 +28,9 @@ public class S_MissionsTablet_MA : MonoBehaviour
         
     }
     [Button]
-    void UpdateQuests()
+    public void UpdateQuests()
     {
-        int originalChildCound = content.childCount - 1;
+        int originalChildCound = content.childCount;
 
         for (int i = 0; i < originalChildCound; i++)
         {

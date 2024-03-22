@@ -3,12 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class S_QuestButton_TB : S_Button_TBMA
 {
     [Space(10)]
     [Expandable]
     public S_QuestObject_TB quest;
+
+    S_MissionsTablet_MA missionsTablet
+    {
+        get { return transform.parent.parent.parent.parent.GetComponent<S_MissionsTablet_MA>(); } 
+    }
 
     TMP_Text text;
     // Start is called before the first frame update
@@ -29,9 +35,16 @@ public class S_QuestButton_TB : S_Button_TBMA
             text = transform.GetChild(0).GetComponent<TMP_Text>();
         text.text = quest.Name; 
     }
-    // Update is called once per frame
-    void Update()
+
+    [Button]
+    public void UpdateSelectedQuest()
     {
-        
+        missionsTablet.selectedQuest = quest;
+        missionsTablet.UpdateQuests();
+    }
+    public override void OnClickEnter(ActionBasedController controller)
+    {
+        base.OnClickEnter(controller);
+        UpdateSelectedQuest();
     }
 }

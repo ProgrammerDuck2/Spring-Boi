@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -11,6 +9,16 @@ public class S_QuestDescription_TB : MonoBehaviour
 
     private void OnValidate()
     {
+        UpdateDescription();
+    }
+
+    private void Start()
+    {
+        UpdateDescription();
+    }
+
+    public void UpdateDescription()
+    {
         if (title == null)
             title = transform.GetChild(0).GetComponent<TMP_Text>();
         if (description == null)
@@ -20,12 +28,7 @@ public class S_QuestDescription_TB : MonoBehaviour
 
         if (missionsTablet.selectedQuest == null) return;
 
-            title.text = missionsTablet.selectedQuest.Name;
+        title.text = missionsTablet.selectedQuest.Name;
         description.text = missionsTablet.selectedQuest.Description;
-    }
-
-    private void Start()
-    {
-        
     }
 }
