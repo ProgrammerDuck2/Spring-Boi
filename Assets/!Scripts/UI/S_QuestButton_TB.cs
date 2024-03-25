@@ -40,11 +40,11 @@ public class S_QuestButton_TB : S_Button_TBMA
     public void UpdateSelectedQuest()
     {
         missionsTablet.selectedQuest = quest;
-        missionsTablet.UpdateQuests();
+        missionsTablet.UpdateQuestDescription();
     }
-    public override void OnClickEnter(ActionBasedController controller)
+    public override void OnHoverEnter (ActionBasedController controller)
     {
-        base.OnClickEnter(controller);
+        base.OnHoverEnter(controller);
         UpdateSelectedQuest();
     }
 }

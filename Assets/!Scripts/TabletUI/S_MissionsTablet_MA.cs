@@ -8,8 +8,12 @@ public class S_MissionsTablet_MA : MonoBehaviour
     [SerializeField] List<S_QuestObject_TB> _activeQuests = S_Quests_TB.activeQuests;
     List<S_QuestObject_TB> activeQuests
     {
-        get { return S_Quests_TB.activeQuests; }
-        set { 
+        get 
+        {
+            return S_Quests_TB.activeQuests; 
+        }
+        set 
+        { 
             S_Quests_TB.activeQuests = value;
             _activeQuests = value;
         }
@@ -26,12 +30,16 @@ public class S_MissionsTablet_MA : MonoBehaviour
         }
     }
 
+    [SerializeField] List<S_QuestObject_TB> shownQuests = new List<S_QuestObject_TB>();
+
     [SerializeField] GameObject questButtonPrefab;
 
     Transform content
     {
         get { return transform.GetChild(1).GetChild(0).GetChild(0); }
     }
+
+    [SerializeField] S_QuestDescription_TB description;
 
     [Space(20)]
     [Expandable]
@@ -41,6 +49,14 @@ public class S_MissionsTablet_MA : MonoBehaviour
     void Start()
     {
         UpdateQuests();
+    }
+
+    private void Update()
+    {
+        if (shownQuests != activeQuests)
+        {
+            UpdateQuests();
+        }
     }
 
     [Button]
@@ -61,5 +77,17 @@ public class S_MissionsTablet_MA : MonoBehaviour
             GameObject current = Instantiate(questButtonPrefab, content);
             current.GetComponent<S_QuestButton_TB>().quest = activeQuests[i];
         }
+
+
+        shownQuests.Clear();
+        foreach (var item in activeQuests)
+        {
+            shownQuests.Add(item);
+        }
+    }
+    [Button]
+    public void UpdateQuestDescription()
+    {
+        description.UpdateDescription();
     }
 }

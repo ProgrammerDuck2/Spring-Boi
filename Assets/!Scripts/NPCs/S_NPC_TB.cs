@@ -17,6 +17,10 @@ public class S_NPC_TB : MonoBehaviour
     PlayerInput PlayerInput;
     bool inTrigger = false;
 
+    [SerializeField] bool givesQuest;
+    [ShowIf("givesQuest")]
+    [SerializeField] S_QuestObject_TB questToGive;
+
     private void Start()
     {
         player = FindFirstObjectByType<S_Movement_TB>().gameObject;
@@ -26,7 +30,6 @@ public class S_NPC_TB : MonoBehaviour
 
     public virtual void OnTriggerEnter(Collider other)
     {
-        print(other.name);
         if (!other.CompareTag("Player")) return;
         inTrigger = true;
     }
@@ -67,9 +70,14 @@ public class S_NPC_TB : MonoBehaviour
     {
         for (int i = 0; i < speech.Count; i++)
         {
-            print(speech[i]);
             NPCText.text = speech[i];
             yield return new WaitForSeconds(textTime(speech[i]));
+        }
+
+        if(givesQuest)
+        {
+            S_Quests_TB.activeQuests.Add(questToGive);
+            givesQuest = false;
         }
     }
 
