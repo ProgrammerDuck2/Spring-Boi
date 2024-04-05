@@ -37,7 +37,7 @@ public class S_Hand_TB : MonoBehaviour
     public S_Punch_TB punch { get; private set; }
     public S_HandAim_TB aim { get; private set; }
     public S_HapticFeedback_TB hapticFeedback { get; private set; }
-    public S_HandInteract_TBMA interact { get; private set; }
+    public S_UIInteract_TBMA interact { get; private set; }
     public S_AnimateHand_TB anim { get; private set; }
     public S_HandInput_TB handInput { get; private set; }
     public S_HandMotion_TB motion { get; private set; }
@@ -65,7 +65,7 @@ public class S_Hand_TB : MonoBehaviour
         launchArms = GetComponent<S_LaunchArms_TB>();
         punch = GetComponent<S_Punch_TB>();
         aim = GetComponent<S_HandAim_TB>();
-        interact = GetComponent<S_HandInteract_TBMA>();
+        interact = GetComponent<S_UIInteract_TBMA>();
         anim = GetComponent<S_AnimateHand_TB>();
         handInput = GetComponent<S_HandInput_TB>();
         motion = GetComponent<S_HandMotion_TB>();
