@@ -16,7 +16,6 @@ public class S_Crouch_TB : S_Player_TB
         if (IRLPosition.y < .1f)
         {
             isCrouching = true;
-            print("crouch");
         } else
         {
             isCrouching = false;

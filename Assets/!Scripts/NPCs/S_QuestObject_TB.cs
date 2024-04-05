@@ -1,10 +1,8 @@
 using NaughtyAttributes;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Quest", menuName = "NPC/Quest", order = 1)]
+[System.Serializable]
 public class S_QuestObject_TB : ScriptableObject
 {
     public string Name;
@@ -29,5 +27,11 @@ public class S_QuestObject_TB : ScriptableObject
 
     [Space(5)]
     [ShowIf("goal", S_QuestEnums_TB.QuestGoal.TalkToNPC)]
-    public S_NPC_TB NPC;
+    public string NPCName;
+
+    [Button]
+    public void CompleteQuest()
+    {
+        S_Quests_TB.completedQuests.Add(this);
+    }
 }
