@@ -9,8 +9,8 @@ public class S_HandInteract_TBMA : S_Hand_TB
     [SerializeField] LayerMask Interactable;
     [HideInInspector] RaycastHit raycast;
 
-    S_Button_TBMA currentClickButton;
-    S_Button_TBMA currentHoverButton;
+    S_VRUI_TB currentClickElement;
+    S_VRUI_TB currentHoverElement;
     
     bool clicking;
 
@@ -27,37 +27,35 @@ public class S_HandInteract_TBMA : S_Hand_TB
         if (raycast.collider != null)
         {
             Debug.Log("Hover");
-            if (raycast.collider.TryGetComponent<S_Button_TBMA>(out S_Button_TBMA button))
+            if (raycast.collider.TryGetComponent<S_VRUI_TB>(out S_VRUI_TB uiElement))
             {
-                if (currentHoverButton == null)
+                if (currentHoverElement == null)
                 {
-                    button.OnHoverEnter(GetComponent<ActionBasedController>());
+                    uiElement.OnHoverEnter(GetComponent<ActionBasedController>());
 
-                    currentHoverButton = button;
-                } else if(currentHoverButton != button)
+                    currentHoverElement = uiElement;
+                } 
+                else if(currentHoverElement != uiElement)
                 {
-                    currentHoverButton.OnHoverExit();
+                    currentHoverElement.OnHoverExit();
 
-                    button.OnHoverEnter(GetComponent<ActionBasedController>());
+                    uiElement.OnHoverEnter(GetComponent<ActionBasedController>());
 
-                    currentHoverButton = button;
+                    currentHoverElement = uiElement;
                 }
 
                 if(!clicking) 
-                    button.OnHover();
-
-                if(button != currentClickButton)
-                    button.ButtonImage.color = button.HighlightColor;
+                    uiElement.OnHover();
 
             } else
             {
                 Debug.LogError("No button hit or button lack interface");
             }
         }
-        else if (currentHoverButton != null)
+        else if (currentHoverElement != null)
         {
-            currentHoverButton.OnHoverExit();
-            currentHoverButton = null;
+            currentHoverElement.OnHoverExit();
+            currentHoverElement = null;
         }
     }
 
@@ -65,10 +63,10 @@ public class S_HandInteract_TBMA : S_Hand_TB
     {
         if (raycast.collider != null)
         {
-            if (raycast.collider.TryGetComponent<S_Button_TBMA>(out S_Button_TBMA button))
+            if (raycast.collider.TryGetComponent<S_VRUI_TB>(out S_VRUI_TB uiElement))
             {
-                button.OnClickEnter(GetComponent<ActionBasedController>());
-                currentClickButton = button;
+                uiElement.OnClickEnter(GetComponent<ActionBasedController>());
+                currentClickElement = uiElement;
                 clicking = true;
             }
             else
@@ -79,17 +77,17 @@ public class S_HandInteract_TBMA : S_Hand_TB
     }
     public void Click(InputAction.CallbackContext context)
     {
-        if (currentClickButton != null)
+        if (currentClickElement != null)
         {
-            currentClickButton.OnClick();
+            currentClickElement.OnClick();
         }
     }
     public void ClickExit(InputAction.CallbackContext context)
     {
-        if (currentClickButton != null)
+        if (currentClickElement != null)
         {
-            currentClickButton.OnClickExit();
-            currentClickButton = null;
+            currentClickElement.OnClickExit();
+            currentClickElement = null;
             clicking = false;
         }
     }

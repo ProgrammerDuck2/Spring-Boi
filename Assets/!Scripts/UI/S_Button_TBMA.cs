@@ -5,26 +5,21 @@ using UnityEngine.XR.Interaction.Toolkit;
 [RequireComponent(typeof(RectTransform))]
 [RequireComponent(typeof(Image))]
 [RequireComponent(typeof(BoxCollider))]
-public class S_Button_TBMA : MonoBehaviour
+public class S_Button_TBMA : S_VRUI_TB
 {
-    S_HapticFeedback_TB hapticFeedback
-    {
-        get { return FindFirstObjectByType<S_HapticFeedback_TB>(); }
-    }
-
     [SerializeField] Color _ButtonColor = Color.white;
     public Color ButtonColor
     {
         get { return _ButtonColor; }
         set { _ButtonColor = value; }
     }
-    [SerializeField] Color _HighlightColor = Color.white;
+    [SerializeField] Color _HighlightColor = new Color(0.4f, .7f, 0.6f);
     public Color HighlightColor
     {
         get { return _HighlightColor; }
         set { _HighlightColor = value; }
     }
-    [SerializeField] Color _PressedColor = Color.white;
+    [SerializeField] Color _PressedColor = new Color(0.3f, .7f, 0.6f);
     public Color PressedColor
     {
         get { return _PressedColor; }
@@ -34,29 +29,34 @@ public class S_Button_TBMA : MonoBehaviour
     {
         get { return GetComponent<Image>(); }
     }
-    public virtual void OnClickEnter(ActionBasedController controller)
+    public override void OnClickEnter(ActionBasedController controller)
     {
-        hapticFeedback.TriggerHaptic(.3f, .1f, controller);
+        base.OnClickEnter(controller);
     }
-    public virtual void OnClick()
+    public override void OnClick()
     {
+        base.OnClick();
         ButtonImage.color = PressedColor;
     }
-    public virtual void OnClickExit()
+    public override void OnClickExit()
     {
+        base.OnClickExit();
         ButtonImage.color = ButtonColor;
     }
-    public virtual void OnHoverEnter(ActionBasedController controller)
+
+    public override void OnHoverEnter(ActionBasedController controller)
     {
-        hapticFeedback.TriggerHaptic(.3f, .1f, controller);
+        base.OnHoverEnter(controller);
     }
-    public virtual void OnHover()
+    public override void OnHover()
     {
+        base.OnHover();
         ButtonImage.color = HighlightColor;
     }
 
-    public virtual void OnHoverExit()
+    public override void OnHoverExit()
     {
+        base.OnHoverExit();
         ButtonImage.color = ButtonColor;
     }
 }
