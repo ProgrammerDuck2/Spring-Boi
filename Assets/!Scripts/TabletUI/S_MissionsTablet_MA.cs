@@ -1,4 +1,5 @@
 using NaughtyAttributes;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -53,8 +54,9 @@ public class S_MissionsTablet_MA : MonoBehaviour
 
     private void Update()
     {
-        if (shownQuests != activeQuests)
+        if (!CompareLists(shownQuests, activeQuests))
         {
+            print("hi");
             UpdateQuests();
         }
     }
@@ -89,5 +91,15 @@ public class S_MissionsTablet_MA : MonoBehaviour
     public void UpdateQuestDescription()
     {
         description.UpdateDescription();
+    }
+
+    bool CompareLists(List<S_QuestObject_TB> listOne, List<S_QuestObject_TB> listTwo)
+    {
+        for (int i = 0; i < listOne.Count; i++)
+        {
+            if (listOne[i] != listTwo[i]) return false;
+        }
+
+        return true;
     }
 }

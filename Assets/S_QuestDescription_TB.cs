@@ -17,10 +17,10 @@ public class S_QuestDescription_TB : MonoBehaviour
         UpdateDescription();
     }
 
-    private void Update()
-    {
-        UpdateDescription();
-    }
+    //private void Update()
+    //{
+    //    UpdateDescription();
+    //}
 
     public void UpdateDescription()
     {
