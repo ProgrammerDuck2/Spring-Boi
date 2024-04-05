@@ -197,7 +197,7 @@ MonoBehaviour:
   crouch: {fileID: 0}
   playerRigidbody: {fileID: 0}
   playerInput: {fileID: 0}
-  gravityStrength: 15
+  gravityStrength: 30
   radius: 0.05
 --- !u!114 &7450994534025487902
 MonoBehaviour:
@@ -481,7 +481,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 907347294438332188}
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &934147285485457507
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -619,13 +619,12 @@ GameObject:
   - component: {fileID: 7688464304896939812}
   - component: {fileID: 5216574354697245126}
   - component: {fileID: 8822841443464774981}
-  - component: {fileID: 5847699024300216432}
   - component: {fileID: 4180267728518917693}
   - component: {fileID: 4105961526385780978}
   - component: {fileID: 3648789083635388172}
   - component: {fileID: 7647668570352382506}
-  - component: {fileID: 3586515031591338924}
   - component: {fileID: 2083406465294018919}
+  - component: {fileID: 500505978439908720}
   - component: {fileID: 8967098793692904214}
   - component: {fileID: 8615640994133773806}
   - component: {fileID: 6297174659594756492}
@@ -904,26 +903,6 @@ MonoBehaviour:
     m_Bits: 200
   playerInput: {fileID: 0}
   DebugMode: 1
---- !u!114 &5847699024300216432
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3351723451793753507}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5378d8247b1c8b14e9acb78191595274, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerMovement: {fileID: 0}
-  playerRB: {fileID: 0}
-  grabable:
-    serializedVersion: 2
-    m_Bits: 0
-  playerInput: {fileID: 0}
-  DebugMode: 0
-  holding: 0
 --- !u!114 &4180267728518917693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1028,28 +1007,6 @@ MonoBehaviour:
   m_DefaultActionMap: VR LeftController
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &3586515031591338924
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3351723451793753507}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0fc830b622e6faa40b3607e4b98dab5a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerMovement: {fileID: 0}
-  playerRB: {fileID: 0}
-  grabable:
-    serializedVersion: 2
-    m_Bits: 0
-  playerInput: {fileID: 0}
-  DebugMode: 0
-  Interactable:
-    serializedVersion: 2
-    m_Bits: 16384
 --- !u!114 &2083406465294018919
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1097,6 +1054,29 @@ MonoBehaviour:
       m_Flags: 0
     m_Reference: {fileID: -4289430672226363583, guid: c348712bda248c246b8c49b3db54643f,
       type: 3}
+--- !u!114 &500505978439908720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3351723451793753507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d25f511afcb81a247b678da23d73d0a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerMovement: {fileID: 0}
+  playerRB: {fileID: 0}
+  grabable:
+    serializedVersion: 2
+    m_Bits: 0
+  playerInput: {fileID: 0}
+  DebugMode: 0
+  Interactable:
+    serializedVersion: 2
+    m_Bits: 16384
+  currentHoverElement: {fileID: 0}
 --- !u!114 &8967098793692904214
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1116,7 +1096,7 @@ MonoBehaviour:
     m_Bits: 0
   playerInput: {fileID: 0}
   DebugMode: 0
-  pickupableTag: Pickupable
+  interactTag: Interactable
 --- !u!114 &8615640994133773806
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1359,13 +1339,12 @@ GameObject:
   - component: {fileID: 3062307054786075334}
   - component: {fileID: 8035665058594888646}
   - component: {fileID: 2566892091331363610}
-  - component: {fileID: 1276960635295346805}
   - component: {fileID: 2423107481920071831}
   - component: {fileID: 3563714162967858921}
   - component: {fileID: 8867150001904660234}
   - component: {fileID: 3873103420856162664}
-  - component: {fileID: 7652098782127128457}
   - component: {fileID: 7141982945018708315}
+  - component: {fileID: 8854733766371683728}
   - component: {fileID: 681483132432645423}
   - component: {fileID: 1067752483508258985}
   - component: {fileID: 6788038894833963909}
@@ -1643,26 +1622,6 @@ MonoBehaviour:
     m_Bits: 200
   playerInput: {fileID: 0}
   DebugMode: 1
---- !u!114 &1276960635295346805
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6282108924297107850}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5378d8247b1c8b14e9acb78191595274, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerMovement: {fileID: 0}
-  playerRB: {fileID: 0}
-  grabable:
-    serializedVersion: 2
-    m_Bits: 0
-  playerInput: {fileID: 0}
-  DebugMode: 0
-  holding: 0
 --- !u!114 &2423107481920071831
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1767,28 +1726,6 @@ MonoBehaviour:
   m_DefaultActionMap: VR RightController
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &7652098782127128457
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6282108924297107850}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0fc830b622e6faa40b3607e4b98dab5a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerMovement: {fileID: 0}
-  playerRB: {fileID: 0}
-  grabable:
-    serializedVersion: 2
-    m_Bits: 0
-  playerInput: {fileID: 0}
-  DebugMode: 0
-  Interactable:
-    serializedVersion: 2
-    m_Bits: 16384
 --- !u!114 &7141982945018708315
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1836,6 +1773,29 @@ MonoBehaviour:
       m_Flags: 0
     m_Reference: {fileID: 7904272356298805229, guid: c348712bda248c246b8c49b3db54643f,
       type: 3}
+--- !u!114 &8854733766371683728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6282108924297107850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d25f511afcb81a247b678da23d73d0a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerMovement: {fileID: 0}
+  playerRB: {fileID: 0}
+  grabable:
+    serializedVersion: 2
+    m_Bits: 0
+  playerInput: {fileID: 0}
+  DebugMode: 0
+  Interactable:
+    serializedVersion: 2
+    m_Bits: 16384
+  currentHoverElement: {fileID: 0}
 --- !u!114 &681483132432645423
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1855,7 +1815,7 @@ MonoBehaviour:
     m_Bits: 0
   playerInput: {fileID: 0}
   DebugMode: 0
-  pickupableTag: Pickupable
+  interactTag: Interactable
 --- !u!114 &1067752483508258985
 MonoBehaviour:
   m_ObjectHideFlags: 0
