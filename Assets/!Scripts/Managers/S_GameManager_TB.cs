@@ -1,3 +1,4 @@
+using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,9 +6,14 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class S_GameManager_TB : MonoBehaviour
 {
-    public GameObject Player;
-    public GameObject VRManager;
-    public GameObject XRInteractionManager;
+    public GameObject player;
+    public GameObject vrManager;
+    public GameObject xrInteractionManager;
+
+    GameObject currentPlayer;
+
+    [Scene]
+    [ShowNonSerializedField][HideInInspector] int level;
 
     void Awake()
     {
@@ -15,16 +21,28 @@ public class S_GameManager_TB : MonoBehaviour
 
         if(!FindFirstObjectByType<S_VrManager_TB>())
         {
-            Instantiate(VRManager);
+            Instantiate(vrManager);
         }
         if (!FindFirstObjectByType<XRInteractionManager>())
         {
-            Instantiate(XRInteractionManager);
+            Instantiate(xrInteractionManager);
         }
-        if (!FindFirstObjectByType<S_Movement_TB>())
+        if (!FindFirstObjectByType<S_Player_TB>())
         {
             Debug.LogError("No player in Scene");
+        } else
+        {
+            currentPlayer = FindFirstObjectByType<S_Player_TB>().gameObject;
         }
+    }
+
+    private void Start()
+    {
+        S_ProgressData_TB data = S_SaveSystem_TB.Load();
+
+        if (data == null) return;
+
+        currentPlayer.transform.position = new Vector3(data.playerPositionX, data.playerPositionY, data.playerPositionZ);
     }
 
 

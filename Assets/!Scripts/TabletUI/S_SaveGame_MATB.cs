@@ -7,16 +7,11 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class S_SaveGame_MATB : S_Button_TBMA
 {
-
+    [SerializeField] S_Player_TB player;
     public override void OnClickEnter(ActionBasedController controller)
     {
         base.OnClickEnter(controller);
-        Debug.Log("saved. no bird accessable");
-    }
-
-    public override void OnHoverEnter(ActionBasedController controller)
-    {
-        base.OnHoverEnter(controller);
-        Debug.Log("hover Save");
+        S_SaveSystem_TB.Save(player);
+        Debug.Log("saved!");
     }
 }

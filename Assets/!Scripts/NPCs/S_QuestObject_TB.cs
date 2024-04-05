@@ -9,6 +9,9 @@ public class S_QuestObject_TB : ScriptableObject
     [ResizableTextArea]
     public string Description;
 
+    [InfoBox("give the quest a UNIQUE ID")]
+    [ShowNonSerializedField][HideInInspector] public int ID;
+
     [Space(20)]
 
     public S_QuestEnums_TB.QuestType type;
@@ -34,4 +37,12 @@ public class S_QuestObject_TB : ScriptableObject
     {
         S_Quests_TB.completedQuests.Add(this);
     }
+    
+    [Button]
+    public void GenerateID()
+    {
+        ID = Random.Range(0, 9999);
+    }
+
+    
 }
