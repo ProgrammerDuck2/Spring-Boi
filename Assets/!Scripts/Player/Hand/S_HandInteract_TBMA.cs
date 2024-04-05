@@ -10,7 +10,7 @@ public class S_HandInteract_TBMA : S_Hand_TB
     [HideInInspector] RaycastHit raycast;
 
     S_VRUI_TB currentClickElement;
-    S_VRUI_TB currentHoverElement;
+    public S_VRUI_TB currentHoverElement;
     
     bool clicking;
 
@@ -26,25 +26,22 @@ public class S_HandInteract_TBMA : S_Hand_TB
 
         if (raycast.collider != null)
         {
-            Debug.Log("Hover");
             if (raycast.collider.TryGetComponent<S_VRUI_TB>(out S_VRUI_TB uiElement))
             {
                 if (currentHoverElement == null)
                 {
-                    uiElement.OnHoverEnter(GetComponent<ActionBasedController>());
-
                     currentHoverElement = uiElement;
+
+                    uiElement.OnHoverEnter(GetComponent<ActionBasedController>());
                 } 
                 else if(currentHoverElement != uiElement)
                 {
-                    currentHoverElement.OnHoverExit();
-
                     uiElement.OnHoverEnter(GetComponent<ActionBasedController>());
+                    currentHoverElement.OnHoverExit();
 
                     currentHoverElement = uiElement;
                 }
-
-                if(!clicking) 
+                else if (!clicking) 
                     uiElement.OnHover();
 
             } else

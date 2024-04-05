@@ -82,8 +82,6 @@ public class S_Hand_TB : MonoBehaviour
     // Start is called before the first frame update
     public virtual void Start()
     {
-        print(player);
-
         //playerInput.SwitchCurrentControlScheme("XR");
     }
 
