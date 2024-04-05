@@ -3,48 +3,32 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-public class S_NPCInteractions_MA : MonoBehaviour
+public class S_NPCInteractions_MA : S_NPC_TB
 {
-    public TMP_Text NPCText;
-    [SerializeField] private List<string> speech = new List<string>();
-    //private int currentSpeech = 0;
-    private GameObject player;
-
-    // Start is called before the first frame update
-    void Start()
+    Transform playerTransform
     {
-        player = FindFirstObjectByType<S_Movement_TB>().gameObject;
+        get { return player.transform; }
     }
 
     // Update is called once per frame
     void Update()
     {
-        Transform playerTransform = player.transform;
         Vector3 direction = playerTransform.position - NPCText.transform.position;
         Quaternion rotation = Quaternion.LookRotation(-direction);
         NPCText.transform.rotation = rotation;
     }
 
-    private void OnTriggerStay(Collider other)
+    //moved a lot of code over to S_NPC_TB as to easily and convinently check whether the npc has been talked to :) ps: none of the code has been changed, just moved
+
+    public override void StartSpeech(InputAction.CallbackContext context)
     {
-        if (other.gameObject.tag == "Player")
-        {
-            if (Input.GetKeyDown(KeyCode.E))
-            {    
-                StartCoroutine(Speech());
-            }
-        }
+        base.StartSpeech(context);
     }
-    
-    IEnumerator Speech()
+
+    public override IEnumerator Speech()
     {
-        for (int i = 0; i < speech.Count; i++) 
-        {
-            print(speech[i]);
-            NPCText.text = speech[i];
-            //currentSpeech++;
-            yield return new WaitForSeconds(1);
-        }
+        return base.Speech();
     }
 }

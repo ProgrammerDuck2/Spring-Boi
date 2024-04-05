@@ -1,19 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.XR.Interaction.Toolkit;
 
-public class S_SaveGame_MATB : MonoBehaviour, S_ButtonInterface_TBMA
+public class S_SaveGame_MATB : S_Button_TBMA
 {
-    public void OnClick()
+
+    public override void OnClickEnter(ActionBasedController controller)
     {
+        base.OnClickEnter(controller);
         Debug.Log("saved. no bird accessable");
-        GetComponent<Image>().color = GetComponent<Button>().colors.pressedColor;
     }
 
-    public void OnHover()
+    public override void OnHoverEnter(ActionBasedController controller)
     {
+        base.OnHoverEnter(controller);
         Debug.Log("hover Save");
-        GetComponent<Image>().color = GetComponent<Button>().colors.highlightedColor;
     }
 }

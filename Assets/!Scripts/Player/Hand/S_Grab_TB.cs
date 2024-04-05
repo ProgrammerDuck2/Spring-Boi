@@ -7,15 +7,8 @@ using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.XR;
 using UnityEngine.XR.Interaction.Toolkit;
 
-[RequireComponent(typeof(S_Hand_TB))]
-public class S_Grab_TB : MonoBehaviour
+public class S_Grab_TB : S_Hand_TB
 {
-    [Required]
-    [SerializeField] S_Hand_TB hand;
-
-    [Header("Player")]
-    GameObject playerBody;
-
     [Header("Controller")]
     S_Grab_TB otherControllerGrab;
 
@@ -25,21 +18,20 @@ public class S_Grab_TB : MonoBehaviour
 
     [HideInInspector] public bool holding = false;
 
-    void Start()
+    public override void Start()
     {
-        playerBody = transform.parent.parent.parent.gameObject;
-
-        otherControllerGrab = hand.OtherController.GetComponent<S_Grab_TB>();
+        base.Start();
+        otherControllerGrab = otherController.GetComponent<S_Grab_TB>();
     }
 
     private void Update()
     {
-        if ((hand.TriggerActivated && hand.GripActivated) != hand.GrabActivated && !hand.GrabActivated && Physics.CheckSphere(transform.position, S_Stats_MA.HandGrabRadius, hand.grabable))
+        if ((handInput.triggerActivated && handInput.gripActivated) != handInput.grabActivated && !handInput.grabActivated && Physics.CheckSphere(transform.position, S_Stats_MA.HandGrabRadius, grabable))
         {
             initializedGrab();
         }
 
-        if((hand.TriggerActivated && hand.GripActivated) != hand.GrabActivated && hand.GrabActivated)
+        if((handInput.triggerActivated && handInput.gripActivated) != handInput.grabActivated && handInput.grabActivated)
         {
             EndGrab();
         }
@@ -59,23 +51,23 @@ public class S_Grab_TB : MonoBehaviour
             otherControllerGrab.EndGrab();
         }
 
-        S_Movement_TB movePlayer = playerBody.GetComponent<S_Movement_TB>();
+        S_Movement_TB movePlayer = playerMovement;
         movePlayer.enabled = false;
 
-        initializedGrabPosition = hand.ControllerPosition;
-        initializedPlayerPosition = playerBody.transform.position;
+        initializedGrabPosition = handPostioning.controllerPosition;
+        initializedPlayerPosition = player.transform.position;
 
         holding = true;
 
-        hand.HapticFeedback.TriggerHaptic(.1f, .1f, GetComponent<ActionBasedController>());
+        handInput.hapticFeedback.TriggerHaptic(.1f, .1f, GetComponent<ActionBasedController>());
     }
     void Grab()
     {
         //Debug.Log("initialized pos = " + initializedGrabPosition + " currentPos = " + controllerPosition + " offset = " + (initializedGrabPosition - controllerPosition));
 
-        Vector3 offset = initializedGrabPosition - hand.ControllerPosition;
+        Vector3 offset = initializedGrabPosition - transform.localPosition;
 
-        playerBody.transform.position = initializedPlayerPosition + offset;
+        player.transform.position = initializedPlayerPosition + offset;
         transform.localPosition -= offset;
     }
     void EndGrab()
@@ -84,7 +76,7 @@ public class S_Grab_TB : MonoBehaviour
 
         if(!otherControllerGrab.holding)
         {
-            S_Movement_TB movePlayer = playerBody.GetComponent<S_Movement_TB>();
+            S_Movement_TB movePlayer = playerMovement;
             movePlayer.enabled = true;
         }
 
@@ -92,7 +84,7 @@ public class S_Grab_TB : MonoBehaviour
     }
     private void OnDrawGizmos()
     {
-        if (hand.DebugMode)
+        if (DebugMode)
         {
             Gizmos.color = new Color(0, 1, 0, .2f);
             Gizmos.DrawSphere(transform.position, S_Stats_MA.HandGrabRadius);

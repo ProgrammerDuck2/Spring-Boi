@@ -10,7 +10,10 @@ public class S_TabletPages_MA : MonoBehaviour
     public List<GameObject> tabletPages = new List<GameObject>();
 
     private int currentPage = 1;
-    private float leftOrRight;
+    private float leftOrRight
+    {
+        get { return PlayerInput.actions["TabletPages"].ReadValue<Vector2>().x; }
+    }
     private float waitTime = 0;
     private int firstPage = 1;
 
@@ -21,7 +24,6 @@ public class S_TabletPages_MA : MonoBehaviour
     {
         player = FindFirstObjectByType<S_Movement_TB>().gameObject;
         PlayerInput = player.GetComponent<PlayerInput>();
-        leftOrRight = PlayerInput.actions["TabletPages"].ReadValue<Vector2>().x;
     }
 
     // Update is called once per frame
@@ -40,11 +42,9 @@ public class S_TabletPages_MA : MonoBehaviour
         waitTime += Time.deltaTime;
         if (GetComponent<S_Ipad_MA>().isActive)
         {
-
-            leftOrRight = PlayerInput.actions["TabletPages"].ReadValue<Vector2>().x;
             if (waitTime >= 0.2f)
             {
-                if (leftOrRight > 0) //counts up
+                if (leftOrRight > .6f) //counts up
                 {
                     if (currentPage == firstPage)
                     {
@@ -55,7 +55,7 @@ public class S_TabletPages_MA : MonoBehaviour
                         currentPage--;
                     }
                 }
-                if (leftOrRight < 0) //counts down
+                if (leftOrRight < -.6f) //counts down
                 {
                     if (currentPage >= tabletPages.Count - 1)
                     {

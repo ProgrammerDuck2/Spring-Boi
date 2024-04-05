@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class S_HandAim_TB : MonoBehaviour
+public class S_HandAim_TB : S_Hand_TB
 {
     S_Hand_TB hand;
     [Required]
@@ -11,13 +11,13 @@ public class S_HandAim_TB : MonoBehaviour
     [HideInInspector] public GameObject AimingAt;
 
     [SerializeField] LayerMask AimAssist;
-    private void Start()
+    public override void Start()
     {
         hand = GetComponent<S_Hand_TB>();
     }
     private void Update()
     {
-        if(hand.GripActivated)
+        if(handInput.gripActivated)
         {
             Aim();
         }
@@ -30,7 +30,7 @@ public class S_HandAim_TB : MonoBehaviour
     {
         if (hand.handForwards.Count <= 9) return;
 
-        Physics.Raycast(transform.position, hand.GetAverageVector3(hand.handForwards), out RaycastHit hit, S_Stats_MA.HandLaunchReach, hand.grabable);
+        Physics.Raycast(transform.position, motion.GetAverageVector3(hand.handForwards), out RaycastHit hit, S_Stats_MA.HandLaunchReach, hand.grabable);
 
         if(hit.collider)
         {

@@ -4,15 +4,8 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
 
-[RequireComponent(typeof(S_Hand_TB))]
-public class S_LaunchArms_TB : MonoBehaviour
+public class S_LaunchArms_TB : S_Hand_TB
 {
-    S_Hand_TB hand;
-    Rigidbody playerRB;
-    S_Movement_TB playerMovement;
-
-    S_Grab_TB grab;
-
     [Required]
     [SerializeField] GameObject handToLaunch;
     GameObject currentHandMissile;
@@ -24,15 +17,13 @@ public class S_LaunchArms_TB : MonoBehaviour
 
     [SerializeField] float cooldown;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        hand = GetComponent<S_Hand_TB>();
-        playerMovement = hand.Player.GetComponent<S_Movement_TB>();
-        playerRB = hand.Player.GetComponent<Rigidbody>();
-        handArt = transform.GetComponent<ActionBasedController>().modelParent.gameObject;
+    [SerializeField] Vector3 launchDirectionOffset;
 
-        grab = GetComponent<S_Grab_TB>();
+    // Start is called before the first frame update
+    public override void Start()
+    {
+        base.Start();
+        handArt = transform.GetComponent<ActionBasedController>().modelParent.gameObject;
     }
 
     // Update is called once per frame
@@ -48,13 +39,13 @@ public class S_LaunchArms_TB : MonoBehaviour
             cooldown -= Time.deltaTime;
             return;
         }
-        if (!hand.GripActivated) return;
-        if (hand.TriggerActivated) return;
-        if (hand.handPostitions.Count <= 9) return;
+        if (!handInput.gripActivated) return;
+        if (handInput.triggerActivated) return;
+        if (handInput.handPostitions.Count <= 9) return;
 
         float forceRequirement = .4f;
 
-        if (Vector3.Distance(hand.handPostitions[0], hand.handPostitions[hand.handPostitions.Count - 1]) > forceRequirement)
+        if (Vector3.Distance(handInput.handPostitions[0], handInput.handPostitions[handPostitions.Count - 1]) > forceRequirement)
         {
             if (currentHandMissile == null)
             {
@@ -73,14 +64,14 @@ public class S_LaunchArms_TB : MonoBehaviour
     }
     void ControllHandMissile()
     {
-        if (!hand.GripActivated)
+        if (!handInput.gripActivated)
         {
             holding = false;
         }
 
-        if (Physics.CheckSphere(currentHandMissile.transform.position, .5f, hand.grabable))
+        if (Physics.CheckSphere(currentHandMissile.transform.position, .5f, handInput.grabable))
         {
-            if(hand.GripActivated)
+            if(handInput.gripActivated)
             {
                 HoldOnto();
             } else
@@ -116,7 +107,7 @@ public class S_LaunchArms_TB : MonoBehaviour
             grab.enabled = true;
             playerRB.useGravity = true;
 
-            if (!hand.OtherController.GetComponent<S_Grab_TB>().holding)
+            if (!otherController.GetComponent<S_Grab_TB>().holding)
             {
                 playerMovement.enabled = true;
             }
@@ -131,7 +122,7 @@ public class S_LaunchArms_TB : MonoBehaviour
         if (holding != true)
         {
             holding = true;
-            hand.HapticFeedback.TriggerHaptic(.5f, .1f, GetComponent<ActionBasedController>());
+            hapticFeedback.TriggerHaptic(.5f, .1f, GetComponent<ActionBasedController>());
 
             spring.connectedBody = playerRB;
             playerMovement.enabled = false;
@@ -144,12 +135,12 @@ public class S_LaunchArms_TB : MonoBehaviour
             playerRB.useGravity = false;
             spring.maxDistance = 0;
             spring.damper = 0.2f;
-            hand.Player.GetComponent<S_Movement_TB>().HighSpeed = true;
+            player.GetComponent<S_Movement_TB>().HighSpeed = true;
         }
         else
         {
             playerRB.useGravity = true;
-            spring.maxDistance = Vector3.Distance(hand.Player.transform.position, currentHandMissile.transform.position);
+            spring.maxDistance = Vector3.Distance(player.transform.position, currentHandMissile.transform.position);
 
             spring.damper = 20;
         }
@@ -171,10 +162,12 @@ public class S_LaunchArms_TB : MonoBehaviour
         if (currentHandMissile == null)
         {
             pullingHand = false;
-            currentHandMissile = Instantiate(handToLaunch, transform.position, Quaternion.Euler(hand.GetAverageVector3(hand.handRotations)));
+            currentHandMissile = Instantiate(handToLaunch, transform.position, Quaternion.Euler(MissileRotationCalc()));
 
-            if (hand.Aim.AimingAt)
-                currentHandMissile.transform.LookAt(hand.Aim.AimingAt.transform.position);
+
+
+            //if (hand.Aim.AimingAt)
+            //    currentHandMissile.transform.LookAt(hand.Aim.AimingAt.transform.position);
 
             currentHandMissile.name = gameObject.name + " Missile";
 
@@ -196,5 +189,16 @@ public class S_LaunchArms_TB : MonoBehaviour
     Vector3 speedCalc()
     {
         return currentHandMissile.transform.forward * S_Stats_MA.HandLaunchSpeed * 4;
+    }
+
+    Vector3 MissileRotationCalc()
+    {
+        GameObject getRot = new GameObject();
+        getRot.transform.position = handPostitions[9] + playerRB.transform.position;
+
+        getRot.transform.LookAt(transform.localPosition + launchDirectionOffset + playerRB.transform.position);
+        Destroy(getRot, .1f);
+
+        return getRot.transform.eulerAngles;
     }
 }
