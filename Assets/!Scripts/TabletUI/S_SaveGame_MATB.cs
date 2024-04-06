@@ -7,11 +7,15 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class S_SaveGame_MATB : S_Button_TBMA
 {
-    [SerializeField] S_Player_TB player;
+    S_GameManager_TB gameManager;
+    private void Start()
+    {
+        gameManager = FindFirstObjectByType<S_GameManager_TB>();
+    }
     public override void OnClickEnter(ActionBasedController controller)
     {
         base.OnClickEnter(controller);
-        S_SaveSystem_TB.Save(player);
+        gameManager.Save();
         Debug.Log("saved!");
     }
 }

@@ -19,7 +19,8 @@ public class S_HandPostion_TB : S_Hand_TB
 
             if (playerInput.actions["Position"].ReadValue<Vector3>() == Vector3.zero)
             {
-                Debug.LogWarning("Controller position not found");
+                if (DebugMode)
+                    Debug.LogWarning("Controller position not found");
                 HandArt.transform.GetChild(0).gameObject.SetActive(false);
 
             }
@@ -35,7 +36,8 @@ public class S_HandPostion_TB : S_Hand_TB
 
             if (handInput.pos.action.ReadValue<Vector3>() == Vector3.zero)
             {
-                Debug.LogWarning("Controller position not found");
+                if(DebugMode)
+                    Debug.LogWarning("Controller position not found");
                 HandArt.transform.GetChild(0).gameObject.SetActive(false);
 
             }

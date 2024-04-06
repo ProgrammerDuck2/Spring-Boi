@@ -31,8 +31,16 @@ public class S_ZipLine_TB : S_InteractableObject_TB
         {
             amount += reverse ? -Time.deltaTime / timeToComplete : Time.deltaTime / timeToComplete;
         }
-
         amount = Mathf.Clamp(amount, 0f, 1f);
+
+        if(active)
+        {
+            if (amount == 0 || amount == 1)
+            {
+                active = false;
+            }
+        }
+
         transform.position = lerpPos(start.position, end.position, amount);
     }
 
@@ -48,6 +56,7 @@ public class S_ZipLine_TB : S_InteractableObject_TB
 
     public override void Interact(S_Hand_TB hand)
     {
+        if (active) return;
         base.Interact(hand);
         active = true;
         reverse = amount > .5f;

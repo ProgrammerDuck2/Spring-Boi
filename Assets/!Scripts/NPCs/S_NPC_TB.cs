@@ -21,6 +21,10 @@ public class S_NPC_TB : MonoBehaviour
     [ShowIf("givesQuest")]
     [SerializeField] S_QuestObject_TB questToGive;
 
+    [SerializeField] bool requiresQuest;
+    [ShowIf("requiresQuest")]
+    [SerializeField] S_QuestObject_TB requiredQuest;
+
     private void Start()
     {
         player = FindFirstObjectByType<S_Movement_TB>().gameObject;

@@ -4,14 +4,14 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 public static class S_SaveSystem_TB
 {
-    public static void Save(S_Player_TB player)
+    public static void Save(S_Player_TB player, S_GameManager_TB gameManager)
     {
         BinaryFormatter formatter = new BinaryFormatter();
         string path = Application.persistentDataPath + "/progress.data";
         Debug.Log(path);
         FileStream stream = new FileStream(path, FileMode.Create);
 
-        S_ProgressData_TB data = new S_ProgressData_TB(player);
+        S_ProgressData_TB data = new S_ProgressData_TB(player, gameManager);
 
         formatter.Serialize(stream, data);
         stream.Close();
