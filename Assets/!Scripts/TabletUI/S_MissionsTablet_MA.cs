@@ -6,38 +6,58 @@ using UnityEngine;
 
 public class S_MissionsTablet_MA : MonoBehaviour
 {
-    [SerializeField] List<S_QuestObject_TB> _activeQuests = S_Quests_TB.activeQuests;
-    List<S_QuestObject_TB> activeQuests
+    List<S_QuestObject_TB> currentQuests
     {
         get 
         {
             return S_Quests_TB.activeQuests; 
         }
-        set 
-        { 
-            S_Quests_TB.activeQuests = value;
-            _activeQuests = value;
-        }
     }
-
-    [SerializeField] List<S_QuestObject_TB> _completedQuests = S_Quests_TB.completedQuests;
     List<S_QuestObject_TB> completedQuests
     {
         get { return S_Quests_TB.completedQuests; }
-        set
+    }
+
+    List<S_QuestObject_TB> shownCurrentQuests
+    {
+        get 
         {
-            S_Quests_TB.completedQuests = value;
-            _completedQuests = value;
+            List<S_QuestObject_TB> current = new List<S_QuestObject_TB>();
+            Transform content = currentQuestsContent;
+
+            for (int i = 0; i < content.childCount; i++)
+            {
+                current.Add(content.GetChild(i).GetComponent<S_QuestButton_TB>().quest);
+            }
+
+            return current;
+        }
+    }
+    List<S_QuestObject_TB> shownCompletedQuests
+    {
+        get
+        {
+            List<S_QuestObject_TB> current = new List<S_QuestObject_TB>();
+            Transform content = completedQuestsContent;
+
+            for (int i = 0; i < content.childCount; i++)
+            {
+                current.Add(content.GetChild(i).GetComponent<S_QuestButton_TB>().quest);
+            }
+
+            return current;
         }
     }
 
-    [SerializeField] List<S_QuestObject_TB> shownQuests = new List<S_QuestObject_TB>();
-
     [SerializeField] GameObject questButtonPrefab;
 
-    Transform content
+    Transform currentQuestsContent
     {
-        get { return transform.GetChild(1).GetChild(0).GetChild(0); }
+        get { return transform.GetChild(3).GetChild(0).GetChild(0); }
+    }
+    Transform completedQuestsContent
+    {
+        get { return transform.GetChild(5).GetChild(0).GetChild(0); }
     }
 
     [SerializeField] S_QuestDescription_TB description;
@@ -49,43 +69,66 @@ public class S_MissionsTablet_MA : MonoBehaviour
     
     void Start()
     {
-        UpdateQuests();
+        UpdateCurrentQuests();
     }
 
     private void Update()
     {
-        if (!CompareLists(shownQuests, activeQuests))
+        if (!CompareLists(shownCurrentQuests, currentQuests))
         {
-            print("hi");
-            UpdateQuests();
+            UpdateCurrentQuests();
         }
+        //if (!CompareLists(shownCompletedQuests, completedQuests))
+        //{
+        //    UpdateCompletedQuests();
+        //}
     }
 
     [Button]
-    public void UpdateQuests()
+    public void UpdateCurrentQuests()
     {
-        activeQuests = _activeQuests;
-        completedQuests = _completedQuests;
-
-        int originalChildCound = content.childCount;
+        int originalChildCound = currentQuestsContent.childCount;
 
         for (int i = 0; i < originalChildCound; i++)
         {
-            DestroyImmediate(content.GetChild(0).gameObject, true);
+            DestroyImmediate(currentQuestsContent.GetChild(0).gameObject, true);
         }
 
-        for (int i = 0; i < activeQuests.Count; i++)
+        for (int i = 0; i < currentQuests.Count; i++)
         {
-            GameObject current = Instantiate(questButtonPrefab, content);
-            current.GetComponent<S_QuestButton_TB>().quest = activeQuests[i];
+            GameObject current = Instantiate(questButtonPrefab, currentQuestsContent);
+            current.GetComponent<S_QuestButton_TB>().quest = currentQuests[i];
         }
 
 
-        shownQuests.Clear();
-        foreach (var item in activeQuests)
+        shownCurrentQuests.Clear();
+        foreach (var item in currentQuests)
         {
-            shownQuests.Add(item);
+            shownCurrentQuests.Add(item);
         }
+    }
+    [Button]
+    public void UpdateCompletedQuests()
+    {
+        int originalChildCound = completedQuestsContent.childCount;
+
+        for (int i = 0; i < originalChildCound; i++)
+        {
+            DestroyImmediate(completedQuestsContent.GetChild(0).gameObject, true);
+        }
+
+        for (int i = 0; i < completedQuests.Count; i++)
+        {
+            GameObject current = Instantiate(questButtonPrefab, completedQuestsContent);
+            current.GetComponent<S_QuestButton_TB>().quest = completedQuests[i];
+        }
+
+
+        //shownQuests.Clear();
+        //foreach (var item in activeQuests)
+        //{
+        //    shownQuests.Add(item);
+        //}
     }
     [Button]
     public void UpdateQuestDescription()

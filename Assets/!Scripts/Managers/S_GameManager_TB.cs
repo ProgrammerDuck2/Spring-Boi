@@ -60,6 +60,9 @@ public class S_GameManager_TB : MonoBehaviour
     }
     private void Start()
     {
+        S_Quests_TB.activeQuests.Clear();
+        S_Quests_TB.completedQuests.Clear();
+
         if (load)
             Load();
         else
@@ -91,7 +94,6 @@ public class S_GameManager_TB : MonoBehaviour
         currentPlayer.transform.position = new Vector3(data.playerPosition[0], data.playerPosition[1], data.playerPosition[2]);
 
         //Loads Current Quests
-        S_Quests_TB.activeQuests.Clear();
 
         for (int i = 0; i < data.currentQuests.Length; i++)
         {
