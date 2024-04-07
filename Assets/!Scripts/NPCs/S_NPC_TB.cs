@@ -49,7 +49,20 @@ public class S_NPC_TB : MonoBehaviour
     {
         if (inTrigger)
         {
-            StartCoroutine(Speech());
+            if (requiredQuest)
+            {
+                if (HasQuest(requiredQuest))
+                {
+                    StartCoroutine(Speech());
+                } else
+                {
+                    StartCoroutine(AlternateSpeech());
+                }
+            }
+            else
+            {
+                StartCoroutine(Speech());
+            }
 
             for (int i = 0; i < S_Quests_TB.activeQuests.Count; i++)
             {
@@ -72,24 +85,24 @@ public class S_NPC_TB : MonoBehaviour
 
     public virtual IEnumerator Speech()
     {
-        if(requiredQuest)
+        for (int i = 0; i < speech.Count; i++)
         {
-            if (HasQuest(requiredQuest))
-            {
-                for (int i = 0; i < speech.Count; i++)
-                {
-                    NPCText.text = speech[i];
-                    yield return new WaitForSeconds(TextTime(speech[i]));
-                }
+            NPCText.text = speech[i];
+            yield return new WaitForSeconds(TextTime(speech[i]));
+        }
 
-                if (givesQuest)
-                {
-                    S_Quests_TB.activeQuests.Add(questToGive);
-                    givesQuest = false;
-                }
-            }
-        } else
+        if (givesQuest)
         {
+            S_Quests_TB.activeQuests.Add(questToGive);
+            givesQuest = false;
+        }
+    }
+    public virtual IEnumerator AlternateSpeech()
+    {
+        for (int i = 0; i < missingQuestSpeech.Count; i++)
+        {
+            NPCText.text = missingQuestSpeech[i];
+            yield return new WaitForSeconds(TextTime(missingQuestSpeech[i]));
         }
     }
     bool HasQuest(S_QuestObject_TB quest)

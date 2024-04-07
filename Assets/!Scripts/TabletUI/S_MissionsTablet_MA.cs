@@ -78,13 +78,12 @@ public class S_MissionsTablet_MA : MonoBehaviour
         {
             UpdateCurrentQuests();
         }
-        //if (!CompareLists(shownCompletedQuests, completedQuests))
-        //{
-        //    UpdateCompletedQuests();
-        //}
+        if (!CompareLists(shownCompletedQuests, completedQuests))
+        {
+            UpdateCompletedQuests();
+        }
     }
 
-    [Button]
     public void UpdateCurrentQuests()
     {
         int originalChildCound = currentQuestsContent.childCount;
@@ -99,15 +98,7 @@ public class S_MissionsTablet_MA : MonoBehaviour
             GameObject current = Instantiate(questButtonPrefab, currentQuestsContent);
             current.GetComponent<S_QuestButton_TB>().quest = currentQuests[i];
         }
-
-
-        shownCurrentQuests.Clear();
-        foreach (var item in currentQuests)
-        {
-            shownCurrentQuests.Add(item);
-        }
     }
-    [Button]
     public void UpdateCompletedQuests()
     {
         int originalChildCound = completedQuestsContent.childCount;
@@ -122,15 +113,7 @@ public class S_MissionsTablet_MA : MonoBehaviour
             GameObject current = Instantiate(questButtonPrefab, completedQuestsContent);
             current.GetComponent<S_QuestButton_TB>().quest = completedQuests[i];
         }
-
-
-        //shownQuests.Clear();
-        //foreach (var item in activeQuests)
-        //{
-        //    shownQuests.Add(item);
-        //}
     }
-    [Button]
     public void UpdateQuestDescription()
     {
         description.UpdateDescription();
@@ -138,6 +121,10 @@ public class S_MissionsTablet_MA : MonoBehaviour
 
     bool CompareLists(List<S_QuestObject_TB> listOne, List<S_QuestObject_TB> listTwo)
     {
+        if (listOne.Count != listTwo.Count)
+        {
+            return false;
+        }
         for (int i = 0; i < listOne.Count; i++)
         {
             if (listOne[i] != listTwo[i]) return false;
