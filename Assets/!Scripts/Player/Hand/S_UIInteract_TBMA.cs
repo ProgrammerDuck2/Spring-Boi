@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class S_HandInteract_TBMA : S_Hand_TB
+public class S_UIInteract_TBMA : S_Hand_TB
 {
     [SerializeField] LayerMask Interactable;
     [HideInInspector] RaycastHit raycast;

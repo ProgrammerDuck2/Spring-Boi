@@ -9,8 +9,9 @@ public class S_NPC_TB : MonoBehaviour
 {
     public TMP_Text NPCText;
     [SerializeField] private List<string> speech = new List<string>();
+    [ShowIf("requiresQuest")]
+    [SerializeField] private List<string> missingQuestSpeech = new List<string>();
 
-    
     [SerializeField] string npcName;
 
     [HideInInspector] public GameObject player;
@@ -20,6 +21,10 @@ public class S_NPC_TB : MonoBehaviour
     [SerializeField] bool givesQuest;
     [ShowIf("givesQuest")]
     [SerializeField] S_QuestObject_TB questToGive;
+
+    [SerializeField] bool requiresQuest;
+    [ShowIf("requiresQuest")]
+    [SerializeField] S_QuestObject_TB requiredQuest;
 
     private void Start()
     {
@@ -53,7 +58,6 @@ public class S_NPC_TB : MonoBehaviour
                     case S_QuestEnums_TB.QuestGoal.TalkToNPC:
                         if(S_Quests_TB.activeQuests[i].NPCName == npcName)
                         {
-                            print("SpringSteen");
                             S_Quests_TB.activeQuests[i].CompleteQuest();
                             S_Quests_TB.activeQuests.Remove(S_Quests_TB.activeQuests[i]);
                             
@@ -68,20 +72,37 @@ public class S_NPC_TB : MonoBehaviour
 
     public virtual IEnumerator Speech()
     {
-        for (int i = 0; i < speech.Count; i++)
+        if(requiredQuest)
         {
-            NPCText.text = speech[i];
-            yield return new WaitForSeconds(textTime(speech[i]));
-        }
+            if (HasQuest(requiredQuest))
+            {
+                for (int i = 0; i < speech.Count; i++)
+                {
+                    NPCText.text = speech[i];
+                    yield return new WaitForSeconds(TextTime(speech[i]));
+                }
 
-        if(givesQuest)
+                if (givesQuest)
+                {
+                    S_Quests_TB.activeQuests.Add(questToGive);
+                    givesQuest = false;
+                }
+            }
+        } else
         {
-            S_Quests_TB.activeQuests.Add(questToGive);
-            givesQuest = false;
         }
     }
+    bool HasQuest(S_QuestObject_TB quest)
+    {
+        for (int i = 0; i < S_Quests_TB.activeQuests.Count; i++)
+        {
+            if (S_Quests_TB.activeQuests[i] == quest)
+            { return true; }
+        }
+        return false;
+    }
 
-    float textTime(string text)
+    float TextTime(string text)
     {
         char[] characters = text.ToCharArray();
         return characters.Length / 3;

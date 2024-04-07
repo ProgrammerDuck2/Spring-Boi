@@ -9,8 +9,4 @@ public static class S_Quests_TB
     {
         activeQuests.Add(quest);
     }
-    public static void UpdateIpad()
-    {
-
-    }
 }
