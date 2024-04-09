@@ -139,7 +139,7 @@ PrefabInstance:
     - target: {fileID: 7270047777627567016, guid: a3ba075e65629ad4380ce9298e73ddea,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -281.84
+      value: -287.38
       objectReference: {fileID: 0}
     - target: {fileID: 7270047777627567016, guid: a3ba075e65629ad4380ce9298e73ddea,
         type: 3}
@@ -149,7 +149,7 @@ PrefabInstance:
     - target: {fileID: 7270047777627567016, guid: a3ba075e65629ad4380ce9298e73ddea,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -22.65
+      value: -23.32
       objectReference: {fileID: 0}
     - target: {fileID: 7270047777627567016, guid: a3ba075e65629ad4380ce9298e73ddea,
         type: 3}
@@ -931,7 +931,7 @@ GameObject:
   - component: {fileID: 39130134}
   - component: {fileID: 39130133}
   - component: {fileID: 39130132}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Building2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2075,7 +2075,7 @@ GameObject:
   - component: {fileID: 81216269}
   - component: {fileID: 81216268}
   - component: {fileID: 81216267}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Quad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10795,6 +10795,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: MINIcrane (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4068841735690836572, guid: 32451a70d3258114880e6e8bfb6dfff8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5722531601349241381, guid: 32451a70d3258114880e6e8bfb6dfff8,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -11105,6 +11110,33 @@ PrefabInstance:
       propertyPath: NPCText
       value: 
       objectReference: {fileID: 379482519}
+    - target: {fileID: 4305950732056165287, guid: a334b2e23820fe84097b0a5682dd576d,
+        type: 3}
+      propertyPath: npcName
+      value: Springette
+      objectReference: {fileID: 0}
+    - target: {fileID: 4305950732056165287, guid: a334b2e23820fe84097b0a5682dd576d,
+        type: 3}
+      propertyPath: givesQuest
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4305950732056165287, guid: a334b2e23820fe84097b0a5682dd576d,
+        type: 3}
+      propertyPath: questToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 2d6df34491b250f448aa4675ef17607a,
+        type: 2}
+    - target: {fileID: 4305950732056165287, guid: a334b2e23820fe84097b0a5682dd576d,
+        type: 3}
+      propertyPath: requiredQuest
+      value: 
+      objectReference: {fileID: 11400000, guid: 309f9419fd5a002449f907a5e02228ed,
+        type: 2}
+    - target: {fileID: 4305950732056165287, guid: a334b2e23820fe84097b0a5682dd576d,
+        type: 3}
+      propertyPath: requiresQuest
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4305950732056165287, guid: a334b2e23820fe84097b0a5682dd576d,
         type: 3}
       propertyPath: speech.Array.size
@@ -13205,7 +13237,7 @@ GameObject:
   - component: {fileID: 491877502}
   - component: {fileID: 491877501}
   - component: {fileID: 491877500}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Quad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17390,6 +17422,22 @@ PrefabInstance:
       objectReference: {fileID: 379482519}
     - target: {fileID: 4305950732056165287, guid: a334b2e23820fe84097b0a5682dd576d,
         type: 3}
+      propertyPath: npcName
+      value: Announcer
+      objectReference: {fileID: 0}
+    - target: {fileID: 4305950732056165287, guid: a334b2e23820fe84097b0a5682dd576d,
+        type: 3}
+      propertyPath: requiredQuest
+      value: 
+      objectReference: {fileID: 11400000, guid: 2d6df34491b250f448aa4675ef17607a,
+        type: 2}
+    - target: {fileID: 4305950732056165287, guid: a334b2e23820fe84097b0a5682dd576d,
+        type: 3}
+      propertyPath: requiresQuest
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4305950732056165287, guid: a334b2e23820fe84097b0a5682dd576d,
+        type: 3}
       propertyPath: speech.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -17397,6 +17445,16 @@ PrefabInstance:
         type: 3}
       propertyPath: speech.Array.data[0]
       value: This is it spring-boy, beat the champion!
+      objectReference: {fileID: 0}
+    - target: {fileID: 4305950732056165287, guid: a334b2e23820fe84097b0a5682dd576d,
+        type: 3}
+      propertyPath: missingQuestSpeech.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4305950732056165287, guid: a334b2e23820fe84097b0a5682dd576d,
+        type: 3}
+      propertyPath: missingQuestSpeech.Array.data[0]
+      value: who are you? you havent signed up.
       objectReference: {fileID: 0}
     - target: {fileID: 5851690266632721375, guid: a334b2e23820fe84097b0a5682dd576d,
         type: 3}
@@ -17447,6 +17505,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7038765314449698874, guid: a334b2e23820fe84097b0a5682dd576d,
+        type: 3}
+      propertyPath: m_text
+      value: Announcer
       objectReference: {fileID: 0}
     - target: {fileID: 9088791100132814212, guid: a334b2e23820fe84097b0a5682dd576d,
         type: 3}
@@ -18961,7 +19024,7 @@ GameObject:
   - component: {fileID: 648081879}
   - component: {fileID: 648081878}
   - component: {fileID: 648081877}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Quad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19400,7 +19463,7 @@ GameObject:
   - component: {fileID: 664108602}
   - component: {fileID: 664108601}
   - component: {fileID: 664108600}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Quad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19720,7 +19783,7 @@ GameObject:
   - component: {fileID: 670051815}
   - component: {fileID: 670051814}
   - component: {fileID: 670051813}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Quad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23956,9 +24019,10 @@ GameObject:
   - component: {fileID: 812649799}
   - component: {fileID: 812649798}
   - component: {fileID: 812649797}
+  - component: {fileID: 812649802}
   m_Layer: 0
   m_Name: Ball (2)
-  m_TagString: Pickupable
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24076,6 +24140,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 268550447}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &812649802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 812649796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30b485f51f630964ca6cad6ad64b1a35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &815746248
 GameObject:
   m_ObjectHideFlags: 0
@@ -25214,7 +25290,7 @@ GameObject:
   - component: {fileID: 861117349}
   - component: {fileID: 861117348}
   - component: {fileID: 861117347}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Quad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26855,7 +26931,7 @@ GameObject:
   - component: {fileID: 929830668}
   - component: {fileID: 929830667}
   - component: {fileID: 929830666}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Building2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27549,11 +27625,43 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1583741203}
     m_Modifications:
+    - target: {fileID: 485537687136545064, guid: a334b2e23820fe84097b0a5682dd576d,
+        type: 3}
+      propertyPath: m_Center.z
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4305950732056165287, guid: a334b2e23820fe84097b0a5682dd576d,
         type: 3}
       propertyPath: NPCText
       value: 
       objectReference: {fileID: 963501922}
+    - target: {fileID: 4305950732056165287, guid: a334b2e23820fe84097b0a5682dd576d,
+        type: 3}
+      propertyPath: npcName
+      value: SpringSteen
+      objectReference: {fileID: 0}
+    - target: {fileID: 4305950732056165287, guid: a334b2e23820fe84097b0a5682dd576d,
+        type: 3}
+      propertyPath: givesQuest
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4305950732056165287, guid: a334b2e23820fe84097b0a5682dd576d,
+        type: 3}
+      propertyPath: questToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 309f9419fd5a002449f907a5e02228ed,
+        type: 2}
+    - target: {fileID: 4305950732056165287, guid: a334b2e23820fe84097b0a5682dd576d,
+        type: 3}
+      propertyPath: requiredQuest
+      value: 
+      objectReference: {fileID: 11400000, guid: 67c42f3c78cd4b24da71c84aa0099c80,
+        type: 2}
+    - target: {fileID: 4305950732056165287, guid: a334b2e23820fe84097b0a5682dd576d,
+        type: 3}
+      propertyPath: requiresQuest
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4305950732056165287, guid: a334b2e23820fe84097b0a5682dd576d,
         type: 3}
       propertyPath: speech.Array.size
@@ -27593,6 +27701,16 @@ PrefabInstance:
         type: 3}
       propertyPath: speech.Array.data[6]
       value: She is on top of the roof,
+      objectReference: {fileID: 0}
+    - target: {fileID: 4305950732056165287, guid: a334b2e23820fe84097b0a5682dd576d,
+        type: 3}
+      propertyPath: missingQuestSpeech.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4305950732056165287, guid: a334b2e23820fe84097b0a5682dd576d,
+        type: 3}
+      propertyPath: missingQuestSpeech.Array.data[0]
+      value: your dad is ill, you should go see him.
       objectReference: {fileID: 0}
     - target: {fileID: 5851690266632721375, guid: a334b2e23820fe84097b0a5682dd576d,
         type: 3}
@@ -34548,8 +34666,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1178096235}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.8963704, z: -0, w: 0.44330594}
-  m_LocalPosition: {x: -210.37, y: 0.13, z: 72.34}
+  m_LocalRotation: {x: -0, y: 0.9836535, z: -0, w: -0.18007167}
+  m_LocalPosition: {x: -203.55, y: 0.29, z: 75.76}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -34557,7 +34675,7 @@ Transform:
   - {fileID: 998628579}
   - {fileID: 226922592}
   m_Father: {fileID: 1583741203}
-  m_LocalEulerAnglesHint: {x: 0, y: 127.37, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 200.748, z: 0}
 --- !u!65 &1178096237
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -34599,10 +34717,10 @@ MonoBehaviour:
   - Take my gloves and if you run into any problems you know what to do.
   - 'You should find my good ol friend Springsteen in the town square. '
   missingQuestSpeech: []
-  npcName: 
+  npcName: Spring-Dad
   player: {fileID: 0}
-  givesQuest: 0
-  questToGive: {fileID: 0}
+  givesQuest: 1
+  questToGive: {fileID: 11400000, guid: 67c42f3c78cd4b24da71c84aa0099c80, type: 2}
   requiresQuest: 0
   requiredQuest: {fileID: 0}
 --- !u!114 &1178096239
@@ -39842,6 +39960,114 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1357582408}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &1357996376
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1569814839}
+    m_Modifications:
+    - target: {fileID: 767398242064096935, guid: 092c355b00e6b524abaa3e1f7be2234f,
+        type: 3}
+      propertyPath: m_Name
+      value: ZipLine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3927725680187865988, guid: 092c355b00e6b524abaa3e1f7be2234f,
+        type: 3}
+      propertyPath: m_Positions.Array.data[0].x
+      value: -139.5634
+      objectReference: {fileID: 0}
+    - target: {fileID: 3927725680187865988, guid: 092c355b00e6b524abaa3e1f7be2234f,
+        type: 3}
+      propertyPath: m_Positions.Array.data[0].y
+      value: 28.002531
+      objectReference: {fileID: 0}
+    - target: {fileID: 3927725680187865988, guid: 092c355b00e6b524abaa3e1f7be2234f,
+        type: 3}
+      propertyPath: m_Positions.Array.data[0].z
+      value: -85.75723
+      objectReference: {fileID: 0}
+    - target: {fileID: 3927725680187865988, guid: 092c355b00e6b524abaa3e1f7be2234f,
+        type: 3}
+      propertyPath: m_Positions.Array.data[1].x
+      value: -82.8555
+      objectReference: {fileID: 0}
+    - target: {fileID: 3927725680187865988, guid: 092c355b00e6b524abaa3e1f7be2234f,
+        type: 3}
+      propertyPath: m_Positions.Array.data[1].y
+      value: 2.929531
+      objectReference: {fileID: 0}
+    - target: {fileID: 3927725680187865988, guid: 092c355b00e6b524abaa3e1f7be2234f,
+        type: 3}
+      propertyPath: m_Positions.Array.data[1].z
+      value: -120.81868
+      objectReference: {fileID: 0}
+    - target: {fileID: 6778198285135059331, guid: 092c355b00e6b524abaa3e1f7be2234f,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -12.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 6778198285135059331, guid: 092c355b00e6b524abaa3e1f7be2234f,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.337469
+      objectReference: {fileID: 0}
+    - target: {fileID: 6778198285135059331, guid: 092c355b00e6b524abaa3e1f7be2234f,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -12.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 6778198285135059331, guid: 092c355b00e6b524abaa3e1f7be2234f,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.6145999
+      objectReference: {fileID: 0}
+    - target: {fileID: 6778198285135059331, guid: 092c355b00e6b524abaa3e1f7be2234f,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6778198285135059331, guid: 092c355b00e6b524abaa3e1f7be2234f,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.78883904
+      objectReference: {fileID: 0}
+    - target: {fileID: 6778198285135059331, guid: 092c355b00e6b524abaa3e1f7be2234f,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6778198285135059331, guid: 092c355b00e6b524abaa3e1f7be2234f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6778198285135059331, guid: 092c355b00e6b524abaa3e1f7be2234f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 104.154
+      objectReference: {fileID: 0}
+    - target: {fileID: 6778198285135059331, guid: 092c355b00e6b524abaa3e1f7be2234f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7648651753037692413, guid: 092c355b00e6b524abaa3e1f7be2234f,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.74999976
+      objectReference: {fileID: 0}
+    - target: {fileID: 7648651753037692413, guid: 092c355b00e6b524abaa3e1f7be2234f,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.0000032186508
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 092c355b00e6b524abaa3e1f7be2234f, type: 3}
 --- !u!1 &1361790351
 GameObject:
   m_ObjectHideFlags: 0
@@ -40099,9 +40325,10 @@ GameObject:
   - component: {fileID: 1367191395}
   - component: {fileID: 1367191394}
   - component: {fileID: 1367191393}
+  - component: {fileID: 1367191398}
   m_Layer: 0
   m_Name: Ball (1)
-  m_TagString: Pickupable
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -40219,6 +40446,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 268550447}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1367191398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1367191392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30b485f51f630964ca6cad6ad64b1a35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1370815371
 GameObject:
   m_ObjectHideFlags: 0
@@ -41033,7 +41272,7 @@ GameObject:
   - component: {fileID: 1409173254}
   - component: {fileID: 1409173253}
   - component: {fileID: 1409173252}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Quad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42366,7 +42605,7 @@ GameObject:
   - component: {fileID: 1460273423}
   - component: {fileID: 1460273422}
   - component: {fileID: 1460273421}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Building2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45090,6 +45329,7 @@ Transform:
   - {fileID: 2030955992}
   - {fileID: 971180725}
   - {fileID: 1709577696}
+  - {fileID: 1680676871}
   m_Father: {fileID: 2093121333}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1571614763
@@ -47950,6 +48190,12 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
+--- !u!4 &1680676871 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6778198285135059331, guid: 092c355b00e6b524abaa3e1f7be2234f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1357996376}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1681203049
 GameObject:
   m_ObjectHideFlags: 0
@@ -48679,7 +48925,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1709577696
 Transform:
   m_ObjectHideFlags: 0
@@ -57105,6 +57351,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MINIcrane (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4068841735690836572, guid: 32451a70d3258114880e6e8bfb6dfff8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5722531601349241381, guid: 32451a70d3258114880e6e8bfb6dfff8,
         type: 3}

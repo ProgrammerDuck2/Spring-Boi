@@ -28,6 +28,7 @@ public class S_NPC_TB : MonoBehaviour
 
     private void Start()
     {
+        NPCText.text = npcName;
         player = FindFirstObjectByType<S_Movement_TB>().gameObject;
         PlayerInput = player.GetComponent<PlayerInput>();
         PlayerInput.actions["Interact"].started += StartSpeech;
@@ -49,12 +50,14 @@ public class S_NPC_TB : MonoBehaviour
     {
         if (inTrigger)
         {
+            Debug.Log("speaking with " + npcName);
             if (requiredQuest)
             {
                 if (HasQuest(requiredQuest))
                 {
                     StartCoroutine(Speech());
-                } else
+                }
+                else
                 {
                     StartCoroutine(AlternateSpeech());
                 }
@@ -69,14 +72,14 @@ public class S_NPC_TB : MonoBehaviour
                 switch (S_Quests_TB.activeQuests[i].goal)
                 {
                     case S_QuestEnums_TB.QuestGoal.TalkToNPC:
-                        if(S_Quests_TB.activeQuests[i].NPCName == npcName)
+                        if (S_Quests_TB.activeQuests[i].NPCName == npcName)
                         {
                             S_Quests_TB.activeQuests[i].CompleteQuest();
                             S_Quests_TB.activeQuests.Remove(S_Quests_TB.activeQuests[i]);
-                            
+
                         }
                         break;
-                    default: 
+                    default:
                         break;
                 }
             }
@@ -96,6 +99,8 @@ public class S_NPC_TB : MonoBehaviour
             S_Quests_TB.activeQuests.Add(questToGive);
             givesQuest = false;
         }
+
+        NPCText.text = npcName;
     }
     public virtual IEnumerator AlternateSpeech()
     {
@@ -109,8 +114,10 @@ public class S_NPC_TB : MonoBehaviour
     {
         for (int i = 0; i < S_Quests_TB.activeQuests.Count; i++)
         {
-            if (S_Quests_TB.activeQuests[i] == quest)
-            { return true; }
+            if (S_Quests_TB.activeQuests[i].ID == quest.ID)
+            {
+                return true;
+            }
         }
         return false;
     }
@@ -118,6 +125,6 @@ public class S_NPC_TB : MonoBehaviour
     float TextTime(string text)
     {
         char[] characters = text.ToCharArray();
-        return characters.Length / 3;
+        return 3 + characters.Length / 10;
     }
 }

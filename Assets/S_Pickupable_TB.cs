@@ -19,6 +19,7 @@ public class S_Pickupable_TB : S_InteractableObject_TB
         transform.parent = hand.transform;
         rb.isKinematic = true;
         col.enabled = false;
+        print("ball");
     }
     public override void EndInteract(S_Hand_TB hand)
     {
