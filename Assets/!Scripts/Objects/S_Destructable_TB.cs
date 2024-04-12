@@ -19,6 +19,7 @@ public class S_Destructable_TB : MonoBehaviour
     {
         if (collision.gameObject.layer != destroyes) return;
 
+
         fracture.CauseFracture();
     }
 }
