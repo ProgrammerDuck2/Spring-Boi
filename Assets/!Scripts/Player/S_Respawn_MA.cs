@@ -1,3 +1,4 @@
+using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,8 @@ public class S_Respawn_MA : MonoBehaviour
 
     [HideInInspector] public Vector3 respawnPoint = new Vector3(0, 1, 0);
     [SerializeField] private float outOfWorld;
+    [Layer]
+    [SerializeField] int trash;
     S_Movement_TB movement;
     private bool hasHappened;
     private bool enemyTerritory = true;
@@ -61,5 +64,13 @@ public class S_Respawn_MA : MonoBehaviour
             enemyTerritory = true;
         }
 
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.layer == trash)
+        {
+            transform.position = respawnPoint;
+        }
     }
 }
