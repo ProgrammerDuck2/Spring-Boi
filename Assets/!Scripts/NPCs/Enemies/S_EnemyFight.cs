@@ -1,3 +1,4 @@
+using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
@@ -42,6 +43,7 @@ public class S_EnemyFight : MonoBehaviour, S_Enemies_MA
     // Update is called once per frame
     void Update()
     {
+        if (enemyHealth <= 0) return;
         if(navCorner1 == null || navCorner2 == null) return;
 
         Vector3 c1 = navCorner1.transform.position;
@@ -122,7 +124,20 @@ public class S_EnemyFight : MonoBehaviour, S_Enemies_MA
 
         if (enemyHealth <= 0)
         {
-            Destroy(gameObject);
+            Kill();
         }
+    }
+
+    [Button]
+    void Kill()
+    {
+        enemyHealth = 0;
+        navMeshAgent.enabled = false;
+
+        if(!TryGetComponent<Rigidbody>(out Rigidbody rb))
+        {
+            rb = gameObject.AddComponent<Rigidbody>();
+        }
+        rb.AddForce((player.transform.position + transform.position).normalized * 10, ForceMode.Impulse);
     }
 }
