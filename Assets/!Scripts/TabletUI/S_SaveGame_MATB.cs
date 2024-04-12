@@ -7,16 +7,15 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class S_SaveGame_MATB : S_Button_TBMA
 {
-
+    S_GameManager_TB gameManager;
+    private void Start()
+    {
+        gameManager = FindFirstObjectByType<S_GameManager_TB>();
+    }
     public override void OnClickEnter(ActionBasedController controller)
     {
         base.OnClickEnter(controller);
-        Debug.Log("saved. no bird accessable");
-    }
-
-    public override void OnHoverEnter(ActionBasedController controller)
-    {
-        base.OnHoverEnter(controller);
-        Debug.Log("hover Save");
+        gameManager.Save();
+        Debug.Log("saved!");
     }
 }

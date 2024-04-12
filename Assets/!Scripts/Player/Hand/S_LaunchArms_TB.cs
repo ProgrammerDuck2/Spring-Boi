@@ -104,13 +104,14 @@ public class S_LaunchArms_TB : S_Hand_TB
         {
             pullingHand = false;
             handArt.SetActive(true);
-            grab.enabled = true;
+            //grab.enabled = true;
             playerRB.useGravity = true;
 
-            if (!otherController.GetComponent<S_Grab_TB>().holding)
-            {
-                playerMovement.enabled = true;
-            }
+            //if (!otherController.GetComponent<S_Grab_TB>().holding)
+            //{
+            //    playerMovement.enabled = true;
+            //}
+            playerMovement.enabled = true;
 
             Destroy(currentHandMissile);
         }
@@ -172,7 +173,7 @@ public class S_LaunchArms_TB : S_Hand_TB
             currentHandMissile.name = gameObject.name + " Missile";
 
             handArt.SetActive(false);
-            grab.enabled = false;
+            //grab.enabled = false;
         }
     }
     void ActivatePullArm()
