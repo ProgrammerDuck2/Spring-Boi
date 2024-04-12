@@ -27,6 +27,10 @@ public class S_EnemyFight : MonoBehaviour, S_Enemies_MA
     [SerializeField] private GameObject navCorner1;
     [SerializeField] private GameObject navCorner2;
 
+    [SerializeField] List<Fracture> fractureArt;
+
+    [SerializeField]GameObject mapIcon;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +42,8 @@ public class S_EnemyFight : MonoBehaviour, S_Enemies_MA
         Vector3 c1 = navCorner1.transform.position;
         Vector3 c2 = navCorner2.transform.position;
         navMeshAgent.destination = new Vector3(Random.Range(c1.x, c2.x), c1.y, Random.Range(c1.z, c2.z));
+
+        hand = rightHand;
     }
 
     // Update is called once per frame
@@ -134,10 +140,13 @@ public class S_EnemyFight : MonoBehaviour, S_Enemies_MA
         enemyHealth = 0;
         navMeshAgent.enabled = false;
 
-        if(!TryGetComponent<Rigidbody>(out Rigidbody rb))
+        foreach (var item in fractureArt)
         {
-            rb = gameObject.AddComponent<Rigidbody>();
+            item.CauseFracture();
         }
-        rb.AddForce((player.transform.position + transform.position).normalized * 10, ForceMode.Impulse);
+
+        mapIcon.SetActive(false);
+
+        Destroy(gameObject, 10);
     }
 }
