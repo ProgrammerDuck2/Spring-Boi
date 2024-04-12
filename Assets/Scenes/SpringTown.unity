@@ -5866,16 +5866,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1768766847}
     m_Modifications:
-    - target: {fileID: 400382911588160284, guid: 131e733354736d041be47a71dbdddfdd,
-        type: 3}
-      propertyPath: load
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 400382911588160284, guid: 131e733354736d041be47a71dbdddfdd,
-        type: 3}
-      propertyPath: Player
-      value: 
-      objectReference: {fileID: 2076137496}
     - target: {fileID: 6903146471576965358, guid: 131e733354736d041be47a71dbdddfdd,
         type: 3}
       propertyPath: m_Name
@@ -38341,10 +38331,13 @@ MonoBehaviour:
   - I want you to travel out into the world to find oil for all of us Springs.
   - Take my gloves and if you run into any problems you know what to do.
   - 'You should find my good ol friend Springsteen in the town square. '
+  missingQuestSpeech: []
   npcName: Spring-Dad
   player: {fileID: 0}
   givesQuest: 1
   questToGive: {fileID: 11400000, guid: 67c42f3c78cd4b24da71c84aa0099c80, type: 2}
+  requiresQuest: 0
+  requiredQuest: {fileID: 0}
 --- !u!114 &1178096239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48382,6 +48375,113 @@ Transform:
   - {fileID: 1225131260}
   m_Father: {fileID: 2076927136}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1506603242
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1506603243}
+  - component: {fileID: 1506603246}
+  - component: {fileID: 1506603245}
+  - component: {fileID: 1506603244}
+  m_Layer: 3
+  m_Name: Pipe (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1506603243
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1506603242}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.24590969, y: -0.24590972, z: 0.66296947, w: 0.6629694}
+  m_LocalPosition: {x: 7.7516174, y: 7.9, z: -14.273403}
+  m_LocalScale: {x: 1, y: 26.799107, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7148694982461023691}
+  m_LocalEulerAnglesHint: {x: 0, y: -40.702, z: 90}
+--- !u!136 &1506603244
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1506603242}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5000001
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!23 &1506603245
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1506603242}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: ec580db51b464d649b2f6b58c5a23e2f, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1506603246
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1506603242}
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1001 &1506832528
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -63298,10 +63398,13 @@ MonoBehaviour:
   - I want you to travel out into the world to find oil for all of us Springs.
   - Take my gloves and if you run into any problems you know what to do.
   - 'You should find my good ol friend Springsteen in the town square. '
+  missingQuestSpeech: []
   npcName: 
   player: {fileID: 0}
   givesQuest: 0
   questToGive: {fileID: 0}
+  requiresQuest: 0
+  requiredQuest: {fileID: 0}
 --- !u!114 &2028290692
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64636,12 +64739,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 99ab36e3ebe08ed4699a421333ed3f92, type: 3}
---- !u!1 &2076137496 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 303144978361500398, guid: a3ba075e65629ad4380ce9298e73ddea,
-    type: 3}
-  m_PrefabInstance: {fileID: 2164123}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2076611296
 GameObject:
   m_ObjectHideFlags: 0
@@ -71486,10 +71583,13 @@ MonoBehaviour:
   NPCText: {fileID: 9039830535603978143}
   speech:
   - I think you can get up too the rooftops this way.
+  missingQuestSpeech: []
   npcName: 
   player: {fileID: 0}
   givesQuest: 0
   questToGive: {fileID: 0}
+  requiresQuest: 0
+  requiredQuest: {fileID: 0}
 --- !u!23 &2876957598846504840
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -73565,10 +73665,13 @@ MonoBehaviour:
   NPCText: {fileID: 2813398888152223889}
   speech:
   - This champion looks scary
+  missingQuestSpeech: []
   npcName: 
   player: {fileID: 0}
   givesQuest: 0
   questToGive: {fileID: 0}
+  requiresQuest: 0
+  requiredQuest: {fileID: 0}
 --- !u!4 &3947444267459971875
 Transform:
   m_ObjectHideFlags: 0
@@ -73601,10 +73704,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NPCText: {fileID: 2813398888213192807}
   speech: []
+  missingQuestSpeech: []
   npcName: 
   player: {fileID: 0}
   givesQuest: 0
   questToGive: {fileID: 0}
+  requiresQuest: 0
+  requiredQuest: {fileID: 0}
 --- !u!4 &3947444267565774804
 Transform:
   m_ObjectHideFlags: 0
@@ -73637,10 +73743,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NPCText: {fileID: 2813398887973215376}
   speech: []
+  missingQuestSpeech: []
   npcName: 
   player: {fileID: 0}
   givesQuest: 0
   questToGive: {fileID: 0}
+  requiresQuest: 0
+  requiredQuest: {fileID: 0}
 --- !u!4 &3947444267587540381
 Transform:
   m_ObjectHideFlags: 0
@@ -73674,10 +73783,13 @@ MonoBehaviour:
   NPCText: {fileID: 2813398888084586201}
   speech:
   - OhMyGosh Spring~Boy??
+  missingQuestSpeech: []
   npcName: 
   player: {fileID: 0}
   givesQuest: 0
   questToGive: {fileID: 0}
+  requiresQuest: 0
+  requiredQuest: {fileID: 0}
 --- !u!4 &3947444267841325787
 Transform:
   m_ObjectHideFlags: 0
@@ -73711,10 +73823,13 @@ MonoBehaviour:
   NPCText: {fileID: 2813398887159701919}
   speech:
   - I wish I could get all that oil
+  missingQuestSpeech: []
   npcName: 
   player: {fileID: 0}
   givesQuest: 0
   questToGive: {fileID: 0}
+  requiresQuest: 0
+  requiredQuest: {fileID: 0}
 --- !u!4 &3947444268190121140
 Transform:
   m_ObjectHideFlags: 0
@@ -73749,10 +73864,13 @@ MonoBehaviour:
   speech:
   - The last guy died to this champion
   - ..but you'll be fine
+  missingQuestSpeech: []
   npcName: 
   player: {fileID: 0}
   givesQuest: 0
   questToGive: {fileID: 0}
+  requiresQuest: 0
+  requiredQuest: {fileID: 0}
 --- !u!4 &3947444268282539375
 Transform:
   m_ObjectHideFlags: 0
@@ -73785,10 +73903,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NPCText: {fileID: 2813398886852740651}
   speech: []
+  missingQuestSpeech: []
   npcName: 
   player: {fileID: 0}
   givesQuest: 0
   questToGive: {fileID: 0}
+  requiresQuest: 0
+  requiredQuest: {fileID: 0}
 --- !u!4 &3947444268363200690
 Transform:
   m_ObjectHideFlags: 0
@@ -73839,10 +73960,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NPCText: {fileID: 2813398886619469488}
   speech: []
+  missingQuestSpeech: []
   npcName: 
   player: {fileID: 0}
   givesQuest: 0
   questToGive: {fileID: 0}
+  requiresQuest: 0
+  requiredQuest: {fileID: 0}
 --- !u!4 &3947444268385047442
 Transform:
   m_ObjectHideFlags: 0
@@ -73875,10 +73999,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NPCText: {fileID: 2813398886617037014}
   speech: []
+  missingQuestSpeech: []
   npcName: 
   player: {fileID: 0}
   givesQuest: 0
   questToGive: {fileID: 0}
+  requiresQuest: 0
+  requiredQuest: {fileID: 0}
 --- !u!4 &3947444268426247855
 Transform:
   m_ObjectHideFlags: 0
@@ -73912,10 +74039,13 @@ MonoBehaviour:
   NPCText: {fileID: 2813398886709007851}
   speech:
   - Save us Spring~Boy
+  missingQuestSpeech: []
   npcName: 
   player: {fileID: 0}
   givesQuest: 0
   questToGive: {fileID: 0}
+  requiresQuest: 0
+  requiredQuest: {fileID: 0}
 --- !u!4 &3947444268600050685
 Transform:
   m_ObjectHideFlags: 0
@@ -73951,10 +74081,13 @@ MonoBehaviour:
   - I have heard these champions guard in Piston Row
   - If you beat this dude, maybe you can go there?
   - Get some justice for us poor
+  missingQuestSpeech: []
   npcName: 
   player: {fileID: 0}
   givesQuest: 0
   questToGive: {fileID: 0}
+  requiresQuest: 0
+  requiredQuest: {fileID: 0}
 --- !u!4 &3947444268668337841
 Transform:
   m_ObjectHideFlags: 0
@@ -73987,10 +74120,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NPCText: {fileID: 2813398887003788789}
   speech: []
+  missingQuestSpeech: []
   npcName: 
   player: {fileID: 0}
   givesQuest: 0
   questToGive: {fileID: 0}
+  requiresQuest: 0
+  requiredQuest: {fileID: 0}
 --- !u!4 &3947444268703858451
 Transform:
   m_ObjectHideFlags: 0
@@ -74025,10 +74161,13 @@ MonoBehaviour:
   speech:
   - Springsteen told me all about you boy
   - You'll go far
+  missingQuestSpeech: []
   npcName: 
   player: {fileID: 0}
   givesQuest: 0
   questToGive: {fileID: 0}
+  requiresQuest: 0
+  requiredQuest: {fileID: 0}
 --- !u!4 &3947444268979110969
 Transform:
   m_ObjectHideFlags: 0
@@ -74062,10 +74201,13 @@ MonoBehaviour:
   NPCText: {fileID: 2813398886156169085}
   speech:
   - I think you can win this
+  missingQuestSpeech: []
   npcName: 
   player: {fileID: 0}
   givesQuest: 0
   questToGive: {fileID: 0}
+  requiresQuest: 0
+  requiredQuest: {fileID: 0}
 --- !u!4 &3947444269038392049
 Transform:
   m_ObjectHideFlags: 0
@@ -74098,10 +74240,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NPCText: {fileID: 2813398886500596149}
   speech: []
+  missingQuestSpeech: []
   npcName: 
   player: {fileID: 0}
   givesQuest: 0
   questToGive: {fileID: 0}
+  requiresQuest: 0
+  requiredQuest: {fileID: 0}
 --- !u!4 &3947444269128282708
 Transform:
   m_ObjectHideFlags: 0
@@ -74134,10 +74279,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NPCText: {fileID: 2813398886410705168}
   speech: []
+  missingQuestSpeech: []
   npcName: 
   player: {fileID: 0}
   givesQuest: 0
   questToGive: {fileID: 0}
+  requiresQuest: 0
+  requiredQuest: {fileID: 0}
 --- !u!4 &3947444269188288592 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5851690266632721375, guid: a334b2e23820fe84097b0a5682dd576d,
@@ -74177,10 +74325,13 @@ MonoBehaviour:
   NPCText: {fileID: 2813398886463400562}
   speech:
   - 
+  missingQuestSpeech: []
   npcName: 
   player: {fileID: 0}
   givesQuest: 0
   questToGive: {fileID: 0}
+  requiresQuest: 0
+  requiredQuest: {fileID: 0}
 --- !u!1 &4138976387548921483
 GameObject:
   m_ObjectHideFlags: 0
@@ -75558,6 +75709,7 @@ Transform:
   - {fileID: 3095052756118139165}
   - {fileID: 7486845949374718109}
   - {fileID: 129599768}
+  - {fileID: 1506603243}
   - {fileID: 5292341583782832275}
   - {fileID: 4917054484002800412}
   - {fileID: 6248066863831034974}
@@ -75916,10 +76068,13 @@ MonoBehaviour:
   - I want you to travel out into the world to find oil for all of us Springs.
   - Take my gloves and if you run into any problems you know what to do.
   - 'You should find my good ol friend Springsteen in the town square. '
+  missingQuestSpeech: []
   npcName: 
   player: {fileID: 0}
   givesQuest: 0
   questToGive: {fileID: 0}
+  requiresQuest: 0
+  requiredQuest: {fileID: 0}
 --- !u!65 &7921493729296304148
 BoxCollider:
   m_ObjectHideFlags: 0
