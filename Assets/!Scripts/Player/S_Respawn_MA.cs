@@ -68,7 +68,7 @@ public class S_Respawn_MA : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.layer == trash)
+        if (collision.gameObject.layer == 16)
         {
             transform.position = respawnPoint;
         }
