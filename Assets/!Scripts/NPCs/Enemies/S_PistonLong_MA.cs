@@ -68,8 +68,9 @@ public class S_PistonLong_MA : MonoBehaviour, S_Enemies_MA
         //Debug.Log("found player");
         transform.LookAt(player.transform);
     }
-    public void Attack(float damage)
+    public IEnumerator Attack(float damage)
     {
+        yield return null;
         S_Stats_MA.playerHealth -= damage;
     }
 

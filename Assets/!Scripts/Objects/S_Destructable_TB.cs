@@ -17,6 +17,7 @@ public class S_Destructable_TB : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        print(collision.gameObject.name);
         if (collision.gameObject.layer != destroyes) return;
 
 

@@ -57,7 +57,7 @@ public class S_EnemyPrototype_MA : MonoBehaviour, S_Enemies_MA
                 if (Time.time > nextFire)
                 {
                     nextFire = Time.time + fireRate;
-                    Attack(10);
+                    StartCoroutine(Attack(10));
                 }
             }
             else if (Physics.CheckSphere(currentBullet.transform.position, .1f, layer))
@@ -92,10 +92,11 @@ public class S_EnemyPrototype_MA : MonoBehaviour, S_Enemies_MA
         }
     }
 
-    public void Attack(float damage)
+    public IEnumerator Attack(float damage)
     {
         currentBullet = Instantiate(bullet, transform.position, transform.rotation);
         Destroy(currentBullet, 2);
+        yield return null;
     }
 
     public void Hurt(float damage, GameObject WhoDealtDamage)

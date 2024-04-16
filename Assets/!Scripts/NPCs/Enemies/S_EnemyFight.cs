@@ -22,7 +22,7 @@ public class S_EnemyFight : MonoBehaviour, S_Enemies_MA
     private float attackRate = 1f;
     private float nextAttack = 0.0f;
 
-    private float enemyHealth = 100;
+    [SerializeField]private float enemyHealth = 100;
 
     [SerializeField] private GameObject navCorner1;
     [SerializeField] private GameObject navCorner2;
@@ -63,55 +63,76 @@ public class S_EnemyFight : MonoBehaviour, S_Enemies_MA
             transform.LookAt(player.transform.position);
             navMeshAgent.destination = player.transform.position - transform.forward * 1.5f;
         }
+        if (attackRate <= nextAttack)
+        {
+            if (Vector3.Distance(transform.position, player.transform.position) < 5)
+            {
+                StartCoroutine(Attack(50));
+            }
+        }
 
         nextAttack += Time.deltaTime;
         //Debug.Log(nextAttack);
     }
 
-    private void OnTriggerStay(Collider other)
+    //private void OnTriggerStay(Collider other)
+    //{
+    //    if (attackRate <= nextAttack)
+    //    {
+    //        int whichHand = Random.Range(0, 2);
+    //        if (whichHand == 0)
+    //        {
+    //            hand = leftHand;
+    //        }
+    //        else if (whichHand == 1)
+    //        {
+    //            hand = rightHand;
+    //        }
+    //        Attack(20);
+    //    }
+
+    //    else if (attackRate / 2 <= nextAttack)
+    //    {
+    //        Ready();
+    //    }
+
+    //    if (Input.GetMouseButtonDown(0))
+    //    {
+    //        mouse = 0;
+    //    }
+    //    else if (Input.GetMouseButtonDown(1))
+    //    {
+    //        mouse = 1;
+    //    }
+
+    //    if (Input.GetMouseButtonDown(mouse))
+    //    {
+    //        if (other.gameObject.tag == "Player")
+    //        {
+    //            Hurt(20, other.gameObject);
+    //        }
+    //    }
+    //}
+
+    public IEnumerator Attack(float damage)
     {
-        if (attackRate <= nextAttack)
-        {
-            int whichHand = Random.Range(0, 2);
-            if (whichHand == 0)
-            {
-                hand = leftHand;
-            }
-            else if (whichHand == 1)
-            {
-                hand = rightHand;
-            }
-            Attack(20);
-        }
-
-        else if (attackRate/2 <= nextAttack)
-        {
-            Ready();
-        }
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            mouse = 0;
-        }
-        else if (Input.GetMouseButtonDown(1))
-        {
-            mouse = 1;
-        }
-
-        if (Input.GetMouseButtonDown(mouse))
-        {
-            if (other.gameObject.tag == "Player")
-            {
-                Hurt(20, other.gameObject);
-            }
-        }
-    }
-
-    public void Attack(float damage)
-    {
-        hand.transform.localScale = new Vector3(hand.transform.localScale.x, punchLenght, hand.transform.localScale.z);
-
         nextAttack = 0;
+
+        int whichHand = Random.Range(0, 2);
+        if (whichHand == 0)
+        {
+            hand = leftHand;
+        }
+        else if (whichHand == 1)
+        {
+            hand = rightHand;
+        }
+
+        Ready();
+
+        yield return new WaitForSeconds(.5f);
+
+        hand.transform.localScale = new Vector3(punchLenght, hand.transform.localScale.y, hand.transform.localScale.z);
 
         if (Vector3.Distance(transform.position, player.transform.position) < 2)
         {
@@ -121,11 +142,12 @@ public class S_EnemyFight : MonoBehaviour, S_Enemies_MA
 
     public void Ready()
     {
-        hand.transform.localScale = new Vector3(hand.transform.localScale.x, punchLenght/2, hand.transform.localScale.z);
+        hand.transform.localScale = new Vector3(punchLenght / 2, hand.transform.localScale.x, hand.transform.localScale.z);
     }
 
     public void Hurt(float damage, GameObject WhoDealtDamage)
     {
+        print("hurt");
         enemyHealth -= damage;
 
         if (enemyHealth <= 0)

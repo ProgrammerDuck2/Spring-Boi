@@ -14,9 +14,10 @@ public class S_Dummy_TB : MonoBehaviour, S_Enemies_MA
 
     GameObject art;
 
-    public void Attack(float damage)
+    public IEnumerator Attack(float damage)
     {
         //dummy cant attack :(
+        yield return null;
     }
 
     public void Hurt(float damage, GameObject WhoDealtDamage)
