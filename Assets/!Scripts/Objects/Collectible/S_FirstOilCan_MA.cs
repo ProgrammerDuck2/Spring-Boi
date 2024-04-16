@@ -21,7 +21,7 @@ public class S_FirstOilCan_MA : MonoBehaviour
         Vector3 arenaTransform = arenaCenter.transform.position;
         if (EnemiesInScene.enemiesInScene && !hasHappened)
         {
-            Debug.Log("w");
+            //Debug.Log("w");
             Instantiate(oilCan, arenaTransform, oilCan.transform.rotation);
             hasHappened = true;
         }
