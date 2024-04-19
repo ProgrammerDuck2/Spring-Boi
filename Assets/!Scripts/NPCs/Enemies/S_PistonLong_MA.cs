@@ -28,7 +28,7 @@ public class S_PistonLong_MA : MonoBehaviour, S_Enemies_MA
         Vector3 c1 = navCorner1.transform.position;
         Vector3 c2 = navCorner2.transform.position;
         navMeshAgent.destination = new Vector3(Random.Range(c1.x, c2.x), c1.y, Random.Range(c1.z, c2.z));
-        Debug.Log(new Vector3(Random.Range(c1.x, c2.x), c1.y, Random.Range(c1.z, c2.z)));
+        //Debug.Log(new Vector3(Random.Range(c1.x, c2.x), c1.y, Random.Range(c1.z, c2.z)));
     }
 
     // Update is called once per frame
@@ -44,7 +44,7 @@ public class S_PistonLong_MA : MonoBehaviour, S_Enemies_MA
         }
         if (Vector3.Distance(transform.position, player.transform.position) < 5)
         {
-            Attack(333);
+            Attack(600);
 
             //if (Input.GetMouseButtonDown(0))
             //{
