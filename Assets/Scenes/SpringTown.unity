@@ -154,17 +154,17 @@ PrefabInstance:
     - target: {fileID: 7270047777627567016, guid: a3ba075e65629ad4380ce9298e73ddea,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -287.13
+      value: -282.99
       objectReference: {fileID: 0}
     - target: {fileID: 7270047777627567016, guid: a3ba075e65629ad4380ce9298e73ddea,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.6799998
+      value: 2.72
       objectReference: {fileID: 0}
     - target: {fileID: 7270047777627567016, guid: a3ba075e65629ad4380ce9298e73ddea,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -23.52
+      value: -21.75
       objectReference: {fileID: 0}
     - target: {fileID: 7270047777627567016, guid: a3ba075e65629ad4380ce9298e73ddea,
         type: 3}
@@ -4477,7 +4477,7 @@ PrefabInstance:
     - target: {fileID: 7014097893906585630, guid: 758cbd6f9e9ec244e9975c0f5e23b60d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 13.92
+      value: 3.8199978
       objectReference: {fileID: 0}
     - target: {fileID: 7014097893906585630, guid: 758cbd6f9e9ec244e9975c0f5e23b60d,
         type: 3}
@@ -4487,7 +4487,7 @@ PrefabInstance:
     - target: {fileID: 7014097893906585630, guid: 758cbd6f9e9ec244e9975c0f5e23b60d,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -49.45
+      value: -2.6499977
       objectReference: {fileID: 0}
     - target: {fileID: 7014097893906585630, guid: 758cbd6f9e9ec244e9975c0f5e23b60d,
         type: 3}
@@ -24384,66 +24384,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 724889742}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &730327627
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 730327629}
-  - component: {fileID: 730327628}
-  - component: {fileID: 730327630}
-  m_Layer: 0
-  m_Name: OilCans
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &730327628
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 730327627}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c2b809d81dca3240a8f668c035ee441, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &730327629
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 730327627}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 32.92543, y: -3.1144047, z: 71.87067}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2131048092}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &730327630
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 730327627}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74f95c16e4f09c842b7a0a4aacda4d57, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  EnemiesInScene: {fileID: 1785894743}
-  oilCan: {fileID: 5800898581421354992, guid: 2c23a8e9ffa8854419777ce70220b2a3, type: 3}
-  arenaCenter: {fileID: 870209382}
 --- !u!1001 &737568089
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -58490,6 +58430,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1785894742}
   - component: {fileID: 1785894743}
+  - component: {fileID: 1785894744}
   m_Layer: 0
   m_Name: EnemiesInScene
   m_TagString: Untagged
@@ -58506,7 +58447,7 @@ Transform:
   m_GameObject: {fileID: 1785894741}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 10.1, y: 0, z: -46.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -58526,6 +58467,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemiesInScene: 0
+--- !u!114 &1785894744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1785894741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df0e4695d8824134785d1754fb430287, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  oilCan: {fileID: 5800898581421354992, guid: 2c23a8e9ffa8854419777ce70220b2a3, type: 3}
 --- !u!1 &1789569995
 GameObject:
   m_ObjectHideFlags: 0
@@ -69136,9 +69090,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 730327629}
-  - {fileID: 1785894742}
   - {fileID: 395167480}
+  - {fileID: 1785894742}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2135837754
