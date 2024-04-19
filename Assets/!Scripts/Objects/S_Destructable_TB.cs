@@ -17,10 +17,20 @@ public class S_Destructable_TB : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        print(collision.gameObject.name);
         if (collision.gameObject.layer != destroyes) return;
 
-
+        Destroy();
+    }
+    [Button]
+    private void Destroy()
+    {
         fracture.CauseFracture();
+
+        GameObject pieces = GameObject.Find(name + "Fragments");
+
+        for (int i = 0; i < pieces.transform.childCount; i++)
+        {
+            pieces.transform.GetChild(i).GetComponent<Rigidbody>().AddForce(-transform.up * 10, ForceMode.Impulse);
+        }
     }
 }

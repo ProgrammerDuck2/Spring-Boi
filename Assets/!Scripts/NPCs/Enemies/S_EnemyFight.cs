@@ -2,6 +2,7 @@ using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
@@ -17,9 +18,10 @@ public class S_EnemyFight : MonoBehaviour, S_Enemies_MA
     [SerializeField] private GameObject rightHand;
     private GameObject hand;
 
-    private float punchLenght = 1;
+    private float punchLenght = 5;
+    float punchSpeed = .01f;
 
-    private float attackRate = 1f;
+    private float attackRate = 2f;
     private float nextAttack = 0.0f;
 
     [SerializeField]private float enemyHealth = 100;
@@ -65,7 +67,7 @@ public class S_EnemyFight : MonoBehaviour, S_Enemies_MA
         }
         if (attackRate <= nextAttack)
         {
-            if (Vector3.Distance(transform.position, player.transform.position) < 5)
+            if (Vector3.Distance(transform.position, player.transform.position) < 10)
             {
                 StartCoroutine(Attack(50));
             }
@@ -128,11 +130,23 @@ public class S_EnemyFight : MonoBehaviour, S_Enemies_MA
             hand = rightHand;
         }
 
-        Ready();
+        yield return StartCoroutine(Ready(1f));
 
-        yield return new WaitForSeconds(.5f);
+        float timer = 0;
+        float value = 0;
+        
+        while (timer < punchSpeed)
+        {
+            hand.transform.localScale = new Vector3(
+                Mathf.Lerp(.5f, punchLenght, value), 
+                hand.transform.localScale.y, 
+                hand.transform.localScale.z
+                );
 
-        hand.transform.localScale = new Vector3(punchLenght, hand.transform.localScale.y, hand.transform.localScale.z);
+            value += Time.deltaTime * (1 / punchSpeed);
+            timer += Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
 
         if (Vector3.Distance(transform.position, player.transform.position) < 2)
         {
@@ -140,9 +154,23 @@ public class S_EnemyFight : MonoBehaviour, S_Enemies_MA
         }
     }
 
-    public void Ready()
+    public IEnumerator Ready(float timeToReady)
     {
-        hand.transform.localScale = new Vector3(punchLenght / 2, hand.transform.localScale.x, hand.transform.localScale.z);
+        float timer = 0;
+        float value = 0;
+
+        while (timer < timeToReady)
+        {
+            hand.transform.localScale = new Vector3(
+                Mathf.Lerp(1, .5f, value),
+                hand.transform.localScale.y,
+                hand.transform.localScale.z
+                );
+            timer += Time.deltaTime;
+            value += Time.deltaTime * (1 / timeToReady);
+
+            yield return new WaitForEndOfFrame();
+        }
     }
 
     public void Hurt(float damage, GameObject WhoDealtDamage)
@@ -166,6 +194,16 @@ public class S_EnemyFight : MonoBehaviour, S_Enemies_MA
         {
             item.CauseFracture();
         }
+
+        GameObject pieces = GameObject.Find(name + "Fragments");
+
+        for (int i = 0; i < pieces.transform.childCount; i++)
+        {
+            pieces.transform.GetChild(i).gameObject.layer = 11;
+            pieces.transform.GetChild(i).GetComponent<Rigidbody>().AddForce(-(player.transform.position - transform.position).normalized * 1.5f, ForceMode.Impulse);
+        }
+
+        print(pieces);
 
         mapIcon.SetActive(false);
 

@@ -34,7 +34,7 @@ public class S_Punch_TB : S_Hand_TB
 
         if (Vector3.Distance(handPostitions[0], handPostitions[handPostitions.Count - 1]) > forceRequirement && !OnCooldown)
         {
-            Punch(Physics.OverlapSphere(transform.position, .5f), Vector3.Distance(handPostitions[0], handPostitions[handPostitions.Count - 1]) + 1);
+            Punch(Physics.OverlapSphere(transform.position, 2f), Vector3.Distance(handPostitions[0], handPostitions[handPostitions.Count - 1]) + 1);
         }
     }
 
@@ -47,7 +47,7 @@ public class S_Punch_TB : S_Hand_TB
             if (hit[i].TryGetComponent<S_Enemies_MA>(out S_Enemies_MA enemy))
             {
                 enemy.Hurt(damage, gameObject);
-                hand.hapticFeedback.TriggerHaptic(.1f, .1f, GetComponent<ActionBasedController>());
+                hand.hapticFeedback.TriggerHaptic(.3f, .1f, GetComponent<ActionBasedController>());
             }
         }
 

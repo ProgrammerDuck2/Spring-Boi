@@ -9,85 +9,85 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class S_Grab_TB : S_Hand_TB
 {
-    [Header("Controller")]
-    S_Grab_TB otherControllerGrab;
+    //[Header("Controller")]
+    //S_Grab_TB otherControllerGrab;
 
-    [Header("Other")]
-    [ShowNonSerializedField] Vector3 initializedGrabPosition;
-    [ShowNonSerializedField] Vector3 initializedPlayerPosition;
+    //[Header("Other")]
+    //[ShowNonSerializedField] Vector3 initializedGrabPosition;
+    //[ShowNonSerializedField] Vector3 initializedPlayerPosition;
 
-    [HideInInspector] public bool holding = false;
+    //[HideInInspector] public bool holding = false;
 
-    public override void Start()
-    {
-        base.Start();
-        otherControllerGrab = otherController.GetComponent<S_Grab_TB>();
-    }
+    //public override void Start()
+    //{
+    //    base.Start();
+    //    otherControllerGrab = otherController.GetComponent<S_Grab_TB>();
+    //}
 
-    private void Update()
-    {
-        if ((handInput.triggerActivated && handInput.gripActivated) != handInput.grabActivated && !handInput.grabActivated && Physics.CheckSphere(transform.position, S_Stats_MA.HandGrabRadius, grabable))
-        {
-            initializedGrab();
-        }
+    //private void Update()
+    //{
+    //    if ((handInput.triggerActivated && handInput.gripActivated) != handInput.grabActivated && !handInput.grabActivated && Physics.CheckSphere(transform.position, S_Stats_MA.HandGrabRadius, notGrabable))
+    //    {
+    //        initializedGrab();
+    //    }
 
-        if((handInput.triggerActivated && handInput.gripActivated) != handInput.grabActivated && handInput.grabActivated)
-        {
-            EndGrab();
-        }
+    //    if ((handInput.triggerActivated && handInput.gripActivated) != handInput.grabActivated && handInput.grabActivated)
+    //    {
+    //        EndGrab();
+    //    }
 
-        if (holding)
-        {
-            Grab();
-        }
-    }
+    //    if (holding)
+    //    {
+    //        Grab();
+    //    }
+    //}
 
-    public void initializedGrab()
-    {
-        Debug.Log("Initialized grab");
+    //public void initializedGrab()
+    //{
+    //    Debug.Log("Initialized grab");
 
-        if (otherControllerGrab.holding)
-        {
-            otherControllerGrab.EndGrab();
-        }
+    //    if (otherControllerGrab.holding)
+    //    {
+    //        otherControllerGrab.EndGrab();
+    //    }
 
-        S_Movement_TB movePlayer = playerMovement;
-        movePlayer.enabled = false;
+    //    S_Movement_TB movePlayer = playerMovement;
+    //    movePlayer.enabled = false;
 
-        initializedGrabPosition = handPostioning.controllerPosition;
-        initializedPlayerPosition = player.transform.position;
+    //    initializedGrabPosition = handPostioning.controllerPosition;
+    //    initializedPlayerPosition = player.transform.position;
 
-        holding = true;
+    //    holding = true;
 
-        handInput.hapticFeedback.TriggerHaptic(.1f, .1f, GetComponent<ActionBasedController>());
-    }
-    void Grab()
-    {
-        //Debug.Log("initialized pos = " + initializedGrabPosition + " currentPos = " + controllerPosition + " offset = " + (initializedGrabPosition - controllerPosition));
+    //    handInput.hapticFeedback.TriggerHaptic(.1f, .1f, GetComponent<ActionBasedController>());
+    //}
+    //void Grab()
+    //{
+    //    Debug.Log("initialized pos = " + initializedGrabPosition + " currentPos = " + controllerPosition + " offset = " + (initializedGrabPosition - controllerPosition));
 
-        Vector3 offset = initializedGrabPosition - transform.localPosition;
+    //    Vector3 offset = initializedGrabPosition - transform.localPosition;
 
-        player.transform.position = initializedPlayerPosition + offset;
-        transform.localPosition -= offset;
-    }
-    void EndGrab()
-    {
-        Debug.Log("Ended grab");
+    //    player.transform.position = initializedPlayerPosition + offset;
+    //    transform.localPosition -= offset;
+    //}
+    //void EndGrab()
+    //{
+    //    Debug.Log("Ended grab");
 
-        if(!otherControllerGrab.holding)
-        {
-            S_Movement_TB movePlayer = playerMovement;
-            movePlayer.enabled = true;
-        }
+    //    if (!otherControllerGrab.holding)
+    //    {
+    //        S_Movement_TB movePlayer = playerMovement;
+    //        movePlayer.enabled = true;
+    //    }
 
-        holding = false;
-    }
-    private void OnDrawGizmos()
-    {
-        if (DebugMode)
-        {
-            Gizmos.color = new Color(0, 1, 0, .2f);
-            Gizmos.DrawSphere(transform.position, S_Stats_MA.HandGrabRadius);
-        }
-    }
+    //    holding = false;
+    //}
+    //private void OnDrawGizmos()
+    //{
+    //    if (DebugMode)
+    //    {
+    //        Gizmos.color = new Color(0, 1, 0, .2f);
+    //        Gizmos.DrawSphere(transform.position, S_Stats_MA.HandGrabRadius);
+    //    }
+    //}
 }

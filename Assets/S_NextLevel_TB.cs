@@ -10,7 +10,7 @@ public class S_NextLevel_TB : MonoBehaviour
     [SerializeField] string nextLevel;
     private void OnCollisionEnter(Collision other)
     {
-        Invoke(nameof(NextLevel), 1);
+        //Invoke(nameof(NextLevel), 1);
     }
     void NextLevel()
     {
