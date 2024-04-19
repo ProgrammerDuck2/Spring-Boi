@@ -199,8 +199,12 @@ public class S_EnemyFight : MonoBehaviour, S_Enemies_MA
 
         for (int i = 0; i < pieces.transform.childCount; i++)
         {
-            pieces.transform.GetChild(i).gameObject.layer = 11;
-            pieces.transform.GetChild(i).GetComponent<Rigidbody>().AddForce(-(player.transform.position - transform.position).normalized * 1.5f, ForceMode.Impulse);
+            GameObject piece = pieces.transform.GetChild(i).gameObject;
+
+            piece.AddComponent<S_Pickupable_TB>();
+            piece.tag = "Interactable";
+            piece.gameObject.layer = 11;
+            piece.GetComponent<Rigidbody>().AddForce(-(player.transform.position - transform.position).normalized * 1.5f, ForceMode.Impulse);
         }
 
         print(pieces);

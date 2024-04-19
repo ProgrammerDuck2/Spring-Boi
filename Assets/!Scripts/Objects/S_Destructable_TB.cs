@@ -30,7 +30,12 @@ public class S_Destructable_TB : MonoBehaviour
 
         for (int i = 0; i < pieces.transform.childCount; i++)
         {
-            pieces.transform.GetChild(i).GetComponent<Rigidbody>().AddForce(-transform.up * 10, ForceMode.Impulse);
+            GameObject piece = pieces.transform.GetChild(i).gameObject;
+
+            piece.AddComponent<S_Pickupable_TB>();
+            piece.tag = "Interactable";
+            piece.gameObject.layer = 11;
+            piece.GetComponent<Rigidbody>().AddForce(-transform.up * 10, ForceMode.Impulse);
         }
     }
 }
