@@ -116,7 +116,7 @@ public class S_PistonRobot_MA : MonoBehaviour
 
         mapIcon.SetActive(false);
 
-        Instantiate(oilCan);
+        Instantiate(oilCan, transform.position, transform.rotation);
 
         Destroy(gameObject, 10);
     }
