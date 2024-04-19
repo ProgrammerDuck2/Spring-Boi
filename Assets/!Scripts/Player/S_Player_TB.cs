@@ -42,7 +42,7 @@ public class S_Player_TB : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
 
         playerInput.actions["Jump"].started += jump.JumpPressed;
-        playerInput.actions["Sprint"].started += movement.SprintHeld;
+        //playerInput.actions["Sprint"].started += movement.SprintHeld;
     }
 
     private void OnValidate()

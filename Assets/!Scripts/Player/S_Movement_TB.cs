@@ -28,13 +28,14 @@ public class S_Movement_TB : S_Player_TB
     [Header("Other")]
     Transform bodyArt;
 
-    bool Sprint;
+    bool Sprint = true;
 
     [ShowIf("DebugMode")] 
     public Vector3 IRLPosOffset;
     // Start is called before the first frame update
     void Start()
     {
+        Sprint = true;
         bodyArt = transform.GetChild(1);
         pcPov = transform.GetChild(2);
 
@@ -79,8 +80,9 @@ public class S_Movement_TB : S_Player_TB
 
         Movement();
     }
-    //Movements
-    #region
+    #region    //Movements
+
+    float value;
     void Movement()
     {
         Vector3 move;
@@ -89,7 +91,17 @@ public class S_Movement_TB : S_Player_TB
         bodyArt.eulerAngles = S_Settings_TB.IsVRConnected ? new Vector3(0, VrCamera.eulerAngles.y, 0) : bodyArt.eulerAngles = new Vector3(0, pcPov.eulerAngles.y, 0);
 
         move = bodyArt.transform.TransformDirection(Vector3.Normalize(new Vector3(moveValue.x, 0, moveValue.y)));
-        move *= Sprint ? S_Stats_MA.Speed.y : S_Stats_MA.Speed.x;
+
+        if (moveValue != Vector2.zero)
+        {
+            move *= Mathf.Lerp(0, S_Stats_MA.Speed.y, value);
+            value += Time.deltaTime * 2;
+        }
+        else
+        {
+            value = 0;
+        }
+        value = Mathf.Clamp(value, 0, 1);
 
         playerRigidbody.velocity += move;
     }
