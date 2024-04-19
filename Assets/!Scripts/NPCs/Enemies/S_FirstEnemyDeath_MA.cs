@@ -16,7 +16,7 @@ public class S_FirstEnemyDeath_MA : MonoBehaviour
     {
         if (transform.childCount == 0)
         {
-            Instantiate(oilCan);
+            Instantiate(oilCan, gameObject.transform);
         }
     }
 }
