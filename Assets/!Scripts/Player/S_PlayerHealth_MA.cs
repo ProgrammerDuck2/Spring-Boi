@@ -23,7 +23,6 @@ public class S_PlayerHealth_MA : MonoBehaviour
     private void Update()
     {
         value = S_Stats_MA.playerHealth / S_Stats_MA.maxHealth;
-        print(value);
 
         handMat.color = lerpColor(lowColor, originalColor, value);
 
