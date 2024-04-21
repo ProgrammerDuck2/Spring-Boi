@@ -24,6 +24,8 @@ public class S_PistonRobot_MA : MonoBehaviour
 
     [SerializeField] GameObject mapIcon;
 
+    [SerializeField] GameObject oilCan;
+
 
     void Start()
     {
@@ -113,6 +115,8 @@ public class S_PistonRobot_MA : MonoBehaviour
         }
 
         mapIcon.SetActive(false);
+
+        Instantiate(oilCan, transform.position, transform.rotation);
 
         Destroy(gameObject, 10);
     }
