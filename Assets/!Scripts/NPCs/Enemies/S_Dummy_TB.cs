@@ -4,9 +4,8 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class S_Dummy_TB : MonoBehaviour, S_Enemies_MA
+public class S_Dummy_TB : S_Enemies_MA
 {
-    [SerializeField] float maxHealth;
     [ShowNonSerializedField] float health;
 
     [Required]
@@ -14,13 +13,13 @@ public class S_Dummy_TB : MonoBehaviour, S_Enemies_MA
 
     GameObject art;
 
-    public IEnumerator Attack(float damage)
+    public override IEnumerator Attack(float damage)
     {
         //dummy cant attack :(
         yield return null;
     }
 
-    public void Hurt(float damage, GameObject WhoDealtDamage)
+    public override void Hurt(float damage, GameObject WhoDealtDamage)
     {
         health -= damage;
 
@@ -43,13 +42,13 @@ public class S_Dummy_TB : MonoBehaviour, S_Enemies_MA
     }
 
     // Start is called before the first frame update
-    void Start()
+    public override void Start()
     {
         health = maxHealth;
         art = transform.GetChild(0).gameObject;
     }
 
-    private void Update()
+    public override void Update()
     {
         if (health < 0)
         {

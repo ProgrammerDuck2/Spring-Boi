@@ -5,13 +5,13 @@ using UnityEngine;
 
 public class S_Destructable_TB : MonoBehaviour
 {
-    [Layer]
-    [SerializeField] int destroyes;
+    int destroyes;
 
     Fracture fracture;
 
     private void Start()
     {
+        destroyes = 11;
         fracture = GetComponent<Fracture>();
     }
 
