@@ -34,7 +34,7 @@ public class S_Punch_TB : S_Hand_TB
 
         if (Vector3.Distance(handPostitions[0], handPostitions[handPostitions.Count - 1]) > forceRequirement && !OnCooldown)
         {
-            Punch(Physics.OverlapSphere(transform.position, 2f), Vector3.Distance(handPostitions[0], handPostitions[handPostitions.Count - 1]) + 1);
+            Punch(Physics.OverlapSphere(transform.position, .5f), Vector3.Distance(handPostitions[0], handPostitions[handPostitions.Count - 1]) + 1);
         }
     }
 

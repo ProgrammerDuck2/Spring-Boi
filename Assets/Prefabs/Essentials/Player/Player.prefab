@@ -633,6 +633,7 @@ GameObject:
   - component: {fileID: 6297174659594756492}
   - component: {fileID: 4711431765507565445}
   - component: {fileID: 7988623104856053487}
+  - component: {fileID: 5709386735295369067}
   m_Layer: 7
   m_Name: LeftHand
   m_TagString: Untagged
@@ -1188,6 +1189,24 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.3
   m_Center: {x: 0, y: -0.04, z: 0}
+--- !u!114 &5709386735295369067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3351723451793753507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49a2b61392f703e408b8222d259cffa7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerMovement: {fileID: 0}
+  playerRB: {fileID: 0}
+  playerInput: {fileID: 0}
+  DebugMode: 0
+  particleHolder: {fileID: 9136128463518442593}
+  OnCooldown: 0
 --- !u!1 &5052090680597602032
 GameObject:
   m_ObjectHideFlags: 0
@@ -1300,6 +1319,7 @@ GameObject:
   - component: {fileID: 6788038894833963909}
   - component: {fileID: 941315114983727191}
   - component: {fileID: 1380446828557802073}
+  - component: {fileID: 146472826079475761}
   m_Layer: 7
   m_Name: RightHand
   m_TagString: Untagged
@@ -1854,6 +1874,24 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.3
   m_Center: {x: 0, y: -0.04, z: 0}
+--- !u!114 &146472826079475761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6282108924297107850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49a2b61392f703e408b8222d259cffa7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerMovement: {fileID: 0}
+  playerRB: {fileID: 0}
+  playerInput: {fileID: 0}
+  DebugMode: 0
+  particleHolder: {fileID: 2050706224136021718}
+  OnCooldown: 0
 --- !u!1 &6583513823572844596
 GameObject:
   m_ObjectHideFlags: 0
