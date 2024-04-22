@@ -22,7 +22,9 @@ public class S_Movement_TB : S_Player_TB
 
     [Header("Physics")]
     [ShowIf("DebugMode")]
-    public bool HighSpeed;
+    public bool highSpeed;
+    [ShowIf("DebugMode")]
+    [Range(0, 1)][SerializeField] float airControl;
 
     [HorizontalLine(color: EColor.Violet)]
     [Header("Other")]
@@ -48,7 +50,7 @@ public class S_Movement_TB : S_Player_TB
     {
         if (Grounded && !crouch.isCrouching)
         {
-            HighSpeed = false;
+            highSpeed = false;
         }
 
         if (S_Settings_TB.IsVRConnected)
@@ -62,7 +64,7 @@ public class S_Movement_TB : S_Player_TB
     }
     private void FixedUpdate()
     {
-        if (!HighSpeed)
+        if (!highSpeed)
         {
             if (Sprint)
             {
