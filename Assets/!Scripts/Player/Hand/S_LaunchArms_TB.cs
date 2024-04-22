@@ -146,7 +146,7 @@ public class S_LaunchArms_TB : S_Hand_TB
             playerRB.useGravity = false;
             spring.maxDistance = 0;
             spring.damper = 0.2f;
-            player.GetComponent<S_Movement_TB>().HighSpeed = true;
+            player.GetComponent<S_Movement_TB>().highSpeed = true;
         }
         else
         {
