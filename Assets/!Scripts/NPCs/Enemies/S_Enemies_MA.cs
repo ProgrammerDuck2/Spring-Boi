@@ -85,6 +85,8 @@ public class S_Enemies_MA : MonoBehaviour
     {
         maxHealth -= damage;
 
+        print("hurt");
+
         if (maxHealth <= 0)
         {
             Die();

@@ -48,6 +48,8 @@ public class S_Punch_TB : S_Hand_TB
             {
                 enemy.Hurt(damage, gameObject);
                 hand.hapticFeedback.TriggerHaptic(.3f, .1f, GetComponent<ActionBasedController>());
+
+                print("hit enemy");
             }
         }
 
