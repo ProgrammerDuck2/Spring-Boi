@@ -58,7 +58,6 @@ public class S_TabletUIButtons_MA : MonoBehaviour
             waitTime = 0;
             //Debug.Log(currentButton);
         }
-        Debug.Log("up" + upOrDown);
     }
 
     void InteractButton(InputAction.CallbackContext context)

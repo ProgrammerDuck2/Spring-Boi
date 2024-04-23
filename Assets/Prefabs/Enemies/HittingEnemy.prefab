@@ -622,15 +622,12 @@ GameObject:
   - component: {fileID: 7014097893906585630}
   - component: {fileID: 4022422098297996326}
   - component: {fileID: 7499583145154962646}
-  - component: {fileID: 8144340564715793850}
   - component: {fileID: 1703184948282629980}
   - component: {fileID: 3917665406185063693}
   - component: {fileID: 8237577449280028980}
   - component: {fileID: 2624701393802664058}
-  - component: {fileID: 1707222194567656745}
   - component: {fileID: 2985909163381001868}
   - component: {fileID: 8928398142769274855}
-  - component: {fileID: 5222015868858677422}
   m_Layer: 0
   m_Name: HittingEnemy
   m_TagString: Interactable
@@ -671,14 +668,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4e7b7016c6ec674287267190c7c162b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftHand: {fileID: 4484751305835009155}
-  rightHand: {fileID: 8131867615635885342}
-  enemyHealth: 100
+  attackRate: 2
+  nextAttack: 0
+  maxHealth: 100
+  damage: 100
+  sightRange: 15
+  attackRange: 10
   navCorner1: {fileID: 0}
   navCorner2: {fileID: 0}
-  fractureArt:
-  - {fileID: 5222015868858677422}
+  navMeshAgent: {fileID: 0}
   mapIcon: {fileID: 2319131242420355879}
+  fractureArt:
+  - {fileID: 3917665406185063693}
+  leftHand: {fileID: 4484751305835009155}
+  rightHand: {fileID: 8131867615635885342}
 --- !u!195 &7499583145154962646
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -701,19 +704,6 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &8144340564715793850
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3038490935606910708}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30b485f51f630964ca6cad6ad64b1a35, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isEnemy: 1
 --- !u!136 &1703184948282629980
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -817,29 +807,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!136 &1707222194567656745
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3038490935606910708}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &2985909163381001868
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -890,46 +857,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &5222015868858677422
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3038490935606910708}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91fc9178a0b0c3d4bb8b6d91b16d9893, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  triggerOptions:
-    triggerType: 2
-    minimumCollisionForce: 0
-    filterCollisionsByTag: 0
-    triggerAllowedTags: []
-    triggerKey: 0
-  fractureOptions:
-    fragmentCount: 10
-    xAxis: 1
-    yAxis: 1
-    zAxis: 1
-    detectFloatingFragments: 0
-    asynchronous: 0
-    insideMaterial: {fileID: 2100000, guid: 3311cc61e904e3c4d9aadf495e8a8194, type: 2}
-    textureScale: {x: 1, y: 1}
-    textureOffset: {x: 0, y: 0}
-  refractureOptions:
-    enableRefracturing: 0
-    maxRefractureCount: 1
-    invokeCallbacks: 0
-  callbackOptions:
-    onFracture:
-      m_PersistentCalls:
-        m_Calls: []
-    onCompleted:
-      m_PersistentCalls:
-        m_Calls: []
-  currentRefractureCount: 0
 --- !u!1 &8185858833746195420
 GameObject:
   m_ObjectHideFlags: 0
