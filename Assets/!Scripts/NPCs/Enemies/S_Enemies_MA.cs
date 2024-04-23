@@ -92,8 +92,13 @@ public class S_Enemies_MA : MonoBehaviour
             Die();
         }
     }
-
     [Button]
+    public void Damage()
+    {
+        Hurt(50, null);
+    }
+
+    [Button("Kill")]
     public virtual void Die()
     {
         maxHealth = 0;
