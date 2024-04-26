@@ -5,22 +5,37 @@ using UnityEngine;
 
 public class S_Destructable_TB : MonoBehaviour
 {
-    [Layer]
-    [SerializeField] int destroyes;
+    int destroyes;
 
     Fracture fracture;
 
     private void Start()
     {
+        destroyes = 11;
         fracture = GetComponent<Fracture>();
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        print(collision.gameObject.name);
         if (collision.gameObject.layer != destroyes) return;
 
-
+        Destroy();
+    }
+    [Button]
+    private void Destroy()
+    {
         fracture.CauseFracture();
+
+        GameObject pieces = GameObject.Find(name + "Fragments");
+
+        for (int i = 0; i < pieces.transform.childCount; i++)
+        {
+            GameObject piece = pieces.transform.GetChild(i).gameObject;
+
+            piece.AddComponent<S_Pickupable_TB>();
+            piece.tag = "Interactable";
+            piece.gameObject.layer = 11;
+            piece.GetComponent<Rigidbody>().AddForce(-transform.up * 10, ForceMode.Impulse);
+        }
     }
 }

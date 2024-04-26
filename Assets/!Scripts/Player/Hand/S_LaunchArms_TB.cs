@@ -19,6 +19,8 @@ public class S_LaunchArms_TB : S_Hand_TB
 
     [SerializeField] Vector3 launchDirectionOffset;
 
+    [SerializeField]LayerMask grabable;
+   
     // Start is called before the first frame update
     public override void Start()
     {
@@ -67,9 +69,10 @@ public class S_LaunchArms_TB : S_Hand_TB
         if (!handInput.gripActivated)
         {
             holding = false;
+            pullingHand = true;
         }
 
-        if (Physics.CheckSphere(currentHandMissile.transform.position, .5f, handInput.grabable))
+        if (Physics.CheckSphere(currentHandMissile.transform.position, .5f, grabable))
         {
             if(handInput.gripActivated)
             {
@@ -122,6 +125,13 @@ public class S_LaunchArms_TB : S_Hand_TB
 
         if (holding != true)
         {
+            Collider[] inRange = Physics.OverlapSphere(currentHandMissile.transform.position, 2f, grabable);
+            print(inRange[0]);
+
+            //Physics.Raycast(currentHandMissile.transform.position, currentHandMissile.transform.position - inRange[0].transform.position, out RaycastHit hit);
+            //print(inRange[0]);
+            //currentHandMissile.transform.position = hit.point;
+
             holding = true;
             hapticFeedback.TriggerHaptic(.5f, .1f, GetComponent<ActionBasedController>());
 
@@ -136,7 +146,7 @@ public class S_LaunchArms_TB : S_Hand_TB
             playerRB.useGravity = false;
             spring.maxDistance = 0;
             spring.damper = 0.2f;
-            player.GetComponent<S_Movement_TB>().HighSpeed = true;
+            player.GetComponent<S_Movement_TB>().highSpeed = true;
         }
         else
         {

@@ -21,6 +21,7 @@ public class S_BouncePad_OR : MonoBehaviour
     // Make the player bounce off the pad
     public void BounceOff()
     {
+        rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
         rb.AddForce(0,bounceForce,0);
         boing.Play();
         isPlayingAnimation = false;

@@ -1970,6 +1970,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 818d3dddd05650d40bc5948e61ba2248, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackRate: 2
+  nextAttack: 0
+  maxHealth: 1000
+  damage: 5
+  sightRange: 15
+  attackRange: 10
+  navCorner1: {fileID: 0}
+  navCorner2: {fileID: 0}
+  navMeshAgent: {fileID: 0}
+  mapIcon: {fileID: 0}
+  fractureArt: []
 --- !u!135 &8687040050738085725
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1989,8 +2000,8 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 8.676792
-  m_Center: {x: 0, y: 0, z: 3.6767921}
+  m_Radius: 15
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!195 &1842708259123053024
 NavMeshAgent:
   m_ObjectHideFlags: 0

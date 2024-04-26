@@ -12,7 +12,6 @@ public class S_Hand_TB : MonoBehaviour
     public GameObject player { get { return FindFirstObjectByType<S_Movement_TB>().gameObject; } }
     [HideInInspector] public S_Movement_TB playerMovement;
     [HideInInspector] public Rigidbody playerRB;
-    [HideInInspector] public LayerMask grabable;
     [HideInInspector] public PlayerInput playerInput;
 
     public S_Hand_TB otherController
@@ -58,8 +57,6 @@ public class S_Hand_TB : MonoBehaviour
 
     public void Awake()
     {
-
-        grabable = LayerMask.GetMask("Ground", "StickGround", "Grabable", "Enemy");
 
         grab = GetComponent<S_Grab_TB>();
         launchArms = GetComponent<S_LaunchArms_TB>();
