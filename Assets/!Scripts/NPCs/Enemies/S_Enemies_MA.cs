@@ -8,12 +8,12 @@ public class S_Enemies_MA : MonoBehaviour
 {
     public GameObject player { get; private set; }
 
-    [HideInInspector] public float attackRate = 2f;
     [HideInInspector] public float nextAttack = 0.0f;
 
     [Header("Stats")]
     public float maxHealth = 100;
     public float damage = 100;
+    public float attackRate = 2f;
     public float sightRange = 15;
     public float attackRange = 10;
     [SerializeField] bool roaming = true;
@@ -54,12 +54,14 @@ public class S_Enemies_MA : MonoBehaviour
             {
                 navMeshAgent.destination = new Vector3(Random.Range(c1.x, c2.x), c1.y, Random.Range(c1.z, c2.z));
             }
-            if (Vector3.Distance(transform.position, player.transform.position) < sightRange)
-            {
-                transform.LookAt(player.transform.position);
-                transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
+        }
+
+        if (Vector3.Distance(transform.position, player.transform.position) < sightRange)
+        {
+            transform.LookAt(player.transform.position);
+            transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
+            if (roaming)
                 navMeshAgent.destination = player.transform.position - transform.forward * 1.5f;
-            }
         }
 
         if (attackRate <= nextAttack)
@@ -90,8 +92,6 @@ public class S_Enemies_MA : MonoBehaviour
     public virtual void Hurt(float damage, GameObject WhoDealtDamage)
     {
         maxHealth -= damage;
-
-        print("hurt");
 
         if (maxHealth <= 0)
         {
