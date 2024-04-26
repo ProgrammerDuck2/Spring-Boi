@@ -19,8 +19,9 @@ public class S_Enemies_MA : MonoBehaviour
     [SerializeField] bool roaming = true;
 
     [Space(10)]
-
+    [ShowIf(nameof(roaming))]
     [Required] public GameObject navCorner1;
+    [ShowIf(nameof(roaming))]
     [Required] public GameObject navCorner2;
 
     [HideInInspector] public NavMeshAgent navMeshAgent;
