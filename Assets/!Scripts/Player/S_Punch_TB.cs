@@ -44,8 +44,9 @@ public class S_Punch_TB : S_Hand_TB
 
         for (int i = 0; i < hit.Length; i++)
         {
-            if (hit[i].TryGetComponent<S_Enemies_MA>(out S_Enemies_MA enemy))
+            if (hit[i].CompareTag("Enemy"))
             {
+                S_Enemies_MA enemy = hit[i].GetComponent<S_Enemies_MA>();
                 enemy.Hurt(damage, gameObject);
                 hand.hapticFeedback.TriggerHaptic(.3f, .1f, GetComponent<ActionBasedController>());
 
