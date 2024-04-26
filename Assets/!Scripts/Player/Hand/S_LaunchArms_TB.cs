@@ -6,6 +6,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class S_LaunchArms_TB : S_Hand_TB
 {
+    Transform head;
     [Required]
     [SerializeField] GameObject handToLaunch;
     GameObject currentHandMissile;
@@ -26,6 +27,7 @@ public class S_LaunchArms_TB : S_Hand_TB
     {
         base.Start();
         handArt = transform.GetComponent<ActionBasedController>().modelParent.gameObject;
+        head = transform.parent.GetChild(0);
     }
 
     // Update is called once per frame
@@ -209,6 +211,8 @@ public class S_LaunchArms_TB : S_Hand_TB
 
         getRot.transform.LookAt(transform.localPosition + launchDirectionOffset + playerRB.transform.position);
         Destroy(getRot, .1f);
+
+        Physics.Raycast(head.position, head.forward, out RaycastHit lookingAt, S_Stats_MA.HandLaunchReach, grabable);
 
         return getRot.transform.eulerAngles;
     }
