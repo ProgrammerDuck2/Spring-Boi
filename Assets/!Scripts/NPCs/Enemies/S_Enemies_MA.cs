@@ -85,13 +85,20 @@ public class S_Enemies_MA : MonoBehaviour
     {
         maxHealth -= damage;
 
+        print("hurt");
+
         if (maxHealth <= 0)
         {
             Die();
         }
     }
-
     [Button]
+    public void Damage()
+    {
+        Hurt(50, null);
+    }
+
+    [Button("Kill")]
     public virtual void Die()
     {
         maxHealth = 0;

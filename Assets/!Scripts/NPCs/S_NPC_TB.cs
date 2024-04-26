@@ -125,6 +125,6 @@ public class S_NPC_TB : MonoBehaviour
     float TextTime(string text)
     {
         char[] characters = text.ToCharArray();
-        return 3 + characters.Length / 10;
+        return 3 + characters.Length / 40;
     }
 }
