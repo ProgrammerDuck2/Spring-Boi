@@ -16,6 +16,7 @@ public class S_Enemies_MA : MonoBehaviour
     public float damage = 100;
     public float sightRange = 15;
     public float attackRange = 10;
+    [SerializeField] bool roaming = true;
 
     [Space(10)]
 
@@ -32,7 +33,7 @@ public class S_Enemies_MA : MonoBehaviour
         player = FindFirstObjectByType<S_Movement_TB>().gameObject;
         navMeshAgent = GetComponent<NavMeshAgent>();
 
-        if (navCorner1 == null || navCorner2 == null) return;
+        if (navCorner1 == null || navCorner2 == null || !roaming) return;
 
         Vector3 c1 = navCorner1.transform.position;
         Vector3 c2 = navCorner2.transform.position;
@@ -44,18 +45,22 @@ public class S_Enemies_MA : MonoBehaviour
         if (maxHealth <= 0) return;
         if (navCorner1 == null || navCorner2 == null) return;
 
-        Vector3 c1 = navCorner1.transform.position;
-        Vector3 c2 = navCorner2.transform.position;
-        if (Vector3.Distance(transform.position, navMeshAgent.destination) < 2)
+        if(roaming)
         {
-            navMeshAgent.destination = new Vector3(Random.Range(c1.x, c2.x), c1.y, Random.Range(c1.z, c2.z));
+            Vector3 c1 = navCorner1.transform.position;
+            Vector3 c2 = navCorner2.transform.position;
+            if (Vector3.Distance(transform.position, navMeshAgent.destination) < 2)
+            {
+                navMeshAgent.destination = new Vector3(Random.Range(c1.x, c2.x), c1.y, Random.Range(c1.z, c2.z));
+            }
+            if (Vector3.Distance(transform.position, player.transform.position) < sightRange)
+            {
+                transform.LookAt(player.transform.position);
+                transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
+                navMeshAgent.destination = player.transform.position - transform.forward * 1.5f;
+            }
         }
-        if (Vector3.Distance(transform.position, player.transform.position) < sightRange)
-        {
-            transform.LookAt(player.transform.position);
-            transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
-            navMeshAgent.destination = player.transform.position - transform.forward * 1.5f;
-        }
+
         if (attackRate <= nextAttack)
         {
             if (Vector3.Distance(transform.position, player.transform.position) < attackRange)
