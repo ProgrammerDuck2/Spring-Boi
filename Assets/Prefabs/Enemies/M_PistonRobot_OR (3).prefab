@@ -265,9 +265,9 @@ GameObject:
   - component: {fileID: 3567592495770520251}
   - component: {fileID: 2212903724101628897}
   - component: {fileID: 5260913914278878045}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: M_PistonRobot_OR (3)
-  m_TagString: Interactable
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -301,12 +301,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c9d85fc5a3c309448169f7c5219fa30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRate: 2
   nextAttack: 0
   maxHealth: 100
   damage: 20
+  attackRate: 2
   sightRange: 15
   attackRange: 10
+  roaming: 1
   navCorner1: {fileID: 0}
   navCorner2: {fileID: 0}
   navMeshAgent: {fileID: 0}

@@ -5,7 +5,9 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.XR;
 using UnityEngine.XR;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class S_Hand_TB : MonoBehaviour
 {
@@ -22,7 +24,7 @@ public class S_Hand_TB : MonoBehaviour
 
     public GameObject HandArt
     {
-        get { return transform.GetChild(transform.childCount - 1).GetChild(0).gameObject;  }
+        get { return GetComponent<ActionBasedController>().model.gameObject;  }
     }
     public Animator HandArtAnimation
     {
