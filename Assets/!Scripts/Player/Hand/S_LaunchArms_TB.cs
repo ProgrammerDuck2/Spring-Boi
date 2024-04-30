@@ -56,7 +56,9 @@ public class S_LaunchArms_TB : S_Hand_TB
             if (currentHandMissile == null)
             {
                 Debug.Log("Launching Arm");
+                
                 ActivateLaunchArm();
+                anim.enabled = false;
             }
             else
             {
@@ -121,7 +123,7 @@ public class S_LaunchArms_TB : S_Hand_TB
             //    playerMovement.enabled = true;
             //}
             playerMovement.enabled = true;
-
+            anim.enabled = true;
             Destroy(currentHandMissile);
         }
     }
