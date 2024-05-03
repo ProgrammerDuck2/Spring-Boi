@@ -43,6 +43,8 @@ public class S_Hand_TB : MonoBehaviour
     public S_HandInput_TB handInput { get; private set; }
     public S_HandMotion_TB motion { get; private set; }
     public S_HandPostion_TB handPostioning { get; private set; }
+    public S_MiddleArm_TB middleArm { get; private set; }
+    public LineRenderer LR { get; private set; }
 
     public List<Vector3> handPostitions
     {
@@ -69,6 +71,8 @@ public class S_Hand_TB : MonoBehaviour
         handInput = GetComponent<S_HandInput_TB>();
         motion = GetComponent<S_HandMotion_TB>();
         handPostioning = GetComponent<S_HandPostion_TB>();
+        middleArm = GetComponent<S_MiddleArm_TB>();
+        LR = GetComponent<LineRenderer>();
 
         otherController = findOtherController();
 

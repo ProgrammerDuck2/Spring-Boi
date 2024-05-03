@@ -124,6 +124,8 @@ public class S_LaunchArms_TB : S_Hand_TB
             //}
             playerMovement.enabled = true;
             anim.enabled = true;
+            LR.enabled = true;
+            middleArm.enabled = true;
             Destroy(currentHandMissile);
         }
     }
@@ -191,6 +193,8 @@ public class S_LaunchArms_TB : S_Hand_TB
             currentHandMissile.name = gameObject.name + " Missile";
 
             handArt.SetActive(false);
+            middleArm.enabled = false;
+            LR.enabled = false;
             //grab.enabled = false;
         }
     }

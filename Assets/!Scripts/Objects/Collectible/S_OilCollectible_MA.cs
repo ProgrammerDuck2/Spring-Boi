@@ -44,6 +44,8 @@ public class S_OilCollectible_MA : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (!other.CompareTag("Player")) return;
+
         S_Stats_MA.oilCollected++;
         Destroy(gameObject);
     }

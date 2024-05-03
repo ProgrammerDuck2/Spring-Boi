@@ -17,7 +17,7 @@ public class S_UIInteract_TBMA : S_Hand_TB
 
     void Update()
     {
-        Physics.Raycast(transform.position, transform.forward, out raycast, 2, Interactable);
+        Physics.Raycast(transform.position, transform.forward, out raycast, 20, Interactable);
 
         if (DebugMode)
         {

@@ -6,13 +6,14 @@ using UnityEngine.SceneManagement;
 
 public class S_PlayerHealth_MA : MonoBehaviour
 {
-    [SerializeField] private GameObject playerDeath;
+    [SerializeField] Transform deathSpawn;
 
     [SerializeField] Material handMat;
     [SerializeField] Color originalColor;
     [SerializeField] Color lowColor;
 
     float value;
+    bool dying;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,26 +27,32 @@ public class S_PlayerHealth_MA : MonoBehaviour
 
         handMat.color = lerpColor(lowColor, originalColor, value);
 
-        if (S_Stats_MA.playerHealth <= 0)
+        if (S_Stats_MA.playerHealth <= 0 && !dying)
         {
-            if(S_Settings_TB.IsVRConnected)
-            {
-                S_Stats_MA.playerHealth = S_Stats_MA.maxHealth;
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-            }
-
-            transform.position = GetComponent<S_Respawn_MA>().respawnPoint;
-            Instantiate(playerDeath);
-
-            if (playerDeath.activeSelf)
-            {
-                if (Input.GetKeyDown(KeyCode.Space))
-                {
-                    S_Stats_MA.playerHealth = S_Stats_MA.maxHealth;
-                    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-                }
-            }
+            dying = true;
+            StartCoroutine(Death());
         }
+    }
+
+    IEnumerator Death()
+    {
+        float deathCounter = 1;
+        while(deathCounter > 0)
+        {
+            deathCounter -= Time.unscaledDeltaTime;
+
+            if(Time.timeScale - Time.unscaledDeltaTime > 0)
+                Time.timeScale -= Time.unscaledDeltaTime;
+            else
+                Time.timeScale = 0;
+
+            yield return new WaitForEndOfFrame();
+        }
+
+        transform.position = deathSpawn.position;
+        S_Stats_MA.playerHealth = S_Stats_MA.maxHealth;
+        Time.timeScale = 1;
+        dying = false;
     }
 
     public void Hurt(float damage, GameObject WhoDealtDamage)

@@ -18,12 +18,16 @@ public class S_Enemies_MA : MonoBehaviour
     public float attackRange = 10;
     [SerializeField] bool roaming = true;
 
+    [Space(10)]
+    public GameObject drop;
+
     //[Space(10)]
     //[ShowIf(nameof(roaming))]
     //[Required] public GameObject navCorner1;
     //[ShowIf(nameof(roaming))]
     //[Required] public GameObject navCorner2;
 
+    [Space(10)]
     [HideInInspector] public NavMeshAgent navMeshAgent;
 
     [SerializeField] GameObject mapIcon;
@@ -132,7 +136,12 @@ public class S_Enemies_MA : MonoBehaviour
 
         mapIcon.SetActive(false);
 
-        Destroy(gameObject, 10);
+        if (drop != null)
+        {
+            Instantiate(drop, transform.position, transform.rotation);
+        }
+
+        Destroy(gameObject, 1);
     }
 
     protected Vector3 randomDestination()
@@ -146,6 +155,10 @@ public class S_Enemies_MA : MonoBehaviour
     bool destinationReached()
     {
         return Vector3.Distance(transform.position, navMeshAgent.destination) < 1;
+    }
+
+    private void OnDestroy()
+    {
     }
 }
 

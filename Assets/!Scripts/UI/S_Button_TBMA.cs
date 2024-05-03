@@ -30,6 +30,17 @@ public class S_Button_TBMA : S_VRUI_TB
         get { return GetComponent<Image>(); }
     }
 
+    bool initialized = false;
+
+    private void OnValidate()
+    {
+        if (initialized) return;
+
+        gameObject.layer = 14;
+
+        RectTransform rectTransform = GetComponent<RectTransform>();
+        GetComponent<BoxCollider>().size = new Vector3(rectTransform.rect.width, rectTransform.rect.height);
+    }
 
     public override void OnClickEnter(ActionBasedController controller)
     {
