@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class S_PlayerHealth_MA : MonoBehaviour
 {
-    [SerializeField] Transform deathSpawn;
+    Transform deathSpawn;
 
     [SerializeField] Material handMat;
     [SerializeField] Color originalColor;
@@ -19,6 +19,8 @@ public class S_PlayerHealth_MA : MonoBehaviour
     {
         S_Stats_MA.playerHealth = S_Stats_MA.maxHealth;
         handMat.color = originalColor;
+
+        deathSpawn = FindFirstObjectByType<S_DeathArea_TB>().transform.GetChild(0);
     }
 
     private void Update()

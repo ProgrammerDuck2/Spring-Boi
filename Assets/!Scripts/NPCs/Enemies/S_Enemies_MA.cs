@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(NavMeshAgent))]
+[RequireComponent(typeof(Fracture))]
 public class S_Enemies_MA : MonoBehaviour
 {
     public GameObject player { get; private set; }
