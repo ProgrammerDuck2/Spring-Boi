@@ -14,7 +14,7 @@ public class S_EnemyFight : S_Enemies_MA
     private GameObject hand;
 
     private float punchLenght = 5;
-    float punchSpeed = .01f;
+    float punchSpeed = 1f;
 
     // Start is called before the first frame update
     public override void Start()
@@ -36,12 +36,12 @@ public class S_EnemyFight : S_Enemies_MA
             hand = rightHand;
         }
 
-        yield return StartCoroutine(Ready(1f));
+        yield return StartCoroutine(Ready(attackRate - attackRate/2));
 
         float timer = 0;
         float value = 0;
         
-        while (timer < punchSpeed)
+        while (timer < attackRate / 4)
         {
             hand.transform.localScale = new Vector3(
                 Mathf.Lerp(.5f, punchLenght, value), 
@@ -49,12 +49,14 @@ public class S_EnemyFight : S_Enemies_MA
                 hand.transform.localScale.z
                 );
 
-            value += Time.deltaTime * (1 / punchSpeed);
+            value += Time.deltaTime * (attackRange);
             timer += Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
 
         StartCoroutine(base.Attack(damage));
+
+        yield return StartCoroutine(Reset(attackRate / 12));
     }
 
     public IEnumerator Ready(float timeToReady)
@@ -75,4 +77,24 @@ public class S_EnemyFight : S_Enemies_MA
             yield return new WaitForEndOfFrame();
         }
     }
+
+    public IEnumerator Reset(float timeToReset)
+    {
+        float timer = 0;
+        float value = 0;
+
+        while (timer < timeToReset)
+        {
+            hand.transform.localScale = new Vector3(
+                Mathf.Lerp(punchLenght, 1, value),
+                hand.transform.localScale.y,
+                hand.transform.localScale.z
+                );
+            timer += Time.deltaTime;
+            value += Time.deltaTime * (1 / timeToReset);
+
+            yield return new WaitForEndOfFrame();
+        }
+    }
+
 }

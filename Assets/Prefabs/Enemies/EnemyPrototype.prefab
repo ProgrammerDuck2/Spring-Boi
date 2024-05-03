@@ -15,9 +15,9 @@ GameObject:
   - component: {fileID: 224947786480190490}
   - component: {fileID: 6075020104292859494}
   - component: {fileID: 6059854229563789306}
-  m_Layer: 11
+  m_Layer: 7
   m_Name: EnemyPrototype
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -124,14 +124,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee73d590894291c47974e6485511ddd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextAttack: 0
   maxHealth: 100
-  health: 0
+  damage: 100
+  attackRate: 2
+  sightRange: 15
+  attackRange: 10
+  roaming: 1
+  navCorner1: {fileID: 0}
+  navCorner2: {fileID: 0}
+  navMeshAgent: {fileID: 0}
+  mapIcon: {fileID: 0}
+  fractureArt: []
   bullet: {fileID: 1828396114112602180, guid: 03b8228333b239944bba8ec9ffedddc3, type: 3}
   layer:
     serializedVersion: 2
     m_Bits: 256
-  navCorner1: {fileID: 0}
-  navCorner2: {fileID: 0}
 --- !u!65 &6075020104292859494
 BoxCollider:
   m_ObjectHideFlags: 0

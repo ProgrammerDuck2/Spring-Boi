@@ -6,6 +6,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class S_LaunchArms_TB : S_Hand_TB
 {
+    Transform head;
     [Required]
     [SerializeField] GameObject handToLaunch;
     GameObject currentHandMissile;
@@ -20,12 +21,15 @@ public class S_LaunchArms_TB : S_Hand_TB
     [SerializeField] Vector3 launchDirectionOffset;
 
     [SerializeField]LayerMask grabable;
+
+    float lauchedHandHitbox = .5f;
    
     // Start is called before the first frame update
     public override void Start()
     {
         base.Start();
         handArt = transform.GetComponent<ActionBasedController>().modelParent.gameObject;
+        head = transform.parent.GetChild(0);
     }
 
     // Update is called once per frame
@@ -72,7 +76,7 @@ public class S_LaunchArms_TB : S_Hand_TB
             pullingHand = true;
         }
 
-        if (Physics.CheckSphere(currentHandMissile.transform.position, .5f, grabable))
+        if (Physics.CheckSphere(currentHandMissile.transform.position, lauchedHandHitbox, grabable))
         {
             if(handInput.gripActivated)
             {
@@ -85,6 +89,8 @@ public class S_LaunchArms_TB : S_Hand_TB
 
         if (!holding)
         {
+            lauchedHandHitbox = .5f + Vector3.Distance(transform.position, currentHandMissile.transform.position)/10;
+
             if (pullingHand)
             {
                 SendArmBack();
@@ -125,12 +131,12 @@ public class S_LaunchArms_TB : S_Hand_TB
 
         if (holding != true)
         {
-            Collider[] inRange = Physics.OverlapSphere(currentHandMissile.transform.position, 2f, grabable);
-            print(inRange[0]);
+            Collider[] inRange = Physics.OverlapSphere(currentHandMissile.transform.position, lauchedHandHitbox, grabable);
 
-            //Physics.Raycast(currentHandMissile.transform.position, currentHandMissile.transform.position - inRange[0].transform.position, out RaycastHit hit);
-            //print(inRange[0]);
-            //currentHandMissile.transform.position = hit.point;
+            Physics.Raycast(currentHandMissile.transform.position, inRange[0].transform.position - currentHandMissile.transform.position, out RaycastHit hit, lauchedHandHitbox, grabable);
+            
+            if(hit.point != Vector3.zero)
+                currentHandMissile.transform.position = hit.point;
 
             holding = true;
             hapticFeedback.TriggerHaptic(.5f, .1f, GetComponent<ActionBasedController>());
@@ -205,10 +211,24 @@ public class S_LaunchArms_TB : S_Hand_TB
     Vector3 MissileRotationCalc()
     {
         GameObject getRot = new GameObject();
-        getRot.transform.position = handPostitions[9] + playerRB.transform.position;
-
-        getRot.transform.LookAt(transform.localPosition + launchDirectionOffset + playerRB.transform.position);
         Destroy(getRot, .1f);
+
+        getRot.transform.position = handPostitions[5];
+        getRot.transform.LookAt(handPostitions[0]);
+
+        //getRot.transform.position = handPostitions[9] + playerRB.transform.position;
+
+        //getRot.transform.LookAt(transform.localPosition + launchDirectionOffset + playerRB.transform.position);
+
+        //Physics.Raycast(getRot.transform.position, getRot.transform.forward, out RaycastHit pointingAt, S_Stats_MA.HandLaunchReach, grabable);
+        //Physics.Raycast(head.position, head.forward, out RaycastHit lookingAt, S_Stats_MA.HandLaunchReach, grabable);
+
+        //if(pointingAt.point == Vector3.zero || lookingAt.point == Vector3.zero) return getRot.transform.eulerAngles;
+
+        //if (Vector3.Distance(pointingAt.point, lookingAt.point) < 10)
+        //{
+
+        //}
 
         return getRot.transform.eulerAngles;
     }

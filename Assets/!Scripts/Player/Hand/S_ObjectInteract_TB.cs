@@ -3,9 +3,6 @@ using UnityEngine;
 
 public class S_ObjectInteract_TB : S_Hand_TB
 {
-    [Tag]
-    [SerializeField] string interactTag;
-
     S_InteractableObject_TB holding;
 
     bool canInteract;
@@ -30,9 +27,9 @@ public class S_ObjectInteract_TB : S_Hand_TB
         }
         if (!handInput.grabActivated) return;
 
-        if (other.CompareTag(interactTag))
+        if (other.TryGetComponent<S_InteractableObject_TB>(out S_InteractableObject_TB interactableObject))
         {
-            holding = other.GetComponent<S_InteractableObject_TB>();
+            holding = interactableObject;
             holding.Interact(this);
         }
     }

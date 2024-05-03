@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 456288482982612131}
   - component: {fileID: 7759191388944788768}
   - component: {fileID: 2639540887870744692}
+  - component: {fileID: 2209319399766973228}
+  - component: {fileID: 8706280959843960323}
   m_Layer: 7
   m_Name: HandMissileLeft
   m_TagString: Untagged
@@ -239,6 +241,39 @@ MonoBehaviour:
       m_Flags: 0
     m_Reference: {fileID: -4289430672226363583, guid: c348712bda248c246b8c49b3db54643f,
       type: 3}
+--- !u!114 &2209319399766973228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 198739363551075914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f42fe698fcd48f447b40ef3b9308ddbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!135 &8706280959843960323
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 198739363551075914}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 1
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &3933246009626615579
 PrefabInstance:
   m_ObjectHideFlags: 0

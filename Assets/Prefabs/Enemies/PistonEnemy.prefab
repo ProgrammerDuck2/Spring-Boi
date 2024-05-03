@@ -1928,9 +1928,9 @@ GameObject:
   - component: {fileID: 2046509154685581273}
   - component: {fileID: 8687040050738085725}
   - component: {fileID: 1842708259123053024}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PistonEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1970,12 +1970,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 818d3dddd05650d40bc5948e61ba2248, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRate: 2
   nextAttack: 0
   maxHealth: 1000
   damage: 5
+  attackRate: 2
   sightRange: 15
   attackRange: 10
+  roaming: 1
   navCorner1: {fileID: 0}
   navCorner2: {fileID: 0}
   navMeshAgent: {fileID: 0}
