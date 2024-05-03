@@ -22,6 +22,9 @@ public class S_MovingPlatform_MA : MonoBehaviour
         lever = FindFirstObjectByType<S_Lever_TB>();
         Location1 = transform.parent.GetChild(1);
         Location2 = transform.parent.GetChild(2);
+
+        value = Random.Range(0f, 1f);
+        reverse = value > .5f;
     }
 
     private void Update()
