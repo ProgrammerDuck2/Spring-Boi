@@ -1,21 +1,16 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Xml.Serialization;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.AI;
-using UnityEngine.InputSystem;
 
 public class S_PistonLong_MA : S_Enemies_MA
 {
     private int mouse;
     private float longPistonHealth = 50;
 
-    private void OnTriggerStay(Collider other)
-    {
-        //Debug.Log("found player");
-        transform.LookAt(player.transform);
-    }
+    //private void OnTriggerStay(Collider other)
+    //{
+    //    //Debug.Log("found player");
+    //    transform.LookAt(player.transform);
+    //}
     public override IEnumerator Attack(float damage)
     {
         yield return null;

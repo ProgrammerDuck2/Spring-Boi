@@ -17,13 +17,13 @@ public class S_EnemyPrototype_MA : S_Enemies_MA
     // Update is called once per frame
     public override void Update()
     {
-        Vector3 c1 = navCorner1.transform.position;
-        Vector3 c2 = navCorner2.transform.position;
+        //Vector3 c1 = navCorner1.transform.position;
+        //Vector3 c2 = navCorner2.transform.position;
 
-        if (Vector3.Distance(transform.position, navMeshAgent.destination) < 2)
-        {
-            navMeshAgent.destination = new Vector3(Random.Range(c1.x, c2.x), c1.y, Random.Range(c1.z, c2.z));
-        }
+        //if (Vector3.Distance(transform.position, navMeshAgent.destination) < 2)
+        //{
+        //    navMeshAgent.destination = new Vector3(Random.Range(c1.x, c2.x), c1.y, Random.Range(c1.z, c2.z));
+        //}
 
         //attack
         if (Vector3.Distance(transform.position, player.transform.position) < 20)

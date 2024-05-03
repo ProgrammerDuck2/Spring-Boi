@@ -18,11 +18,11 @@ public class S_Enemies_MA : MonoBehaviour
     public float attackRange = 10;
     [SerializeField] bool roaming = true;
 
-    [Space(10)]
-    [ShowIf(nameof(roaming))]
-    [Required] public GameObject navCorner1;
-    [ShowIf(nameof(roaming))]
-    [Required] public GameObject navCorner2;
+    //[Space(10)]
+    //[ShowIf(nameof(roaming))]
+    //[Required] public GameObject navCorner1;
+    //[ShowIf(nameof(roaming))]
+    //[Required] public GameObject navCorner2;
 
     [HideInInspector] public NavMeshAgent navMeshAgent;
 
@@ -34,26 +34,29 @@ public class S_Enemies_MA : MonoBehaviour
         player = FindFirstObjectByType<S_Movement_TB>().gameObject;
         navMeshAgent = GetComponent<NavMeshAgent>();
 
-        if (navCorner1 == null || navCorner2 == null || !roaming) return;
+        navMeshAgent.destination = randomDestination();
 
-        Vector3 c1 = navCorner1.transform.position;
-        Vector3 c2 = navCorner2.transform.position;
-        navMeshAgent.destination = new Vector3(Random.Range(c1.x, c2.x), c1.y, Random.Range(c1.z, c2.z));
+        //if (navCorner1 == null || navCorner2 == null || !roaming) return;
+
+        //Vector3 c1 = navCorner1.transform.position;
+        //Vector3 c2 = navCorner2.transform.position;
+        //navMeshAgent.destination = new Vector3(Random.Range(c1.x, c2.x), c1.y, Random.Range(c1.z, c2.z));
     }
 
     public virtual void Update()
     {
         if (maxHealth <= 0) return;
-        if (navCorner1 == null || navCorner2 == null) return;
+        //if (navCorner1 == null || navCorner2 == null) return;
 
-        if(roaming)
+        if(roaming && destinationReached())
         {
-            Vector3 c1 = navCorner1.transform.position;
-            Vector3 c2 = navCorner2.transform.position;
-            if (Vector3.Distance(transform.position, navMeshAgent.destination) < 2)
-            {
-                navMeshAgent.destination = new Vector3(Random.Range(c1.x, c2.x), c1.y, Random.Range(c1.z, c2.z));
-            }
+            navMeshAgent.destination = randomDestination();
+            //Vector3 c1 = navCorner1.transform.position;
+            //Vector3 c2 = navCorner2.transform.position;
+            //if (Vector3.Distance(transform.position, navMeshAgent.destination) < 2)
+            //{
+            //    navMeshAgent.destination = new Vector3(Random.Range(c1.x, c2.x), c1.y, Random.Range(c1.z, c2.z));
+            //}
         }
 
         if (Vector3.Distance(transform.position, player.transform.position) < sightRange)
@@ -130,6 +133,19 @@ public class S_Enemies_MA : MonoBehaviour
         mapIcon.SetActive(false);
 
         Destroy(gameObject, 10);
+    }
+
+    protected Vector3 randomDestination()
+    {
+        return new Vector3(
+            transform.position.x + Random.Range(-10, 10),
+            transform.position.y,
+            transform.position.z + Random.Range(-10, 10));
+    }
+
+    bool destinationReached()
+    {
+        return Vector3.Distance(transform.position, navMeshAgent.destination) < 1;
     }
 }
 
