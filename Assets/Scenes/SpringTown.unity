@@ -32060,12 +32060,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5adad2859d5b914a9e183af3f4f1cde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRate: 2
   nextAttack: 0
   maxHealth: 100
   damage: 100
+  attackRate: 2
   sightRange: 15
   attackRange: 10
+  roaming: 1
   navCorner1: {fileID: 0}
   navCorner2: {fileID: 0}
   navMeshAgent: {fileID: 0}
@@ -40379,6 +40380,11 @@ PrefabInstance:
       propertyPath: arenaCenter
       value: 
       objectReference: {fileID: 870209382}
+    - target: {fileID: 5443010433961152081, guid: 237abeefa5a46d84c9603f555b8f9e42,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e5093fc37d41cac4e9b2e0b15f1110b3, type: 2}
     - target: {fileID: 5681447662332279581, guid: 237abeefa5a46d84c9603f555b8f9e42,
         type: 3}
       propertyPath: m_Name
@@ -40720,12 +40726,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5adad2859d5b914a9e183af3f4f1cde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRate: 2
   nextAttack: 0
   maxHealth: 100
   damage: 100
+  attackRate: 2
   sightRange: 15
   attackRange: 10
+  roaming: 1
   navCorner1: {fileID: 0}
   navCorner2: {fileID: 0}
   navMeshAgent: {fileID: 0}
