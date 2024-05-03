@@ -5,27 +5,34 @@ using UnityEngine;
 
 public class S_MovingPlatform_MA : MonoBehaviour
 {
-    //[SerializeField] List<GameObject> turningPoints = new List<GameObject>();
+    S_Lever_TB lever;
 
-    //private int speed = 10;
-    //private int nextPoint = 0; //next point in turningPoints list
+    [SerializeField] float speed;
+    
+    [Range(0, 1)]
+    [SerializeField] float value;
 
-    //void Update()
-    //{
-    //    transform.position += transform.forward * Time.deltaTime * speed;
-    //    transform.LookAt(turningPoints[nextPoint].transform);
-    //}
+    Transform Location1;
+    Transform Location2;
 
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.gameObject == turningPoints[nextPoint])
-    //    {
-    //        nextPoint += 1;
+    bool reverse;
 
-    //        if (nextPoint == turningPoints.Count)
-    //        {
-    //            nextPoint = 0;
-    //        }
-    //    }
-    //}
+    private void Start()
+    {
+        lever = FindFirstObjectByType<S_Lever_TB>();
+        Location1 = transform.parent.GetChild(1);
+        Location2 = transform.parent.GetChild(2);
+    }
+
+    private void Update()
+    {
+        if (lever == null) return;
+        if (lever.active == false) return;
+
+        transform.localPosition = Vector3.Lerp(Location1.localPosition, Location2.localPosition, value);
+
+        value += reverse ? -Time.deltaTime * speed : Time.deltaTime * speed;
+        if(value > 1) reverse = true;
+        if(value < 0) reverse = false;
+    }
 }
