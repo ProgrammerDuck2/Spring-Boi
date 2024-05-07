@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -36,10 +37,20 @@ public class S_PlayerHealth_MA : MonoBehaviour
         }
     }
 
+    public void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.CompareTag("Death"))
+        {
+            dying = true;
+            StartCoroutine(Death());
+        }
+    }
+
     IEnumerator Death()
     {
+        print("death");
         float deathCounter = 1;
-        while(deathCounter > 0)
+        while(deathCounter > 0.5f)
         {
             deathCounter -= Time.unscaledDeltaTime;
 
