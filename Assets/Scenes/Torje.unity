@@ -6065,9 +6065,9 @@ GameObject:
   - component: {fileID: 958162505}
   - component: {fileID: 958162504}
   - component: {fileID: 958162508}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Ground
-  m_TagString: Untagged
+  m_TagString: Death
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17115,6 +17115,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3166418393986293180, guid: a3ba075e65629ad4380ce9298e73ddea,
         type: 3}
+      propertyPath: m_Positions.Array.data[0].x
+      value: -0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3166418393986293180, guid: a3ba075e65629ad4380ce9298e73ddea,
+        type: 3}
+      propertyPath: m_Positions.Array.data[0].y
+      value: 21.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 3166418393986293180, guid: a3ba075e65629ad4380ce9298e73ddea,
+        type: 3}
+      propertyPath: m_Positions.Array.data[0].z
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3166418393986293180, guid: a3ba075e65629ad4380ce9298e73ddea,
+        type: 3}
       propertyPath: m_Positions.Array.data[1].y
       value: 22.1843
       objectReference: {fileID: 0}
@@ -17128,6 +17143,21 @@ PrefabInstance:
       propertyPath: deathSpawn
       value: 
       objectReference: {fileID: 22832496}
+    - target: {fileID: 6372680655636612684, guid: a3ba075e65629ad4380ce9298e73ddea,
+        type: 3}
+      propertyPath: m_Positions.Array.data[0].x
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6372680655636612684, guid: a3ba075e65629ad4380ce9298e73ddea,
+        type: 3}
+      propertyPath: m_Positions.Array.data[0].y
+      value: 21.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 6372680655636612684, guid: a3ba075e65629ad4380ce9298e73ddea,
+        type: 3}
+      propertyPath: m_Positions.Array.data[0].z
+      value: -2
+      objectReference: {fileID: 0}
     - target: {fileID: 6372680655636612684, guid: a3ba075e65629ad4380ce9298e73ddea,
         type: 3}
       propertyPath: m_Positions.Array.data[1].y
@@ -17549,6 +17579,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GearEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 6359052902255468585, guid: 7c85a1cc2649c5942a916c1e6ce3f95b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

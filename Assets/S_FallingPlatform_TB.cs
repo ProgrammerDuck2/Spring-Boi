@@ -5,6 +5,7 @@ using UnityEngine;
 public class S_FallingPlatform_TB : MonoBehaviour
 {
     public List<GameObject> support;
+    [SerializeField] GameObject[] toDestroy;
 
     Rigidbody rb;
     // Start is called before the first frame update
@@ -21,6 +22,11 @@ public class S_FallingPlatform_TB : MonoBehaviour
             rb.isKinematic = false;
             Destroy(this);
             print("fall");
+
+            foreach (var item in toDestroy)
+            {
+                Destroy(item);
+            }
         }
     }
 
