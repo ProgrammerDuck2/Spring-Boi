@@ -33,6 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3858583197706045178}
+  - {fileID: 3978924731468084918}
   - {fileID: 1545195791145510656}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -48,10 +49,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92dc8a1e0bf883e419e2ec4eca3eb347, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turningPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  speed: 0
+  value: 0
+  reverse: 0
 --- !u!64 &7694548112922027182
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -101,6 +101,59 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1 &4243666571786349570
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3978924731468084918}
+  - component: {fileID: 7017788111473393858}
+  m_Layer: 0
+  m_Name: Bottom (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3978924731468084918
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4243666571786349570}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 4, y: 1, z: 10}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6448585485805634120}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &7017788111473393858
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4243666571786349570}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6416398700721243332
 GameObject:
   m_ObjectHideFlags: 0
@@ -113,7 +166,7 @@ GameObject:
   - component: {fileID: 541559284579653596}
   - component: {fileID: 1797777759459856426}
   - component: {fileID: 5087417426501373321}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
