@@ -6,6 +6,16 @@ using FMODUnity;
 public class S_FMODEvents_HA : MonoBehaviour
 {
 
+    [field: Header("Ambience")]
+
+    [field: SerializeField] public EventReference ambience { get; private set; }
+
+
+    [field: Header("Music")]
+
+    [field: SerializeField] public EventReference Music { get; private set; }
+
+
     [field: Header("OilCan SFX")]
 
     [field: SerializeField] public EventReference oilcanCollected { get; private set; }
