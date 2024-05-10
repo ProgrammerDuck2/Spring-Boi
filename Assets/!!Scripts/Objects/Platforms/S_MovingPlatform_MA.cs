@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class S_MovingPlatform_MA : MonoBehaviour
@@ -8,7 +5,7 @@ public class S_MovingPlatform_MA : MonoBehaviour
     S_Lever_TB lever;
 
     [SerializeField] float speed;
-    
+
     [Range(0, 1)]
     [SerializeField] float value;
 
@@ -32,7 +29,7 @@ public class S_MovingPlatform_MA : MonoBehaviour
         transform.localPosition = Vector3.Lerp(Location1.localPosition, Location2.localPosition, value);
 
         value += reverse ? -Time.deltaTime * speed : Time.deltaTime * speed;
-        if(value > 1) reverse = true;
-        if(value < 0) reverse = false;
+        if (value > 1) reverse = true;
+        if (value < 0) reverse = false;
     }
 }
