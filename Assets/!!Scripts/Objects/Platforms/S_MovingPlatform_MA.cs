@@ -17,8 +17,8 @@ public class S_MovingPlatform_MA : MonoBehaviour
     private void Start()
     {
         lever = FindFirstObjectByType<S_Lever_TB>();
-        Location1 = transform.parent.GetChild(1);
-        Location2 = transform.parent.GetChild(2);
+        Location1 = transform.parent.GetChild(1); //gets start
+        Location2 = transform.parent.GetChild(2); //end
     }
 
     private void Update()
@@ -26,7 +26,8 @@ public class S_MovingPlatform_MA : MonoBehaviour
         if (lever == null) return;
         if (lever.active == false) return;
 
-        transform.localPosition = Vector3.Lerp(Location1.localPosition, Location2.localPosition, value);
+        transform.localPosition = Vector3.Lerp(Location1.localPosition, Location2.localPosition, value); //slideren
+
 
         value += reverse ? -Time.deltaTime * speed : Time.deltaTime * speed;
         if (value > 1) reverse = true;
