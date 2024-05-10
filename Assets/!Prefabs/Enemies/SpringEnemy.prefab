@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 2319131242420355879}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalPosition: {x: 0, y: 4, z: 0}
   m_LocalScale: {x: 1.8, y: 0.2, z: 1.8}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: 2985909163381001868}
   - component: {fileID: 8928398142769274855}
   m_Layer: 7
-  m_Name: HittingEnemy
+  m_Name: SpringEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -138,13 +138,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nextAttack: 0
   maxHealth: 100
-  damage: 10
-  attackRate: 2
+  damage: 100
+  attackRate: 1
   sightRange: 15
   attackRange: 10
   roaming: 1
-  navCorner1: {fileID: 0}
-  navCorner2: {fileID: 0}
+  drop: {fileID: 0}
   navMeshAgent: {fileID: 0}
   mapIcon: {fileID: 2319131242420355879}
   fractureArt:
@@ -169,8 +168,8 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 1
+  m_Height: 3
+  m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!136 &1703184948282629980
@@ -193,9 +192,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 1
-  m_Height: 2.5
+  m_Height: 3
   m_Direction: 1
-  m_Center: {x: 0, y: 0.25, z: 0}
+  m_Center: {x: 0, y: 1.5, z: 0}
 --- !u!114 &3917665406185063693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -337,12 +336,12 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 467b7bdc00b35e443bdf1ada3d90627e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 467b7bdc00b35e443bdf1ada3d90627e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.25
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 467b7bdc00b35e443bdf1ada3d90627e,
         type: 3}
@@ -384,10 +383,70 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -2795391035569329593, guid: 467b7bdc00b35e443bdf1ada3d90627e,
+        type: 3}
+      propertyPath: m_AABB.m_Center.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -2795391035569329593, guid: 467b7bdc00b35e443bdf1ada3d90627e,
+        type: 3}
+      propertyPath: m_AABB.m_Center.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -2795391035569329593, guid: 467b7bdc00b35e443bdf1ada3d90627e,
+        type: 3}
+      propertyPath: m_AABB.m_Center.z
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: -2795391035569329593, guid: 467b7bdc00b35e443bdf1ada3d90627e,
+        type: 3}
+      propertyPath: m_AABB.m_Extent.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -2795391035569329593, guid: 467b7bdc00b35e443bdf1ada3d90627e,
+        type: 3}
+      propertyPath: m_AABB.m_Extent.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -2795391035569329593, guid: 467b7bdc00b35e443bdf1ada3d90627e,
+        type: 3}
+      propertyPath: m_AABB.m_Extent.z
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 467b7bdc00b35e443bdf1ada3d90627e,
         type: 3}
       propertyPath: m_Name
       value: M_BoxingRobotOnePiece_OR
+      objectReference: {fileID: 0}
+    - target: {fileID: 5133954693622997315, guid: 467b7bdc00b35e443bdf1ada3d90627e,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5133954693622997315, guid: 467b7bdc00b35e443bdf1ada3d90627e,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5133954693622997315, guid: 467b7bdc00b35e443bdf1ada3d90627e,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8810709188593410792, guid: 467b7bdc00b35e443bdf1ada3d90627e,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8810709188593410792, guid: 467b7bdc00b35e443bdf1ada3d90627e,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8810709188593410792, guid: 467b7bdc00b35e443bdf1ada3d90627e,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

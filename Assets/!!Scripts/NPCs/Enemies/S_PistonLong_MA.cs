@@ -11,11 +11,6 @@ public class S_PistonLong_MA : S_Enemies_MA
     //    //Debug.Log("found player");
     //    transform.LookAt(player.transform);
     //}
-    public override IEnumerator Attack(float damage)
-    {
-        yield return null;
-        S_Stats_MA.playerHealth -= damage;
-    }
     public override void Hurt(float damage, GameObject WhoDealtDamage)
     {
         longPistonHealth -= damage;
