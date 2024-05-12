@@ -1,11 +1,5 @@
-using NaughtyAttributes;
 using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.AI;
-using UnityEngine.InputSystem;
 
 public class S_EnemyFight : S_Enemies_MA
 {
@@ -26,6 +20,8 @@ public class S_EnemyFight : S_Enemies_MA
 
     public override IEnumerator Attack(float damage)
     {
+        nextAttack = 0;
+
         int whichHand = Random.Range(0, 2);
         if (whichHand == 0)
         {
@@ -36,16 +32,16 @@ public class S_EnemyFight : S_Enemies_MA
             hand = rightHand;
         }
 
-        yield return StartCoroutine(Ready(attackRate - attackRate/2));
+        yield return StartCoroutine(Ready(attackRate - attackRate / 2));
 
         float timer = 0;
         float value = 0;
-        
+
         while (timer < attackRate / 4)
         {
             hand.transform.localScale = new Vector3(
-                Mathf.Lerp(.5f, punchLenght, value), 
-                hand.transform.localScale.y, 
+                Mathf.Lerp(.5f, punchLenght, value),
+                hand.transform.localScale.y,
                 hand.transform.localScale.z
                 );
 
@@ -54,7 +50,10 @@ public class S_EnemyFight : S_Enemies_MA
             yield return new WaitForEndOfFrame();
         }
 
-        StartCoroutine(base.Attack(damage));
+        if (Vector3.Distance(transform.position, player.transform.position) < attackRange)
+        {
+            S_Stats_MA.playerHealth -= damage;
+        }
 
         yield return StartCoroutine(Reset(attackRate / 12));
     }
