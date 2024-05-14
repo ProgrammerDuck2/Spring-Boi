@@ -90,7 +90,7 @@ public class S_Enemies_MA : MonoBehaviour
     {
         nextAttack = 0;
 
-        if (Vector3.Distance(transform.position, player.transform.position) < 2)
+        if (Vector3.Distance(transform.position, player.transform.position) < attackRange)
         {
             S_Stats_MA.playerHealth -= damage;
         }
