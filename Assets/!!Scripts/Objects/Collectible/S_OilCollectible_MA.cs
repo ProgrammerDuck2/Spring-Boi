@@ -46,6 +46,8 @@ public class S_OilCollectible_MA : MonoBehaviour
     {
         if (!other.CompareTag("Player")) return;
 
+        S_AudioManager_HA.instance.PlayOneShot(S_FMODEvents_HA.instance.oilcanCollected, this.transform.position);
+
         S_Stats_MA.oilCollected++;
         Destroy(gameObject);
     }
