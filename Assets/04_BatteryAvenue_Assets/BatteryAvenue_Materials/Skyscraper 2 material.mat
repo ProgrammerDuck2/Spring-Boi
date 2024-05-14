@@ -25,11 +25,12 @@ Material:
   m_Parent: {fileID: 2100000, guid: 01c2f1b459f68674ea35c21e4f5b3f49, type: 2}
   m_ModifiedSerializedProperties: 18
   m_ValidKeywords:
+  - _EMISSION
   - _HALFTONESHAPE_DOT
   - _OUTLINE
   - _TOON_SHADING_ON
   m_InvalidKeywords: []
-  m_LightmapFlags: 4
+  m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: 2050
@@ -41,11 +42,15 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: efd9412952360a6488a4b141d8e19987, type: 3}
+        m_Texture: {fileID: 2800000, guid: 330b125270c24e24b8f34caf1229eee0, type: 3}
         m_Scale: {x: 1.21, y: 3.55}
         m_Offset: {x: 0, y: 0.3}
+    - _EmissionMap:
+        m_Texture: {fileID: 2800000, guid: 330b125270c24e24b8f34caf1229eee0, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: efd9412952360a6488a4b141d8e19987, type: 3}
+        m_Texture: {fileID: 2800000, guid: 330b125270c24e24b8f34caf1229eee0, type: 3}
         m_Scale: {x: 1.21, y: 3.55}
         m_Offset: {x: 0, y: 0.3}
     m_Ints: []
@@ -53,5 +58,6 @@ Material:
     - _DitherTexelSize: 1
     - _RimEnabled: 0
     - _ToonEnabled: 1
-    m_Colors: []
+    m_Colors:
+    - _EmissionColor: {r: 0.6037736, g: 0.6037736, b: 0.6037736, a: 1}
   m_BuildTextureStacks: []
