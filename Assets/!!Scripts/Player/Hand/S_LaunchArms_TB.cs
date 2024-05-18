@@ -111,22 +111,25 @@ public class S_LaunchArms_TB : S_Hand_TB
     {
         currentHandMissile.transform.LookAt(transform);
 
-        if (Vector3.Distance(transform.position, currentHandMissile.transform.position) <= .5f)
+        if (Vector3.Distance(transform.position, currentHandMissile.transform.position) <= 1.5f)
         {
             pullingHand = false;
             handArt.SetActive(true);
             //grab.enabled = true;
-            playerRB.useGravity = true;
 
             //if (!otherController.GetComponent<S_Grab_TB>().holding)
             //{
             //    playerMovement.enabled = true;
             //}
-            playerMovement.enabled = true;
             anim.enabled = true;
-            LR.enabled = true;
+            lineRenderer.enabled = true;
             middleArm.enabled = true;
             Destroy(currentHandMissile);
+
+            if (otherController.launchArms.holding) return;
+
+            playerMovement.enabled = true;
+            playerRB.useGravity = true;
         }
     }
     void HoldOnto()
@@ -196,7 +199,7 @@ public class S_LaunchArms_TB : S_Hand_TB
 
             handArt.SetActive(false);
             middleArm.enabled = false;
-            LR.enabled = false;
+            lineRenderer.enabled = false;
             //grab.enabled = false;
         }
     }
