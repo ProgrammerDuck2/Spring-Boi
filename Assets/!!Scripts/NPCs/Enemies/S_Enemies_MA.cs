@@ -7,8 +7,20 @@ using UnityEngine.AI;
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(Fracture))]
+[RequireComponent(typeof(Animator))]
 public class S_Enemies_MA : MonoBehaviour
 {
+    public enum EnemyType
+    {
+        Roaming,
+        OnSight,
+        None
+    }
+
+    public EnemyType enemyType;
+
+    Animator enemyAnimator;
+
     public GameObject player { get; private set; }
 
     [HideInInspector] public float nextAttack = 0.0f;
@@ -40,6 +52,7 @@ public class S_Enemies_MA : MonoBehaviour
     {
         player = FindFirstObjectByType<S_Movement_TB>().gameObject;
         navMeshAgent = GetComponent<NavMeshAgent>();
+        enemyAnimator = GetComponent<Animator>();
 
         navMeshAgent.destination = randomDestination();
 
@@ -53,26 +66,35 @@ public class S_Enemies_MA : MonoBehaviour
     public virtual void Update()
     {
         if (maxHealth <= 0) return;
+        //annimations
+
+        switch (enemyType)
+        {
+            case EnemyType.Roaming:
+                {
+                    enemyAnimator.SetBool("IsWalking", false);
+
+                    SetDestination();
+                    PlayerFound();
+
+                    break;
+                }
+
+            case EnemyType.OnSight:
+                {
+                    enemyAnimator.SetBool("IsWalking", false);
+                    PlayerFound();
+                    break;
+                }
+
+            case EnemyType.None:
+                {
+                    enemyAnimator.SetBool("IsWalking", false);
+                    break;
+                }
+        }
+
         //if (navCorner1 == null || navCorner2 == null) return;
-
-        if(roaming && destinationReached())
-        {
-            navMeshAgent.destination = randomDestination();
-            //Vector3 c1 = navCorner1.transform.position;
-            //Vector3 c2 = navCorner2.transform.position;
-            //if (Vector3.Distance(transform.position, navMeshAgent.destination) < 2)
-            //{
-            //    navMeshAgent.destination = new Vector3(Random.Range(c1.x, c2.x), c1.y, Random.Range(c1.z, c2.z));
-            //}
-        }
-
-        if (Vector3.Distance(transform.position, player.transform.position) < sightRange)
-        {
-            transform.LookAt(player.transform.position);
-            transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
-            if (roaming)
-                navMeshAgent.destination = player.transform.position - transform.forward * 1.5f;
-        }
 
         if (attackRate <= nextAttack)
         {
@@ -158,6 +180,28 @@ public class S_Enemies_MA : MonoBehaviour
     bool destinationReached()
     {
         return Vector3.Distance(transform.position, navMeshAgent.destination) < 1;
+    }
+
+    void SetDestination()
+    {
+        if (roaming && destinationReached())
+        {
+            navMeshAgent.destination = randomDestination();
+
+            enemyAnimator.SetBool("IsWalking", true);
+        }
+    }
+
+    void PlayerFound()
+    {
+        if (Vector3.Distance(transform.position, player.transform.position) < sightRange)
+        {
+            transform.LookAt(player.transform.position);
+            transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
+            navMeshAgent.destination = player.transform.position - transform.forward * 1.5f;
+
+            enemyAnimator.SetBool("IsWalking", true);
+        }
     }
 }
 
