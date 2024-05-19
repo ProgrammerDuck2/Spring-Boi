@@ -42,8 +42,9 @@ public class S_Respawn_MA : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (transform.position.y < outOfWorld)
-            transform.position = respawnPoint;
+        if (transform.position.y >= outOfWorld) return;
+
+        S_Stats_MA.playerHealth = 0;
     }
 
     private void OnTriggerEnter(Collider other)

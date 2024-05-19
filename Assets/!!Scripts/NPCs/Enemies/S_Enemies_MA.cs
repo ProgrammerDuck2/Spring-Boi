@@ -141,7 +141,7 @@ public class S_Enemies_MA : MonoBehaviour
 
         if (drop != null)
         {
-            Instantiate(drop, transform.position, transform.rotation);
+            Instantiate(drop, transform.position + transform.up, transform.rotation);
         }
 
         Destroy(gameObject, 1);
@@ -158,10 +158,6 @@ public class S_Enemies_MA : MonoBehaviour
     bool destinationReached()
     {
         return Vector3.Distance(transform.position, navMeshAgent.destination) < 1;
-    }
-
-    private void OnDestroy()
-    {
     }
 }
 
