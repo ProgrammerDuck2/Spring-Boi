@@ -6,7 +6,7 @@ public class S_OilCansInScene_MA : MonoBehaviour
 {
     int activeCans;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         S_Stats_MA.maxOil = transform.childCount;
         S_Stats_MA.oilCollected = 0;
