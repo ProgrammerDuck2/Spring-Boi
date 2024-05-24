@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class S_DeathArea_TB : MonoBehaviour
 {
+    public string deathMessage;
     // Start is called before the first frame update
     void Start()
     {

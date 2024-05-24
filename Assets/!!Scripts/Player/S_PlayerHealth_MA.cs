@@ -13,6 +13,8 @@ public class S_PlayerHealth_MA : MonoBehaviour
     [SerializeField] Color originalColor;
     [SerializeField] Color lowColor;
 
+    string lastToHit;
+
     float value;
     bool dying;
     // Start is called before the first frame update
@@ -33,7 +35,7 @@ public class S_PlayerHealth_MA : MonoBehaviour
         if (S_Stats_MA.playerHealth <= 0 && !dying)
         {
             dying = true;
-            StartCoroutine(Death());
+            StartCoroutine(Death("Spring-boy was killed by " + lastToHit));
         }
     }
 
@@ -42,13 +44,13 @@ public class S_PlayerHealth_MA : MonoBehaviour
         if(collision.gameObject.CompareTag("Death"))
         {
             dying = true;
-            StartCoroutine(Death());
+            StartCoroutine(Death("Spring-boy fell into his death"));
         }
     }
 
-    IEnumerator Death()
+    public IEnumerator Death(string cause)
     {
-        print("death");
+        FindFirstObjectByType<S_DeathArea_TB>().deathMessage = cause;
         float deathCounter = 1;
         while(deathCounter > 0.5f)
         {
@@ -70,6 +72,7 @@ public class S_PlayerHealth_MA : MonoBehaviour
 
     public void Hurt(float damage, GameObject WhoDealtDamage)
     {
+        lastToHit = WhoDealtDamage.name;
         S_Stats_MA.playerHealth -= damage;
     }
 

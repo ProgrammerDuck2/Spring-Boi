@@ -47,6 +47,7 @@ public class S_OilCollectible_MA : MonoBehaviour
         if (!other.CompareTag("Player")) return;
 
         S_Stats_MA.oilCollected++;
+        S_Stats_MA.playerHealth = S_Stats_MA.maxHealth;
         Destroy(gameObject);
 
         //dette funker ikke -Torje

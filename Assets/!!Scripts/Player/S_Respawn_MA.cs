@@ -44,7 +44,7 @@ public class S_Respawn_MA : MonoBehaviour
     {
         if (transform.position.y >= outOfWorld) return;
 
-        S_Stats_MA.playerHealth = 0;
+        StartCoroutine(GetComponent<S_PlayerHealth_MA>().Death("Spring-boy fell out of the world"));
     }
 
     private void OnTriggerEnter(Collider other)

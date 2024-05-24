@@ -114,7 +114,7 @@ public class S_Enemies_MA : MonoBehaviour
 
         if (Vector3.Distance(transform.position, player.transform.position) < attackRange)
         {
-            S_Stats_MA.playerHealth -= damage;
+            player.GetComponent<S_PlayerHealth_MA>().Hurt(damage, gameObject);
         }
 
         yield return null;
