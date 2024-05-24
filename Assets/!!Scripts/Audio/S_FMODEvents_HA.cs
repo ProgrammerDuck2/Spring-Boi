@@ -20,6 +20,10 @@ public class S_FMODEvents_HA : MonoBehaviour
 
     [field: SerializeField] public EventReference oilcanCollected { get; private set; }
 
+    [field: Header("Punch SFX")]
+
+    [field: SerializeField] public EventReference punch { get; private set; }
+
     public static S_FMODEvents_HA instance { get; private set; }
 
     private void Awake()
