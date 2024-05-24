@@ -1,70 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1278100917983505988
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4407674827414965479}
-  - component: {fileID: 7032582981152141647}
-  m_Layer: 0
-  m_Name: FMODEvents
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4407674827414965479
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1278100917983505988}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2807024306096194041}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7032582981152141647
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1278100917983505988}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23b13f1b00889ed429c24f8f3ef44939, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <ambience>k__BackingField:
-    Guid:
-      Data1: -752404329
-      Data2: 1087467234
-      Data3: -603059034
-      Data4: -845558732
-    Path: event:/Ambience/Springtown/ShantytownAmbiance
-  <Music>k__BackingField:
-    Guid:
-      Data1: 677305630
-      Data2: 1165493676
-      Data3: -1567154526
-      Data4: -1313742884
-    Path: event:/Music/Springtown/SpringtownMusic
-  <oilcanCollected>k__BackingField:
-    Guid:
-      Data1: -1499209325
-      Data2: 1080548530
-      Data3: 263622335
-      Data4: -410186390
-    Path: event:/OilCanCollection
 --- !u!1 &6239786853479085626
 GameObject:
   m_ObjectHideFlags: 0
@@ -110,3 +45,81 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7af0d4e0d84ee644aa5f7c4ff00e2614, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  masterVolume: 1
+  musicVolume: 1
+  ambienceVolume: 1
+  SFXVolume: 1
+--- !u!1001 &8881995292189399855
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2807024306096194041}
+    m_Modifications:
+    - target: {fileID: 5073335010009028552, guid: 2e046d4ef695c4345aecaef0684764e8,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5073335010009028552, guid: 2e046d4ef695c4345aecaef0684764e8,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5073335010009028552, guid: 2e046d4ef695c4345aecaef0684764e8,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5073335010009028552, guid: 2e046d4ef695c4345aecaef0684764e8,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5073335010009028552, guid: 2e046d4ef695c4345aecaef0684764e8,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5073335010009028552, guid: 2e046d4ef695c4345aecaef0684764e8,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5073335010009028552, guid: 2e046d4ef695c4345aecaef0684764e8,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5073335010009028552, guid: 2e046d4ef695c4345aecaef0684764e8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5073335010009028552, guid: 2e046d4ef695c4345aecaef0684764e8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5073335010009028552, guid: 2e046d4ef695c4345aecaef0684764e8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7710045651641693547, guid: 2e046d4ef695c4345aecaef0684764e8,
+        type: 3}
+      propertyPath: m_Name
+      value: FMODEvents
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2e046d4ef695c4345aecaef0684764e8, type: 3}
+--- !u!4 &4407674827414965479 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5073335010009028552, guid: 2e046d4ef695c4345aecaef0684764e8,
+    type: 3}
+  m_PrefabInstance: {fileID: 8881995292189399855}
+  m_PrefabAsset: {fileID: 0}
