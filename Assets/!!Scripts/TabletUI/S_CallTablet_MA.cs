@@ -11,8 +11,14 @@ public class S_CallTablet_MA : MonoBehaviour
     private GameObject player;
     PlayerInput PlayerInput;
 
-    [SerializeField] private TMP_Text callText;
-    public List<string> callList = new List<string>();
+    [SerializeField] private TMP_Text callPrint;
+    public List<S_CallInformation_MA> whichCall = new List<S_CallInformation_MA>();
+
+    bool startRinging;
+
+    int callCount;
+
+    [SerializeField] AudioClip ringtone;
 
     // Start is called before the first frame update
     void Start()
@@ -22,10 +28,14 @@ public class S_CallTablet_MA : MonoBehaviour
         PlayerInput.actions["TabletInteractions"].started += Interact;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnCollisionEnter(Collision collision)
     {
+        if (collision.gameObject.tag == "IpadCall")
+        {
 
+            callCount++;
+            PlayRingtone();
+        }
     }
 
     void Interact(InputAction.CallbackContext context)
@@ -35,11 +45,20 @@ public class S_CallTablet_MA : MonoBehaviour
 
     IEnumerator CallSpeech()
     {
-        for (int i = 0; i < callList.Count; i++)
+        //whichCall[1].callText[1]
+        for (int i = 0; i < whichCall[callCount].callText.Count; i++)
         {
-            callText.text = callList[i];
+            callPrint.text = whichCall[callCount].callText[i];
             yield return new WaitForSeconds(5);
-            print(callList[i]);
+            print(whichCall[callCount].callText[i]);
         }
+    }
+
+    void PlayRingtone()
+    {
+            AudioSource audio = GetComponent<AudioSource>();
+
+            audio.clip = ringtone;
+            audio.Play();
     }
 }
