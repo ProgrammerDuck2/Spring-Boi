@@ -20,6 +20,12 @@ public class S_FMODEvents_HA : MonoBehaviour
 
     [field: SerializeField] public EventReference oilcanCollected { get; private set; }
 
+
+    [field: Header("Bouncepad SFX")]
+
+    [field: SerializeField] public EventReference bouncePad { get; private set; }
+
+
     [field: Header("Punch SFX")]
 
     [field: SerializeField] public EventReference punch { get; private set; }
