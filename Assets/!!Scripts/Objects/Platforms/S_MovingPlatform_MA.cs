@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class S_MovingPlatform_MA : MonoBehaviour
 {
-    S_Lever_TB lever;
+    [SerializeField] S_Lever_TB lever;
 
     [SerializeField] float speed;
 
@@ -19,7 +19,6 @@ public class S_MovingPlatform_MA : MonoBehaviour
 
     private void Start()
     {
-        lever = FindFirstObjectByType<S_Lever_TB>();
         Location1 = transform.parent.GetChild(1); //gets start
         Location2 = transform.parent.GetChild(2); //gets end
 
@@ -47,5 +46,12 @@ public class S_MovingPlatform_MA : MonoBehaviour
         value += reverse ? -Time.deltaTime * speed : Time.deltaTime * speed;
         if (value > 1) reverse = true;
         if (value < 0) reverse = false;
+    }
+
+    private void OnValidate()
+    {
+        Location1 = transform.parent.GetChild(1); //gets start
+        Location2 = transform.parent.GetChild(2); //gets end
+        transform.localPosition = Vector3.Lerp(Location1.localPosition, Location2.localPosition, value);
     }
 }

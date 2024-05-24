@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class S_HandProjectile_TB : MonoBehaviour
 {
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Enemy"))
         {
