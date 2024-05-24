@@ -9,7 +9,7 @@ public class S_HandProjectile_TB : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             S_Enemies_MA enemy = other.GetComponent<S_Enemies_MA>();
-            enemy.Hurt(100, gameObject);
+            enemy.Die();
         }
     }
 }

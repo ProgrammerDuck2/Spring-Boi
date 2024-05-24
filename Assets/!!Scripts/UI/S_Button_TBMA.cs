@@ -39,7 +39,7 @@ public class S_Button_TBMA : S_VRUI_TB
         gameObject.layer = 14;
 
         RectTransform rectTransform = GetComponent<RectTransform>();
-        GetComponent<BoxCollider>().size = new Vector3(rectTransform.rect.width, rectTransform.rect.height);
+        GetComponent<BoxCollider>().size = new Vector3(rectTransform.rect.width, rectTransform.rect.height, 10);
     }
 
     public override void OnClickEnter(ActionBasedController controller)
