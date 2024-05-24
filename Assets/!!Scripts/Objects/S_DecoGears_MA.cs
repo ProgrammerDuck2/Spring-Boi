@@ -22,9 +22,12 @@ public class S_DecoGears_MA : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (lever.active)
+        if (lever != null)
         {
-            Destroy(this);
+            if (lever.active)
+            {
+                Destroy(this);
+            }
         }
         if (reverse) { transform.Rotate(0, -90 * Time.deltaTime, 0, Space.Self); }
 
