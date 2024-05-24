@@ -9,7 +9,7 @@ public class S_MusicChangeTrigger_HA : MonoBehaviour
 
     private void OnTriggerEnter(Collider collider)
     {
-        if (collider.CompareTag("Player")) // Specify the tag here
+        if (collider.CompareTag("Player")) 
         {
             S_AudioManager_HA.instance.SetMusicArea(area);
         }
