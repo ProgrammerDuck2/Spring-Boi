@@ -1073,6 +1073,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 16384
   currentHoverElement: {fileID: 0}
+  pointerPrefab: {fileID: 0}
 --- !u!114 &8967098793692904214
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1281,7 +1282,7 @@ LineRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Positions:
-  - {x: 11.265551, y: 1.5200005, z: 0}
+  - {x: 55.25, y: 39, z: -183.4}
   - {x: -0.24870001, y: 1.4343, z: 0.316}
   m_Parameters:
     serializedVersion: 3
@@ -1923,6 +1924,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 16384
   currentHoverElement: {fileID: 0}
+  pointerPrefab: {fileID: 0}
 --- !u!114 &681483132432645423
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2131,7 +2133,7 @@ LineRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Positions:
-  - {x: 11.765551, y: 1.5200005, z: 0}
+  - {x: 55.75, y: 39, z: -183.4}
   - {x: 0.2619, y: 1.4337, z: 0.3215}
   m_Parameters:
     serializedVersion: 3
@@ -2832,12 +2834,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -24.285
       objectReference: {fileID: 0}
+    - target: {fileID: 1367655685366618995, guid: 535e3e8512ca9de4e95314dde4fd5fff,
+        type: 3}
+      propertyPath: isActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5476443312448676566, guid: 535e3e8512ca9de4e95314dde4fd5fff,
         type: 3}
       propertyPath: m_Name
       value: ---Tablet---
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8697459523607535709, guid: 535e3e8512ca9de4e95314dde4fd5fff, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

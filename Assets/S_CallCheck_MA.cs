@@ -7,12 +7,10 @@ public class S_CallCheck_MA : MonoBehaviour
     public bool call;
     private void OnCollisionEnter(Collision collision)
     {
-        print("r");
-
+        print(call);
         if (collision.gameObject.tag == "IpadCall")
         {
             call = true;
-            Debug.Log("call"+ call);
         }
     }
 }
