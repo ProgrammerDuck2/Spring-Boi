@@ -114,7 +114,7 @@ public class S_Enemies_MA : MonoBehaviour
 
         if (Vector3.Distance(transform.position, player.transform.position) < attackRange)
         {
-            S_Stats_MA.playerHealth -= damage;
+            player.GetComponent<S_PlayerHealth_MA>().Hurt(damage, gameObject);
         }
 
         yield return null;
@@ -159,14 +159,17 @@ public class S_Enemies_MA : MonoBehaviour
             }
         }
 
+        Destroy(gameObject, 1);
+    }
+
+    private void OnDestroy()
+    {
         mapIcon.SetActive(false);
 
         if (drop != null)
         {
-            Instantiate(drop, transform.position + transform.up, transform.rotation);
+            Instantiate(drop, transform.position + transform.up * 2, transform.rotation);
         }
-
-        Destroy(gameObject, 1);
     }
 
     protected Vector3 randomDestination()

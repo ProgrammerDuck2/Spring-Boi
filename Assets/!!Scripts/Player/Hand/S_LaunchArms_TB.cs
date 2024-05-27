@@ -55,14 +55,11 @@ public class S_LaunchArms_TB : S_Hand_TB
         {
             if (currentHandMissile == null)
             {
-                Debug.Log("Launching Arm");
-                
                 ActivateLaunchArm();
                 anim.enabled = false;
             }
             else
             {
-                Debug.Log("pulling Arm");
                 ActivatePullArm();
             }
 
@@ -138,11 +135,13 @@ public class S_LaunchArms_TB : S_Hand_TB
 
         if (holding != true)
         {
-            Collider[] inRange = Physics.OverlapSphere(currentHandMissile.transform.position, lauchedHandHitbox, grabable);
+            Collider[] inRange = Physics.OverlapSphere(currentHandMissile.transform.position, lauchedHandHitbox * 2, grabable);
 
-            Physics.Raycast(currentHandMissile.transform.position, inRange[0].transform.position - currentHandMissile.transform.position, out RaycastHit hit, lauchedHandHitbox, grabable);
-            
+            Physics.Raycast(currentHandMissile.transform.position, inRange[0].transform.position - currentHandMissile.transform.position, out RaycastHit hit, lauchedHandHitbox * 2, grabable);
+
             print(hit.collider);
+            if (hit.collider == null)
+                Debug.Break();
 
             if(hit.point != Vector3.zero)
                 currentHandMissile.transform.position = hit.point;

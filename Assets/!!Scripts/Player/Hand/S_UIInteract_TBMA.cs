@@ -11,6 +11,9 @@ public class S_UIInteract_TBMA : S_Hand_TB
 
     S_VRUI_TB currentClickElement;
     public S_VRUI_TB currentHoverElement;
+
+    [SerializeField] GameObject pointerPrefab;
+    GameObject currentPointer;
     
     bool clicking;
 
@@ -26,6 +29,14 @@ public class S_UIInteract_TBMA : S_Hand_TB
 
         if (raycast.collider != null)
         {
+            if(currentPointer != null)
+            {
+                currentPointer.transform.position = raycast.point;
+            } else
+            {
+                currentPointer = Instantiate(pointerPrefab);
+            }
+
             if (raycast.collider.TryGetComponent<S_VRUI_TB>(out S_VRUI_TB uiElement))
             {
                 if (currentHoverElement == null)
@@ -46,11 +57,14 @@ public class S_UIInteract_TBMA : S_Hand_TB
 
             } else
             {
-                Debug.LogError("No button hit or button lack interface");
+                currentHoverElement.OnHoverExit();
+
+                currentHoverElement = null;
             }
         }
         else if (currentHoverElement != null)
         {
+            Destroy(currentPointer);
             currentHoverElement.OnHoverExit();
             currentHoverElement = null;
         }
