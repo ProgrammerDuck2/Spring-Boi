@@ -17,7 +17,7 @@ public class S_CallTablet_MA : MonoBehaviour
     [Expandable]
     public List<S_CallInformation_MA> whichCall = new List<S_CallInformation_MA>();
 
-    bool startRinging;
+    public bool startRinging;
 
     int counter;
     S_CallCheck_MA call;
