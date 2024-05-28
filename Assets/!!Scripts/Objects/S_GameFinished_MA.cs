@@ -11,9 +11,16 @@ public class S_GameFinished_MA : MonoBehaviour
 
     //fireworks
     [SerializeField] GameObject fireworks;
+    [SerializeField] GameObject instantiateFire;
+    GameObject currentFirework;
 
     //oilCans
     [SerializeField] GameObject oilCan;
+    [SerializeField] GameObject instantiateOil;
+    GameObject currentOil;
+    Rigidbody rb;
+    bool oil;
+    bool grounded;
 
     // Start is called before the first frame update
     void Start()
@@ -28,12 +35,25 @@ public class S_GameFinished_MA : MonoBehaviour
         if (lever.active)
         {
             //add whatever
-            Instantiate(fireworks);
+            currentFirework = Instantiate(fireworks, instantiateFire.transform);
+            Destroy(currentFirework, 3);
 
-            Instantiate(oilCan);
+            if (!oil)
+            {
+                Oil();
+                oil = true;
+            }
 
             tabletCall.startRinging = true;
             //also this is the oil distrubition system so make that make sense ig
+        }
+    }
+    void Oil()
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            currentOil = Instantiate(oilCan, instantiateOil.transform);
+            currentOil.AddComponent<S_FinalOil_MA>();
         }
     }
 }

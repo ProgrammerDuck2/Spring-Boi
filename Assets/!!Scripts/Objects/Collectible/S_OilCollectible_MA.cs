@@ -8,7 +8,7 @@ public class S_OilCollectible_MA : MonoBehaviour
     [Range(0,1)]
     public float move;
     bool direction;
-    float pos;
+    public float pos;
 
     // Start is called before the first frame update
     void Start()

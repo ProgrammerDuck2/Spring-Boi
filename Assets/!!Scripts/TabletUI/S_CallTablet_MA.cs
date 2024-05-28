@@ -36,7 +36,6 @@ public class S_CallTablet_MA : MonoBehaviour
     }
     private void Update()
     {
-        Debug.Log("call.call is" + call.call);
         if (call.call)
         {
             Debug.Log("found call");
