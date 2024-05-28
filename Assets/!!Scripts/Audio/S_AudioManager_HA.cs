@@ -91,11 +91,6 @@ public class S_AudioManager_HA : MonoBehaviour
         ambienceEventInstance.setParameterByName(parameterName, parameterValue);
     }
 
-    public void SetMusicArea(S_MusicArea_HA area)
-    {
-        musicEventInstance.setParameterByName("area", (float) area);
-    }
-
 
     public EventInstance CreateInstance(EventReference eventReference)
     {
