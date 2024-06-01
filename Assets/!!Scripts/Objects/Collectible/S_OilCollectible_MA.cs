@@ -50,8 +50,7 @@ public class S_OilCollectible_MA : MonoBehaviour
         S_Stats_MA.playerHealth = S_Stats_MA.maxHealth;
         Destroy(gameObject);
 
-        //dette funker ikke -Torje
-        //S_AudioManager_HA.instance.PlayOneShot(S_FMODEvents_HA.instance.oilcanCollected, transform.position);
+        S_AudioManager_HA.instance.PlayOneShot(S_FMODEvents_HA.instance.oilcanCollected, transform.position);
     }
 
 }

@@ -1,3 +1,4 @@
+using FMODUnity;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ public class S_BouncePad_OR : MonoBehaviour
 {
     [SerializeField] private float bounceForce;
     [SerializeField] private string animName;
+    [SerializeField] private EventReference bouncePad;
     private Animator bounceAnim;
     
     private bool isPlayingAnimation;
@@ -25,6 +27,8 @@ public class S_BouncePad_OR : MonoBehaviour
         rb.AddForce(0,bounceForce,0);
         boing.Play();
         isPlayingAnimation = false;
+
+        
     }
     private void OnCollisionEnter(Collision other)
     {
@@ -34,5 +38,7 @@ public class S_BouncePad_OR : MonoBehaviour
             bounceAnim.Play(animName,0,0f);
         }
         isPlayingAnimation = true;
+
+        S_AudioManager_HA.instance.PlayOneShot(bouncePad, transform.position);
     }
 }
