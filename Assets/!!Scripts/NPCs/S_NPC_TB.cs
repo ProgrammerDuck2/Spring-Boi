@@ -1,3 +1,4 @@
+using FMODUnity;
 using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ public class S_NPC_TB : MonoBehaviour
 {
     public TMP_Text NPCText;
     [SerializeField] private List<string> speech = new List<string>();
+    [SerializeField] private EventReference soundBySpring;
     [ShowIf("requiresQuest")]
     [SerializeField] private List<string> missingQuestSpeech = new List<string>();
 
@@ -32,6 +34,7 @@ public class S_NPC_TB : MonoBehaviour
         player = FindFirstObjectByType<S_Movement_TB>().gameObject;
         PlayerInput = player.GetComponent<PlayerInput>();
         PlayerInput.actions["Interact"].started += StartSpeech;
+       
     }
 
     public virtual void OnTriggerEnter(Collider other)
@@ -88,6 +91,7 @@ public class S_NPC_TB : MonoBehaviour
 
     public virtual IEnumerator Speech()
     {
+        S_AudioManager_HA.instance.PlayOneShot(soundBySpring, transform.position);
         for (int i = 0; i < speech.Count; i++)
         {
             NPCText.text = speech[i];
