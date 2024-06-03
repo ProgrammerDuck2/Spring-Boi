@@ -71,7 +71,8 @@ public class S_Enemies_MA : MonoBehaviour
         {
             case EnemyType.Roaming:
                 {
-                    enemyAnimator.SetBool("IsWalking", false);
+                    if (enemyAnimator != null)
+                        enemyAnimator.SetBool("IsWalking", false);
 
                     SetDestination();
                     PlayerFound();
@@ -81,14 +82,16 @@ public class S_Enemies_MA : MonoBehaviour
 
             case EnemyType.OnSight:
                 {
-                    enemyAnimator.SetBool("IsWalking", false);
+                    if (enemyAnimator != null)
+                        enemyAnimator.SetBool("IsWalking", false);
                     PlayerFound();
                     break;
                 }
 
             case EnemyType.None:
                 {
-                    enemyAnimator.SetBool("IsWalking", false);
+                    if (enemyAnimator != null)
+                        enemyAnimator.SetBool("IsWalking", false);
                     break;
                 }
         }
