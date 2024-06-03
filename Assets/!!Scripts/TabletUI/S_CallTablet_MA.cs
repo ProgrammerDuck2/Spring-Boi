@@ -32,7 +32,7 @@ public class S_CallTablet_MA : MonoBehaviour
         player = FindFirstObjectByType<S_Movement_TB>().gameObject;
         PlayerInput = player.GetComponent<PlayerInput>();
         call = FindFirstObjectByType<S_CallCheck_MA>();
-        AudioSource äudioSource = GetComponent<AudioSource>();
+        AudioSource audioSource = GetComponent<AudioSource>();
     }
     private void Update()
     {

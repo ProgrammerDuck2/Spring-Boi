@@ -938,6 +938,7 @@ GameObject:
   - component: {fileID: 4040728766181858988}
   - component: {fileID: 1137931238148472718}
   - component: {fileID: 4103942307802940869}
+  - component: {fileID: 689304606417995569}
   m_Layer: 3
   m_Name: Ground
   m_TagString: Untagged
@@ -1010,6 +1011,25 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &689304606417995569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 666109277525041464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 0
+  m_Area: 0
+  m_OverrideGenerateLinks: 0
+  m_GenerateLinks: 0
+  m_IgnoreFromBuild: 0
+  m_ApplyToChildren: 1
+  m_AffectedAgents: ffffffff
 --- !u!1 &718456027594632578
 GameObject:
   m_ObjectHideFlags: 0
@@ -13355,7 +13375,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7864710471129490852
 Transform:
   m_ObjectHideFlags: 0
@@ -13386,6 +13406,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyType: 0
+  enemyAnimator: {fileID: 0}
   nextAttack: 0
   maxHealth: 500
   damage: 400
@@ -14347,6 +14368,7 @@ GameObject:
   - component: {fileID: 2326083854717649220}
   - component: {fileID: 3963913822380806528}
   - component: {fileID: 4097050777343507975}
+  - component: {fileID: 3463648973679592076}
   m_Layer: 3
   m_Name: Ground
   m_TagString: Untagged
@@ -14419,6 +14441,25 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &3463648973679592076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5466623576594214745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 0
+  m_Area: 0
+  m_OverrideGenerateLinks: 0
+  m_GenerateLinks: 0
+  m_IgnoreFromBuild: 0
+  m_ApplyToChildren: 1
+  m_AffectedAgents: ffffffff
 --- !u!1 &5490224189857221059
 GameObject:
   m_ObjectHideFlags: 0
@@ -23540,6 +23581,7 @@ GameObject:
   - component: {fileID: 6587175134840938470}
   - component: {fileID: 6587601622912557368}
   - component: {fileID: 2541706748077696934}
+  - component: {fileID: 847410256729061565}
   m_Layer: 3
   m_Name: Ground
   m_TagString: Untagged
@@ -23625,6 +23667,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tabletTrigger: 0
+--- !u!114 &847410256729061565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8932370942994890287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 0
+  m_Area: 0
+  m_OverrideGenerateLinks: 0
+  m_GenerateLinks: 0
+  m_IgnoreFromBuild: 0
+  m_ApplyToChildren: 1
+  m_AffectedAgents: ffffffff
 --- !u!1 &8937470757331721052
 GameObject:
   m_ObjectHideFlags: 0
