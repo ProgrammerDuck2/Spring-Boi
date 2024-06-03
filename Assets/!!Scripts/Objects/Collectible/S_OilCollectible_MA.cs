@@ -8,7 +8,7 @@ public class S_OilCollectible_MA : MonoBehaviour
     [Range(0,1)]
     public float move;
     bool direction;
-    float pos;
+    public float pos;
 
     // Start is called before the first frame update
     void Start()
@@ -50,8 +50,7 @@ public class S_OilCollectible_MA : MonoBehaviour
         S_Stats_MA.playerHealth = S_Stats_MA.maxHealth;
         Destroy(gameObject);
 
-        //dette funker ikke -Torje
-        //S_AudioManager_HA.instance.PlayOneShot(S_FMODEvents_HA.instance.oilcanCollected, transform.position);
+        S_AudioManager_HA.instance.PlayOneShot(S_FMODEvents_HA.instance.oilcanCollected, transform.position);
     }
 
 }

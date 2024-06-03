@@ -15,7 +15,7 @@ public class S_TabletPages_MA : MonoBehaviour
         get { return PlayerInput.actions["TabletPages"].ReadValue<Vector2>().x; }
     }
     private float waitTime = 0;
-    private int firstPage = 1;
+    private int firstPage;
 
     [SerializeField] private GameObject triggerCall;
 
@@ -29,15 +29,7 @@ public class S_TabletPages_MA : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (triggerCall != null)
-        {
 
-            //Debug.Log(currentPage);
-            if (triggerCall.GetComponent<S_CallTrigger_MA>().tabletTrigger)
-            {
-                firstPage = 0;
-            }
-        }
 
         waitTime += Time.deltaTime;
         if (GetComponent<S_Ipad_MA>().isActive)

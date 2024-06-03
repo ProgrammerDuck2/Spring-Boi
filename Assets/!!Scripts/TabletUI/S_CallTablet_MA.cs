@@ -1,3 +1,4 @@
+using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -10,13 +11,18 @@ public class S_CallTablet_MA : MonoBehaviour
 
     private GameObject player;
     PlayerInput PlayerInput;
+    GameObject art;
 
     [SerializeField] private TMP_Text callPrint;
+    [Expandable]
     public List<S_CallInformation_MA> whichCall = new List<S_CallInformation_MA>();
 
-    bool startRinging;
+    public bool startRinging;
 
-    int callCount;
+    int counter;
+    S_CallCheck_MA call;
+
+    AudioSource audioSource;
 
     [SerializeField] AudioClip ringtone;
 
@@ -25,40 +31,43 @@ public class S_CallTablet_MA : MonoBehaviour
     {
         player = FindFirstObjectByType<S_Movement_TB>().gameObject;
         PlayerInput = player.GetComponent<PlayerInput>();
-        PlayerInput.actions["TabletInteractions"].started += Interact;
+        call = FindFirstObjectByType<S_CallCheck_MA>();
+        AudioSource audioSource = GetComponent<AudioSource>();
     }
-
-    private void OnCollisionEnter(Collision collision)
+    private void Update()
     {
-        if (collision.gameObject.tag == "IpadCall")
+        if (call.call)
         {
-
-            callCount++;
-            PlayRingtone();
+            Debug.Log("found call");
+            StartCoroutine(CallSpeech());
+            call.call = false;
+            Debug.Log("made call" + call);
         }
-    }
-
-    void Interact(InputAction.CallbackContext context)
-    {
-        StartCoroutine(CallSpeech());
     }
 
     IEnumerator CallSpeech()
     {
+        yield return StartCoroutine(PlayRingtone());
+
+        Debug.Log(whichCall[counter].callText.Count);
         //whichCall[1].callText[1]
-        for (int i = 0; i < whichCall[callCount].callText.Count; i++)
+        for (int i = 0; i < whichCall[counter].callText.Count; i++)
         {
-            callPrint.text = whichCall[callCount].callText[i];
+            Debug.Log(whichCall[counter].callText[i]);
+            callPrint.text = whichCall[counter].callText[i];
+            audioSource.clip = whichCall[counter].audioClips[i];
+            audioSource.Play();
+
             yield return new WaitForSeconds(5);
-            print(whichCall[callCount].callText[i]);
         }
+        counter++;
     }
 
-    void PlayRingtone()
+    IEnumerator PlayRingtone()
     {
-            AudioSource audio = GetComponent<AudioSource>();
 
-            audio.clip = ringtone;
-            audio.Play();
+            //audio.clip = ringtone;
+            //audio.Play();
+        yield return new WaitForSeconds(5);
     }
 }

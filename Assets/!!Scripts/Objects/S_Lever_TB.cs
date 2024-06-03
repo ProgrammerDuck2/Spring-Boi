@@ -19,7 +19,11 @@ public class S_Lever_TB : S_InteractableObject_TB
 
         StartCoroutine(activate());
     }
-
+    [Button]
+    void activateNoHands()
+    {
+        active = true;
+    }
     IEnumerator activate()
     {
         float value = 0f;

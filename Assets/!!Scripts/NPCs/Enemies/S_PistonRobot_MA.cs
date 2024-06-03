@@ -9,5 +9,5 @@ public class S_PistonRobot_MA : S_Enemies_MA
     //NPC only moves by default if activated
     public bool move;
 
-
+    
 }

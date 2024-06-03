@@ -19,7 +19,7 @@ public class S_Enemies_MA : MonoBehaviour
 
     public EnemyType enemyType;
 
-    Animator enemyAnimator;
+    [SerializeField] Animator enemyAnimator;
 
     public GameObject player { get; private set; }
 
@@ -52,7 +52,6 @@ public class S_Enemies_MA : MonoBehaviour
     {
         player = FindFirstObjectByType<S_Movement_TB>().gameObject;
         navMeshAgent = GetComponent<NavMeshAgent>();
-        enemyAnimator = GetComponent<Animator>();
 
         navMeshAgent.destination = randomDestination();
 
@@ -195,14 +194,14 @@ public class S_Enemies_MA : MonoBehaviour
         }
     }
 
-    void PlayerFound()
+    public virtual void PlayerFound()
     {
         if (Vector3.Distance(transform.position, player.transform.position) < sightRange)
         {
             transform.LookAt(player.transform.position);
             transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
             navMeshAgent.destination = player.transform.position - transform.forward * 1.5f;
-
+            navMeshAgent.speed = 2;
             enemyAnimator.SetBool("IsWalking", true);
         }
     }
