@@ -190,7 +190,8 @@ public class S_Enemies_MA : MonoBehaviour
         {
             navMeshAgent.destination = randomDestination();
 
-            enemyAnimator.SetBool("IsWalking", true);
+            if (enemyAnimator != null)
+                enemyAnimator.SetBool("IsWalking", true);
         }
     }
 
@@ -202,7 +203,9 @@ public class S_Enemies_MA : MonoBehaviour
             transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
             navMeshAgent.destination = player.transform.position - transform.forward * 1.5f;
             navMeshAgent.speed = 2;
-            enemyAnimator.SetBool("IsWalking", true);
+
+            if(enemyAnimator != null)
+                enemyAnimator.SetBool("IsWalking", true);
         }
     }
 }
