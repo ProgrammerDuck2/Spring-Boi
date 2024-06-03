@@ -31,6 +31,16 @@ public class S_FMODEvents_HA : MonoBehaviour
     [field: SerializeField] public EventReference punch { get; private set; }
 
 
+    [field: Header("Throw arm SFX")]
+
+    [field: SerializeField] public EventReference throwarm { get; private set; }
+
+
+    [field: Header("Arm grab SFX")]
+
+    [field: SerializeField] public EventReference armgrab { get; private set; }
+
+
     [field: Header("SpringDadDialogueSpringtown")]
 
     [field: SerializeField] public EventReference SpringdadDialogueSpringtown { get; private set; }
@@ -39,6 +49,11 @@ public class S_FMODEvents_HA : MonoBehaviour
     [field: Header("SpringetteDialogueSpringtown")]
 
     [field: SerializeField] public EventReference SpringetteDialogueSpringtown { get; private set; }
+
+
+    [field: Header("SpringsteenDialogueSpringtown")]
+
+    [field: SerializeField] public EventReference SpringsteenDialogueSpringtown { get; private set; }
 
 
     [field: Header("SpringDadDialoguePistonrow")]
