@@ -28,7 +28,7 @@ public class S_LaunchArms_TB : S_Hand_TB
     public override void Start()
     {
         base.Start();
-        handArt = transform.GetComponent<ActionBasedController>().modelParent.gameObject;
+        handArt = transform.GetComponent<ActionBasedController>().modelParent.gameObject; //torje please fix :)
         head = transform.parent.GetChild(0);
     }
 
