@@ -32,7 +32,7 @@ public class S_CallTablet_MA : MonoBehaviour
         player = FindFirstObjectByType<S_Movement_TB>().gameObject;
         PlayerInput = player.GetComponent<PlayerInput>();
         call = FindFirstObjectByType<S_CallCheck_MA>();
-        AudioSource äudioSource = GetComponent<AudioSource>();
+        AudioSource audioSource = GetComponent<AudioSource>();
     }
     private void Update()
     {
@@ -48,15 +48,14 @@ public class S_CallTablet_MA : MonoBehaviour
     IEnumerator CallSpeech()
     {
         yield return StartCoroutine(PlayRingtone());
-
+        S_AudioManager_HA.instance.PlayOneShot(whichCall[counter].audioClips[0], transform.position);
         Debug.Log(whichCall[counter].callText.Count);
         //whichCall[1].callText[1]
         for (int i = 0; i < whichCall[counter].callText.Count; i++)
         {
             Debug.Log(whichCall[counter].callText[i]);
             callPrint.text = whichCall[counter].callText[i];
-            audioSource.clip = whichCall[counter].audioClips[i];
-            audioSource.Play();
+            
 
             yield return new WaitForSeconds(5);
         }

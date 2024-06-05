@@ -139,10 +139,6 @@ public class S_LaunchArms_TB : S_Hand_TB
 
             Physics.Raycast(currentHandMissile.transform.position, inRange[0].transform.position - currentHandMissile.transform.position, out RaycastHit hit, lauchedHandHitbox * 2, grabable);
 
-            print(hit.collider);
-            if (hit.collider == null)
-                Debug.Break();
-
             if(hit.point != Vector3.zero)
                 currentHandMissile.transform.position = hit.point;
 
