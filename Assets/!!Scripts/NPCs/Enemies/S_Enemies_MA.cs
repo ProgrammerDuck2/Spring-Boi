@@ -53,7 +53,7 @@ public class S_Enemies_MA : MonoBehaviour
         player = FindFirstObjectByType<S_Movement_TB>().gameObject;
         navMeshAgent = GetComponent<NavMeshAgent>();
 
-        if(enemyType == EnemyType.Roaming)
+        if (enemyType == EnemyType.Roaming)
             navMeshAgent.destination = randomDestination();
 
         //if (navCorner1 == null || navCorner2 == null || !roaming) return;
@@ -72,16 +72,18 @@ public class S_Enemies_MA : MonoBehaviour
         {
             case EnemyType.Roaming:
                 {
+                    if (enemyAnimator != null)
+                        enemyAnimator.SetBool("IsWalking", false);
                     SetDestination();
                     PlayerFound();
-                    enemyAnimator.SetBool("IsWalking", false);
                     break;
                 }
 
             case EnemyType.OnSight:
                 {
+                    if (enemyAnimator != null)
+                        enemyAnimator.SetBool("IsWalking", false);
                     PlayerFound();
-                    enemyAnimator.SetBool("IsWalking", false);
                     break;
                 }
 
@@ -204,7 +206,7 @@ public class S_Enemies_MA : MonoBehaviour
             navMeshAgent.destination = player.transform.position - transform.forward * 1.5f;
             navMeshAgent.speed = 2;
 
-            if(enemyAnimator != null)
+            if (enemyAnimator != null)
                 enemyAnimator.SetBool("IsWalking", true);
         }
     }

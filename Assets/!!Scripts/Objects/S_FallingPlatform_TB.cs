@@ -20,8 +20,6 @@ public class S_FallingPlatform_TB : MonoBehaviour
         if(!SupportStanding())
         {
             rb.isKinematic = false;
-            Destroy(this);
-            print("fall");
 
             foreach (var item in toDestroy)
             {
