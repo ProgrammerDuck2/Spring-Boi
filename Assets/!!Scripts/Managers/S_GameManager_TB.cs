@@ -66,7 +66,9 @@ public class S_GameManager_TB : MonoBehaviour
         if (load)
             Load();
         //else
-            //S_Quests_TB.activeQuests.Add(allAvailableQuests[0]);
+        //S_Quests_TB.activeQuests.Add(allAvailableQuests[0]);
+
+        Save();
     }
     void Update()
     {
