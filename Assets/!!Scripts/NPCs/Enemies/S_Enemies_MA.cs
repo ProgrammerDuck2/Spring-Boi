@@ -54,7 +54,8 @@ public class S_Enemies_MA : MonoBehaviour
         navMeshAgent = GetComponent<NavMeshAgent>();
         enemyAnimator = GetComponent<Animator>();
 
-        navMeshAgent.destination = randomDestination();
+        if(enemyType == EnemyType.Roaming)
+            navMeshAgent.destination = randomDestination();
 
         //if (navCorner1 == null || navCorner2 == null || !roaming) return;
 
@@ -72,18 +73,16 @@ public class S_Enemies_MA : MonoBehaviour
         {
             case EnemyType.Roaming:
                 {
-                    enemyAnimator.SetBool("IsWalking", false);
-
                     SetDestination();
                     PlayerFound();
-
+                    enemyAnimator.SetBool("IsWalking", false);
                     break;
                 }
 
             case EnemyType.OnSight:
                 {
-                    enemyAnimator.SetBool("IsWalking", false);
                     PlayerFound();
+                    enemyAnimator.SetBool("IsWalking", false);
                     break;
                 }
 
