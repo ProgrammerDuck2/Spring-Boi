@@ -10,7 +10,7 @@ public class S_Pickupable_TB : S_InteractableObject_TB
     Collider col;
 
     NavMeshAgent agent;
-    S_EnemyFight_TB enemy;
+    S_EnemyFight enemy;
 
     private void Start()
     {
@@ -20,7 +20,7 @@ public class S_Pickupable_TB : S_InteractableObject_TB
         if(isEnemy)
         {
             agent = GetComponent<NavMeshAgent>();
-            enemy = GetComponent<S_EnemyFight_TB>();
+            enemy = GetComponent<S_EnemyFight>();
         }
     }
 
