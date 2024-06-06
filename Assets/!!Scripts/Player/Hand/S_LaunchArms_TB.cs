@@ -29,6 +29,7 @@ public class S_LaunchArms_TB : S_Hand_TB
     {
         base.Start();
         handArt = transform.GetComponent<ActionBasedController>().modelParent.gameObject; //torje please fix :)
+        print(handArt);
         head = transform.parent.GetChild(0);
     }
 
