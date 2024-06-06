@@ -51,6 +51,8 @@ public class S_Punch_TB : S_Hand_TB
                 hand.hapticFeedback.TriggerHaptic(.3f, .1f, GetComponent<ActionBasedController>());
 
                 print("hit enemy");
+
+                S_AudioManager_HA.instance.PlayOneShot(S_FMODEvents_HA.instance.punch, transform.position);
             }
         }
 
