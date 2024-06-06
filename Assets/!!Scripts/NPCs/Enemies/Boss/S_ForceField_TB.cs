@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class S_ForceField : MonoBehaviour
+public class S_ForceField_TB : MonoBehaviour
 {
     [SerializeField] List <S_Lever_TB> levers = new List <S_Lever_TB> ();
 

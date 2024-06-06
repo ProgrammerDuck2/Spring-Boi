@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class S_ControllPanel : MonoBehaviour
+public class S_ControllPanel_TB : MonoBehaviour
 {
     [SerializeField] S_BossTrigger trigger;
     [SerializeField] GameObject toSpawn;
