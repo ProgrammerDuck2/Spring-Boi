@@ -100,6 +100,7 @@ GameObject:
   - component: {fileID: 2624701393802664058}
   - component: {fileID: 2985909163381001868}
   - component: {fileID: 8928398142769274855}
+  - component: {fileID: 7807540717092875497}
   m_Layer: 7
   m_Name: SpringEnemy
   m_TagString: Enemy
@@ -137,6 +138,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyType: 2
+  enemyAnimator: {fileID: 7807540717092875497}
   nextAttack: 0
   maxHealth: 100
   damage: 100
@@ -326,6 +328,27 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!95 &7807540717092875497
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3038490935606910708}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &7197586623604893909
 PrefabInstance:
   m_ObjectHideFlags: 0
