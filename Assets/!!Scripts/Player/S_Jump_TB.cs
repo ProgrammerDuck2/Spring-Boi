@@ -15,8 +15,13 @@ public class S_Jump_TB : S_Player_TB
 
     float jumpCD;
 
+    private void Start()
+    {
+        playerInput.actions["Jump"].started += JumpPressed;
+    }
     private void Update()
     {
+        Debug.LogError(canJump);
         if(jumpCD > 0)
         {
             jumpCD -= Time.deltaTime;
@@ -38,10 +43,12 @@ public class S_Jump_TB : S_Player_TB
     }
     public void JumpPressed(InputAction.CallbackContext context)
     {
+        Debug.LogError ("JumpPressed");
         Jump();
     }
     public void Jump()
     {
+
         if (canJump && jumpCD <= 0)
         {
             jumpCD = .3f;

@@ -74,14 +74,14 @@ public class S_Enemies_MA : MonoBehaviour
                 {
                     SetDestination();
                     PlayerFound();
-                    enemyAnimator.SetBool("IsWalking", false);
+                    if(enemyAnimator != null) { enemyAnimator.SetBool("IsWalking", false); }
                     break;
                 }
 
             case EnemyType.OnSight:
                 {
                     PlayerFound();
-                    enemyAnimator.SetBool("IsWalking", false);
+                    if (enemyAnimator != null) { enemyAnimator.SetBool("IsWalking", false); }
                     break;
                 }
 

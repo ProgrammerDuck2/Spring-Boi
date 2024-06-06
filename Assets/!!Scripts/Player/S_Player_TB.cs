@@ -40,8 +40,6 @@ public class S_Player_TB : MonoBehaviour
         crouch = GetComponent<S_Crouch_TB>();
 
         playerInput = GetComponent<PlayerInput>();
-
-        playerInput.actions["Jump"].started += jump.JumpPressed;
         //playerInput.actions["Sprint"].started += movement.SprintHeld;
     }
 

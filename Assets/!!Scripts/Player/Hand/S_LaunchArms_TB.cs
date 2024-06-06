@@ -146,7 +146,7 @@ public class S_LaunchArms_TB : S_Hand_TB
             hapticFeedback.TriggerHaptic(.5f, .1f, GetComponent<ActionBasedController>());
 
             spring.connectedBody = playerRB;
-            playerMovement.enabled = false;
+            //playerMovement.enabled = false;
             holding = true;
             currentHandMissile.GetComponent<Light>().enabled = true;    
         }

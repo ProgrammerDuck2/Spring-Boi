@@ -48,7 +48,6 @@ public class S_CallTablet_MA : MonoBehaviour
     IEnumerator CallSpeech()
     {
         yield return StartCoroutine(PlayRingtone());
-        S_AudioManager_HA.instance.PlayOneShot(whichCall[counter].audioClips[0], transform.position);
         Debug.Log(whichCall[counter].callText.Count);
         //whichCall[1].callText[1]
         for (int i = 0; i < whichCall[counter].callText.Count; i++)
